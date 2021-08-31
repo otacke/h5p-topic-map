@@ -61,3 +61,13 @@ declare class EventDispatcher {
     external?: boolean;
   }) => void;
 }
+
+declare interface IH5PWrapper {
+  attach($wrapper: JQuery<HTMLElement>): void;
+}
+
+declare interface IH5PEditorWrapper {
+  appendTo($wrapper: JQuery<HTMLElement>): void;
+  validate(): boolean;
+  remove(): void;
+}
