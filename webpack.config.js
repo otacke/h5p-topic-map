@@ -20,21 +20,30 @@ const config = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
-        exclude: /\.module\.css$/,
-      },
-      {
         test: /\.ts(x)?$/,
         loader: "ts-loader",
         exclude: /node_modules/,
       },
       {
-        test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        test: /\.module.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+            },
+          },
+          "sass-loader",
+        ],
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        exclude: /\.module\.scss$/,
+      },
+      {
+        test: /\.module\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -45,7 +54,11 @@ const config = {
             },
           },
         ],
-        include: /\.module.css$/,
+      },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        exclude: /\.module\.css$/,
       },
       {
         test: /\.svg$/,
@@ -65,7 +78,7 @@ const config = {
     ],
   },
   resolve: {
-    extensions: [".js", ".jsx", ".tsx", ".ts"],
+    extensions: [".js", ".jsx", ".tsx", ".ts", ".scss"],
     alias: {
       "react-dom": "@hot-loader/react-dom",
     },

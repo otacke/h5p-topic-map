@@ -10,7 +10,8 @@
     "target": "es5",
     "allowJs": true,
     "jsx": "react",
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "strictNullChecks": true
   },
-  "include": ["./src/**/*", "H5P.d.ts"]
+  "include": ["./src/**/*", "H5P.d.ts", "typings.d.ts"]
 }
