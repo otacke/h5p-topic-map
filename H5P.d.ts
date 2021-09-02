@@ -56,10 +56,14 @@ declare class EventDispatcher {
    * @param {boolean} [extras.bubbles]
    * @param {boolean} [extras.external]
    */
-  trigger: (event: string | any, eventData?: any, extras?: {
-    bubbles?: boolean;
-    external?: boolean;
-  }) => void;
+  trigger: (
+    event: string | any,
+    eventData?: any,
+    extras?: {
+      bubbles?: boolean;
+      external?: boolean;
+    },
+  ) => void;
 }
 
 declare interface IH5PWrapper {
