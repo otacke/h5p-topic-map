@@ -14,7 +14,7 @@ export const Page = ({
   onLogin,
   onLogout,
   onCreateAccount,
-}: PageProps) => (
+}: PageProps): JSX.Element => (
   <article>
     <Header
       user={user}
