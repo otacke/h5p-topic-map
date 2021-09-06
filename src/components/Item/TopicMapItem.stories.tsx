@@ -16,18 +16,16 @@ const defaultArgs: TopicMapItemProps = {
     url: "https://source.unsplash.com/daily/",
   },
   title: "Title",
-  editAction: () => {
-    /* Intentionally left empty */
-  },
+  editAction: console.info,
 };
 
 export const NoContainer: ComponentStory<typeof TopicMapItem> = () => {
-  const args: TopicMapItemProps = {...defaultArgs};
+  const args: TopicMapItemProps = { ...defaultArgs };
   return <TopicMapItem {...args} />;
 };
 
 export const Square: ComponentStory<typeof TopicMapItem> = () => {
-  const args: TopicMapItemProps = {...defaultArgs};
+  const args: TopicMapItemProps = { ...defaultArgs };
   return (
     <div
       style={{
@@ -41,7 +39,7 @@ export const Square: ComponentStory<typeof TopicMapItem> = () => {
 };
 
 export const Wide: ComponentStory<typeof TopicMapItem> = () => {
-  const args: TopicMapItemProps = {...defaultArgs};
+  const args: TopicMapItemProps = { ...defaultArgs };
   return (
     <div
       style={{
@@ -55,7 +53,7 @@ export const Wide: ComponentStory<typeof TopicMapItem> = () => {
 };
 
 export const Tall: ComponentStory<typeof TopicMapItem> = () => {
-  const args: TopicMapItemProps = {...defaultArgs};
+  const args: TopicMapItemProps = { ...defaultArgs };
   return (
     <div
       style={{
