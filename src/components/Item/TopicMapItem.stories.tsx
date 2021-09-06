@@ -9,17 +9,61 @@ export default {
   component: TopicMapItem,
 } as ComponentMeta<typeof TopicMapItem>;
 
-const Template: ComponentStory<typeof TopicMapItem> = args => (
-  <TopicMapItem {...args} />
-);
-
-export const Default = Template.bind({});
-Default.args = {
+const defaultArgs: TopicMapItemProps = {
   backgroundImage: {
     alt: "",
     aspectRatio: 1920 / 1080,
     url: "https://source.unsplash.com/daily/",
   },
   title: "Title",
-  editAction: () => { /* Intentionally left empty */ },
-} as TopicMapItemProps;
+  editAction: () => {
+    /* Intentionally left empty */
+  },
+};
+
+export const NoContainer: ComponentStory<typeof TopicMapItem> = () => {
+  const args: TopicMapItemProps = {...defaultArgs};
+  return <TopicMapItem {...args} />;
+};
+
+export const Square: ComponentStory<typeof TopicMapItem> = () => {
+  const args: TopicMapItemProps = {...defaultArgs};
+  return (
+    <div
+      style={{
+        height: "min(95vw, 95vh)",
+        width: "min(95vw, 95vh)",
+      }}
+    >
+      <TopicMapItem {...args} />
+    </div>
+  );
+};
+
+export const Wide: ComponentStory<typeof TopicMapItem> = () => {
+  const args: TopicMapItemProps = {...defaultArgs};
+  return (
+    <div
+      style={{
+        height: "min(40vw, 40vh)",
+        width: "min(95vw, 95vh)",
+      }}
+    >
+      <TopicMapItem {...args} />
+    </div>
+  );
+};
+
+export const Tall: ComponentStory<typeof TopicMapItem> = () => {
+  const args: TopicMapItemProps = {...defaultArgs};
+  return (
+    <div
+      style={{
+        height: "min(95vw, 95vh)",
+        width: "min(40vw, 40vh)",
+      }}
+    >
+      <TopicMapItem {...args} />
+    </div>
+  );
+};
