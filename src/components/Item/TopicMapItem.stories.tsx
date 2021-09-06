@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import * as React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
@@ -20,5 +21,5 @@ Default.args = {
     url: "https://source.unsplash.com/daily/",
   },
   title: "Title",
-  editAction: () => {},
+  editAction: () => { /* Intentionally left empty */ },
 } as TopicMapItemProps;
