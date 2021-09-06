@@ -14,7 +14,7 @@ export const TopicMapItem = ({
   editAction,
 }: TopicMapItemProps): JSX.Element => {
   return (
-    <button className={styles.topicMapItem} onClick={editAction}>
+    <button type="button" className={styles.topicMapItem} onClick={editAction}>
       <img
         className={styles.bgImage}
         src={backgroundImage.url}
