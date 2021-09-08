@@ -1,0 +1,24 @@
+.topicMapItem {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  padding: 0;
+  position: relative;
+  width: 100%;
+}
+
+.bgImage {
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.title {
+  padding: 0.5em;
+}
