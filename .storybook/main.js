@@ -34,4 +34,4 @@ function addScssSupport(config) {
     use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
     exclude: /\.module\.scss$/,
   });
-};
+}
