@@ -12,8 +12,8 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '15.x'
-      
+          node-version: "15.x"
+
       - name: Install Node.js dependencies
         run: npm ci
 
@@ -22,9 +22,8 @@ jobs:
 
       - name: Test
         run: npm run test
-        env: 
+        env:
           CI: true
-      
+
       - name: Build
         run: npm run build:prod
-        
