@@ -1,9 +1,8 @@
-import { Image } from "./Image";
-import { Position } from "./Position";
+import { H5PField } from "./H5PField";
+import { H5PFieldType } from "./H5PFieldType";
 
-export type TopicMapElement = {
-  start: Position;
-  end: Position;
-  backgroundImage: Image;
-  connectedArrows: Array<Arrow>;
+
+export type TopicMapData = H5PField | {
+
+  type: H5PFieldType.Group;
 };
