@@ -42,7 +42,13 @@
     ],
     "import/no-extraneous-dependencies": [
       "error",
-      { "devDependencies": ["**/*.test.*", "**/*.stories.*"] }
+      {
+        "devDependencies": [
+          "**/*.test.*",
+          "**/*.stories.*",
+          "webpack.config.js"
+        ]
+      }
     ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
@@ -60,5 +66,5 @@
       "typescript": {}
     }
   },
-  "ignorePatterns": ["dist", "stories"]
+  "ignorePatterns": ["dist", "stories", "storybook-static", "node_modules"]
 }
