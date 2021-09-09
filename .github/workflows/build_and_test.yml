@@ -27,3 +27,56 @@ jobs:
 
       - name: Build
         run: npm run build:prod
+
+      - run: |
+          mkdir -p dist
+          cd dist
+          # Clone dependencies
+          while read -r repo; do git clone ${repo}; done < ../h5p-topic-map/build_info/repos
+
+          # Remove projects that we want to override
+          rm -rf \
+            h5p-topic-map \
+            h5p-editor-topic-map \
+
+          # Clone and build override projects with build scripts
+          git clone https://github.com/NDLANO/h5p-editor-topic-map.git && pushd h5p-editor-topic-map && npm ci && npm run build:prod && popd
+          cp -r ../h5p-topic-map .
+
+      - run: |
+          cd dist
+          ls
+          npm install -g h5p
+          h5p pack -r h5p-topic-map topic-map.h5p
+          h5p validate topic-map.h5p
+
+      - name: Store packed H5P as an artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: topic-map.h5p
+          path: dist/topic-map.h5p
+      - name: Load library.json
+        id: set_library
+        run: |
+          ls
+          JSON=$(cat ./h5p-topic-map/library.json)
+          JSON="${JSON//'%'/%25}"
+          JSON="${JSON//$'\n'/%0A}"
+          JSON="${JSON//$'\r'/%0D}"
+          echo "::set-output name=library::${JSON}"
+      - uses: "marvinpinto/action-automatic-releases@latest" # https://github.com/marvinpinto/actions/tree/master/packages/automatic-releases
+        if: ${{ github.ref == 'refs/heads/master' }}
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: |
+            ${{ 
+              format(
+                'v{0}.{1}.{2}',
+                fromJson(steps.set_library.outputs.library).majorVersion,
+                fromJson(steps.set_library.outputs.library).minorVersion,
+                fromJson(steps.set_library.outputs.library).patchVersion
+              )
+            }}
+          prerelease: false
+          files: |
+            dist/topic-map.h5p
