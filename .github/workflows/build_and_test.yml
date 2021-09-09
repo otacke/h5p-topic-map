@@ -39,7 +39,7 @@ jobs:
             h5p-editor-topic-map \
 
           # Clone and build override projects with build scripts
-          git clone https://github.com/NDLANO/h5p-editor-topic-map.git && pushd h5p-editor-topic-map && npm ci && npm run build:prod && popd
+          git clone https://github.com/NDLA-H5P/h5p-editor-topic-map.git && pushd h5p-editor-topic-map && npm ci && npm run build:prod && popd
           cp -r ../h5p-topic-map .
 
       - run: |
