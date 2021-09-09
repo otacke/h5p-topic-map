@@ -7,7 +7,12 @@
   "runnable": 1,
   "preloadedJs": [
     {
-      "path": "src/topic-map.js"
+      "path": "dist/bundle.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "dist/main.css"
     }
   ]
 }
