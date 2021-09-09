@@ -36,7 +36,6 @@ jobs:
 
           # Remove projects that we want to override
           rm -rf \
-            h5p-topic-map \
             h5p-editor-topic-map \
 
           # Clone and build override projects with build scripts
