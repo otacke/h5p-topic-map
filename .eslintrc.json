@@ -22,6 +22,7 @@
   "rules": {
     "no-use-before-define": "off",
     "no-shadow": "off",
+    "no-console": ["error", { "allow": ["warn", "error", "info"] }],
     "@typescript-eslint/no-shadow": ["error"],
     "@typescript-eslint/explicit-function-return-type": [
       "error",
@@ -37,6 +38,16 @@
       {
         "ts": "never",
         "tsx": "never"
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.*",
+          "**/*.stories.*",
+          "webpack.config.js"
+        ]
       }
     ],
     "react-hooks/rules-of-hooks": "error",
@@ -55,5 +66,5 @@
       "typescript": {}
     }
   },
-  "ignorePatterns": ["dist", "stories"]
+  "ignorePatterns": ["dist", "stories", "storybook-static", "node_modules"]
 }
