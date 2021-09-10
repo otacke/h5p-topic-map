@@ -15,7 +15,7 @@
       "path": "dist/bundle.css"
     }
   ],
-  "preloadedDependencies": [
+  "editorDependencies": [
     {
       "machineName": "H5PEditor.TopicMap",
       "majorVersion": 0,
