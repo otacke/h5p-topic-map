@@ -8,10 +8,13 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const config = {
-  entry: ["react-hot-loader/patch", "./src/index.tsx"],
+  entry: {
+    bundle: ["react-hot-loader/patch", "./src/index.tsx"],
+    semantics: "./src/semantics.ts",
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: "[name].js",
   },
   module: {
     rules: [
