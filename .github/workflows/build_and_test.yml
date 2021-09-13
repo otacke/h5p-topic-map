@@ -26,7 +26,7 @@ jobs:
           CI: true
 
       - name: Build
-        run: npm run build:prod
+        run: npm run build
 
       - run: |
           mkdir -p dist
@@ -36,10 +36,10 @@ jobs:
 
           # Remove projects that we want to override
           rm -rf \
-            h5p-editor-topic-map \
+            h5p-editor-topic-map
 
           # Clone and build override projects with build scripts
-          git clone https://github.com/NDLA-H5P/h5p-editor-topic-map.git && pushd h5p-editor-topic-map && npm ci && npm run build:prod && popd
+          git clone https://github.com/NDLA-H5P/h5p-editor-topic-map.git && pushd h5p-editor-topic-map && npm ci && npm run build && popd
           cp -r ../h5p-topic-map .
 
       - run: |

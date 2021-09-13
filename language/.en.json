@@ -1,0 +1,39 @@
+[
+  {
+    "label": "Topic map editor",
+    "fields": [
+      {
+        "label": "Topic map items",
+        "field": {
+          "fields": [
+            {
+              "label": "Label",
+              "description": "The label is shown on top of the background image"
+            },
+            {
+              "label": "Background image"
+            },
+            {
+              "label": "Links",
+              "description": "These links are as auxiliary links for the user in the element's modal window"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Arrows",
+        "field": {
+          "fields": [{}, {}]
+        }
+      }
+    ]
+  },
+  {
+    "label": "Behavioral settings",
+    "fields": []
+  },
+  {
+    "label": "Localize",
+    "fields": []
+  }
+]

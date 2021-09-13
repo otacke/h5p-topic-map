@@ -1,7 +1,69 @@
 [
   {
-    "name": "name",
-    "type": "text",
-    "label": "What is your name?"
+    "label": "Topic map editor",
+    "name": "topicMap",
+    "type": "group",
+    "widget": "topicMap",
+    "importance": "high",
+    "fields": [
+      {
+        "label": "Topic map items",
+        "name": "topicMapItems",
+        "type": "list",
+        "entity": "Topic map item",
+        "field": {
+          "name": "topicMapItem",
+          "type": "group",
+          "fields": [
+            {
+              "label": "Label",
+              "description": "The label is shown on top of the background image",
+              "name": "label",
+              "type": "text"
+            },
+            {
+              "label": "Background image",
+              "name": "backgroundImage",
+              "type": "image"
+            },
+            {
+              "label": "Links",
+              "name": "links",
+              "description": "These links are as auxiliary links for the user in the element's modal window",
+              "type": "list",
+              "field": { "label": "Link", "name": "link", "type": "text" }
+            }
+          ]
+        }
+      },
+      {
+        "label": "Arrows",
+        "name": "arrows",
+        "type": "list",
+        "entity": "Arrow",
+        "field": {
+          "name": "arrow",
+          "type": "group",
+          "fields": [
+            { "name": "showStartHead", "type": "boolean", "widget": "none" },
+            { "name": "showEndHead", "type": "boolean", "widget": "none" }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "behaviour",
+    "type": "group",
+    "label": "Behavioral settings",
+    "importance": "low",
+    "fields": []
+  },
+  {
+    "name": "l10n",
+    "type": "group",
+    "common": true,
+    "label": "Localize",
+    "fields": []
   }
 ]
