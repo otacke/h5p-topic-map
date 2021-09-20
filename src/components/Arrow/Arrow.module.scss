@@ -5,6 +5,11 @@
   display:flex;
 }
 
+.head {
+    min-width: 40px;
+    max-width: 40px;
+}
+
 .body {
     flex-grow: 1;
     width: 100%;

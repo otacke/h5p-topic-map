@@ -29,7 +29,7 @@ export const Arrow: React.FC<ArrowProps>= ({
     
     
     const arrowHeadRight = (
-    <svg className="arrow head" viewBox="0 0 20 40" preserveAspectRatio="xMaxYMid">
+    <svg className={styles.head} viewBox="0 0 20 40" preserveAspectRatio="xMaxYMid">
     <polygon points="0,0 0,40 20,20" fill={color}>
     </polygon>
     </svg>);
