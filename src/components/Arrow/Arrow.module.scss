@@ -1,0 +1,25 @@
+.arrow {
+  width: 100px;
+  height: 100px;
+  box-sizing: border-box;
+  display:flex;
+}
+
+.body {
+    flex-grow: 1;
+    width: 100%;
+}
+
+.pointLeft {
+    transform: rotate(180deg);
+}
+
+.pointUp {
+    transform: rotate(90deg);
+}
+
+.pointDown {
+    transform: rotate(-90deg);
+}
+
+.pointRight{};
