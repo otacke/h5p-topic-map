@@ -1,8 +1,8 @@
 .arrow {
-  width: 100px;
-  height: 100px;
-  box-sizing: border-box;
-  display:flex;
+    width: 100px;
+    height: 100px;
+    box-sizing: border-box;
+    display: flex;
 }
 
 .head {
@@ -20,11 +20,9 @@
 }
 
 .pointUp {
-    transform: rotate(90deg);
-}
-
-.pointDown {
     transform: rotate(-90deg);
 }
 
-.pointRight{};
+.pointDown {
+    transform: rotate(90deg);
+}
