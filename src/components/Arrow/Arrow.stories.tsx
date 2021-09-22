@@ -2,7 +2,7 @@
 import * as React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { Arrow, ArrowProps } from "./Arrow";
+import { Arrow, ArrowType } from "./Arrow";
 
 const blue = "#114df3";
 const red = "#df0c0c";
@@ -11,17 +11,19 @@ export default {
   title: "Arrow",
   component: Arrow,
   argTypes: {
-    color: {
-      default: "#000000",
-      control: "color",
+    type: {
+      // prettier-ignore
+      // prettier removes the button titles.
+      options: {"Directional": ArrowType.Directional, "BiDirectional": ArrowType.BiDirectional, "NonDirectional": ArrowType.NonDirectional},
+      control: { type: "radio" },
     },
   },
 } as ComponentMeta<typeof Arrow>;
 
 const Template: ComponentStory<typeof Arrow> = args => <Arrow {...args} />;
 
-export const RightPointingArrow = Template.bind({});
-RightPointingArrow.args = {
+export const RightDirectionalArrow = Template.bind({});
+RightDirectionalArrow.args = {
   start: {
     x: 0,
     y: 0,
@@ -31,23 +33,25 @@ RightPointingArrow.args = {
     y: 0,
   },
   color: blue,
+  type: ArrowType.Directional,
 };
 
-export const LeftPointingArrow = Template.bind({});
-LeftPointingArrow.args = {
+export const BidirectionalHorizontalArrow = Template.bind({});
+BidirectionalHorizontalArrow.args = {
   start: {
+    x: 0,
+    y: 0,
+  },
+  end: {
     x: 100,
     y: 0,
   },
-  end: {
-    x: 0,
-    y: 0,
-  },
   color: red,
+  type: ArrowType.BiDirectional,
 };
 
-export const UpPointingArrow = Template.bind({});
-UpPointingArrow.args = {
+export const UpDirectionalArrow = Template.bind({});
+UpDirectionalArrow.args = {
   start: {
     x: 0,
     y: 100,
@@ -56,11 +60,12 @@ UpPointingArrow.args = {
     x: 0,
     y: 0,
   },
-  color: red,
+  color: blue,
+  type: ArrowType.Directional,
 };
 
-export const DownPointingArrow = Template.bind({});
-DownPointingArrow.args = {
+export const NonDirectionalVerticalArrow = Template.bind({});
+NonDirectionalVerticalArrow.args = {
   start: {
     x: 0,
     y: 0,
@@ -70,4 +75,5 @@ DownPointingArrow.args = {
     y: 100,
   },
   color: red,
+  type: ArrowType.NonDirectional,
 };
