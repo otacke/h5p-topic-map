@@ -18,18 +18,6 @@ export default {
   },
 } as ComponentMeta<typeof Arrow>;
 
-const defaultArgs: ArrowProps = {
-  start: {
-    x: 0,
-    y: 0,
-  },
-  end: {
-    x: 0,
-    y: 0,
-  },
-  color: blue,
-};
-
 const Template: ComponentStory<typeof Arrow> = args => <Arrow {...args} />;
 
 export const RightPointingArrow = Template.bind({});
