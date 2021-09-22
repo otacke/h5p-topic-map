@@ -19,6 +19,10 @@
   transform: rotate(180deg);
 }
 
+.mirrorX{
+  transform: scaleX(-1);
+}
+
 .pointUp {
   transform: rotate(-90deg);
 }
