@@ -1,0 +1,31 @@
+.arrow {
+  width: 100px;
+  height: 100px;
+  display: flex;
+}
+
+.head {
+  min-width: 40px;
+  max-width: 40px;
+}
+
+.body {
+  flex-grow: 1;
+  width: 100%;
+}
+
+.pointLeft {
+  transform: rotate(180deg);
+}
+
+.mirrorX {
+  transform: scaleX(-1);
+}
+
+.pointUp {
+  transform: rotate(-90deg);
+}
+
+.pointDown {
+  transform: rotate(90deg);
+}

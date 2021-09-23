@@ -11,7 +11,8 @@
     "allowJs": true,
     "jsx": "react",
     "downlevelIteration": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["./src/**/*", "H5P.d.ts", "typings.d.ts"]
 }
