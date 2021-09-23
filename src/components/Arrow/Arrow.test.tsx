@@ -16,7 +16,7 @@ describe(Arrow.name, () => {
     expect(arrow.querySelector("div")).toBeTruthy();
     expect(arrow.querySelectorAll("svg").length).toBe(2);
   });
-  
+
   it("should add two arrow heads if the arrow is bidirectional", () => {
     const arrow = render(
       <Arrow
@@ -30,7 +30,7 @@ describe(Arrow.name, () => {
     expect(arrow.querySelector("div")).toBeTruthy();
     expect(arrow.querySelectorAll("svg").length).toBe(3);
   });
-  
+
   it("should render", () => {
     const arrow = render(
       <Arrow
