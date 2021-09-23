@@ -36,9 +36,33 @@ export const Arrow: React.FC<ArrowProps> = ({ start, end, color, type }) => {
     </svg>
   );
 
+  const noteCircle = (
+    <svg
+      className={styles.button}
+      viewBox="0 0 12 12"
+      preserveAspectRatio="xMaxYMid"
+    >
+      <circle
+        cx="6"
+        cy="6"
+        r="4px"
+        stroke="#FFFFFF"
+        fill={color}
+        strokeWidth="0.7"
+      />
+    </svg>
+  );
+
   const arrowBody = (
     <svg className={styles.body} viewBox="0 0 1 40" preserveAspectRatio="none">
       <rect x="0" y="15" width="1" height="10" fill={color} />
+    </svg>
+  );
+
+  const bodyWrapper = (
+    <svg viewBox="0 0 12 12" preserveAspectRatio="xMaxYMid">
+      {arrowBody}
+      {noteCircle}
     </svg>
   );
 
@@ -60,6 +84,7 @@ export const Arrow: React.FC<ArrowProps> = ({ start, end, color, type }) => {
   } else {
     length = { width: Math.abs(end.x - start.x) };
     if (pointsLeft) classNames += styles.pointLeft;
+    else classNames += styles.pointRight;
   }
 
   let arrow;
@@ -68,6 +93,7 @@ export const Arrow: React.FC<ArrowProps> = ({ start, end, color, type }) => {
       arrow = (
         <div className={classNames} style={length}>
           {arrowBody}
+          {noteCircle}
         </div>
       );
       break;
@@ -77,6 +103,7 @@ export const Arrow: React.FC<ArrowProps> = ({ start, end, color, type }) => {
           {arrowHeadMirrored}
           {arrowBody}
           {arrowHead}
+          {noteCircle}
         </div>
       );
       break;
@@ -85,6 +112,7 @@ export const Arrow: React.FC<ArrowProps> = ({ start, end, color, type }) => {
         <div className={classNames} style={length}>
           {arrowBody}
           {arrowHead}
+          {noteCircle}
         </div>
       );
   }

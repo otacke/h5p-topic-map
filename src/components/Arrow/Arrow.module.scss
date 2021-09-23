@@ -28,3 +28,15 @@
 .pointDown {
   transform: rotate(90deg);
 }
+
+.pointRight {
+  transform: rotate(0deg);
+}
+
+.button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  transform: translate(-50%, -50%);
+}
