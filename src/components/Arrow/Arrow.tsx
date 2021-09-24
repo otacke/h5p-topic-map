@@ -15,18 +15,8 @@ export type ArrowProps = {
   type: ArrowType;
 };
 
-export const Arrow: React.FC<ArrowProps> = ({ start, end, color, type }) => {
-  const arrowHead = (
-    <svg
-      className={styles.head}
-      viewBox="0 0 20 40"
-      preserveAspectRatio="xMaxYMid"
-    >
-      <polygon points="0,0 0,40 20,20" fill={color} />
-    </svg>
-  );
-
-  const arrowHeadMirrored = (
+const makeMirroredHead = (color: string) => {
+  return (
     <svg
       className={`${styles.head} ${styles.mirrorX}`}
       viewBox="0 0 20 40"
@@ -35,12 +25,37 @@ export const Arrow: React.FC<ArrowProps> = ({ start, end, color, type }) => {
       <polygon points="0,0 0,40 20,20" fill={color} />
     </svg>
   );
+};
 
-  const noteCircle = (
+const makeHead = (color: string) => {
+  return (
+    <svg
+      className={styles.head}
+      viewBox="0 0 20 40"
+      preserveAspectRatio="xMaxYMid"
+    >
+      <polygon points="0,0 0,40 20,20" fill={color} />
+    </svg>
+  );
+};
+
+const makeBody = (color: string) => {
+  return (
+    <svg className={styles.body} viewBox="0 0 1 40" preserveAspectRatio="none">
+      <rect x="0" y="15" width="1" height="10" fill={color} />
+    </svg>
+  );
+};
+
+const makeCircle = (color: string, type: ArrowType) => {
+  let directionalAlignment;
+  if (type !== ArrowType.Directional) directionalAlignment = { left: "50%" };
+  return (
     <svg
       className={styles.button}
       viewBox="0 0 12 12"
       preserveAspectRatio="xMaxYMid"
+      style={directionalAlignment}
     >
       <circle
         cx="6"
@@ -52,20 +67,9 @@ export const Arrow: React.FC<ArrowProps> = ({ start, end, color, type }) => {
       />
     </svg>
   );
+};
 
-  const arrowBody = (
-    <svg className={styles.body} viewBox="0 0 1 40" preserveAspectRatio="none">
-      <rect x="0" y="15" width="1" height="10" fill={color} />
-    </svg>
-  );
-
-  const bodyWrapper = (
-    <svg viewBox="0 0 12 12" preserveAspectRatio="xMaxYMid">
-      {arrowBody}
-      {noteCircle}
-    </svg>
-  );
-
+export const Arrow: React.FC<ArrowProps> = ({ start, end, color, type }) => {
   // find angle and direction of arrow
   let angle = Math.atan2(start.y - end.y, end.x - start.x) * (180 / Math.PI);
   if (angle < 0) angle = 360 + angle;
@@ -92,27 +96,27 @@ export const Arrow: React.FC<ArrowProps> = ({ start, end, color, type }) => {
     case ArrowType.NonDirectional:
       arrow = (
         <div className={classNames} style={length}>
-          {arrowBody}
-          {noteCircle}
+          {makeBody(color)}
+          {makeCircle(color, type)}
         </div>
       );
       break;
     case ArrowType.BiDirectional:
       arrow = (
         <div className={classNames} style={length}>
-          {arrowHeadMirrored}
-          {arrowBody}
-          {arrowHead}
-          {noteCircle}
+          {makeMirroredHead(color)}
+          {makeBody(color)}
+          {makeHead(color)}
+          {makeCircle(color, type)}
         </div>
       );
       break;
     case ArrowType.Directional:
       arrow = (
         <div className={classNames} style={length}>
-          {arrowBody}
-          {arrowHead}
-          {noteCircle}
+          {makeBody(color)}
+          {makeHead(color)}
+          {makeCircle(color, type)}
         </div>
       );
   }
