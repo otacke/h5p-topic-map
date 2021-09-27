@@ -36,6 +36,20 @@ RightDirectionalArrow.args = {
   type: ArrowType.Directional,
 };
 
+export const LeftDirectionalArrow = Template.bind({});
+LeftDirectionalArrow.args = {
+  start: {
+    x: 100,
+    y: 0,
+  },
+  end: {
+    x: 0,
+    y: 0,
+  },
+  color: blue,
+  type: ArrowType.Directional,
+};
+
 export const BidirectionalHorizontalArrow = Template.bind({});
 BidirectionalHorizontalArrow.args = {
   start: {
