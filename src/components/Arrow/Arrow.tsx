@@ -22,9 +22,12 @@ export type ArrowProps = {
   circleColor: string;
   iconColor: string;
   type: ArrowType;
+  notes: string;
 };
 
-const makeMirroredHead = (arrowColor: string) => {
+let isShown = false;
+
+const makeMirroredHead = (arrowColor: string): JSX.Element => {
   return (
     <svg
       className={`${styles.head} ${styles.mirrorX}`}
@@ -36,9 +39,15 @@ const makeMirroredHead = (arrowColor: string) => {
   );
 };
 
-const makeHead = (arrowColor: string) => {
+const toggleButton = (): void => {
+  isShown = !isShown;
+};
+
+const makeHead = (arrowColor: string): JSX.Element => {
   return (
     <svg
+      onMouseEnter={() => toggleButton()}
+      onMouseLeave={() => toggleButton()}
       className={styles.head}
       viewBox="0 0 20 40"
       preserveAspectRatio="xMaxYMid"
@@ -48,7 +57,7 @@ const makeHead = (arrowColor: string) => {
   );
 };
 
-const makeBody = (arrowColor: string) => {
+const makeBody = (arrowColor: string): JSX.Element => {
   return (
     <svg className={styles.body} viewBox="0 0 1 40" preserveAspectRatio="none">
       <rect x="0" y="15" width="1" height="10" fill={arrowColor} />
@@ -56,7 +65,7 @@ const makeBody = (arrowColor: string) => {
   );
 };
 
-const renderIcons = (hasNotes: boolean, iconColor: string) => {
+const renderIcons = (hasNotes: boolean, iconColor: string): JSX.Element => {
   const edit = (
     <path
       fill={iconColor}
@@ -72,13 +81,17 @@ const renderIcons = (hasNotes: boolean, iconColor: string) => {
   return hasNotes ? notes : edit;
 };
 
+function clickArrow(): void {
+  // TODO
+}
+
 const makeButton = (
   arrowColor: string,
   circleColor: string,
   iconColor: string,
   type: ArrowType,
   direction: ArrowDirection,
-) => {
+): JSX.Element => {
   let classNames = `${styles.button}`;
 
   if (type !== ArrowType.Directional)
@@ -102,27 +115,27 @@ const makeButton = (
 
   return (
     <svg
+      id="svgBtn"
       className={classNames}
-      onClick={clickArrow}
       viewBox="0 0 12 12"
       preserveAspectRatio="xMaxYMid"
     >
       <circle
-        cx="6"
-        cy="6"
-        r="4px"
         stroke={circleColor}
         fill={arrowColor}
-        strokeWidth="0.7"
+        className={`${styles.buttonCircle}`}
       />
 
-      <svg viewBox="-12 -12 48 48">{renderIcons(true, iconColor)}</svg>
+      <svg viewBox="-12 -12 48 48">{renderIcons(false, iconColor)}</svg>
+
+      <circle
+        fill="transparent"
+        className={`${styles.buttonCircle}`}
+        style={{ cursor: "pointer" }}
+        onClick={clickArrow}
+      />
     </svg>
   );
-};
-
-const clickArrow = () => {
-  // TODO
 };
 
 export const Arrow: React.FC<ArrowProps> = ({
@@ -190,7 +203,9 @@ export const Arrow: React.FC<ArrowProps> = ({
         <div className={classNames} style={length}>
           {makeBody(arrowColor)}
           {makeHead(arrowColor)}
-          {makeButton(arrowColor, circleColor, iconColor, type, direction)}
+          {isShown
+            ? makeButton(arrowColor, circleColor, iconColor, type, direction)
+            : null}
         </div>
       );
   }

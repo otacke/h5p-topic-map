@@ -12,6 +12,7 @@ describe(Arrow.name, () => {
         circleColor="#FFFFFF"
         iconColor="#FFFFFF"
         type={ArrowType.Directional}
+        notes=""
       />,
     ).container;
 
@@ -28,11 +29,12 @@ describe(Arrow.name, () => {
         circleColor="#FFFFFF"
         iconColor="#FFFFFF"
         type={ArrowType.BiDirectional}
+        notes=""
       />,
     ).container;
 
     expect(arrow.querySelector("div")).toBeTruthy();
-    expect(arrow.querySelectorAll("svg").length).toBe(3);
+    expect(arrow.querySelectorAll("svg").length).toBe(5);
   });
 
   it("should render", () => {
@@ -44,10 +46,11 @@ describe(Arrow.name, () => {
         circleColor="#FFFFFF"
         iconColor="#FFFFFF"
         type={ArrowType.NonDirectional}
+        notes=""
       />,
     ).container;
 
     expect(arrow.querySelector("div")).toBeTruthy();
-    expect(arrow.querySelectorAll("svg").length).toBe(1);
+    expect(arrow.querySelectorAll("svg").length).toBe(3);
   });
 });

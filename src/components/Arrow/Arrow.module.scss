@@ -37,7 +37,13 @@
   position: absolute;
   top: 50%;
   width: 50px;
-  cursor: pointer;
+}
+
+.buttonCircle {
+  cx: 6;
+  cy: 6;
+  r: 4px;
+  stroke-width: 0.7;
 }
 
 .buttonDirectional {
@@ -64,12 +70,4 @@
 
 .buttonRight {
   transform: translate(-50%, -50%);
-}
-
-.editHoverArrow {
-  display: none;
-}
-
-.editHoverArrow:hover {
-  display: block;
 }
