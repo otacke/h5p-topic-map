@@ -18,47 +18,49 @@ enum ArrowDirection {
 export type ArrowProps = {
   start: Position;
   end: Position;
-  color: string;
+  arrowColor: string;
+  circleColor: string;
+  iconColor: string;
   type: ArrowType;
 };
 
-const makeMirroredHead = (color: string) => {
+const makeMirroredHead = (arrowColor: string) => {
   return (
     <svg
       className= {`${styles.head} ${styles.mirrorX}`}
       viewBox="0 0 20 40"
       preserveAspectRatio="xMaxYMid"
     >
-      <polygon points="0,0 0,40 20,20" fill={color} />
+      <polygon points="0,0 0,40 20,20" fill={arrowColor} />
     </svg>);
 }
 
-const makeHead = (color: string) => {
+const makeHead = (arrowColor: string) => {
   return (
     <svg
       className={styles.head}
       viewBox="0 0 20 40"
       preserveAspectRatio="xMaxYMid"
     >
-      <polygon points="0,0 0,40 20,20" fill={color} />
+      <polygon points="0,0 0,40 20,20" fill={arrowColor} />
     </svg>);
 }
 
-const makeBody = (color: string) => {
+const makeBody = (arrowColor: string) => {
   return (
     <svg className={styles.body} viewBox="0 0 1 40" preserveAspectRatio="none">
-      <rect x="0" y="15" width="1" height="10" fill={color} />
+      <rect x="0" y="15" width="1" height="10" fill={arrowColor} />
     </svg>
   );
 }
 
-const renderIcons = (hasNotes: boolean) => {
-  const edit = <path fill="black" d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
-  const notes = <path fill="currentColor" d="M20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20M4,6V18H20V6H4M6,9H18V11H6V9M6,13H16V15H6V13Z" />
+const renderIcons = (hasNotes: boolean, iconColor: string) => {
+  const edit = <path fill={iconColor} d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
+  const notes = <path fill={iconColor} d="M20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20M4,6V18H20V6H4M6,9H18V11H6V9M6,13H16V15H6V13Z" />
   return hasNotes ? notes : edit;
 }
 
-const makeCircle = (color: string, type: ArrowType, direction: ArrowDirection) => {
+const makeCircle = (arrowColor: string, circleColor: string, iconColor: string, type: ArrowType, direction: ArrowDirection) => {
   let classNames = `${styles.button}`;
 
   if(type !== ArrowType.Directional)
@@ -83,19 +85,19 @@ const makeCircle = (color: string, type: ArrowType, direction: ArrowDirection) =
       cx="6"
       cy="6"
       r="4px"
-      stroke="#FFFFFF"
-      fill={color}
+      stroke={circleColor}
+      fill={arrowColor}
       strokeWidth="0.7"
     />
 
     <svg viewBox="-12 -12 48 48">
-      {renderIcons(true)}
+      {renderIcons(true, iconColor)}
     </svg>
   </svg>
   );
 }
 
-export const Arrow: React.FC<ArrowProps> = ({ start, end, color, type }) => {
+export const Arrow: React.FC<ArrowProps> = ({ start, end, arrowColor, circleColor, iconColor, type }) => {
 
   // find angle and direction of arrow
   let angle = Math.atan2(start.y - end.y, end.x - start.x) * (180 / Math.PI);
@@ -136,27 +138,27 @@ export const Arrow: React.FC<ArrowProps> = ({ start, end, color, type }) => {
     case ArrowType.NonDirectional:
       arrow = (
         <div className={classNames} style={length}>
-          {makeBody(color)}
-          {makeCircle(color, type, direction)}
+          {makeBody(arrowColor)}
+          {makeCircle(arrowColor, circleColor, iconColor, type, direction)}
         </div>
       );
       break;
     case ArrowType.BiDirectional:
       arrow = (
         <div className={classNames} style={length}>
-          {makeMirroredHead(color)}
-          {makeBody(color)}
-          {makeHead(color)}
-          {makeCircle(color, type, direction)}
+          {makeMirroredHead(arrowColor)}
+          {makeBody(arrowColor)}
+          {makeHead(arrowColor)}
+          {makeCircle(arrowColor, circleColor, iconColor, type, direction)}
         </div>
       );
       break;
     case ArrowType.Directional:
       arrow = (
         <div className={classNames} style={length}>
-          {makeBody(color)}
-          {makeHead(color)}
-          {makeCircle(color, type, direction)}
+          {makeBody(arrowColor)}
+          {makeHead(arrowColor)}
+          {makeCircle(arrowColor, circleColor, iconColor, type, direction)}
         </div>
       );
   }

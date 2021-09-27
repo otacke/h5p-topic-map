@@ -6,6 +6,7 @@ import { Arrow, ArrowType } from "./Arrow";
 
 const blue = "#114df3";
 const red = "#df0c0c";
+const white = "#FFFFFF";
 
 export default {
   title: "Organisms/Arrow",
@@ -32,7 +33,9 @@ RightDirectionalArrow.args = {
     x: 100,
     y: 0,
   },
-  color: blue,
+  arrowColor: blue,
+  circleColor: white,
+  iconColor: white,
   type: ArrowType.Directional,
 };
 
@@ -46,7 +49,9 @@ LeftDirectionalArrow.args = {
     x: 0,
     y: 0,
   },
-  color: blue,
+  arrowColor: blue,
+  circleColor: white,
+  iconColor: white,
   type: ArrowType.Directional,
 };
 
@@ -60,7 +65,9 @@ BidirectionalHorizontalArrow.args = {
     x: 100,
     y: 0,
   },
-  color: red,
+  arrowColor: blue,
+  circleColor: white,
+  iconColor: white,
   type: ArrowType.BiDirectional,
 };
 
@@ -74,7 +81,9 @@ UpDirectionalArrow.args = {
     x: 0,
     y: 0,
   },
-  color: blue,
+  arrowColor: blue,
+  circleColor: white,
+  iconColor: white,
   type: ArrowType.Directional,
 };
 
@@ -88,6 +97,8 @@ NonDirectionalVerticalArrow.args = {
     x: 0,
     y: 100,
   },
-  color: red,
+  arrowColor: blue,
+  circleColor: white,
+  iconColor: white,
   type: ArrowType.NonDirectional,
 };
