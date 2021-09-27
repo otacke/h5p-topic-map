@@ -37,6 +37,7 @@
   position: absolute;
   top: 50%;
   width: 50px;
+  cursor: pointer;
 }
 
 .buttonDirectional {
@@ -63,4 +64,12 @@
 
 .buttonRight {
   transform: translate(-50%, -50%);
+}
+
+.editHoverArrow {
+  display: none;
+}
+
+.editHoverArrow:hover {
+  display: block;
 }
