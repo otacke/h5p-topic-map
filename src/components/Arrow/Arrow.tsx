@@ -8,6 +8,13 @@ export enum ArrowType {
   NonDirectional,
 }
 
+enum ArrowDirection {
+  Up,
+  Down,
+  Left,
+  Right,
+}
+
 export type ArrowProps = {
   start: Position;
   end: Position;
@@ -26,7 +33,7 @@ const makeMirroredHead = (color: string) => {
     </svg>);
 }
 
-const makeHead = (color:string) => {
+const makeHead = (color: string) => {
   return (
     <svg
       className={styles.head}
@@ -37,7 +44,7 @@ const makeHead = (color:string) => {
     </svg>);
 }
 
-const makeBody = (color:string) => {
+const makeBody = (color: string) => {
   return (
     <svg className={styles.body} viewBox="0 0 1 40" preserveAspectRatio="none">
       <rect x="0" y="15" width="1" height="10" fill={color} />
@@ -51,18 +58,26 @@ const renderIcons = (hasNotes: boolean) => {
   return hasNotes ? notes : edit;
 }
 
-const makeCircle = (color: string, type: ArrowType) => {
-  let directionalAlignment;
+const makeCircle = (color: string, type: ArrowType, direction: ArrowDirection) => {
+  let classNames = `${styles.button}`;
 
   if(type !== ArrowType.Directional)
-    directionalAlignment = {left:"50%"};
+    classNames += ` ${styles.buttonNonDirectional}`;
+  else
+    classNames += ` ${styles.buttonDirectional}`;
+
+  switch(direction){
+    case ArrowDirection.Up: classNames += ` ${styles.buttonUp}`; break;
+    case ArrowDirection.Down: classNames += ` ${styles.buttonDown}`; break;
+    case ArrowDirection.Left: classNames += ` ${styles.buttonLeft}`; break;
+    case ArrowDirection.Right: classNames += ` ${styles.buttonRight}`; break;
+  }
 
   return (
   <svg
-    className={styles.button}
+    className={classNames}
     viewBox="0 0 12 12"
     preserveAspectRatio="xMaxYMid"
-    style={directionalAlignment}
   >
     <circle
       cx="6"
@@ -72,7 +87,8 @@ const makeCircle = (color: string, type: ArrowType) => {
       fill={color}
       strokeWidth="0.7"
     />
-    <svg className= {styles.pointDown} viewBox="-12 -12 48 48">
+
+    <svg viewBox="-12 -12 48 48">
       {renderIcons(true)}
     </svg>
   </svg>
@@ -91,15 +107,28 @@ export const Arrow: React.FC<ArrowProps> = ({ start, end, color, type }) => {
 
   let classNames = `${styles.arrow} `;
   let length;
+  let direction;
 
   if (pointsUp || pointsDown) {
     length = { width: Math.abs(end.y - start.y) };
-    if (pointsUp) classNames += styles.pointUp;
-    else classNames += styles.pointDown;
+    if (pointsUp){ 
+      classNames += styles.pointUp;
+      direction = ArrowDirection.Up;
+    }
+    else {
+      classNames += styles.pointDown;
+      direction = ArrowDirection.Down;
+    }
   } else {
     length = { width: Math.abs(end.x - start.x) };
-    if (pointsLeft) classNames += styles.pointLeft;
-    else classNames += styles.pointRight;
+    if (pointsLeft){
+      classNames += styles.pointLeft;
+      direction = ArrowDirection.Left;
+    } 
+    else {
+      classNames += styles.pointRight;
+      direction = ArrowDirection.Right;
+    }
   }
 
   let arrow;
@@ -108,7 +137,7 @@ export const Arrow: React.FC<ArrowProps> = ({ start, end, color, type }) => {
       arrow = (
         <div className={classNames} style={length}>
           {makeBody(color)}
-          {makeCircle(color, type)}
+          {makeCircle(color, type, direction)}
         </div>
       );
       break;
@@ -118,7 +147,7 @@ export const Arrow: React.FC<ArrowProps> = ({ start, end, color, type }) => {
           {makeMirroredHead(color)}
           {makeBody(color)}
           {makeHead(color)}
-          {makeCircle(color, type)}
+          {makeCircle(color, type, direction)}
         </div>
       );
       break;
@@ -127,7 +156,7 @@ export const Arrow: React.FC<ArrowProps> = ({ start, end, color, type }) => {
         <div className={classNames} style={length}>
           {makeBody(color)}
           {makeHead(color)}
-          {makeCircle(color, type)}
+          {makeCircle(color, type, direction)}
         </div>
       );
   }
