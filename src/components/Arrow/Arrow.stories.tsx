@@ -8,7 +8,7 @@ const blue = "#114df3";
 const red = "#df0c0c";
 
 export default {
-  title: "Arrow",
+  title: "Organisms/Arrow",
   component: Arrow,
   argTypes: {
     type: {
