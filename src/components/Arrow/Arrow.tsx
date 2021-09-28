@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import { Position } from "../../types/Position";
 import styles from "./Arrow.module.scss";
 
@@ -25,8 +26,6 @@ export type ArrowProps = {
   notes: string;
 };
 
-let isShown = false;
-
 const makeMirroredHead = (arrowColor: string): JSX.Element => {
   return (
     <svg
@@ -39,15 +38,10 @@ const makeMirroredHead = (arrowColor: string): JSX.Element => {
   );
 };
 
-const toggleButton = (): void => {
-  isShown = !isShown;
-};
-
 const makeHead = (arrowColor: string): JSX.Element => {
+  const toggleButton = (): void => {};
   return (
     <svg
-      onMouseEnter={() => toggleButton()}
-      onMouseLeave={() => toggleButton()}
       className={styles.head}
       viewBox="0 0 20 40"
       preserveAspectRatio="xMaxYMid"
@@ -90,7 +84,7 @@ const makeButton = (
   circleColor: string,
   iconColor: string,
   type: ArrowType,
-  direction: ArrowDirection,
+  direction: ArrowDirection
 ): JSX.Element => {
   let classNames = `${styles.button}`;
 
@@ -184,34 +178,54 @@ export const Arrow: React.FC<ArrowProps> = ({
     }
   }
 
+  const [isShown, setIsShown] = useState(false);
+  const [hasNote, setHasNote] = useState(false);
+
+  let button;
+  if (isShown && !hasNote)
+    button = makeButton(arrowColor, circleColor, iconColor, type, direction);
+
   let arrow;
   switch (type) {
     case ArrowType.NonDirectional:
       arrow = (
-        <div className={classNames} style={length}>
+        <div
+          className={classNames}
+          style={length}
+          onMouseLeave={() => setIsShown(false)}
+          onMouseEnter={() => setIsShown(true)}
+        >
           {makeBody(arrowColor)}
-          {makeButton(arrowColor, circleColor, iconColor, type, direction)}
+          {button}
         </div>
       );
       break;
     case ArrowType.BiDirectional:
       arrow = (
-        <div className={classNames} style={length}>
+        <div
+          className={classNames}
+          style={length}
+          onMouseLeave={() => setIsShown(false)}
+          onMouseEnter={() => setIsShown(true)}
+        >
           {makeMirroredHead(arrowColor)}
           {makeBody(arrowColor)}
           {makeHead(arrowColor)}
-          {makeButton(arrowColor, circleColor, iconColor, type, direction)}
+          {button}
         </div>
       );
       break;
     case ArrowType.Directional:
       arrow = (
-        <div className={classNames} style={length}>
+        <div
+          className={classNames}
+          style={length}
+          onMouseLeave={() => setIsShown(false)}
+          onMouseEnter={() => setIsShown(true)}
+        >
           {makeBody(arrowColor)}
           {makeHead(arrowColor)}
-          {isShown
-            ? makeButton(arrowColor, circleColor, iconColor, type, direction)
-            : null}
+          {button}
         </div>
       );
   }
