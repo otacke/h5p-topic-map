@@ -5,7 +5,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { TopicMapItem, TopicMapItemProps } from "./TopicMapItem";
 
 export default {
-  title: "TopicMapItem",
+  title: "Organisms/TopicMapItem",
   component: TopicMapItem,
 } as ComponentMeta<typeof TopicMapItem>;
 
