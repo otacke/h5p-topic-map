@@ -4,9 +4,10 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { Arrow, ArrowType } from "./Arrow";
 
-const blue = "#114df3";
+const blue = "#59A0FF";
 const red = "#df0c0c";
 const white = "#FFFFFF";
+const black = "#000000";
 
 export default {
   title: "Organisms/Arrow",
@@ -35,7 +36,7 @@ RightDirectionalArrow.args = {
   },
   arrowColor: blue,
   circleColor: white,
-  iconColor: white,
+  iconColor: black,
   type: ArrowType.Directional,
 };
 
@@ -51,7 +52,7 @@ LeftDirectionalArrow.args = {
   },
   arrowColor: blue,
   circleColor: white,
-  iconColor: white,
+  iconColor: black,
   type: ArrowType.Directional,
 };
 
@@ -67,7 +68,7 @@ BidirectionalHorizontalArrow.args = {
   },
   arrowColor: blue,
   circleColor: white,
-  iconColor: white,
+  iconColor: black,
   type: ArrowType.BiDirectional,
 };
 
@@ -83,7 +84,7 @@ UpDirectionalArrow.args = {
   },
   arrowColor: blue,
   circleColor: white,
-  iconColor: white,
+  iconColor: black,
   type: ArrowType.Directional,
 };
 
@@ -99,6 +100,6 @@ NonDirectionalVerticalArrow.args = {
   },
   arrowColor: blue,
   circleColor: white,
-  iconColor: white,
+  iconColor: black,
   type: ArrowType.NonDirectional,
 };

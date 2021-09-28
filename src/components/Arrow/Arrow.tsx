@@ -121,8 +121,8 @@ const makeButton = (
       preserveAspectRatio="xMaxYMid"
     >
       <circle
-        stroke={circleColor}
-        fill={arrowColor}
+        stroke={arrowColor}
+        fill={circleColor}
         className={`${styles.buttonCircle}`}
         cx="6"
         cy="6"
