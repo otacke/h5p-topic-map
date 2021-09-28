@@ -39,7 +39,6 @@ const makeMirroredHead = (arrowColor: string): JSX.Element => {
 };
 
 const makeHead = (arrowColor: string): JSX.Element => {
-  const toggleButton = (): void => {};
   return (
     <svg
       className={styles.head}
@@ -84,7 +83,8 @@ const makeButton = (
   circleColor: string,
   iconColor: string,
   type: ArrowType,
-  direction: ArrowDirection
+  direction: ArrowDirection,
+  hasNote: boolean,
 ): JSX.Element => {
   let classNames = `${styles.button}`;
 
@@ -123,7 +123,7 @@ const makeButton = (
         r="4px"
       />
 
-      <svg viewBox="-12 -12 48 48">{renderIcons(false, iconColor)}</svg>
+      <svg viewBox="-12 -12 48 48">{renderIcons(hasNote, iconColor)}</svg>
 
       <circle
         fill="transparent"
@@ -182,8 +182,24 @@ export const Arrow: React.FC<ArrowProps> = ({
   const [hasNote, setHasNote] = useState(false);
 
   let button;
-  if (isShown && !hasNote)
-    button = makeButton(arrowColor, circleColor, iconColor, type, direction);
+  if (hasNote)
+    button = makeButton(
+      arrowColor,
+      circleColor,
+      iconColor,
+      type,
+      direction,
+      hasNote,
+    );
+  else if (isShown)
+    button = makeButton(
+      arrowColor,
+      circleColor,
+      iconColor,
+      type,
+      direction,
+      hasNote,
+    );
 
   let arrow;
   switch (type) {
