@@ -124,6 +124,9 @@ const makeButton = (
         stroke={circleColor}
         fill={arrowColor}
         className={`${styles.buttonCircle}`}
+        cx="6"
+        cy="6"
+        r="4px"
       />
 
       <svg viewBox="-12 -12 48 48">{renderIcons(false, iconColor)}</svg>
@@ -133,6 +136,9 @@ const makeButton = (
         className={`${styles.buttonCircle}`}
         style={{ cursor: "pointer" }}
         onClick={clickArrow}
+        cx="6"
+        cy="6"
+        r="4px"
       />
     </svg>
   );

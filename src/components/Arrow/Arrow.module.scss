@@ -5,7 +5,8 @@
 }
 
 .head {
-  width: 40px;
+  min-width: 30px;
+  max-width: 30px;
 }
 
 .body {
@@ -40,9 +41,6 @@
 }
 
 .buttonCircle {
-  cx: 6;
-  cy: 6;
-  r: 4px;
   stroke-width: 0.7;
 }
 
