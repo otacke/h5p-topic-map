@@ -215,5 +215,9 @@ export const Arrow: React.FC<ArrowProps> = ({
         </div>
       );
   }
+
+  // apply shadow around whole arrow
+  arrow = <div className={styles.shadow}>{arrow}</div>;
+
   return arrow;
 };
