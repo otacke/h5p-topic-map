@@ -5,9 +5,8 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Arrow, ArrowType } from "./Arrow";
 
 const blue = "#59A0FF";
-const red = "#df0c0c";
 const white = "#FFFFFF";
-const black = "#000000";
+const black = "#3E3E3E";
 
 export default {
   title: "Organisms/Arrow",
