@@ -60,17 +60,34 @@ const makeBody = (arrowColor: string): JSX.Element => {
 
 const renderIcons = (hasNotes: boolean, iconColor: string): JSX.Element => {
   const edit = (
-    <path
-      fill={iconColor}
-      d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z"
-    />
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 17 17"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M0 13.8534V16.5556C0 16.8045 0.195556 17 0.444444 17H3.14667C3.26222 17 3.37778 16.9556 3.45778 16.8667L13.1644 7.16891L9.83111 3.83558L0.133333 13.5334C0.0444445 13.6222 0 13.7289 0 13.8534ZM15.7422 4.59114C16.0889 4.24447 16.0889 3.68447 15.7422 3.3378L13.6622 1.2578C13.3156 0.911136 12.7556 0.911136 12.4089 1.2578L10.7822 2.88447L14.1156 6.2178L15.7422 4.59114Z"
+        fill="#3E3E3E"
+      />
+    </svg>
   );
   const notes = (
-    <path
-      fill={iconColor}
-      d="M20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20M4,6V18H20V6H4M6,9H18V11H6V9M6,13H16V15H6V13Z"
-    />
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M0 0.75H12V2.25H0V0.75ZM0 3.75H12V5.25H0V3.75ZM0 6.75H12V8.25H0V6.75ZM0 9.75H7.5V11.25H0V9.75Z"
+        fill="#223535"
+      />
+    </svg>
   );
+
   return hasNotes ? notes : edit;
 };
 
@@ -123,7 +140,7 @@ const makeButton = (
         r="4px"
       />
 
-      <svg viewBox="-12 -12 48 48">{renderIcons(hasNote, iconColor)}</svg>
+      <svg viewBox="-9 -9 30 30">{renderIcons(hasNote, iconColor)}</svg>
 
       <circle
         fill="transparent"
