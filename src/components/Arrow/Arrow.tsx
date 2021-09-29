@@ -2,11 +2,19 @@ import * as React from "react";
 import { useState } from "react";
 import { Position } from "../../types/Position";
 import styles from "./Arrow.module.scss";
+import { createCompletedIcon, createEditIcon, createNoteIcon } from "./Icons";
 
 export enum ArrowType {
   Directional,
   BiDirectional,
   NonDirectional,
+}
+
+enum ButtonIconState {
+  Empty,
+  Edit,
+  Notes,
+  Completed,
 }
 
 enum ArrowDirection {
@@ -58,37 +66,15 @@ const makeBody = (arrowColor: string): JSX.Element => {
   );
 };
 
-const renderIcons = (hasNotes: boolean, iconColor: string): JSX.Element => {
-  const edit = (
-    <svg
-      width="12"
-      height="12"
-      viewBox="0 0 17 17"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M0 13.8534V16.5556C0 16.8045 0.195556 17 0.444444 17H3.14667C3.26222 17 3.37778 16.9556 3.45778 16.8667L13.1644 7.16891L9.83111 3.83558L0.133333 13.5334C0.0444445 13.6222 0 13.7289 0 13.8534ZM15.7422 4.59114C16.0889 4.24447 16.0889 3.68447 15.7422 3.3378L13.6622 1.2578C13.3156 0.911136 12.7556 0.911136 12.4089 1.2578L10.7822 2.88447L14.1156 6.2178L15.7422 4.59114Z"
-        fill="#3E3E3E"
-      />
-    </svg>
-  );
-  const notes = (
-    <svg
-      width="12"
-      height="12"
-      viewBox="0 0 12 12"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M0 0.75H12V2.25H0V0.75ZM0 3.75H12V5.25H0V3.75ZM0 6.75H12V8.25H0V6.75ZM0 9.75H7.5V11.25H0V9.75Z"
-        fill="#223535"
-      />
-    </svg>
-  );
-
-  return hasNotes ? notes : edit;
+const renderIcon = (state: ButtonIconState, iconColor: string): JSX.Element => {
+  switch (state) {
+    case ButtonIconState.Completed:
+      return createCompletedIcon(iconColor);
+    case ButtonIconState.Notes:
+      return createNoteIcon(iconColor);
+    default:
+      return createEditIcon(iconColor);
+  }
 };
 
 function clickArrow(): void {
@@ -101,7 +87,7 @@ const makeButton = (
   iconColor: string,
   type: ArrowType,
   direction: ArrowDirection,
-  hasNote: boolean,
+  buttonState: ButtonIconState,
 ): JSX.Element => {
   let classNames = `${styles.button}`;
 
@@ -140,7 +126,7 @@ const makeButton = (
         r="4px"
       />
 
-      <svg viewBox="-9 -9 30 30">{renderIcons(hasNote, iconColor)}</svg>
+      <svg viewBox="-9 -9 30 30">{renderIcon(buttonState, iconColor)}</svg>
 
       <circle
         fill="transparent"
@@ -195,28 +181,31 @@ export const Arrow: React.FC<ArrowProps> = ({
     }
   }
 
-  const [isShown, setIsShown] = useState(false);
-  const [hasNote, setHasNote] = useState(false);
+  // todo find correct state
+  // Hvis state = Notes eller completed så skal ikke det endres ved hover
+  const [buttonState, setButtonState] = useState(ButtonIconState.Empty);
 
-  let button;
-  if (hasNote)
-    button = makeButton(
-      arrowColor,
-      circleColor,
-      iconColor,
-      type,
-      direction,
-      hasNote,
-    );
-  else if (isShown)
-    button = makeButton(
-      arrowColor,
-      circleColor,
-      iconColor,
-      type,
-      direction,
-      hasNote,
-    );
+  const mouseHover = (state: ButtonIconState): void => {
+    switch (true) {
+      case buttonState === ButtonIconState.Empty:
+        setButtonState(state);
+        break;
+      case buttonState === ButtonIconState.Edit:
+        setButtonState(state);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const button = makeButton(
+    arrowColor,
+    circleColor,
+    iconColor,
+    type,
+    direction,
+    buttonState,
+  );
 
   let arrow;
   switch (type) {
@@ -225,8 +214,8 @@ export const Arrow: React.FC<ArrowProps> = ({
         <div
           className={classNames}
           style={length}
-          onMouseLeave={() => setIsShown(false)}
-          onMouseEnter={() => setIsShown(true)}
+          onMouseEnter={() => mouseHover(ButtonIconState.Edit)}
+          onMouseLeave={() => mouseHover(ButtonIconState.Empty)}
         >
           {makeBody(arrowColor)}
           {button}
@@ -238,8 +227,8 @@ export const Arrow: React.FC<ArrowProps> = ({
         <div
           className={classNames}
           style={length}
-          onMouseLeave={() => setIsShown(false)}
-          onMouseEnter={() => setIsShown(true)}
+          onMouseEnter={() => mouseHover(ButtonIconState.Edit)}
+          onMouseLeave={() => mouseHover(ButtonIconState.Empty)}
         >
           {makeMirroredHead(arrowColor)}
           {makeBody(arrowColor)}
@@ -250,12 +239,7 @@ export const Arrow: React.FC<ArrowProps> = ({
       break;
     case ArrowType.Directional:
       arrow = (
-        <div
-          className={classNames}
-          style={length}
-          onMouseLeave={() => setIsShown(false)}
-          onMouseEnter={() => setIsShown(true)}
-        >
+        <div className={classNames} style={length}>
           {makeBody(arrowColor)}
           {makeHead(arrowColor)}
           {button}
@@ -263,7 +247,7 @@ export const Arrow: React.FC<ArrowProps> = ({
       );
   }
 
-  // apply shadow around whole arrow
+  // apply shadow around arrow
   arrow = <div className={styles.shadow}>{arrow}</div>;
 
   return arrow;
