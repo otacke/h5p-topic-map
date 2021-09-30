@@ -32,6 +32,7 @@ export type ArrowProps = {
   iconColor: string;
   type: ArrowType;
   notes: string;
+  completed: boolean;
 };
 
 const makeMirroredHead = (arrowColor: string): JSX.Element => {
@@ -148,6 +149,8 @@ export const Arrow: React.FC<ArrowProps> = ({
   circleColor,
   iconColor,
   type,
+  notes,
+  completed,
 }) => {
   // find angle and direction of arrow
   let angle = Math.atan2(start.y - end.y, end.x - start.x) * (180 / Math.PI);
@@ -183,7 +186,14 @@ export const Arrow: React.FC<ArrowProps> = ({
 
   // todo find correct state
   // Hvis state = Notes eller completed så skal ikke det endres ved hover
-  const [buttonState, setButtonState] = useState(ButtonIconState.Empty);
+  const [noteState, setNoteState] = useState(notes);
+
+  let tempState;
+  if (completed) tempState = ButtonIconState.Completed;
+  else if (noteState.length !== 0) tempState = ButtonIconState.Notes;
+  else tempState = ButtonIconState.Empty;
+
+  const [buttonState, setButtonState] = useState(tempState);
 
   const mouseHover = (state: ButtonIconState): void => {
     switch (true) {
@@ -198,14 +208,16 @@ export const Arrow: React.FC<ArrowProps> = ({
     }
   };
 
-  const button = makeButton(
-    arrowColor,
-    circleColor,
-    iconColor,
-    type,
-    direction,
-    buttonState,
-  );
+  let button;
+  if (buttonState !== ButtonIconState.Empty)
+    button = makeButton(
+      arrowColor,
+      circleColor,
+      iconColor,
+      type,
+      direction,
+      buttonState,
+    );
 
   let arrow;
   switch (type) {
@@ -224,12 +236,7 @@ export const Arrow: React.FC<ArrowProps> = ({
       break;
     case ArrowType.BiDirectional:
       arrow = (
-        <div
-          className={classNames}
-          style={length}
-          onMouseEnter={() => mouseHover(ButtonIconState.Edit)}
-          onMouseLeave={() => mouseHover(ButtonIconState.Empty)}
-        >
+        <div className={classNames} style={length}>
           {makeMirroredHead(arrowColor)}
           {makeBody(arrowColor)}
           {makeHead(arrowColor)}
@@ -239,7 +246,12 @@ export const Arrow: React.FC<ArrowProps> = ({
       break;
     case ArrowType.Directional:
       arrow = (
-        <div className={classNames} style={length}>
+        <div
+          className={classNames}
+          style={length}
+          onMouseEnter={() => mouseHover(ButtonIconState.Edit)}
+          onMouseLeave={() => mouseHover(ButtonIconState.Empty)}
+        >
           {makeBody(arrowColor)}
           {makeHead(arrowColor)}
           {button}

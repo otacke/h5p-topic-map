@@ -23,8 +23,8 @@ export default {
 
 const Template: ComponentStory<typeof Arrow> = args => <Arrow {...args} />;
 
-export const RightDirectionalArrow = Template.bind({});
-RightDirectionalArrow.args = {
+export const RightDirectionalEmptyArrow = Template.bind({});
+RightDirectionalEmptyArrow.args = {
   start: {
     x: 0,
     y: 0,
@@ -37,10 +37,12 @@ RightDirectionalArrow.args = {
   circleColor: white,
   iconColor: black,
   type: ArrowType.Directional,
+  notes: "",
+  completed: false,
 };
 
-export const LeftDirectionalArrow = Template.bind({});
-LeftDirectionalArrow.args = {
+export const LeftDirectionalCompletedArrow = Template.bind({});
+LeftDirectionalCompletedArrow.args = {
   start: {
     x: 100,
     y: 0,
@@ -53,10 +55,12 @@ LeftDirectionalArrow.args = {
   circleColor: white,
   iconColor: black,
   type: ArrowType.Directional,
+  notes: "This note is completed",
+  completed: true,
 };
 
-export const BidirectionalHorizontalArrow = Template.bind({});
-BidirectionalHorizontalArrow.args = {
+export const BidirectionalHorizontalEmptyArrow = Template.bind({});
+BidirectionalHorizontalEmptyArrow.args = {
   start: {
     x: 0,
     y: 0,
@@ -69,10 +73,12 @@ BidirectionalHorizontalArrow.args = {
   circleColor: white,
   iconColor: black,
   type: ArrowType.BiDirectional,
+  notes: "",
+  completed: false,
 };
 
-export const UpDirectionalArrow = Template.bind({});
-UpDirectionalArrow.args = {
+export const UpDirectionalEditedArrow = Template.bind({});
+UpDirectionalEditedArrow.args = {
   start: {
     x: 0,
     y: 100,
@@ -85,10 +91,12 @@ UpDirectionalArrow.args = {
   circleColor: white,
   iconColor: black,
   type: ArrowType.Directional,
+  notes: "This note is started, but not marked complete",
+  completed: false,
 };
 
-export const NonDirectionalVerticalArrow = Template.bind({});
-NonDirectionalVerticalArrow.args = {
+export const NonDirectionalVerticalEmptyArrow = Template.bind({});
+NonDirectionalVerticalEmptyArrow.args = {
   start: {
     x: 0,
     y: 0,
@@ -101,4 +109,6 @@ NonDirectionalVerticalArrow.args = {
   circleColor: white,
   iconColor: black,
   type: ArrowType.NonDirectional,
+  notes: "",
+  completed: false,
 };
