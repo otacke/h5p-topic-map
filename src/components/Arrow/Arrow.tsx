@@ -113,7 +113,7 @@ const makeButton = (
 
   return (
     <svg
-      id="svgBtn"
+      data-testid="svgBtn"
       className={classNames}
       viewBox="0 0 12 12"
       preserveAspectRatio="xMaxYMid"
@@ -224,6 +224,7 @@ export const Arrow: React.FC<ArrowProps> = ({
     case ArrowType.NonDirectional:
       arrow = (
         <div
+          data-testid="ndArrow"
           className={classNames}
           style={length}
           onMouseEnter={() => mouseHover(ButtonIconState.Edit)}
@@ -236,7 +237,13 @@ export const Arrow: React.FC<ArrowProps> = ({
       break;
     case ArrowType.BiDirectional:
       arrow = (
-        <div className={classNames} style={length}>
+        <div
+          data-testid="bdArrow"
+          className={classNames}
+          style={length}
+          onMouseEnter={() => mouseHover(ButtonIconState.Edit)}
+          onMouseLeave={() => mouseHover(ButtonIconState.Empty)}
+        >
           {makeMirroredHead(arrowColor)}
           {makeBody(arrowColor)}
           {makeHead(arrowColor)}
@@ -247,6 +254,7 @@ export const Arrow: React.FC<ArrowProps> = ({
     case ArrowType.Directional:
       arrow = (
         <div
+          data-testid="dArrow"
           className={classNames}
           style={length}
           onMouseEnter={() => mouseHover(ButtonIconState.Edit)}
