@@ -88,7 +88,7 @@ const makeButton = (
   iconColor: string,
   type: ArrowType,
   direction: ArrowDirection,
-  buttonState: ButtonIconState,
+  buttonState: ButtonIconState
 ): JSX.Element => {
   let classNames = `${styles.button}`;
 
@@ -190,7 +190,7 @@ export const Arrow: React.FC<ArrowProps> = ({
 
   let tempState;
   if (completed) tempState = ButtonIconState.Completed;
-  else if (noteState.length !== 0) tempState = ButtonIconState.Notes;
+  else if (notes.length !== 0) tempState = ButtonIconState.Notes;
   else tempState = ButtonIconState.Empty;
 
   const [buttonState, setButtonState] = useState(tempState);
@@ -208,6 +208,14 @@ export const Arrow: React.FC<ArrowProps> = ({
     }
   };
 
+  React.useEffect(() => {
+    let changedState;
+    if (completed) changedState = ButtonIconState.Completed;
+    else if (notes.length > 0) changedState = ButtonIconState.Notes;
+    else changedState = ButtonIconState.Empty;
+    setButtonState(changedState);
+  }, [completed, notes]);
+
   let button;
   if (buttonState !== ButtonIconState.Empty)
     button = makeButton(
@@ -216,7 +224,7 @@ export const Arrow: React.FC<ArrowProps> = ({
       iconColor,
       type,
       direction,
-      buttonState,
+      buttonState
     );
 
   let arrow;
