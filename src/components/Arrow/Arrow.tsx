@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Position } from "../../types/Position";
 import styles from "./Arrow.module.scss";
 import { makeButton } from "./Button";
+import { ArrowBody, ArrowHead, MirroredArrowHead } from "./ArrowParts";
 import * as Utils from "./Utils";
 import { ArrowDirection, ArrowType, ButtonIconState } from "./Utils";
 
@@ -15,38 +16,6 @@ export type ArrowProps = {
   type: ArrowType;
   notes: string;
   completed: boolean;
-};
-
-const makeMirroredHead = (arrowColor: string): JSX.Element => {
-  return (
-    <svg
-      className={`${styles.head} ${styles.mirrorX}`}
-      viewBox="0 0 20 40"
-      preserveAspectRatio="xMaxYMid"
-    >
-      <polygon points="0,0 0,40 20,20" fill={arrowColor} />
-    </svg>
-  );
-};
-
-const makeHead = (arrowColor: string): JSX.Element => {
-  return (
-    <svg
-      className={styles.head}
-      viewBox="0 0 20 40"
-      preserveAspectRatio="xMaxYMid"
-    >
-      <polygon points="0,0 0,40 20,20" fill={arrowColor} />
-    </svg>
-  );
-};
-
-const makeBody = (arrowColor: string): JSX.Element => {
-  return (
-    <svg className={styles.body} viewBox="0 0 1 40" preserveAspectRatio="none">
-      <rect x="0" y="15" width="1" height="10" fill={arrowColor} />
-    </svg>
-  );
 };
 
 export const Arrow: React.FC<ArrowProps> = ({
@@ -129,7 +98,7 @@ export const Arrow: React.FC<ArrowProps> = ({
           onMouseEnter={() => mouseHover(ButtonIconState.Edit)}
           onMouseLeave={() => mouseHover(ButtonIconState.Empty)}
         >
-          {makeBody(arrowColor)}
+          <ArrowBody arrowColor={arrowColor} />
           {button}
         </div>
       );
@@ -143,9 +112,9 @@ export const Arrow: React.FC<ArrowProps> = ({
           onMouseEnter={() => mouseHover(ButtonIconState.Edit)}
           onMouseLeave={() => mouseHover(ButtonIconState.Empty)}
         >
-          {makeMirroredHead(arrowColor)}
-          {makeBody(arrowColor)}
-          {makeHead(arrowColor)}
+          <MirroredArrowHead arrowColor={arrowColor} />
+          <ArrowBody arrowColor={arrowColor} />
+          <ArrowHead arrowColor={arrowColor} />
           {button}
         </div>
       );
@@ -159,8 +128,8 @@ export const Arrow: React.FC<ArrowProps> = ({
           onMouseEnter={() => mouseHover(ButtonIconState.Edit)}
           onMouseLeave={() => mouseHover(ButtonIconState.Empty)}
         >
-          {makeBody(arrowColor)}
-          {makeHead(arrowColor)}
+          <ArrowBody arrowColor={arrowColor} />
+          <ArrowHead arrowColor={arrowColor} />
           {button}
         </div>
       );
