@@ -2,7 +2,8 @@
 import * as React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { Arrow, ArrowType } from "./Arrow";
+import { Arrow } from "./Arrow";
+import { ArrowType } from "./Utils";
 
 const blue = "#59A0FF";
 const white = "#FFFFFF";

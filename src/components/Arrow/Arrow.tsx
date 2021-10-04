@@ -2,27 +2,9 @@ import * as React from "react";
 import { useState } from "react";
 import { Position } from "../../types/Position";
 import styles from "./Arrow.module.scss";
-import { createCompletedIcon, createEditIcon, createNoteIcon } from "./Icons";
-
-export enum ArrowType {
-  Directional,
-  BiDirectional,
-  NonDirectional,
-}
-
-enum ButtonIconState {
-  Empty,
-  Edit,
-  Notes,
-  Completed,
-}
-
-enum ArrowDirection {
-  Up,
-  Down,
-  Left,
-  Right,
-}
+import { makeButton } from "./Button";
+import * as Utils from "./Utils";
+import { ArrowDirection, ArrowType, ButtonIconState } from "./Utils";
 
 export type ArrowProps = {
   start: Position;
@@ -67,81 +49,6 @@ const makeBody = (arrowColor: string): JSX.Element => {
   );
 };
 
-const renderIcon = (state: ButtonIconState, iconColor: string): JSX.Element => {
-  switch (state) {
-    case ButtonIconState.Completed:
-      return createCompletedIcon(iconColor);
-    case ButtonIconState.Notes:
-      return createNoteIcon(iconColor);
-    default:
-      return createEditIcon(iconColor);
-  }
-};
-
-function clickArrow(): void {
-  // TODO
-}
-
-const makeButton = (
-  arrowColor: string,
-  circleColor: string,
-  iconColor: string,
-  type: ArrowType,
-  direction: ArrowDirection,
-  buttonState: ButtonIconState
-): JSX.Element => {
-  let classNames = `${styles.button}`;
-
-  if (type !== ArrowType.Directional)
-    classNames += ` ${styles.buttonNonDirectional}`;
-  else classNames += ` ${styles.buttonDirectional}`;
-
-  switch (direction) {
-    case ArrowDirection.Up:
-      classNames += ` ${styles.buttonUp}`;
-      break;
-    case ArrowDirection.Down:
-      classNames += ` ${styles.buttonDown}`;
-      break;
-    case ArrowDirection.Left:
-      classNames += ` ${styles.buttonLeft}`;
-      break;
-    case ArrowDirection.Right:
-      classNames += ` ${styles.buttonRight}`;
-      break;
-  }
-
-  return (
-    <svg
-      data-testid="svgBtn"
-      className={classNames}
-      viewBox="0 0 12 12"
-      preserveAspectRatio="xMaxYMid"
-    >
-      <circle
-        stroke={arrowColor}
-        fill={circleColor}
-        className={`${styles.buttonCircle}`}
-        cx="6"
-        cy="6"
-        r="4px"
-      />
-
-      <svg viewBox="-9 -9 30 30">{renderIcon(buttonState, iconColor)}</svg>
-
-      <circle
-        fill="transparent"
-        className={`${styles.buttonCircle}`}
-        style={{ cursor: "pointer" }}
-        onClick={clickArrow}
-        cx="6"
-        cy="6"
-        r="4px"
-      />
-    </svg>
-  );
-};
-
 export const Arrow: React.FC<ArrowProps> = ({
   start,
   end,
@@ -155,45 +62,33 @@ export const Arrow: React.FC<ArrowProps> = ({
   // find angle and direction of arrow
   let angle = Math.atan2(start.y - end.y, end.x - start.x) * (180 / Math.PI);
   if (angle < 0) angle = 360 + angle;
-
-  const pointsUp = angle > 45 && angle < 135;
-  const pointsDown = angle > 225 && angle < 315;
-  const pointsLeft = angle >= 135 && angle <= 225;
+  const direction = Utils.findDirection(angle);
 
   let classNames = `${styles.arrow} `;
   let length;
-  let direction;
 
-  if (pointsUp || pointsDown) {
-    length = { width: Math.abs(end.y - start.y) };
-    if (pointsUp) {
+  switch (direction) {
+    case ArrowDirection.Up:
+      length = { width: Math.abs(end.y - start.y) };
       classNames += styles.pointUp;
-      direction = ArrowDirection.Up;
-    } else {
+      break;
+    case ArrowDirection.Down:
+      length = { width: Math.abs(end.y - start.y) };
       classNames += styles.pointDown;
-      direction = ArrowDirection.Down;
-    }
-  } else {
-    length = { width: Math.abs(end.x - start.x) };
-    if (pointsLeft) {
+      break;
+    case ArrowDirection.Left:
+      length = { width: Math.abs(end.x - start.x) };
       classNames += styles.pointLeft;
-      direction = ArrowDirection.Left;
-    } else {
+      break;
+    case ArrowDirection.Right:
+      length = { width: Math.abs(end.x - start.x) };
       classNames += styles.pointRight;
-      direction = ArrowDirection.Right;
-    }
+      break;
   }
 
-  // todo find correct state
-  // Hvis state = Notes eller completed så skal ikke det endres ved hover
-  const [noteState, setNoteState] = useState(notes);
-
-  let tempState;
-  if (completed) tempState = ButtonIconState.Completed;
-  else if (notes.length !== 0) tempState = ButtonIconState.Notes;
-  else tempState = ButtonIconState.Empty;
-
-  const [buttonState, setButtonState] = useState(tempState);
+  const [buttonState, setButtonState] = useState(
+    Utils.getButtonIconState(completed, notes),
+  );
 
   const mouseHover = (state: ButtonIconState): void => {
     switch (true) {
@@ -209,11 +104,7 @@ export const Arrow: React.FC<ArrowProps> = ({
   };
 
   React.useEffect(() => {
-    let changedState;
-    if (completed) changedState = ButtonIconState.Completed;
-    else if (notes.length > 0) changedState = ButtonIconState.Notes;
-    else changedState = ButtonIconState.Empty;
-    setButtonState(changedState);
+    setButtonState(Utils.getButtonIconState(completed, notes));
   }, [completed, notes]);
 
   let button;
@@ -224,7 +115,7 @@ export const Arrow: React.FC<ArrowProps> = ({
       iconColor,
       type,
       direction,
-      buttonState
+      buttonState,
     );
 
   let arrow;
