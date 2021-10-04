@@ -2,8 +2,8 @@ import * as React from "react";
 import { useState } from "react";
 import { Position } from "../../types/Position";
 import styles from "./Arrow.module.scss";
-import { makeButton } from "./Button";
 import { ArrowBody, ArrowHead, MirroredArrowHead } from "./ArrowParts";
+import { ArrowButton } from "./Button";
 import * as Utils from "./Utils";
 import { ArrowDirection, ArrowType, ButtonIconState } from "./Utils";
 
@@ -76,15 +76,18 @@ export const Arrow: React.FC<ArrowProps> = ({
     setButtonState(Utils.getButtonIconState(completed, notes));
   }, [completed, notes]);
 
-  let button;
-  if (buttonState !== ButtonIconState.Empty)
-    button = makeButton(
-      arrowColor,
-      circleColor,
-      iconColor,
-      type,
-      direction,
-      buttonState,
+  const button =
+    buttonState !== ButtonIconState.Empty ? (
+      <ArrowButton
+        arrowColor={arrowColor}
+        circleColor={circleColor}
+        iconColor={iconColor}
+        type={type}
+        direction={direction}
+        buttonState={buttonState}
+      />
+    ) : (
+      <></>
     );
 
   let arrow;

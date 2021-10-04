@@ -19,14 +19,23 @@ export function clickArrow(): void {
   // TODO
 }
 
-export const makeButton = (
-  arrowColor: string,
-  circleColor: string,
-  iconColor: string,
-  type: ArrowType,
-  direction: ArrowDirection,
-  buttonState: ButtonIconState,
-): JSX.Element => {
+interface ArrowButtonProps {
+  arrowColor: string;
+  circleColor: string;
+  iconColor: string;
+  type: ArrowType;
+  direction: ArrowDirection;
+  buttonState: ButtonIconState;
+}
+
+export const ArrowButton: React.FC<ArrowButtonProps> = ({
+  arrowColor,
+  circleColor,
+  iconColor,
+  type,
+  direction,
+  buttonState,
+}): JSX.Element => {
   let classNames = `${styles.button}`;
 
   if (type !== ArrowType.Directional)
