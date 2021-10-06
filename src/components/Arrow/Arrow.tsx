@@ -4,8 +4,13 @@ import { Position } from "../../types/Position";
 import styles from "./Arrow.module.scss";
 import { ArrowBody, ArrowHead, MirroredArrowHead } from "./ArrowParts";
 import { ArrowButton } from "./Button";
-import * as Utils from "./Utils";
-import { ArrowDirection, ArrowType, ButtonIconState } from "./Utils";
+import {
+  ArrowDirection,
+  ArrowType,
+  ButtonIconState,
+  findDirection,
+  getButtonIconState,
+} from "./Utils";
 
 export type ArrowProps = {
   start: Position;
@@ -31,7 +36,7 @@ export const Arrow: React.FC<ArrowProps> = ({
   // find angle and direction of arrow
   let angle = Math.atan2(start.y - end.y, end.x - start.x) * (180 / Math.PI);
   if (angle < 0) angle = 360 + angle;
-  const direction = Utils.findDirection(angle);
+  const direction = findDirection(angle);
 
   let classNames = `${styles.arrow} `;
   let length;
@@ -56,7 +61,7 @@ export const Arrow: React.FC<ArrowProps> = ({
   }
 
   const [buttonState, setButtonState] = useState(
-    Utils.getButtonIconState(completed, notes),
+    getButtonIconState(completed, notes),
   );
 
   const mouseHover = (state: ButtonIconState): void => {
@@ -69,7 +74,7 @@ export const Arrow: React.FC<ArrowProps> = ({
   };
 
   React.useEffect(() => {
-    setButtonState(Utils.getButtonIconState(completed, notes));
+    setButtonState(getButtonIconState(completed, notes));
   }, [completed, notes]);
 
   const button =
