@@ -60,14 +60,10 @@ export const Arrow: React.FC<ArrowProps> = ({
   );
 
   const mouseHover = (state: ButtonIconState): void => {
-    switch (true) {
-      case buttonState === ButtonIconState.Empty:
+    switch (buttonState) {
+      case ButtonIconState.Empty:
+      case ButtonIconState.Edit:
         setButtonState(state);
-        break;
-      case buttonState === ButtonIconState.Edit:
-        setButtonState(state);
-        break;
-      default:
         break;
     }
   };
@@ -77,7 +73,7 @@ export const Arrow: React.FC<ArrowProps> = ({
   }, [completed, notes]);
 
   const button =
-    buttonState !== ButtonIconState.Empty ? (
+    buttonState !== ButtonIconState.Empty && (
       <ArrowButton
         arrowColor={arrowColor}
         circleColor={circleColor}
@@ -86,8 +82,6 @@ export const Arrow: React.FC<ArrowProps> = ({
         direction={direction}
         buttonState={buttonState}
       />
-    ) : (
-      <></>
     );
 
   let arrow;
