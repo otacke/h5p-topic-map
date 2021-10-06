@@ -12,8 +12,7 @@ export default {
 const defaultArgs: TopicMapItemProps = {
   backgroundImage: {
     alt: "",
-    aspectRatio: 1920 / 1080,
-    url: "https://source.unsplash.com/daily/",
+    path: "https://source.unsplash.com/daily/",
   },
   title: "Title",
   editAction: console.info,

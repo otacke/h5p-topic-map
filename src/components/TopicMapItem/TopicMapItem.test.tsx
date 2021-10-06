@@ -6,7 +6,7 @@ describe(TopicMapItem.name, () => {
   it("should render", () => {
     const topicMapItem = render(
       <TopicMapItem
-        backgroundImage={{ url: "", alt: "", aspectRatio: 1 }}
+        backgroundImage={{ path: "", alt: "" }}
         title="Title"
         editAction={() => {
           /* Intentionally left empty */
