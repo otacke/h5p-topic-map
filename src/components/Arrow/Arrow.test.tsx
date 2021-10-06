@@ -60,18 +60,16 @@ describe(Arrow.name, () => {
 
   it("nondirectional arrow should have icon when hovered over", () => {
     const arrow = render(
-      <div data-testid="arrowTest">
-        <Arrow
-          start={{ x: 0, y: 0 }}
-          end={{ x: 100, y: 0 }}
-          arrowColor="#000000"
-          circleColor="#FFFFFF"
-          iconColor="#FFFFFF"
-          type={ArrowType.NonDirectional}
-          notes=""
-          completed={false}
-        />
-      </div>,
+      <Arrow
+        start={{ x: 0, y: 0 }}
+        end={{ x: 100, y: 0 }}
+        arrowColor="#000000"
+        circleColor="#FFFFFF"
+        iconColor="#FFFFFF"
+        type={ArrowType.NonDirectional}
+        notes=""
+        completed={false}
+      />,
     ).container;
 
     fireEvent.mouseOver(screen.getByTestId("ndArrow"));
