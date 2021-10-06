@@ -6,6 +6,11 @@
         "label": "Topic map items",
         "field": {
           "fields": [
+            {},
+            {},
+            {},
+            {},
+            {},
             {
               "label": "Label",
               "description": "The label is shown on top of the background image"
