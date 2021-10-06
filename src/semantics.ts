@@ -21,6 +21,31 @@ const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
           type: H5PFieldType.Group,
           fields: [
             {
+              name: "id",
+              type: H5PFieldType.Text,
+              widget: "hidden",
+            },
+            {
+              name: "xPercentagePosition",
+              type: H5PFieldType.Number,
+              widget: "hidden",
+            },
+            {
+              name: "yPercentagePosition",
+              type: H5PFieldType.Number,
+              widget: "hidden",
+            },
+            {
+              name: "widthPercentage",
+              type: H5PFieldType.Number,
+              widget: "hidden",
+            },
+            {
+              name: "heightPercentage",
+              type: H5PFieldType.Number,
+              widget: "hidden",
+            },
+            {
               label: "Label",
               description: "The label is shown on top of the background image",
               name: "label",

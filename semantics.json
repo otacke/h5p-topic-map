@@ -16,6 +16,31 @@
           "type": "group",
           "fields": [
             {
+              "name": "id",
+              "type": "text",
+              "widget": "hidden"
+            },
+            {
+              "name": "xPercentagePosition",
+              "type": "number",
+              "widget": "hidden"
+            },
+            {
+              "name": "yPercentagePosition",
+              "type": "number",
+              "widget": "hidden"
+            },
+            {
+              "name": "widthPercentage",
+              "type": "number",
+              "widget": "hidden"
+            },
+            {
+              "name": "heightPercentage",
+              "type": "number",
+              "widget": "hidden"
+            },
+            {
               "label": "Label",
               "description": "The label is shown on top of the background image",
               "name": "label",
