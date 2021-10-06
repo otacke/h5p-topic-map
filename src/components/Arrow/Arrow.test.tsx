@@ -19,7 +19,7 @@ describe(Arrow.name, () => {
     ).container;
 
     expect(arrow.querySelector("div")).toBeTruthy();
-    expect(arrow.querySelectorAll("svg").length).toBe(2);
+    expect(arrow.querySelectorAll("svg").length).toBe(5);
   });
 
   it("should add two arrow heads if the arrow is bidirectional.", () => {
@@ -37,7 +37,7 @@ describe(Arrow.name, () => {
     ).container;
 
     expect(arrow.querySelector("div")).toBeTruthy();
-    expect(arrow.querySelectorAll("svg").length).toBe(3);
+    expect(arrow.querySelectorAll("svg").length).toBe(6);
   });
 
   it("should only have one svg, the arrow body, if the arrow is nondirectional.", () => {
@@ -55,7 +55,7 @@ describe(Arrow.name, () => {
     ).container;
 
     expect(arrow.querySelector("div")).toBeTruthy();
-    expect(arrow.querySelectorAll("svg").length).toBe(1);
+    expect(arrow.querySelectorAll("svg").length).toBe(4);
   });
 
   it("should show a button while hovered over when it is nondirectional.", () => {
@@ -74,24 +74,6 @@ describe(Arrow.name, () => {
 
     fireEvent.mouseOver(screen.getByTestId("ndArrow"));
     expect(arrow.querySelectorAll("svg").length).toBe(4);
-  });
-
-  it("should show a button while hovered over when it is bidirectional.", () => {
-    const arrow = render(
-      <Arrow
-        start={{ x: 0, y: 0 }}
-        end={{ x: 100, y: 0 }}
-        arrowColor="#000000"
-        circleColor="#FFFFFF"
-        iconColor="#FFFFFF"
-        type={ArrowType.BiDirectional}
-        notes=""
-        completed={false}
-      />,
-    ).container;
-
-    fireEvent.mouseOver(screen.getByTestId("bdArrow"));
-    expect(arrow.querySelectorAll("svg").length).toBe(6);
   });
 
   it("should show a button while hovered over when it is directional.", () => {

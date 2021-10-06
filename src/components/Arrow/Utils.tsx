@@ -47,7 +47,7 @@ export const mouseHover = (
   state: ButtonIconState,
   setButtonState: (value: ButtonIconState) => void,
 ): void => {
-  switch(buttonState) {
+  switch (buttonState) {
     case ButtonIconState.Empty:
     case ButtonIconState.Edit:
       setButtonState(state);
