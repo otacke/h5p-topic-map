@@ -58,7 +58,7 @@ describe(Arrow.name, () => {
     expect(arrow.querySelectorAll("svg").length).toBe(1);
   });
 
-  it("nondirectional arrow should have icon when hovered over", () => {
+  it("should show a button while hovered over when it is nondirectional.", () => {
     const arrow = render(
       <Arrow
         start={{ x: 0, y: 0 }}
@@ -76,7 +76,7 @@ describe(Arrow.name, () => {
     expect(arrow.querySelectorAll("svg").length).toBe(4);
   });
 
-  it("bidirectional arrow should have icon when hovered over", () => {
+  it("should show a button while hovered over when it is bidirectional.", () => {
     const arrow = render(
       <Arrow
         start={{ x: 0, y: 0 }}
@@ -94,7 +94,7 @@ describe(Arrow.name, () => {
     expect(arrow.querySelectorAll("svg").length).toBe(6);
   });
 
-  it("directional arrow should have icon when hovered over", () => {
+  it("should show a button while hovered over when it is directional.", () => {
     const arrow = render(
       <Arrow
         start={{ x: 0, y: 0 }}
@@ -112,7 +112,7 @@ describe(Arrow.name, () => {
     expect(arrow.querySelectorAll("svg").length).toBe(5);
   });
 
-  it("NoneDirectional should have rendered button when the arrow is completed. ", () => {
+  it("should render button when completed when it is nondirectional.", () => {
     const arrow = render(
       <Arrow
         start={{ x: 0, y: 0 }}
@@ -122,8 +122,7 @@ describe(Arrow.name, () => {
         iconColor="#FFFFFF"
         type={ArrowType.NonDirectional}
         notes=""
-        // eslint-disable-next-line react/jsx-boolean-value
-        completed={true}
+        completed
       />,
     ).container;
 
@@ -131,7 +130,7 @@ describe(Arrow.name, () => {
     expect(arrow.querySelectorAll("svg").length).toBe(4);
   });
 
-  it("Directional should have rendered button when the arrow is completed. ", () => {
+  it("should render button when completed when it is directional.", () => {
     const arrow = render(
       <Arrow
         start={{ x: 0, y: 0 }}
@@ -141,8 +140,7 @@ describe(Arrow.name, () => {
         iconColor="#FFFFFF"
         type={ArrowType.Directional}
         notes=""
-        // eslint-disable-next-line react/jsx-boolean-value
-        completed={true}
+        completed
       />,
     ).container;
 
@@ -150,7 +148,7 @@ describe(Arrow.name, () => {
     expect(arrow.querySelectorAll("svg").length).toBe(5);
   });
 
-  it("Bidirectional should have rendered button when the arrow is completed. ", () => {
+  it("should render button when completed when it is bidirectional.", () => {
     const arrow = render(
       <Arrow
         start={{ x: 0, y: 0 }}
@@ -160,8 +158,7 @@ describe(Arrow.name, () => {
         iconColor="#FFFFFF"
         type={ArrowType.BiDirectional}
         notes=""
-        // eslint-disable-next-line react/jsx-boolean-value
-        completed={true}
+        completed
       />,
     ).container;
 
