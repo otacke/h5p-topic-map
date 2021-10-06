@@ -1,14 +1,16 @@
 import * as React from "react";
 import { hot } from "react-hot-loader/root";
+import { Grid } from "./components/Grid/Grid";
+import { TopicMapItemType } from "./types/TopicMapItemType";
 
-type Props = {
-  adjective: string;
+export type AppProps = {
+  items: Array<TopicMapItemType>;
 };
 
-const App = ({ adjective }: Props): JSX.Element => {
+const App: React.FC<AppProps> = ({ items }) => {
   return (
     <>
-      <h1>Hi, you&apos;re {adjective}</h1>
+      <Grid items={items} />
     </>
   );
 };
