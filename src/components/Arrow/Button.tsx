@@ -2,16 +2,16 @@
 import * as React from "react";
 import { ArrowDirection, ArrowType, ButtonIconState } from "./Utils";
 import styles from "./Button.module.scss";
-import { createCompletedIcon, createEditIcon, createNoteIcon } from "./Icons";
+import { CompletedIcon, EditIcon, NoteIcon } from "./Icons";
 
 const renderIcon = (state: ButtonIconState, iconColor: string): JSX.Element => {
   switch (state) {
     case ButtonIconState.Completed:
-      return createCompletedIcon(iconColor);
+      return <CompletedIcon iconColor={iconColor} />;
     case ButtonIconState.Notes:
-      return createNoteIcon(iconColor);
+      return <NoteIcon iconColor={iconColor} />;
     default:
-      return createEditIcon(iconColor);
+      return <EditIcon iconColor={iconColor} />;
   }
 };
 
