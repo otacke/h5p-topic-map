@@ -13,16 +13,15 @@ export const TopicMapItem: React.FC<TopicMapItemProps> = ({
   title,
   editAction,
 }) => {
-  console.log({ backgroundImage });
   return (
     <button type="button" className={styles.topicMapItem} onClick={editAction}>
-      {/* {backgroundImage && (
+      {backgroundImage && (
         <img
           className={styles.bgImage}
           src={backgroundImage.path}
           alt={backgroundImage.alt}
         />
-      )} */}
+      )}
       <div className={styles.title}>{title}</div>
     </button>
   );
