@@ -38,24 +38,18 @@ export const ArrowButton: React.FC<ArrowButtonProps> = ({
 }): JSX.Element => {
   let classNames = `${styles.button}`;
 
-  if (type !== ArrowType.Directional)
-    classNames += ` ${styles.buttonNonDirectional}`;
-  else classNames += ` ${styles.buttonDirectional}`;
+  if (type === ArrowType.Directional)
+    classNames += ` ${styles.buttonDirectional}`;
+  else classNames += ` ${styles.buttonNonDirectional}`;
 
-  switch (direction) {
-    case ArrowDirection.Up:
-      classNames += ` ${styles.buttonUp}`;
-      break;
-    case ArrowDirection.Down:
-      classNames += ` ${styles.buttonDown}`;
-      break;
-    case ArrowDirection.Left:
-      classNames += ` ${styles.buttonLeft}`;
-      break;
-    case ArrowDirection.Right:
-      classNames += ` ${styles.buttonRight}`;
-      break;
-  }
+  const directionClasses = {
+    [ArrowDirection.Up]: styles.buttonUp,
+    [ArrowDirection.Down]: styles.buttonDown,
+    [ArrowDirection.Left]: styles.buttonLeft,
+    [ArrowDirection.Right]: styles.buttonRight,
+  };
+
+  classNames += ` ${directionClasses[direction]}`;
 
   return (
     <svg
@@ -77,7 +71,7 @@ export const ArrowButton: React.FC<ArrowButtonProps> = ({
 
       <circle
         fill="transparent"
-        className={`${styles.buttonCircle}`}
+        className={styles.buttonCircle}
         style={{ cursor: "pointer" }}
         onClick={clickArrow}
         cx="6"
