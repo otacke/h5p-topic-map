@@ -2,10 +2,12 @@
 import * as React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { Arrow, ArrowType } from "./Arrow";
+import { Arrow } from "./Arrow";
+import { ArrowType } from "./Utils";
 
-const blue = "#114df3";
-const red = "#df0c0c";
+const blue = "#59A0FF";
+const white = "#FFFFFF";
+const black = "#3E3E3E";
 
 export default {
   title: "Organisms/Arrow",
@@ -22,8 +24,8 @@ export default {
 
 const Template: ComponentStory<typeof Arrow> = args => <Arrow {...args} />;
 
-export const RightDirectionalArrow = Template.bind({});
-RightDirectionalArrow.args = {
+export const RightDirectionalEmptyArrow = Template.bind({});
+RightDirectionalEmptyArrow.args = {
   start: {
     x: 0,
     y: 0,
@@ -32,12 +34,34 @@ RightDirectionalArrow.args = {
     x: 100,
     y: 0,
   },
-  color: blue,
+  arrowColor: blue,
+  circleColor: white,
+  iconColor: black,
   type: ArrowType.Directional,
+  notes: "",
+  completed: false,
 };
 
-export const BidirectionalHorizontalArrow = Template.bind({});
-BidirectionalHorizontalArrow.args = {
+export const LeftDirectionalCompletedArrow = Template.bind({});
+LeftDirectionalCompletedArrow.args = {
+  start: {
+    x: 100,
+    y: 0,
+  },
+  end: {
+    x: 0,
+    y: 0,
+  },
+  arrowColor: blue,
+  circleColor: white,
+  iconColor: black,
+  type: ArrowType.Directional,
+  notes: "This note is completed",
+  completed: true,
+};
+
+export const BidirectionalHorizontalEmptyArrow = Template.bind({});
+BidirectionalHorizontalEmptyArrow.args = {
   start: {
     x: 0,
     y: 0,
@@ -46,12 +70,16 @@ BidirectionalHorizontalArrow.args = {
     x: 100,
     y: 0,
   },
-  color: red,
+  arrowColor: blue,
+  circleColor: white,
+  iconColor: black,
   type: ArrowType.BiDirectional,
+  notes: "",
+  completed: false,
 };
 
-export const UpDirectionalArrow = Template.bind({});
-UpDirectionalArrow.args = {
+export const UpDirectionalEditedArrow = Template.bind({});
+UpDirectionalEditedArrow.args = {
   start: {
     x: 0,
     y: 100,
@@ -60,12 +88,16 @@ UpDirectionalArrow.args = {
     x: 0,
     y: 0,
   },
-  color: blue,
+  arrowColor: blue,
+  circleColor: white,
+  iconColor: black,
   type: ArrowType.Directional,
+  notes: "This note is started, but not marked complete",
+  completed: false,
 };
 
-export const NonDirectionalVerticalArrow = Template.bind({});
-NonDirectionalVerticalArrow.args = {
+export const NonDirectionalVerticalEmptyArrow = Template.bind({});
+NonDirectionalVerticalEmptyArrow.args = {
   start: {
     x: 0,
     y: 0,
@@ -74,6 +106,10 @@ NonDirectionalVerticalArrow.args = {
     x: 0,
     y: 100,
   },
-  color: red,
+  arrowColor: blue,
+  circleColor: white,
+  iconColor: black,
   type: ArrowType.NonDirectional,
+  notes: "",
+  completed: false,
 };
