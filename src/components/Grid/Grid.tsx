@@ -11,6 +11,7 @@ export const Grid: React.FC<GridProps> = ({ items }) => {
   const children = React.useMemo(() => {
     return items.map(item => (
       <foreignObject
+        key={item.id}
         x={item.xPercentagePosition}
         y={item.yPercentagePosition}
         width={item.widthPercentage}
@@ -28,8 +29,10 @@ export const Grid: React.FC<GridProps> = ({ items }) => {
   }, [items]);
 
   return (
-    <svg viewBox="0 0 100 100" className={styles.grid}>
-      {children}
-    </svg>
+    <div className={styles.gridWrapper}>
+      <svg viewBox="0 0 100 100" className={styles.grid} width={20} height={12}>
+        {children}
+      </svg>
+    </div>
   );
 };

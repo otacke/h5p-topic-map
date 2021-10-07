@@ -5,14 +5,14 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { TopicMapItem, TopicMapItemProps } from "./TopicMapItem";
 
 export default {
-  title: "Organisms/TopicMapItem",
+  title: "Molecules/TopicMapItem",
   component: TopicMapItem,
 } as ComponentMeta<typeof TopicMapItem>;
 
 const defaultArgs: TopicMapItemProps = {
   backgroundImage: {
     alt: "",
-    path: "https://source.unsplash.com/daily/",
+    path: "https://images.unsplash.com/photo-1484557985045-edf25e08da73?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2146&q=80",
   },
   title: "Title",
   editAction: console.info,

@@ -1,4 +1,12 @@
+.gridWrapper {
+  padding-top: 60%;
+  position: relative;
+}
+
 .grid {
-  aspect-ratio: 20 / 12; // TODO: Safari does not support aspect-ratio. Use something else.
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
   width: 100%;
 }

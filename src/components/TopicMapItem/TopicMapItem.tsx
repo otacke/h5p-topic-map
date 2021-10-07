@@ -15,7 +15,7 @@ export const TopicMapItem: React.FC<TopicMapItemProps> = ({
 }) => {
   return (
     <button type="button" className={styles.topicMapItem} onClick={editAction}>
-      {backgroundImage && (
+      {backgroundImage?.path && (
         <img
           className={styles.bgImage}
           src={backgroundImage.path}
