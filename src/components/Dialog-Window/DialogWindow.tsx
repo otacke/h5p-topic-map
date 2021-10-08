@@ -5,6 +5,8 @@ export type DialogWindowProps = {
   notes: string;
 };
 
-export const DialogWindow: React.FC<DialogWindowProps> = () => {
-  return null;
+export const DialogWindow: React.FC<DialogWindowProps> = (
+  props,
+): JSX.Element => {
+  return <div>Hello Modal</div>;
 };
