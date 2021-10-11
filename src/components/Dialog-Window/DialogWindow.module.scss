@@ -14,6 +14,10 @@
   background: none;
 }
 
+.closeButton:hover {
+  cursor: pointer;
+}
+
 .dialogContent {
   background-color: white;
   border-radius: 6px;
