@@ -1,4 +1,6 @@
 import * as React from "react";
+import { Cross2Icon } from "@radix-ui/react-icons";
+import * as Dialog from "@radix-ui/react-dialog";
 import styles from "./DialogWindow.module.scss";
 
 export type DialogWindowProps = {
