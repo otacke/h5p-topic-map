@@ -8,6 +8,7 @@ export type DialogWindowProps = {
   notes: string;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const DialogRoot = ({ children, ...props }: any): JSX.Element => {
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -20,7 +21,6 @@ const DialogRoot = ({ children, ...props }: any): JSX.Element => {
 
 export const DialogWindow: React.FC<DialogWindowProps> = ({
   title,
-  notes,
 }): JSX.Element => {
   return (
     <div>
