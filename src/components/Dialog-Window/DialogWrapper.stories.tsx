@@ -15,5 +15,5 @@ const Template: ComponentStory<typeof DialogTestWrapper> = args => (
 
 export const DialogWrapperSimple = Template.bind({});
 DialogWrapperSimple.args = {
-  modal: <DialogWindow notes="" />,
+  modal: <DialogWindow notes="" title="" />,
 };

@@ -4,7 +4,9 @@ import { DialogWindow } from "./DialogWindow";
 
 describe(DialogWindow.name, () => {
   it("should render", () => {
-    const dialogWindow = render(<DialogWindow notes="" />).container;
+    const dialogWindow = render(
+      <DialogWindow notes="test" title="test" />,
+    ).container;
 
     expect(dialogWindow.querySelector("div")).toBeTruthy();
   });

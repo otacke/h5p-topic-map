@@ -5,3 +5,34 @@
   inset: 0;
 }
 
+.closeButton {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.dialogContent {
+  background-color: white;
+  border-radius: 6px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 450px;
+  max-height: 85vh;
+  padding: 25px;
+}
+.dialogContent:focus {
+  outline: none;
+}
+
+.dialogTitle {
+  margin: 0;
+  font-weight: 500;
+  color: black;
+  font-size: 17;
+}
