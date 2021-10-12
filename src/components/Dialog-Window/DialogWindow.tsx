@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Cross2Icon } from "@radix-ui/react-icons";
-import * as Dialog from "@radix-ui/react-dialog";
+import { Root, Content, Title, Close, Overlay } from "@radix-ui/react-dialog";
 import styles from "./DialogWindow.module.scss";
 
 export type DialogWindowProps = {
@@ -8,27 +8,19 @@ export type DialogWindowProps = {
   notes: string;
 };
 
-const DialogRoot: React.FC<DialogWindowProps> = ({ children, ...props }) => {
-  return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <Dialog.Root {...props}>
-      <Dialog.Overlay className={styles.overlay} />
-      {children}
-    </Dialog.Root>
-  );
-};
-
+const arialLabel = "Close";
 export const DialogWindow: React.FC<DialogWindowProps> = ({
   title,
 }): JSX.Element => {
   return (
-    <DialogRoot defaultOpen>
-      <Dialog.Content className={styles.dialogContent}>
-        <Dialog.Title className={styles.dialogTitle}>{title}</Dialog.Title>
-        <Dialog.Close className={styles.closeButton}>
-          <Cross2Icon aria-label="Close" />
-        </Dialog.Close>
-      </Dialog.Content>
-    </DialogRoot>
+    <Root>
+      <Overlay className={styles.overlay} />
+      <Content className={styles.dialogContent}>
+        <Title className={styles.dialogTitle}>{title}</Title>
+        <Close className={styles.closeButton}>
+          <Cross2Icon aria-label={arialLabel} />
+        </Close>
+      </Content>
+    </Root>
   );
 };
