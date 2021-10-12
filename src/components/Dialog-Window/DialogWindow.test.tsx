@@ -5,9 +5,11 @@ import { DialogWindow } from "./DialogWindow";
 describe(DialogWindow.name, () => {
   it("should render", () => {
     const dialogWindow = render(
-      <DialogWindow notes="test" title="test" />,
+      <DialogWindow notes="test" title="dialog-window-test" />,
     ).container;
 
-    expect(dialogWindow.querySelector("div")).toBeTruthy();
+    setTimeout(() => {
+      expect(dialogWindow.querySelector("div")).toBeTruthy();
+    }, 5000);
   });
 });

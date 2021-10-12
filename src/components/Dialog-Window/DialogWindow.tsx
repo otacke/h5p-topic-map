@@ -23,18 +23,13 @@ export const DialogWindow: React.FC<DialogWindowProps> = ({
   title,
 }): JSX.Element => {
   return (
-    <div>
-      <DialogRoot>
-        <Dialog.Trigger asChild>
-          <button type="button">Open Dialog</button>
-        </Dialog.Trigger>
-        <Dialog.Content className={styles.dialogContent}>
-          <Dialog.Title className={styles.dialogTitle}>{title}</Dialog.Title>
-          <Dialog.Close className={styles.closeButton}>
-            <Cross2Icon />
-          </Dialog.Close>
-        </Dialog.Content>
-      </DialogRoot>
-    </div>
+    <DialogRoot defaultOpen>
+      <Dialog.Content className={styles.dialogContent}>
+        <Dialog.Title className={styles.dialogTitle}>{title}</Dialog.Title>
+        <Dialog.Close className={styles.closeButton}>
+          <Cross2Icon />
+        </Dialog.Close>
+      </Dialog.Content>
+    </DialogRoot>
   );
 };
