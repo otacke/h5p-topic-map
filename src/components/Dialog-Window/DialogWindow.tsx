@@ -13,7 +13,7 @@ export const DialogWindow: React.FC<DialogWindowProps> = ({
   title,
 }): JSX.Element => {
   return (
-    <Root>
+    <Root defaultOpen>
       <Overlay className={styles.overlay} />
       <Content className={styles.dialogContent}>
         <Title className={styles.dialogTitle}>{title}</Title>
