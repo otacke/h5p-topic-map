@@ -26,7 +26,7 @@ export const DialogWindow: React.FC<DialogWindowProps> = ({
       <Dialog.Content className={styles.dialogContent}>
         <Dialog.Title className={styles.dialogTitle}>{title}</Dialog.Title>
         <Dialog.Close className={styles.closeButton}>
-          <Cross2Icon />
+          <Cross2Icon aria-label="Close" />
         </Dialog.Close>
       </Dialog.Content>
     </DialogRoot>
