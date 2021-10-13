@@ -7,8 +7,8 @@
 
 .closeButton {
   position: fixed;
-  top: 10px;
-  right: 10px;
+  top: 0.625rem;
+  right: 0.625rem;
   padding: 0;
   border: none;
   background: none;
@@ -23,9 +23,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90vw;
-  max-width: 450px;
+  max-width: 28.125rem;
   max-height: 85vh;
-  padding: 25px;
+  padding: 1.5625rem;
 }
 .dialogContent:focus {
   outline: none;
@@ -35,5 +35,5 @@
   margin: 0;
   font-weight: bold;
   color: black;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
