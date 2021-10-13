@@ -4,6 +4,8 @@
 
 .Button-module__button--p0yjO{position:absolute;top:50%;width:50px}.Button-module__buttonCircle--x1P7b{stroke-width:0.5}.Button-module__buttonDirectional--BkQt1{left:calc((100% - 20px) / 2)}.Button-module__buttonNonDirectional--TNX1L{left:50%}.Button-module__buttonUp--KydMJ{transform-origin:top;transform:rotate(90deg)}.Button-module__buttonDown--KpK7P{transform-origin:left;transform:rotate(-90deg)}.Button-module__buttonLeft--jskFR{transform:rotate(180deg) translate(50%, 50%)}.Button-module__buttonRight--hdBny{transform:translate(-50%, -50%)}.Button-module__editHoverButton--I9YgT{display:none}
 
+.DialogWindow-module__overlay--sp40U{opacity:0.5;background-color:black;position:fixed;inset:0}.DialogWindow-module__closeButton--dAE9H{position:fixed;top:0.625rem;right:0.625rem;padding:0;border:none;background:none;cursor:pointer}.DialogWindow-module__dialogContent--ksDqK{background-color:white;border-radius:6px;position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:90vw;max-width:28.125rem;max-height:85vh;padding:1.5625rem}.DialogWindow-module__dialogContent--ksDqK:focus{outline:none}.DialogWindow-module__dialogTitle--SwqhA{margin:0;font-weight:bold;color:black;font-size:1.25rem}
+
 .TopicMapItem-module__topicMapItem--wFBpu{background-color:#2bf;border-radius:0.25rem;border:none;cursor:pointer;display:block;height:100%;overflow:hidden;padding:0;position:relative;width:100%}.TopicMapItem-module__bgImage--yNvqi{height:100%;left:0;object-fit:cover;object-position:50% 50%;position:absolute;top:0;width:100%}.TopicMapItem-module__title--kNnBC{padding:0.5em}
 
 .Grid-module__gridWrapper--u5iKa{padding-top:60%;position:relative}.Grid-module__grid--fFABg{height:100%;left:0;position:absolute;top:0;width:100%}
