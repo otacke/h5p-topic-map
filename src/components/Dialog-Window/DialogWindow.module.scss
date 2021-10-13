@@ -1,0 +1,39 @@
+.overlay {
+  opacity: 0.5;
+  background-color: black;
+  position: fixed;
+  inset: 0;
+}
+
+.closeButton {
+  position: fixed;
+  top: 0.625rem;
+  right: 0.625rem;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.dialogContent {
+  background-color: white;
+  border-radius: 6px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 28.125rem;
+  max-height: 85vh;
+  padding: 1.5625rem;
+}
+.dialogContent:focus {
+  outline: none;
+}
+
+.dialogTitle {
+  margin: 0;
+  font-weight: bold;
+  color: black;
+  font-size: 1.25rem;
+}
