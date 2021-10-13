@@ -14,7 +14,7 @@ const Template: ComponentStory<typeof DialogWindow> = args => (
 
 const openClose = (open: boolean): void => {
   // eslint-disable-next-line no-unused-expressions
-  console.info;
+  console.info("Toggle dialog", { open });
 };
 
 export const DialogWindowSimple = Template.bind({});

@@ -17,6 +17,7 @@ export type DialogWindowProps = {
   onOpenChange: (open: boolean) => void;
 };
 
+// TODO: Translate
 const ariaLabel = "Close";
 
 export const DialogWindow: React.FC<DialogWindowProps> = ({
