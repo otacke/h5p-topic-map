@@ -12,10 +12,17 @@ const Template: ComponentStory<typeof DialogWindow> = args => (
   <DialogWindow {...args} />
 );
 
+const openClose = (open: boolean): void => {
+  // eslint-disable-next-line no-unused-expressions
+  console.info;
+};
+
 export const DialogWindowSimple = Template.bind({});
 DialogWindowSimple.args = {
   title: "Title",
   notes: "Notes",
+  open: true,
+  onOpenChange: openClose,
 };
 
 export const DialogWindowLong = Template.bind({});
@@ -34,4 +41,5 @@ DialogWindowLong.args = {
     "abitur eu pharetra mi. Curabitur ex felis, bibendum at quam mollis, sollicitudin laoreet " +
     "nibh. Nam aliquam efficitur elit in tempus. Duis sed ipsum vel nisl interdum porttitor. N" +
     "unc finibus euismod sollicitudin. ",
+  open: true,
 };
