@@ -1,4 +1,3 @@
-import { Description } from "@radix-ui/react-dialog";
 import * as React from "react";
 
 export type NotesProps = {
