@@ -15,4 +15,5 @@ const Template: ComponentStory<typeof Note> = args => (
 export const NoteSimple = Template.bind({});
 NoteSimple.args = {
   note: "Note",
+  maxLength: 100,
 };
