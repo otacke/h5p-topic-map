@@ -1,4 +1,5 @@
 import * as React from "react";
+import styles from "./DialogNote.module.scss";
 
 export type NoteProps = {
   note: string;
@@ -12,20 +13,23 @@ export const Note: React.FC<NoteProps> = ({ note, maxLength }) => {
     setCount(e.target.value.length);
   };
 
+  // TODO: add support for other languages for placeholder
   return (
     <form>
       <label htmlFor="note">
         <textarea
+          className={styles.textArea}
           id="note"
           name="note"
-          rows={4}
-          cols={5}
+          placeholder="Skriv dine notater her..."
+          rows={40}
+          cols={50}
           maxLength={maxLength}
           onChange={e => countCharacters(e)}
         >
           {note}
         </textarea>
-        <p>
+        <p className={styles.counter}>
           {count} / {maxLength}
         </p>
       </label>

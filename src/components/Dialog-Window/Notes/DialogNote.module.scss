@@ -1,2 +1,11 @@
 .textArea {
+  resize: none;
+  width: 100%;
+}
+
+.counter {
+  color: gray;
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1rem;
 }
