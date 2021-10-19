@@ -13,6 +13,7 @@ export const Note: React.FC<NoteProps> = ({ initialNote, maxLength, id }) => {
     return stickyVal !== null ? JSON.parse(stickyVal) : initialNote;
   });
   React.useEffect(() => {
+    // TODO: If this becomes laggy, add a debounce-timer to avoid saving more often than, say, every 100ms.
     window.localStorage.setItem(id, JSON.stringify(note));
   }, [id, note]);
 
@@ -20,15 +21,16 @@ export const Note: React.FC<NoteProps> = ({ initialNote, maxLength, id }) => {
     setNote(e.target.value);
   };
 
-  // TODO: add support for other languages for placeholder
+  // TODO: Translate
+  const placeholderText = "Skriv dine notater her...";
+
   return (
     <form>
       <label htmlFor="note">
         <textarea
           className={styles.textArea}
           id="note"
-          name="note"
-          placeholder="Skriv dine notater her..."
+          placeholder={placeholderText}
           maxLength={maxLength}
           onChange={event => onChange(event)}
           defaultValue={note}
