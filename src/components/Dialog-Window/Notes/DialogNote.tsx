@@ -2,15 +2,22 @@ import * as React from "react";
 import styles from "./DialogNote.module.scss";
 
 export type NoteProps = {
-  note: string;
+  initialNote: string;
   maxLength: number;
+  id: string;
 };
 
-export const Note: React.FC<NoteProps> = ({ note, maxLength }) => {
-  const [count, setCount] = React.useState(note.length);
+export const Note: React.FC<NoteProps> = ({ initialNote, maxLength, id }) => {
+  const [note, setNote] = React.useState(() => {
+    const stickyVal = window.localStorage.getItem(id);
+    return stickyVal !== null ? JSON.parse(stickyVal) : initialNote;
+  });
+  React.useEffect(() => {
+    window.localStorage.setItem(id, JSON.stringify(note));
+  }, [id, note]);
 
-  const countCharacters = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    setCount(e.target.value.length);
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+    setNote(e.target.value);
   };
 
   // TODO: add support for other languages for placeholder
@@ -23,11 +30,11 @@ export const Note: React.FC<NoteProps> = ({ note, maxLength }) => {
           name="note"
           placeholder="Skriv dine notater her..."
           maxLength={maxLength}
-          onChange={e => countCharacters(e)}
+          onChange={event => onChange(event)}
           defaultValue={note}
         />
         <p className={styles.counter}>
-          {count} / {maxLength}
+          {note.length} / {maxLength}
         </p>
       </label>
     </form>

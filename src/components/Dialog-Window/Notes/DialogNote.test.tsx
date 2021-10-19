@@ -4,7 +4,9 @@ import { Note } from "./DialogNote";
 
 describe(Note.name, () => {
   it("should render", () => {
-    const dialogNote = render(<Note note="" maxLength={0} />).container;
+    const dialogNote = render(
+      <Note initialNote="" maxLength={0} id="myID" />,
+    ).container;
     expect(dialogNote.querySelector("form")).toBeTruthy();
   });
 });

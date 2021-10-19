@@ -14,6 +14,7 @@ const Template: ComponentStory<typeof Note> = args => (
 
 export const NoteSimple = Template.bind({});
 NoteSimple.args = {
-  note: "Note",
+  initialNote: "Note",
   maxLength: 100,
+  id: "myID",
 };
