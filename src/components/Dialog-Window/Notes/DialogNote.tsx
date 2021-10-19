@@ -22,13 +22,10 @@ export const Note: React.FC<NoteProps> = ({ note, maxLength }) => {
           id="note"
           name="note"
           placeholder="Skriv dine notater her..."
-          rows={40}
-          cols={50}
           maxLength={maxLength}
           onChange={e => countCharacters(e)}
-        >
-          {note}
-        </textarea>
+          defaultValue={note}
+        />
         <p className={styles.counter}>
           {count} / {maxLength}
         </p>

@@ -1,11 +1,14 @@
 .textArea {
   resize: none;
+  box-sizing: border-box;
+  position: absolute;
   width: 100%;
+  height: 100%;
 }
 
 .counter {
   color: gray;
-  position: fixed;
-  right: 1.25rem;
-  bottom: 1rem;
+  position: absolute;
+  bottom: -1.5rem;
+  right: -0.3rem;
 }
