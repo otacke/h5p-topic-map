@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Note } from "./DialogNote";
 
 export default {
-  title: "DialogContent/DialogNotes",
+  title: "Molecules/Dialog Content/Dialog Notes",
   component: Note,
 } as ComponentMeta<typeof Note>;
 
