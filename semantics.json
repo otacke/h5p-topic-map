@@ -11,9 +11,13 @@
         "name": "topicMapItems",
         "type": "list",
         "entity": "Topic map item",
+        "importance": "low",
         "field": {
+          "label": "Item",
           "name": "topicMapItem",
+          "importance": "low",
           "type": "group",
+
           "fields": [
             {
               "name": "id",
@@ -52,11 +56,33 @@
               "type": "image"
             },
             {
-              "label": "Links",
-              "name": "links",
-              "description": "These links are as auxiliary links for the user in the element's modal window",
-              "type": "list",
-              "field": { "label": "Link", "name": "link", "type": "text" }
+              "label": "Dialog",
+              "name": "dialog",
+              "type": "group",
+              "fields": [
+                {
+                  "label": "Text",
+                  "name": "text",
+                  "type": "text",
+                  "widget": "html"
+                },
+                {
+                  "label": "Video",
+                  "name": "video",
+                  "type": "video"
+                },
+                {
+                  "label": "Links",
+                  "name": "links",
+                  "description": "These links are as auxiliary links for the user in the element's modal window",
+                  "type": "list",
+                  "field": {
+                    "label": "Link",
+                    "name": "link",
+                    "type": "text"
+                  }
+                }
+              ]
             }
           ]
         }
