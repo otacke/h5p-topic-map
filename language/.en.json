@@ -5,6 +5,7 @@
       {
         "label": "Topic map items",
         "field": {
+          "label": "Item",
           "fields": [
             {},
             {},
@@ -19,8 +20,19 @@
               "label": "Background image"
             },
             {
-              "label": "Links",
-              "description": "These links are as auxiliary links for the user in the element's modal window"
+              "label": "Dialog",
+              "fields": [
+                {
+                  "label": "Text"
+                },
+                {
+                  "label": "Video"
+                },
+                {
+                  "label": "Links",
+                  "description": "These links are as auxiliary links for the user in the element's modal window"
+                }
+              ]
             }
           ]
         }

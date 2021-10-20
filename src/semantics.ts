@@ -16,8 +16,11 @@ const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         name: "topicMapItems",
         type: H5PFieldType.List,
         entity: "Topic map item",
+        importance: "low",
         field: {
+          label: "Item",
           name: "topicMapItem",
+          importance: "low",
           type: H5PFieldType.Group,
           fields: [
             {
@@ -56,17 +59,36 @@ const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               name: "backgroundImage",
               type: H5PFieldType.Image,
             },
+
             {
-              label: "Links",
-              name: "links",
-              description:
-                "These links are as auxiliary links for the user in the element's modal window",
-              type: H5PFieldType.List,
-              field: {
-                label: "Link",
-                name: "link",
-                type: H5PFieldType.Text,
-              },
+              label: "Dialog",
+              name: "dialog",
+              type: H5PFieldType.Group,
+              fields: [
+                {
+                  label: "Text",
+                  name: "text",
+                  type: H5PFieldType.Text,
+                  widget: "html",
+                },
+                {
+                  label: "Video",
+                  name: "video",
+                  type: H5PFieldType.Video,
+                },
+                {
+                  label: "Links",
+                  name: "links",
+                  description:
+                    "These links are as auxiliary links for the user in the element's modal window",
+                  type: H5PFieldType.List,
+                  field: {
+                    label: "Link",
+                    name: "link",
+                    type: H5PFieldType.Text,
+                  },
+                },
+              ],
             },
           ],
         },
