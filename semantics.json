@@ -18,27 +18,27 @@
             {
               "name": "id",
               "type": "text",
-              "widget": "hidden"
+              "widget": "none"
             },
             {
               "name": "xPercentagePosition",
               "type": "number",
-              "widget": "hidden"
+              "widget": "none"
             },
             {
               "name": "yPercentagePosition",
               "type": "number",
-              "widget": "hidden"
+              "widget": "none"
             },
             {
               "name": "widthPercentage",
               "type": "number",
-              "widget": "hidden"
+              "widget": "none"
             },
             {
               "name": "heightPercentage",
               "type": "number",
-              "widget": "hidden"
+              "widget": "none"
             },
             {
               "label": "Label",
