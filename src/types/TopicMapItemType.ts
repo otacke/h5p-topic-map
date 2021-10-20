@@ -8,9 +8,9 @@ export type TopicMapItemType = {
   yPercentagePosition: number;
   heightPercentage: number;
   widthPercentage: number;
-  dialog: {
-    links: Array<string>;
-    video: unknown;
-    text: string;
+  dialog?: {
+    links?: Array<string>;
+    video?: unknown;
+    text?: string;
   };
 };
