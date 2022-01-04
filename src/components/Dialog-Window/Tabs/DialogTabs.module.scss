@@ -1,0 +1,38 @@
+.trigger {
+  all: unset;
+  font-family: inherit;
+  background-color: white;
+  padding: 0 20px;
+  height: 45px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  line-height: 1;
+  color: black;
+  user-select: none;
+  cursor: pointer;
+  max-width: min-content;
+
+  &[data-state="active"] {
+    font-weight: 800;
+    box-shadow: 0 1px 0 0 #59a0ff;
+  }
+
+  &:focus {
+    position: relative;
+  }
+}
+
+.list {
+  flex-shrink: 0;
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  width: 300;
+}
