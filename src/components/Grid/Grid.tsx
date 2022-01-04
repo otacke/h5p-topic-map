@@ -10,12 +10,15 @@ export type GridProps = {
 export const Grid: React.FC<GridProps> = ({ items }) => {
   const children = React.useMemo(() => {
     return items.map(item => (
-      <foreignObject
+      <div
         key={item.id}
-        x={item.xPercentagePosition}
-        y={item.yPercentagePosition}
-        width={item.widthPercentage}
-        height={item.heightPercentage}
+        className={styles.itemWrapper}
+        style={{
+          left: `${item.xPercentagePosition}%`,
+          top: `${item.yPercentagePosition}%`,
+          height: `${item.heightPercentage}%`,
+          width: `${item.widthPercentage}%`,
+        }}
       >
         <TopicMapItem
           backgroundImage={item.backgroundImage}
@@ -24,15 +27,13 @@ export const Grid: React.FC<GridProps> = ({ items }) => {
             () => console.info("Add edit action") /* TODO: Add edit action */
           }
         />
-      </foreignObject>
+      </div>
     ));
   }, [items]);
 
   return (
     <div className={styles.gridWrapper}>
-      <svg viewBox="0 0 100 100" className={styles.grid} width={20} height={12}>
-        {children}
-      </svg>
+      <div className={styles.grid}>{children}</div>
     </div>
   );
 };
