@@ -1,20 +1,22 @@
-.li {
-    color: rgb(0, 38, 255)
+.li,
+a {
+  color: rgba(31, 103, 199, 1);
 }
 
 .input {
-    height: 32px;
-    width: 228px;
-    left: 254px;
-    top: 433px;
-    border-radius: 0px;
-
+  width: 228px;
+  height: 32px;
+  left: 254px;
+  top: 433px;
+  border: 1px solid #eeeeee;
+  box-sizing: border-box;
 }
 
 .inputButton {
-    height: 32px;
-    width: 85px;
-    left: 481px;
-    top: 433px;
-    border-radius: 0px;
+  width: 85px;
+  height: 32px;
+  left: 481px;
+  top: 433px;
+  border: 0px;
+  background: #eeeeee;
 }
