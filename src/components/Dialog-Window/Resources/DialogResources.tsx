@@ -10,7 +10,11 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   relevantLinks,
   customLinks,
 }) => {
-  const [cList, setList] = React.useState(customLinks);
+  const customItems = customLinks.map((link: string) => (
+    <li key={link} className={styles.li}>
+      <a href={link}>{link}</a>
+    </li>
+  ));
 
   const relevantItems = relevantLinks.map((link: string) => (
     <li key={link} className={styles.li}>
@@ -18,22 +22,39 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
     </li>
   ));
 
-  const customItems = customLinks.map((link: string) => (
-    <li key={link} className={styles.li}>
-      <a href={link}>{link}</a>
-    </li>
-  ));
+  const [cList, setList] = React.useState(customItems);
+  const [link, setLink] = React.useState("");
 
-  // <input className={styles.inputButton} type="button" value="Legg til" />
+  const updateCustomList = (): void => {
+    if (link.length < 3) {
+      return 
+    }
+
+    const newElement = (
+        <li key={link} className={styles.li}>
+          <a href={link}>{link}</a>
+        </li>
+   );
+
+   setList((prevState) => ([
+     ...prevState,
+     newElement
+   ]));
+  }
+
+  const updateLink = (linkText: string): void => {
+    setLink(linkText);
+  }
+
   return (
     <div>
       <p> Relevante lenker: </p>
       <ul>{relevantItems}</ul>
       <p> Dine lenker: </p>
-      <ul>{customItems}</ul>
+      <ul>{cList}</ul>
       <div>
-        <input className={styles.input} placeholder="www.nyresurss.no" />
-        <button className={styles.inputButton} type="button">
+        <input className={styles.input} type="text" placeholder="www.nyresurss.no" onFocus={(e) => { e.target.value = ""; updateLink(e.target.value)}} onChange={(e) => updateLink(e.target.value)}/>
+        <button className={styles.inputButton} type="submit" onClick={(e) => updateCustomList()}>
           Legg til
         </button>
       </div>
