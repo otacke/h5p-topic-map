@@ -24,27 +24,29 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
 
   const [cList, setList] = React.useState(customItems);
   const [link, setLink] = React.useState("");
+  let inputField: HTMLInputElement | null;
 
   const updateCustomList = (): void => {
     if (link.length < 3) {
-      return 
+      return;
     }
 
     const newElement = (
-        <li key={link} className={styles.li}>
-          <a href={link}>{link}</a>
-        </li>
-   );
+      <li key={link} className={styles.li}>
+        <a href={link}>{link}</a>
+      </li>
+    );
 
-   setList((prevState) => ([
-     ...prevState,
-     newElement
-   ]));
-  }
+    setList(prevState => [...prevState, newElement]);
+    setLink("");
+    if (inputField != null) {
+      inputField.value = "";
+    }
+  };
 
   const updateLink = (linkText: string): void => {
     setLink(linkText);
-  }
+  };
 
   return (
     <div>
@@ -53,8 +55,20 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
       <p> Dine lenker: </p>
       <ul>{cList}</ul>
       <div>
-        <input className={styles.input} type="text" placeholder="www.nyresurss.no" onFocus={(e) => { e.target.value = ""; updateLink(e.target.value)}} onChange={(e) => updateLink(e.target.value)}/>
-        <button className={styles.inputButton} type="submit" onClick={(e) => updateCustomList()}>
+        <input
+          className={styles.input}
+          type="text"
+          placeholder="www.nyresurss.no"
+          onChange={e => updateLink(e.target.value)}
+          ref={input => {
+            inputField = input;
+          }}
+        />
+        <button
+          className={styles.inputButton}
+          type="submit"
+          onClick={() => updateCustomList()}
+        >
           Legg til
         </button>
       </div>
