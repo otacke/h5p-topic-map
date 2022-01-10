@@ -49,7 +49,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   };
 
   return (
-    <div>
+    <form>
       <p> Relevante lenker: </p>
       <ul>{relevantItems}</ul>
       <p> Dine lenker: </p>
@@ -66,12 +66,12 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
         />
         <button
           className={styles.inputButton}
-          type="submit"
+          type="button"
           onClick={() => updateCustomList()}
         >
           Legg til
         </button>
       </div>
-    </div>
+    </form>
   );
 };
