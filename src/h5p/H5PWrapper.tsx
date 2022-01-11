@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 import { IH5PWrapper } from "../../H5P";
 import App from "../App";
 import { Params } from "../types/H5P/Params";
-import { H5P } from "./H5P.util";
+import { H5P, makeBackgroundImagePathsAbsolute } from "./H5P.util";
 
 export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
   private wrapper: HTMLElement;
@@ -14,10 +14,12 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
 
     console.info({ params, contentId, extras });
 
-    ReactDOM.render(
-      <App items={params.topicMap.topicMapItems ?? []} />,
-      this.wrapper,
+    const updatedTopicMapItems = makeBackgroundImagePathsAbsolute(
+      params.topicMap.topicMapItems,
+      contentId,
     );
+
+    ReactDOM.render(<App items={updatedTopicMapItems ?? []} />, this.wrapper);
   }
 
   attach([containerElement]: JQuery<HTMLElement>): void {
