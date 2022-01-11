@@ -24,7 +24,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
 
   const [cList, setList] = React.useState(customItems);
   const [link, setLink] = React.useState("");
-  let inputField: HTMLInputElement | null;
+  const inputFieldRef = React.useRef<HTMLInputElement>(null);
 
   const updateCustomList = (): void => {
     if (link.length < 3) {
@@ -39,37 +39,35 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
 
     setList(prevState => [...prevState, newElement]);
     setLink("");
-    if (inputField != null) {
-      inputField.value = "";
+    if (inputFieldRef.current != null) {
+      inputFieldRef.current.value = "";
     }
   };
 
-  const updateLink = (linkText: string): void => {
-    setLink(linkText);
-  };
+  const relevantLinkLabel = "Relevante lenker";
+  const customLinkLabel = "Dine lenker";
+  const addLinkLabel = "Legg til";
 
   return (
     <form>
-      <p> Relevante lenker: </p>
+      <p> {relevantLinkLabel}: </p>
       <ul>{relevantItems}</ul>
-      <p> Dine lenker: </p>
+      <p> {customLinkLabel}: </p>
       <ul>{cList}</ul>
-      <div>
+      <div className={styles.inputContainer}>
         <input
           className={styles.input}
           type="text"
-          placeholder="www.nyresurss.no"
-          onChange={e => updateLink(e.target.value)}
-          ref={input => {
-            inputField = input;
-          }}
+          placeholder="www.example.com"
+          onChange={e => setLink(e.target.value)}
+          ref={inputFieldRef}
         />
         <button
           className={styles.inputButton}
           type="button"
           onClick={() => updateCustomList()}
         >
-          Legg til
+          {addLinkLabel}
         </button>
       </div>
     </form>
