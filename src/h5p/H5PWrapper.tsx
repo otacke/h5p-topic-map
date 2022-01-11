@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 import { IH5PWrapper } from "../../H5P";
 import App from "../App";
 import { Params } from "../types/H5P/Params";
-import { H5P, addAbsolutePathToFiles } from "./H5P.util";
+import { H5P, makeBackgroundImagePathsAbsolute } from "./H5P.util";
 
 export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
   private wrapper: HTMLElement;
@@ -14,7 +14,7 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
 
     console.info({ params, contentId, extras });
 
-    const updatedTopicMapItems = addAbsolutePathToFiles(
+    const updatedTopicMapItems = makeBackgroundImagePathsAbsolute(
       params.topicMap.topicMapItems,
       contentId,
     );
