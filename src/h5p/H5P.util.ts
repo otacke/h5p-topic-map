@@ -15,10 +15,10 @@ export const H5P = (window as any).H5P as H5PObject;
 export const addAbsolutePathToFiles = (
   items: Array<TopicMapItemType> | undefined,
   contentId: string,
-): void => {
-  if (!items) return;
+): Array<TopicMapItemType> | undefined => {
+  if (!items) return undefined;
 
-  items.map(item => {
+  return items.map(item => {
     if (item.backgroundImage) {
       const updatedItem = { ...item };
 

@@ -14,12 +14,12 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
 
     console.info({ params, contentId, extras });
 
-    addAbsolutePathToFiles(params.topicMap.topicMapItems, contentId);
-
-    ReactDOM.render(
-      <App items={params.topicMap.topicMapItems ?? []} />,
-      this.wrapper,
+    const updatedTopMapItems = addAbsolutePathToFiles(
+      params.topicMap.topicMapItems,
+      contentId,
     );
+
+    ReactDOM.render(<App items={updatedTopMapItems ?? []} />, this.wrapper);
   }
 
   attach([containerElement]: JQuery<HTMLElement>): void {
