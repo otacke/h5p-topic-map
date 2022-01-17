@@ -1,22 +1,23 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 import * as React from "react";
 import styles from "./DialogAudio.module.scss";
 
 export type AudioProps = {
-  // Should this be more strict?
-  audioTrack: unknown;
+  audioTrack: { path: string };
   description: string;
-  text: JSX.Element;
+  subText: JSX.Element;
 };
 
 export const Audio: React.FC<AudioProps> = ({
   audioTrack,
   description,
-  text,
+  subText,
 }) => {
   return (
     <div>
+      <audio src={audioTrack.path} controls />
       <p className={styles.description}>{description}</p>
-      <>{text}</>
+      <>{subText}</>
     </div>
   );
 };
