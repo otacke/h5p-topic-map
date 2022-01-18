@@ -30,7 +30,7 @@ npm run build:dev
 
 ## Semantics
 
-When adding new fields to H5P's `semantics.json`, never change semantics.json itself, but rather update `./src/semantics.ts` and run `npm run generate-semantics` afterwards. This ensures strict typing of semantics.
+When adding new fields to H5P's `semantics.json`, never change `semantics.json` itself, but rather update `./src/semantics.ts` and run `npm run generate-semantics` afterwards. This ensures strict typing of semantics.
 
 ## Running
 
