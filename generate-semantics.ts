@@ -1,6 +1,5 @@
 import * as fs from "fs";
-import {semantics} from "./src/semantics";
-
+import { semantics } from "./src/semantics";
 
 const semanticsPath = "semantics.json";
 async function deleteSemanticsJson(): Promise<void> {
