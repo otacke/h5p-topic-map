@@ -15,7 +15,7 @@ export const Audio: React.FC<AudioProps> = ({
 }) => {
   return (
     <div>
-      <audio src={audioTrack.path} controls />
+      <audio className={styles.audioPlayer} src={audioTrack.path} controls />
       <p className={styles.description}>{description}</p>
       <>{subText}</>
     </div>
