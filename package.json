@@ -19,7 +19,8 @@
     "start": "webpack serve --hot --mode=development",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "generate-semantics": "ts-node generate-semantics.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^0.1.5",

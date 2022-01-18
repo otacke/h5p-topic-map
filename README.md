@@ -28,6 +28,10 @@ To create a development build:
 npm run build:dev
 ```
 
+## Semantics
+
+When adding new fields to H5P's `semantics.json`, never change `semantics.json` itself, but rather update `./src/semantics.ts` and run `npm run generate-semantics` afterwards. This ensures strict typing of semantics.
+
 ## Running
 
 Open the file `dist/index.html` in your browser
@@ -40,7 +44,7 @@ To run unit tests:
 npm test
 ```
 
-## Merging Strategy:
+## Merging Strategy
 
 In this project we use rebase merging without fast-forwarding when closing pull requests as standard. After completing the review process, close pull requests with the following steps:
 
