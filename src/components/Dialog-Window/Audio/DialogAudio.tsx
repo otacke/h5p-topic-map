@@ -14,10 +14,10 @@ export const DialogAudio: React.FC<DialogAudioProps> = ({
   subText,
 }) => {
   return (
-    <div>
+    <>
       <audio className={styles.audioPlayer} src={audioTrack.path} controls />
       <p className={styles.description}>{description}</p>
       <>{subText}</>
-    </div>
+    </>
   );
 };
