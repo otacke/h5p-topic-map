@@ -1,15 +1,15 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
-import { Audio } from "./DialogAudio";
+import { DialogAudio } from "./DialogAudio";
 
 export default {
   title: "Molecules/Dialog Content/Dialog Audio",
-  component: Audio,
-} as ComponentMeta<typeof Audio>;
+  component: DialogAudio,
+} as ComponentMeta<typeof DialogAudio>;
 
-const Template: ComponentStory<typeof Audio> = args => (
+const Template: ComponentStory<typeof DialogAudio> = args => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <Audio {...args} />
+  <DialogAudio {...args} />
 );
 
 export const NoteSimple = Template.bind({});

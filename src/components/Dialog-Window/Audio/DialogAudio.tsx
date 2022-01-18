@@ -2,13 +2,13 @@
 import * as React from "react";
 import styles from "./DialogAudio.module.scss";
 
-export type AudioProps = {
+export type DialogAudioProps = {
   audioTrack: { path: string };
   description: string;
   subText: JSX.Element;
 };
 
-export const Audio: React.FC<AudioProps> = ({
+export const DialogAudio: React.FC<DialogAudioProps> = ({
   audioTrack,
   description,
   subText,
