@@ -14,5 +14,10 @@
     "strictNullChecks": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["./src/**/*", "H5P.d.ts", "typings.d.ts"]
+  "include": ["./src/**/*", "H5P.d.ts", "typings.d.ts"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "NodeNext"
+    }
+  }
 }

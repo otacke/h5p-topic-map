@@ -3,7 +3,7 @@ import { H5PFieldGroup } from "./types/H5P/H5PField";
 import { H5PFieldType } from "./types/H5P/H5PFieldType";
 import { H5PL10n } from "./types/H5P/H5PL10n";
 
-const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
+export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
   {
     label: "Topic map editor",
     name: "topicMap",
@@ -26,27 +26,27 @@ const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
             {
               name: "id",
               type: H5PFieldType.Text,
-              widget: "hidden",
+              widget: "none",
             },
             {
               name: "xPercentagePosition",
               type: H5PFieldType.Number,
-              widget: "hidden",
+              widget: "none",
             },
             {
               name: "yPercentagePosition",
               type: H5PFieldType.Number,
-              widget: "hidden",
+              widget: "none",
             },
             {
               name: "widthPercentage",
               type: H5PFieldType.Number,
-              widget: "hidden",
+              widget: "none",
             },
             {
               name: "heightPercentage",
               type: H5PFieldType.Number,
-              widget: "hidden",
+              widget: "none",
             },
             {
               label: "Label",
@@ -132,6 +132,3 @@ const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
     fields: [],
   },
 ];
-
-console.info(JSON.stringify(semantics));
-export default semantics;

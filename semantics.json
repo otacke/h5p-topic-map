@@ -17,7 +17,6 @@
           "name": "topicMapItem",
           "importance": "low",
           "type": "group",
-
           "fields": [
             {
               "name": "id",
@@ -96,8 +95,16 @@
           "name": "arrow",
           "type": "group",
           "fields": [
-            { "name": "showStartHead", "type": "boolean", "widget": "none" },
-            { "name": "showEndHead", "type": "boolean", "widget": "none" }
+            {
+              "name": "showStartHead",
+              "type": "boolean",
+              "widget": "none"
+            },
+            {
+              "name": "showEndHead",
+              "type": "boolean",
+              "widget": "none"
+            }
           ]
         }
       }
