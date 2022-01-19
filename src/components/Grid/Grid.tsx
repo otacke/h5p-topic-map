@@ -21,11 +21,9 @@ export const Grid: React.FC<GridProps> = ({ items }) => {
         }}
       >
         <TopicMapItem
+          dialog={item.dialog}
           backgroundImage={item.backgroundImage}
           title={item.label}
-          editAction={
-            () => console.info("Add edit action") /* TODO: Add edit action */
-          }
         />
       </div>
     ));
