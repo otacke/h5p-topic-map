@@ -1,7 +1,7 @@
 export type DialogTextProps = {
-    text: JSX.Element;
-}
+  text: JSX.Element;
+};
 
-export const DialogText: React.FC<DialogTextProps> = ({text}) => {
-    return text;
+export const DialogText: React.FC<DialogTextProps> = ({ text }) => {
+  return text;
 };
