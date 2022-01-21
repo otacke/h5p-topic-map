@@ -31,6 +31,23 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
       );
 
     localStorage.setItem(id, JSON.stringify(currentLocalStorage));
+
+    // we can disable this check since this function will not be called before the page is rendered
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    setList(
+      currentLocalStorage.localCustomLinks.map((link: string) => (
+        <li key={link} className={styles.li}>
+          <a href={link}>{link}</a>
+          <button
+            className={styles.closeButton}
+            type="button"
+            onClick={() => removeCustomLink(link)}
+          >
+            <Cross2Icon />
+          </button>
+        </li>
+      )),
+    );
   };
 
   const customItems = currentLocalStorage.localCustomLinks.map(
