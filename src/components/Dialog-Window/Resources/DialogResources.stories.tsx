@@ -16,4 +16,5 @@ export const ResourcesDialog = Template.bind({});
 ResourcesDialog.args = {
   relevantLinks: ["www.ndla.com", "www.h5p.com"],
   customLinks: ["www.google.com", "www.gmail.com"],
+  id: "myId",
 };

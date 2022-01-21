@@ -1,20 +1,52 @@
+import { Cross2Icon } from "@radix-ui/react-icons";
 import * as React from "react";
 import styles from "./DialogResources.module.scss";
 
 export type DialogResourceProps = {
   relevantLinks: string[];
   customLinks: string[];
+  id: string;
 };
 
 export const DialogResources: React.FC<DialogResourceProps> = ({
   relevantLinks,
   customLinks,
+  id,
 }) => {
-  const customItems = customLinks.map((link: string) => (
-    <li key={link} className={styles.li}>
-      <a href={link}>{link}</a>
-    </li>
-  ));
+  console.info(localStorage);
+  const currentLocalStorage = JSON.parse(localStorage.getItem(id) ?? "{}");
+
+  // populate the local storage with custom links for testing
+  if (
+    !("localCustomLinks" in currentLocalStorage) ||
+    !currentLocalStorage.localCustomLinks.length
+  ) {
+    currentLocalStorage.localCustomLinks = [...customLinks];
+  }
+
+  const removeCustomLink = (linkToRemove: string): void => {
+    currentLocalStorage.localCustomLinks =
+      currentLocalStorage.localCustomLinks.filter(
+        (item: string) => item !== linkToRemove,
+      );
+
+    localStorage.setItem(id, JSON.stringify(currentLocalStorage));
+  };
+
+  const customItems = currentLocalStorage.localCustomLinks.map(
+    (link: string) => (
+      <li key={link} className={styles.li}>
+        <a href={link}>{link}</a>
+        <button
+          className={styles.closeButton}
+          type="button"
+          onClick={() => removeCustomLink(link)}
+        >
+          <Cross2Icon />
+        </button>
+      </li>
+    ),
+  );
 
   const relevantItems = relevantLinks.map((link: string) => (
     <li key={link} className={styles.li}>
@@ -26,10 +58,21 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   const [link, setLink] = React.useState("");
   const inputFieldRef = React.useRef<HTMLInputElement>(null);
 
+  const saveCustomLink = (newLink: string): void => {
+    currentLocalStorage.localCustomLinks = [
+      ...currentLocalStorage.localCustomLinks,
+      newLink,
+    ];
+
+    localStorage.setItem(id, JSON.stringify(currentLocalStorage));
+  };
+
   const updateCustomList = (): void => {
     if (link.length < 3) {
       return;
     }
+
+    saveCustomLink(link);
 
     const newElement = (
       <li key={link} className={styles.li}>
@@ -37,7 +80,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
       </li>
     );
 
-    setList(prevState => [...prevState, newElement]);
+    setList((prevState: any) => [...prevState, newElement]);
     setLink("");
     if (inputFieldRef.current != null) {
       inputFieldRef.current.value = "";

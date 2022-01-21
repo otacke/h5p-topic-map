@@ -1,6 +1,15 @@
-.li,
-a {
-  color: rgba(31, 103, 199, 1);
+.li {
+
+  a {
+    color: rgba(31, 103, 199, 1);
+    margin-right: 5px;
+  }
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .inputContainer {
