@@ -77,6 +77,13 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
     const newElement = (
       <li key={link} className={styles.li}>
         <a href={link}>{link}</a>
+        <button
+          className={styles.closeButton}
+          type="button"
+          onClick={() => removeCustomLink(link)}
+        >
+          <Cross2Icon />
+        </button>
       </li>
     );
 
