@@ -16,4 +16,5 @@ export const ExternalResource = Template.bind({});
 
 ExternalResource.args = {
   url: "https://www.ndla.no",
+  label: "External example",
 };
