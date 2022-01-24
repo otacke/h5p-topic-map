@@ -1,10 +1,14 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { IH5PWrapper } from "../../H5P";
-import App from "../App";
+import { App } from "../App";
 import { Params } from "../types/H5P/Params";
-import { TopicMapItemType } from "../types/TopicMapItemType";
-import { H5P, makeBackgroundImagePathsAbsolute } from "./H5P.util";
+import { getEmptyParams } from "../utils/semantics.utils";
+import {
+  H5P,
+  normalizeGridBackgroundImagePath,
+  normalizeTopicMapItemPaths,
+} from "./H5P.util";
 
 export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
   private wrapper: HTMLElement;
@@ -15,15 +19,22 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
 
     console.info({ params, contentId, extras });
 
-    let topicMapItems: TopicMapItemType[] | undefined;
-    if (params.topicMap) {
-      topicMapItems = makeBackgroundImagePathsAbsolute(
-        params.topicMap.topicMapItems,
-        contentId,
-      );
-    }
+    let paramsWithFallbacks: Required<Params> = {
+      ...getEmptyParams(),
+      ...params,
+    };
 
-    ReactDOM.render(<App items={topicMapItems ?? []} />, this.wrapper);
+    paramsWithFallbacks = normalizeTopicMapItemPaths(
+      paramsWithFallbacks,
+      contentId,
+    );
+
+    paramsWithFallbacks = normalizeGridBackgroundImagePath(
+      paramsWithFallbacks,
+      contentId,
+    );
+
+    ReactDOM.render(<App params={paramsWithFallbacks} />, this.wrapper);
   }
 
   attach($container: JQuery<HTMLElement>): void {
