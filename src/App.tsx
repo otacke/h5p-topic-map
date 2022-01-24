@@ -15,7 +15,10 @@ export const App: React.FC<AppProps> = ({ params }) => {
 
   return (
     <div className={themeClassName}>
-      <Grid items={params.topicMap?.topicMapItems ?? []} backgroundImage={params.topicMap?.appearance?.backgroundImage} />
+      <Grid
+        items={params.topicMap?.topicMapItems ?? []}
+        backgroundImage={params.topicMap?.appearance?.backgroundImage}
+      />
     </div>
   );
 };
