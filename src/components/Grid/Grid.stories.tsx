@@ -3,6 +3,8 @@ import * as React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { Grid, GridProps } from "./Grid";
+import { ArrowDirection } from "../../types/ArrowDirection";
+import { ArrowType } from "../../types/ArrowType";
 
 export default {
   title: "Organisms/Grid",
@@ -11,6 +13,7 @@ export default {
 
 const defaultArgs: GridProps = {
   items: [],
+  arrows: [],
 };
 
 export const WithItems: ComponentStory<typeof Grid> = () => {
@@ -64,6 +67,26 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         dialog: {
           text: "Dialog text",
         },
+      },
+    ],
+    arrows: [
+      {
+        id: "arrow-1",
+        arrowDirection: ArrowDirection.Right,
+        arrowType: ArrowType.BiDirectional,
+        heightPercentage: 5,
+        widthPercentage: 40,
+        xPercentagePosition: 20,
+        yPercentagePosition: 40,
+      },
+      {
+        id: "arrow-2",
+        arrowDirection: ArrowDirection.Down,
+        arrowType: ArrowType.BiDirectional,
+        heightPercentage: 40,
+        widthPercentage: 5,
+        xPercentagePosition: 20,
+        yPercentagePosition: 40,
       },
     ],
   };
