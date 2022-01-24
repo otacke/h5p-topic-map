@@ -5,11 +5,12 @@ export type DialogExternalResourcesProps = {
   url: string;
 };
 
-export const DialogExternalResources: React.FC<DialogExternalResourcesProps> =
-  ({ url }) => {
-    return (
-      <div className={styles.wrapper}>
-        <iframe src={url} frameBorder="0" title="External Resrouces" />
-      </div>
-    );
-  };
+export const DialogExternalResources: React.FC<
+  DialogExternalResourcesProps
+> = ({ url }) => {
+  return (
+    <div className={styles.wrapper}>
+      <iframe src={url} frameBorder="0" title="External Resrouces" />
+    </div>
+  );
+};
