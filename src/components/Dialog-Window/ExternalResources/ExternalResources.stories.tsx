@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { DialogExternalResources } from "./ExternalResources";
@@ -8,8 +9,9 @@ export default {
 } as ComponentMeta<typeof DialogExternalResources>;
 
 const Template: ComponentStory<typeof DialogExternalResources> = args => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <DialogExternalResources {...args} />
+  <div style={{ height: "2000px", width: "1000px" }}>
+    <DialogExternalResources {...args} />
+  </div>
 );
 
 export const ExternalResource = Template.bind({});

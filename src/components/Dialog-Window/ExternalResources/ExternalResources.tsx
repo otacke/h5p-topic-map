@@ -10,8 +10,11 @@ export const DialogExternalResources: React.FC<
   DialogExternalResourcesProps
 > = ({ url, label }) => {
   return (
-    <div className={styles.wrapper}>
-      <iframe src={url} frameBorder="0" title={label} />
-    </div>
+    <iframe
+      className={styles.externalResources}
+      src={url}
+      frameBorder="0"
+      title={label}
+    />
   );
 };
