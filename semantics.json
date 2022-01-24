@@ -20,34 +20,53 @@
           "fields": [
             {
               "name": "id",
+              "label": "Id",
               "type": "text",
               "widget": "none"
             },
             {
               "name": "xPercentagePosition",
+              "label": "X-position as a percentage of the container width",
               "type": "number",
               "widget": "none"
             },
             {
               "name": "yPercentagePosition",
+              "label": "Y-position as a percentage of the container height",
               "type": "number",
               "widget": "none"
             },
             {
               "name": "widthPercentage",
+              "label": "Width as a percentage of the container width",
               "type": "number",
               "widget": "none"
             },
             {
               "name": "heightPercentage",
+              "label": "Height as a percentage of the container height",
               "type": "number",
               "widget": "none"
+            },
+            {
+              "label": "Index",
+              "description": "The label is shown on top of the background image",
+              "name": "label",
+              "type": "number",
+              "optional": true
             },
             {
               "label": "Label",
               "description": "The label is shown on top of the background image",
               "name": "label",
               "type": "text"
+            },
+            {
+              "label": "Description",
+              "description": "The description is shown on top of the background image, below the label",
+              "name": "description",
+              "type": "text",
+              "optional": true
             },
             {
               "label": "Background image",
@@ -75,6 +94,7 @@
                   "name": "links",
                   "description": "These links are as auxiliary links for the user in the element's modal window",
                   "type": "list",
+                  "entity": "linkItem",
                   "field": {
                     "label": "Link",
                     "name": "link",
@@ -90,20 +110,92 @@
         "label": "Arrows",
         "name": "arrows",
         "type": "list",
-        "entity": "Arrow",
+        "entity": "arrowItem",
         "field": {
+          "label": "Arrow",
           "name": "arrow",
           "type": "group",
           "fields": [
             {
-              "name": "showStartHead",
-              "type": "boolean",
+              "name": "id",
+              "label": "Id",
+              "type": "text",
               "widget": "none"
             },
             {
+              "name": "xPercentagePosition",
+              "label": "X-position as a percentage of the container width",
+              "type": "number",
+              "widget": "none"
+            },
+            {
+              "name": "yPercentagePosition",
+              "label": "Y-position as a percentage of the container height",
+              "type": "number",
+              "widget": "none"
+            },
+            {
+              "name": "widthPercentage",
+              "label": "Width as a percentage of the container width",
+              "type": "number",
+              "widget": "none"
+            },
+            {
+              "name": "heightPercentage",
+              "label": "Height as a percentage of the container height",
+              "type": "number",
+              "widget": "none"
+            },
+            {
+              "label": "Index",
+              "description": "The label is shown on top of the background image",
+              "name": "label",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "label": "Show start arrow-head",
+              "name": "showStartHead",
+              "type": "boolean",
+              "widget": "none",
+              "default": false
+            },
+            {
+              "label": "Show end arrow-head",
               "name": "showEndHead",
               "type": "boolean",
-              "widget": "none"
+              "widget": "none",
+              "default": true
+            },
+            {
+              "label": "Dialog",
+              "name": "dialog",
+              "type": "group",
+              "fields": [
+                {
+                  "label": "Text",
+                  "name": "text",
+                  "type": "text",
+                  "widget": "html"
+                },
+                {
+                  "label": "Video",
+                  "name": "video",
+                  "type": "video"
+                },
+                {
+                  "label": "Links",
+                  "name": "links",
+                  "description": "These links are as auxiliary links for the user in the element's modal window",
+                  "type": "list",
+                  "entity": "linkItem",
+                  "field": {
+                    "label": "Link",
+                    "name": "link",
+                    "type": "text"
+                  }
+                }
+              ]
             }
           ]
         }
