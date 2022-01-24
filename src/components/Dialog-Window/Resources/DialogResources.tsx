@@ -1,47 +1,50 @@
+import { v4 as uuidV4 } from "uuid";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import * as React from "react";
 import styles from "./DialogResources.module.scss";
+import { useLocalStorage } from "../../../h5p/H5P.util";
+import { Link } from "../../../types/Link";
 
 export type DialogResourceProps = {
   relevantLinks: string[];
-  customLinks: string[];
   id: string;
 };
 
 export const DialogResources: React.FC<DialogResourceProps> = ({
   relevantLinks,
-  customLinks,
   id,
 }) => {
-  console.info(localStorage);
-  const currentLocalStorage = JSON.parse(localStorage.getItem(id) ?? "{}");
-
-  // populate the local storage with custom links for testing
-  if (
-    !("localCustomLinks" in currentLocalStorage) ||
-    !currentLocalStorage.localCustomLinks.length
-  ) {
-    currentLocalStorage.localCustomLinks = [...customLinks];
+  /* UserData: {
+    id1: {links: [],
+          note: ""}
   }
+  
+  two types - useLocalStorage -> (h5p-topic-map-userdata - key for the UserData object) 
+  DialogData (links: [...], note: "...") and UserData ([key: string]: DialogData)
+  */
+
+  const [currentLocalStorage, setCurrentLocalStorage] = useLocalStorage(
+    "h5p-topic-map-userdata",
+    id,
+  );
 
   const removeCustomLink = (linkToRemove: string): void => {
-    currentLocalStorage.localCustomLinks =
-      currentLocalStorage.localCustomLinks.filter(
-        (item: string) => item !== linkToRemove,
-      );
+    currentLocalStorage[id].links = currentLocalStorage[id].links?.filter(
+      (item: Link) => item.id !== linkToRemove,
+    );
 
-    localStorage.setItem(id, JSON.stringify(currentLocalStorage));
+    setCurrentLocalStorage(currentLocalStorage);
 
     // we can disable this check since this function will not be called before the page is rendered
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    setList(
-      currentLocalStorage.localCustomLinks.map((link: string) => (
-        <li key={link} className={styles.li}>
-          <a href={link}>{link}</a>
+    setCustomItems(
+      currentLocalStorage[id].links?.map((item: Link) => (
+        <li key={item.id} className={styles.li}>
+          <a href={item.url}>{item.url}</a>
           <button
             className={styles.closeButton}
             type="button"
-            onClick={() => removeCustomLink(link)}
+            onClick={() => removeCustomLink(item.id)}
           >
             <Cross2Icon />
           </button>
@@ -50,19 +53,19 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
     );
   };
 
-  const customItems = currentLocalStorage.localCustomLinks.map(
-    (link: string) => (
-      <li key={link} className={styles.li}>
-        <a href={link}>{link}</a>
+  const [customItems, setCustomItems] = React.useState(() =>
+    currentLocalStorage[id].links?.map((item: Link) => (
+      <li key={item.id} className={styles.li}>
+        <a href={item.url}>{item.url}</a>
         <button
           className={styles.closeButton}
           type="button"
-          onClick={() => removeCustomLink(link)}
+          onClick={() => removeCustomLink(item.id)}
         >
           <Cross2Icon />
         </button>
       </li>
-    ),
+    )),
   );
 
   const relevantItems = relevantLinks.map((link: string) => (
@@ -71,17 +74,31 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
     </li>
   ));
 
-  const [cList, setList] = React.useState(customItems);
   const [link, setLink] = React.useState("");
   const inputFieldRef = React.useRef<HTMLInputElement>(null);
 
   const saveCustomLink = (newLink: string): void => {
-    currentLocalStorage.localCustomLinks = [
-      ...currentLocalStorage.localCustomLinks,
-      newLink,
-    ];
+    const tempNewLink = { id: uuidV4(), url: newLink } as Link;
+    if (!("links" in currentLocalStorage[id])) {
+      currentLocalStorage[id].links = [];
+    }
+    currentLocalStorage[id].links?.push(tempNewLink);
 
-    localStorage.setItem(id, JSON.stringify(currentLocalStorage));
+    setCurrentLocalStorage(currentLocalStorage);
+    setCustomItems(
+      currentLocalStorage[id].links?.map((item: Link) => (
+        <li key={item.id} className={styles.li}>
+          <a href={item.url}>{item.url}</a>
+          <button
+            className={styles.closeButton}
+            type="button"
+            onClick={() => removeCustomLink(item.id)}
+          >
+            <Cross2Icon />
+          </button>
+        </li>
+      )),
+    );
   };
 
   const updateCustomList = (): void => {
@@ -90,22 +107,8 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
     }
 
     saveCustomLink(link);
-
-    const newElement = (
-      <li key={link} className={styles.li}>
-        <a href={link}>{link}</a>
-        <button
-          className={styles.closeButton}
-          type="button"
-          onClick={() => removeCustomLink(link)}
-        >
-          <Cross2Icon />
-        </button>
-      </li>
-    );
-
-    setList((prevState: any) => [...prevState, newElement]);
     setLink("");
+
     if (inputFieldRef.current != null) {
       inputFieldRef.current.value = "";
     }
@@ -115,12 +118,14 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   const customLinkLabel = "Dine lenker";
   const addLinkLabel = "Legg til";
 
+  // map the list of links here instead of using custom items above
+  // or use useMemo
   return (
     <form>
       <p> {relevantLinkLabel}: </p>
       <ul>{relevantItems}</ul>
       <p> {customLinkLabel}: </p>
-      <ul>{cList}</ul>
+      <ul>{customItems}</ul>
       <div className={styles.inputContainer}>
         <input
           className={styles.input}
