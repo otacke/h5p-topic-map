@@ -49,13 +49,6 @@
               "widget": "none"
             },
             {
-              "label": "Index",
-              "description": "The label is shown on top of the background image",
-              "name": "label",
-              "type": "number",
-              "optional": true
-            },
-            {
               "label": "Label",
               "description": "The label is shown on top of the background image",
               "name": "label",
@@ -102,6 +95,13 @@
                   }
                 }
               ]
+            },
+            {
+              "label": "Index",
+              "description": "⚠️ Advanced feature: Used for manually setting tab order.",
+              "name": "label",
+              "type": "number",
+              "optional": true
             }
           ]
         }
@@ -147,13 +147,6 @@
               "widget": "none"
             },
             {
-              "label": "Index",
-              "description": "The label is shown on top of the background image",
-              "name": "label",
-              "type": "number",
-              "optional": true
-            },
-            {
               "label": "Show start arrow-head",
               "name": "showStartHead",
               "type": "boolean",
@@ -196,6 +189,13 @@
                   }
                 }
               ]
+            },
+            {
+              "label": "Index",
+              "name": "label",
+              "type": "number",
+              "optional": true,
+              "widget": "none"
             }
           ]
         }

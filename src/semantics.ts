@@ -34,13 +34,6 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
             ...itemPosition,
 
             {
-              label: "Index",
-              description: "The label is shown on top of the background image",
-              name: "label",
-              type: H5PFieldType.Number,
-              optional: true,
-            },
-            {
               label: "Label",
               description: "The label is shown on top of the background image",
               name: "label",
@@ -61,6 +54,15 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
             },
 
             ...itemDialog,
+
+            {
+              label: "Index",
+              description:
+                "⚠️ Advanced feature: Used for manually setting tab order.",
+              name: "label",
+              type: H5PFieldType.Number,
+              optional: true,
+            },
           ],
         },
       },
@@ -84,13 +86,6 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
             ...itemPosition,
 
             {
-              label: "Index",
-              description: "The label is shown on top of the background image",
-              name: "label",
-              type: H5PFieldType.Number,
-              optional: true,
-            },
-            {
               label: "Show start arrow-head",
               name: "showStartHead",
               type: H5PFieldType.Boolean,
@@ -106,6 +101,14 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
             },
 
             ...itemDialog,
+
+            {
+              label: "Index",
+              name: "label",
+              type: H5PFieldType.Number,
+              optional: true,
+              widget: "none",
+            },
           ],
         },
       },
