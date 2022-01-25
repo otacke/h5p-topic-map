@@ -1,44 +1,81 @@
+import { v4 as uuidV4 } from "uuid";
+import { Cross2Icon } from "@radix-ui/react-icons";
 import * as React from "react";
+import { useEffectOnce } from "react-use";
 import styles from "./DialogResources.module.scss";
+import { Link } from "../../../types/Link";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
 
 export type DialogResourceProps = {
   relevantLinks: string[];
-  customLinks: string[];
+  id: string;
 };
 
 export const DialogResources: React.FC<DialogResourceProps> = ({
   relevantLinks,
-  customLinks,
+  id,
 }) => {
-  const customItems = customLinks.map((link: string) => (
-    <li key={link} className={styles.li}>
-      <a href={link}>{link}</a>
-    </li>
-  ));
-
-  const relevantItems = relevantLinks.map((link: string) => (
-    <li key={link} className={styles.li}>
-      <a href={link}>{link}</a>
-    </li>
-  ));
-
-  const [cList, setList] = React.useState(customItems);
+  const [userData, setUserData] = useLocalStorage(id);
   const [link, setLink] = React.useState("");
+  const [customLinks, setCustomLinks] = React.useState<Array<JSX.Element>>([]);
   const inputFieldRef = React.useRef<HTMLInputElement>(null);
+
+  const removeCustomLink = (linkToRemove: string): void => {
+    userData[id].links = userData[id].links?.filter(
+      (item: Link) => item.id !== linkToRemove,
+    );
+
+    setUserData(userData);
+    // we can disable this check since this function will not be called before the page is rendered
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    populateCustomLinks();
+  };
+
+  const relevantItems = relevantLinks.map((item: string) => (
+    <li key={item} className={styles.li}>
+      <a href={item}>{item}</a>
+    </li>
+  ));
+
+  // extract the generation of custom links list to separate function
+  const populateCustomLinks = (): void => {
+    if (userData[id].links) {
+      setCustomLinks(
+        userData[id].links!.map((item: Link) => (
+          <li key={item.id} className={styles.li}>
+            <a href={item.url}>{item.url}</a>
+            <button
+              className={styles.removeButton}
+              type="button"
+              onClick={() => removeCustomLink(item.id)}
+            >
+              <Cross2Icon />
+            </button>
+          </li>
+        )),
+      );
+    }
+  };
+
+  const saveCustomLink = (newLink: string): void => {
+    const tempNewLink: Link = { id: uuidV4(), url: newLink };
+    if (!("links" in userData[id])) {
+      userData[id].links = [] as Array<Link>;
+    }
+    userData[id].links!.push(tempNewLink);
+
+    setUserData(userData);
+    populateCustomLinks();
+  };
 
   const updateCustomList = (): void => {
     if (link.length < 3) {
       return;
     }
 
-    const newElement = (
-      <li key={link} className={styles.li}>
-        <a href={link}>{link}</a>
-      </li>
-    );
-
-    setList(prevState => [...prevState, newElement]);
+    saveCustomLink(link);
     setLink("");
+
     if (inputFieldRef.current != null) {
       inputFieldRef.current.value = "";
     }
@@ -48,12 +85,17 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   const customLinkLabel = "Dine lenker";
   const addLinkLabel = "Legg til";
 
+  // build a list of custom links for the first render
+  useEffectOnce(() => {
+    populateCustomLinks();
+  });
+
   return (
     <form>
       <p> {relevantLinkLabel}: </p>
       <ul>{relevantItems}</ul>
       <p> {customLinkLabel}: </p>
-      <ul>{cList}</ul>
+      <ul>{customLinks}</ul>
       <div className={styles.inputContainer}>
         <input
           className={styles.input}

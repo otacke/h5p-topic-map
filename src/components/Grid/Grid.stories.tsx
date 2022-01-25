@@ -11,6 +11,7 @@ export default {
 
 const defaultArgs: GridProps = {
   items: [],
+  backgroundImage: undefined,
 };
 
 export const WithItems: ComponentStory<typeof Grid> = () => {

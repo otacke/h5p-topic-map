@@ -1,21 +1,21 @@
 import * as React from "react";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import styles from "./DialogNote.module.scss";
 
 export type NoteProps = {
-  initialNote: string;
   maxLength: number;
   id: string;
 };
 
-export const Note: React.FC<NoteProps> = ({ initialNote, maxLength, id }) => {
-  const [note, setNote] = React.useState(() => {
-    const stickyVal = window.localStorage.getItem(id);
-    return stickyVal !== null ? JSON.parse(stickyVal) : initialNote;
-  });
+export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
+  const [userData, setUserData] = useLocalStorage(id);
+  const [note, setNote] = React.useState(userData[id].note ?? "");
+
   React.useEffect(() => {
     // TODO: If this becomes laggy, add a debounce-timer to avoid saving more often than, say, every 100ms.
-    window.localStorage.setItem(id, JSON.stringify(note));
-  }, [id, note]);
+    userData[id].note = note;
+    setUserData(userData);
+  }, [userData, id, note, setUserData]);
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     setNote(e.target.value);

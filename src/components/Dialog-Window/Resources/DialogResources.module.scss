@@ -1,6 +1,16 @@
-.li,
-a {
-  color: rgba(31, 103, 199, 1);
+.li {
+  a {
+    color: rgba(31, 103, 199, 1);
+    margin-right: 0.5rem;
+  }
+}
+
+.removeButton {
+  background: none;
+  border: none;
+  position: relative;
+  top: 0.2rem;
+  cursor: pointer;
 }
 
 .inputContainer {
