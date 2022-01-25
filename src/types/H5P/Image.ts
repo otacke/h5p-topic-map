@@ -1,4 +1,4 @@
-import { Copyright } from "./H5P/Copyright";
+import { Copyright } from "./Copyright";
 
 export type Image = {
   path: string;

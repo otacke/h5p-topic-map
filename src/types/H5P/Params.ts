@@ -1,5 +1,5 @@
 import { ColorTheme } from "../ColorTheme";
-import { Image } from "../Image";
+import { Image } from "./Image";
 import { TopicMapItemType } from "../TopicMapItemType";
 
 export type Params = {

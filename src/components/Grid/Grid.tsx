@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Image } from "../../types/Image";
+import { Image } from "../../types/H5P/Image";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
 import { TopicMapItem } from "../TopicMapItem/TopicMapItem";
 import styles from "./Grid.module.scss";
