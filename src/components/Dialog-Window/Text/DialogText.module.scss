@@ -1,0 +1,19 @@
+.dialogText {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+.copyright {
+  margin: 0.5em 0 1em;
+}
+
+.introduction,
+.bodyText {
+  margin: 1em 0 0 0;
+}
+
+.introduction {
+  font-weight: 600;
+}
