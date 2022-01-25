@@ -62,8 +62,9 @@
               "optional": true
             },
             {
-              "label": "Background image",
-              "name": "backgroundImage",
+              "label": "Topic image",
+              "description": "Background image for card and image above text in dialog",
+              "name": "topicImage",
               "type": "image"
             },
             {
@@ -145,6 +146,19 @@
               "label": "Height as a percentage of the container height",
               "type": "number",
               "widget": "none"
+            },
+            {
+              "label": "Description",
+              "description": "The description is shown on top of the background image, below the label",
+              "name": "description",
+              "type": "text",
+              "optional": true
+            },
+            {
+              "label": "Topic image",
+              "description": "Image above text in dialog",
+              "name": "topicImage",
+              "type": "image"
             },
             {
               "label": "Show start arrow-head",

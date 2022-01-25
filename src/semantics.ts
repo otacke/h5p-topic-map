@@ -49,8 +49,10 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               optional: true,
             },
             {
-              label: "Background image",
-              name: "backgroundImage",
+              label: "Topic image",
+              description:
+                "Background image for card and image above text in dialog",
+              name: "topicImage",
               type: H5PFieldType.Image,
             },
 
@@ -85,6 +87,21 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
             },
 
             ...itemPosition,
+
+            {
+              label: "Description",
+              description:
+                "The description is shown on top of the background image, below the label",
+              name: "description",
+              type: H5PFieldType.Text,
+              optional: true,
+            },
+            {
+              label: "Topic image",
+              description: "Image above text in dialog",
+              name: "topicImage",
+              type: H5PFieldType.Image,
+            },
 
             {
               label: "Show start arrow-head",

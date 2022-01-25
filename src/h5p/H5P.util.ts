@@ -28,13 +28,13 @@ export const makeBackgroundImagePathsAbsolute = (
   if (!items) return undefined;
 
   return items.map(item => {
-    if (!item.backgroundImage) return item;
+    if (!item.topicImage) return item;
 
     return {
       ...item,
-      backgroundImage: {
-        ...item.backgroundImage,
-        path: normalizeAssetPath(item.backgroundImage.path, contentId),
+      topicImage: {
+        ...item.topicImage,
+        path: normalizeAssetPath(item.topicImage.path, contentId),
       },
     };
   });
