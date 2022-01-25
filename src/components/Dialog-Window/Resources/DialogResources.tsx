@@ -14,19 +14,13 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   relevantLinks,
   id,
 }) => {
-  /* UserData: {
-    id1: {links: [],
-          note: ""}
-  }
-  
-  two types - useLocalStorage -> (h5p-topic-map-userdata - key for the UserData object) 
-  DialogData (links: [...], note: "...") and UserData ([key: string]: DialogData)
-  */
-
   const [currentLocalStorage, setCurrentLocalStorage] = useLocalStorage(
     "h5p-topic-map-userdata",
     id,
   );
+  const [link, setLink] = React.useState("");
+  const [customLinks, setCustomLinks] = React.useState<Array<JSX.Element>>([]);
+  const inputFieldRef = React.useRef<HTMLInputElement>(null);
 
   const removeCustomLink = (linkToRemove: string): void => {
     currentLocalStorage[id].links = currentLocalStorage[id].links?.filter(
@@ -34,71 +28,46 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
     );
 
     setCurrentLocalStorage(currentLocalStorage);
-
     // we can disable this check since this function will not be called before the page is rendered
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    setCustomItems(
-      currentLocalStorage[id].links?.map((item: Link) => (
-        <li key={item.id} className={styles.li}>
-          <a href={item.url}>{item.url}</a>
-          <button
-            className={styles.closeButton}
-            type="button"
-            onClick={() => removeCustomLink(item.id)}
-          >
-            <Cross2Icon />
-          </button>
-        </li>
-      )),
-    );
+    populateCustomLinks();
   };
 
-  const [customItems, setCustomItems] = React.useState(() =>
-    currentLocalStorage[id].links?.map((item: Link) => (
-      <li key={item.id} className={styles.li}>
-        <a href={item.url}>{item.url}</a>
-        <button
-          className={styles.closeButton}
-          type="button"
-          onClick={() => removeCustomLink(item.id)}
-        >
-          <Cross2Icon />
-        </button>
-      </li>
-    )),
-  );
-
-  const relevantItems = relevantLinks.map((link: string) => (
-    <li key={link} className={styles.li}>
-      <a href={link}>{link}</a>
+  const relevantItems = relevantLinks.map((item: string) => (
+    <li key={item} className={styles.li}>
+      <a href={item}>{item}</a>
     </li>
   ));
 
-  const [link, setLink] = React.useState("");
-  const inputFieldRef = React.useRef<HTMLInputElement>(null);
+  // extract the generation of custom links list to separate function
+  const populateCustomLinks = (): void => {
+    if (currentLocalStorage[id].links) {
+      setCustomLinks((): JSX.Element[] => {
+        return currentLocalStorage[id].links!.map((item: Link) => (
+          <li key={item.id} className={styles.li}>
+            <a href={item.url}>{item.url}</a>
+            <button
+              className={styles.removeButton}
+              type="button"
+              onClick={() => removeCustomLink(item.id)}
+            >
+              <Cross2Icon />
+            </button>
+          </li>
+        ));
+      });
+    }
+  };
 
   const saveCustomLink = (newLink: string): void => {
     const tempNewLink = { id: uuidV4(), url: newLink } as Link;
     if (!("links" in currentLocalStorage[id])) {
-      currentLocalStorage[id].links = [];
+      currentLocalStorage[id].links = [] as Array<Link>;
     }
-    currentLocalStorage[id].links?.push(tempNewLink);
+    currentLocalStorage[id].links!.push(tempNewLink);
 
     setCurrentLocalStorage(currentLocalStorage);
-    setCustomItems(
-      currentLocalStorage[id].links?.map((item: Link) => (
-        <li key={item.id} className={styles.li}>
-          <a href={item.url}>{item.url}</a>
-          <button
-            className={styles.closeButton}
-            type="button"
-            onClick={() => removeCustomLink(item.id)}
-          >
-            <Cross2Icon />
-          </button>
-        </li>
-      )),
-    );
+    populateCustomLinks();
   };
 
   const updateCustomList = (): void => {
@@ -118,14 +87,17 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   const customLinkLabel = "Dine lenker";
   const addLinkLabel = "Legg til";
 
-  // map the list of links here instead of using custom items above
-  // or use useMemo
+  // build a list of custom links for the first render
+  React.useEffect(() => {
+    populateCustomLinks();
+  }, []);
+
   return (
     <form>
       <p> {relevantLinkLabel}: </p>
       <ul>{relevantItems}</ul>
       <p> {customLinkLabel}: </p>
-      <ul>{customItems}</ul>
+      <ul>{customLinks}</ul>
       <div className={styles.inputContainer}>
         <input
           className={styles.input}
