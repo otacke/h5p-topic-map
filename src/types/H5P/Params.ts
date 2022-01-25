@@ -3,7 +3,7 @@ import { Image } from "../Image";
 import { TopicMapItemType } from "../TopicMapItemType";
 
 export type Params = {
-  behaviour?: never;
+  behaviour?: unknown;
 
   topicMap?: {
     topicMapItems?: Array<TopicMapItemType> | undefined;
