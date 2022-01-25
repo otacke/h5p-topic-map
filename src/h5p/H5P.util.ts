@@ -1,4 +1,3 @@
-import * as React from "react";
 import { H5PObject } from "../../H5P";
 import { Params } from "../types/H5P/Params";
 import { TopicMapItemType } from "../types/TopicMapItemType";
