@@ -1,8 +1,14 @@
-.description {
-  margin-top: 0.5rem;
-  font-family: Roboto;
-}
-
 video {
   width: 100%;
+}
+
+.dialogVideo {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+.copyright {
+  margin: 0.5em 0 1em;
 }
