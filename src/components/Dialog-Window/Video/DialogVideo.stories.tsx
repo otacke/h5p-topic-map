@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
+import { Video } from "../../../types/H5P/Video";
 import { DialogVideo } from "./DialogVideo";
 
 export default {
@@ -12,9 +13,20 @@ const Template: ComponentStory<typeof DialogVideo> = args => (
   <DialogVideo {...args} />
 );
 
+const video: Video = {
+  path: "https://player.vimeo.com/video/224857514?title=0&portrait=0&byline=0&autoplay=1&loop=1&transparent=1",
+  copyright: {
+    title: "Jellyfish",
+    author: "lucdecleir",
+    source:
+      "https://pixabay.com/videos/jellyfish-tank-water-life-marine-10480/",
+    license: "Pixabay License",
+    version: "1",
+    year: "2017",
+  },
+};
+
 export const SimpleVideo = Template.bind({});
 SimpleVideo.args = {
-  video: { path: "https://www.w3schools.com/html/mov_bbb.mp4" },
-  description:
-    "Video: Klipp fra dokumentar om den franske revolusjonen 1789-1799",
+  video,
 };
