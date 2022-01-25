@@ -1,4 +1,4 @@
-import { Image } from "./Image";
+import { Image } from "./H5P/Image";
 
 export type CommonItemType = {
   id: string;
