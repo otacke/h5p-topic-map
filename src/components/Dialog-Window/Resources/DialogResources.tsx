@@ -39,30 +39,36 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
 
   // extract the generation of custom links list to separate function
   const populateCustomLinks = (): void => {
-    if (userData[id].links) {
-      setCustomLinks(
-        userData[id].links!.map((item: Link) => (
-          <li key={item.id} className={styles.li}>
-            <a href={item.url}>{item.url}</a>
-            <button
-              className={styles.removeButton}
-              type="button"
-              onClick={() => removeCustomLink(item.id)}
-            >
-              <Cross2Icon />
-            </button>
-          </li>
-        )),
-      );
+    const { links } = userData[id];
+    if (!links) {
+      return;
     }
+
+    const updatedLinks = links.map((item: Link) => (
+      <li key={item.id} className={styles.li}>
+        <a href={item.url}>{item.url}</a>
+        <button
+          className={styles.removeButton}
+          type="button"
+          onClick={() => removeCustomLink(item.id)}
+        >
+          <Cross2Icon />
+        </button>
+      </li>
+    ));
+
+    setCustomLinks(updatedLinks);
   };
 
   const saveCustomLink = (newLink: string): void => {
     const tempNewLink: Link = { id: uuidV4(), url: newLink };
-    if (!("links" in userData[id])) {
-      userData[id].links = [] as Array<Link>;
+    const dialogData = userData[id];
+
+    if (!dialogData.links) {
+      dialogData.links = [];
     }
-    userData[id].links!.push(tempNewLink);
+
+    dialogData.links.push(tempNewLink);
 
     setUserData(userData);
     populateCustomLinks();
