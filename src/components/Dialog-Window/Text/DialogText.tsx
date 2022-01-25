@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Image } from "../../../types/H5P/Image";
+import { formatCopyright } from "../../../utils/dialog.utils";
 import styles from "./DialogText.module.scss";
 
 export type DialogTextProps = {
@@ -16,11 +17,6 @@ export const DialogText: React.FC<DialogTextProps> = ({
   // TODO: Translate
   const copyrightTitle = "Photo";
 
-  const copyright = topicImage?.copyright;
-  const renderCopyright = copyright
-    ? `${copyrightTitle}: ${copyright.title} / ${copyright.author}`
-    : null;
-
   return (
     <div className={styles.dialogText}>
       {topicImage ? (
@@ -30,8 +26,10 @@ export const DialogText: React.FC<DialogTextProps> = ({
             src={topicImage.path}
             alt={topicImage.alt ?? ""}
           />
-          {copyright ? (
-            <div className={styles.copyright}>{renderCopyright}</div>
+          {topicImage?.copyright ? (
+            <div className={styles.copyright}>
+              {formatCopyright(copyrightTitle, topicImage.copyright)}
+            </div>
           ) : null}
         </>
       ) : null}
