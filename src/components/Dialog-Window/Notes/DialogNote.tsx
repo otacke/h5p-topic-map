@@ -1,5 +1,6 @@
 import * as React from "react";
-import { useLocalStorage } from "../../../h5p/H5P.util";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import { localStorageKey } from "../../../utils/localStorage.utils";
 import styles from "./DialogNote.module.scss";
 
 export type NoteProps = {
@@ -8,17 +9,14 @@ export type NoteProps = {
 };
 
 export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
-  const [currentLocalStorage, setCurrentLocalStorage] = useLocalStorage(
-    "h5p-topic-map-userdata",
-    id,
-  );
-  const [note, setNote] = React.useState(currentLocalStorage[id].note ?? "");
+  const [userData, setUserData] = useLocalStorage(localStorageKey, id);
+  const [note, setNote] = React.useState(userData[id].note ?? "");
 
   React.useEffect(() => {
     // TODO: If this becomes laggy, add a debounce-timer to avoid saving more often than, say, every 100ms.
-    currentLocalStorage[id].note = note;
-    setCurrentLocalStorage(currentLocalStorage);
-  }, [currentLocalStorage, id, note, setCurrentLocalStorage]);
+    userData[id].note = note;
+    setUserData(userData);
+  }, [userData, id, note, setUserData]);
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     setNote(e.target.value);

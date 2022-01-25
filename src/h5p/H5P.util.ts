@@ -1,7 +1,6 @@
 import { H5PObject } from "../../H5P";
 import { Params } from "../types/H5P/Params";
 import { TopicMapItemType } from "../types/TopicMapItemType";
-import { UserData } from "../types/UserData";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const H5P = (window as any).H5P as H5PObject;

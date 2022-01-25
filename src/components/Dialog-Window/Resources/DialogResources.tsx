@@ -1,9 +1,11 @@
 import { v4 as uuidV4 } from "uuid";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import * as React from "react";
+import { useEffectOnce } from "react-use";
 import styles from "./DialogResources.module.scss";
-import { useLocalStorage } from "../../../h5p/H5P.util";
 import { Link } from "../../../types/Link";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import { localStorageKey } from "../../../utils/localStorage.utils";
 
 export type DialogResourceProps = {
   relevantLinks: string[];
@@ -14,20 +16,17 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   relevantLinks,
   id,
 }) => {
-  const [currentLocalStorage, setCurrentLocalStorage] = useLocalStorage(
-    "h5p-topic-map-userdata",
-    id,
-  );
+  const [userData, setUserData] = useLocalStorage(localStorageKey, id);
   const [link, setLink] = React.useState("");
   const [customLinks, setCustomLinks] = React.useState<Array<JSX.Element>>([]);
   const inputFieldRef = React.useRef<HTMLInputElement>(null);
 
   const removeCustomLink = (linkToRemove: string): void => {
-    currentLocalStorage[id].links = currentLocalStorage[id].links?.filter(
+    userData[id].links = userData[id].links?.filter(
       (item: Link) => item.id !== linkToRemove,
     );
 
-    setCurrentLocalStorage(currentLocalStorage);
+    setUserData(userData);
     // we can disable this check since this function will not be called before the page is rendered
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     populateCustomLinks();
@@ -41,9 +40,9 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
 
   // extract the generation of custom links list to separate function
   const populateCustomLinks = (): void => {
-    if (currentLocalStorage[id].links) {
-      setCustomLinks((): JSX.Element[] => {
-        return currentLocalStorage[id].links!.map((item: Link) => (
+    if (userData[id].links) {
+      setCustomLinks(
+        userData[id].links!.map((item: Link) => (
           <li key={item.id} className={styles.li}>
             <a href={item.url}>{item.url}</a>
             <button
@@ -54,19 +53,19 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
               <Cross2Icon />
             </button>
           </li>
-        ));
-      });
+        )),
+      );
     }
   };
 
   const saveCustomLink = (newLink: string): void => {
-    const tempNewLink = { id: uuidV4(), url: newLink } as Link;
-    if (!("links" in currentLocalStorage[id])) {
-      currentLocalStorage[id].links = [] as Array<Link>;
+    const tempNewLink: Link = { id: uuidV4(), url: newLink };
+    if (!("links" in userData[id])) {
+      userData[id].links = [] as Array<Link>;
     }
-    currentLocalStorage[id].links!.push(tempNewLink);
+    userData[id].links!.push(tempNewLink);
 
-    setCurrentLocalStorage(currentLocalStorage);
+    setUserData(userData);
     populateCustomLinks();
   };
 
@@ -88,9 +87,9 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   const addLinkLabel = "Legg til";
 
   // build a list of custom links for the first render
-  React.useEffect(() => {
+  useEffectOnce(() => {
     populateCustomLinks();
-  }, []);
+  });
 
   return (
     <form>
