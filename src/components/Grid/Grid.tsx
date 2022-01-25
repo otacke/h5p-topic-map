@@ -24,7 +24,7 @@ export const Grid: React.FC<GridProps> = ({ items, backgroundImage }) => {
       >
         <TopicMapItem
           dialog={item.dialog}
-          backgroundImage={item.backgroundImage}
+          backgroundImage={item.topicImage}
           title={item.label}
         />
       </div>

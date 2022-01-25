@@ -12,7 +12,8 @@
     "jsx": "react",
     "downlevelIteration": true,
     "strictNullChecks": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true
   },
   "include": ["./src/**/*", "H5P.d.ts", "typings.d.ts"],
   "ts-node": {
