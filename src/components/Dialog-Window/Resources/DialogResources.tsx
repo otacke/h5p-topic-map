@@ -5,7 +5,6 @@ import { useEffectOnce } from "react-use";
 import styles from "./DialogResources.module.scss";
 import { Link } from "../../../types/Link";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
-import { localStorageKey } from "../../../utils/localStorage.utils";
 
 export type DialogResourceProps = {
   relevantLinks: string[];
@@ -16,7 +15,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   relevantLinks,
   id,
 }) => {
-  const [userData, setUserData] = useLocalStorage(localStorageKey, id);
+  const [userData, setUserData] = useLocalStorage(id);
   const [link, setLink] = React.useState("");
   const [customLinks, setCustomLinks] = React.useState<Array<JSX.Element>>([]);
   const inputFieldRef = React.useRef<HTMLInputElement>(null);

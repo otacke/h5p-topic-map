@@ -3,39 +3,35 @@ import { Link } from "../types/Link";
 import { UserData } from "../types/UserData";
 
 /**
- * Read the stored data from local storage based on the current environemnt and dialog's id.
+ * Read the stored data from local storage based on the current default storage key.
  * Return a UserData object with correct types and a function to update it.
  *
- * @param key An id for the current environment (topic map client)
  * @param dialogId Unique identificator of the element (dialog)
- * @returns {[UserData, void]}
  */
 export const useLocalStorage = (
-  key: "h5p-topic-map-userdata",
   dialogId: string,
-): [
-  currentLocalStorage: UserData,
-  setStorageValue: (updatedStorageValue: UserData) => void,
-] => {
+): [userData: UserData, setUserData: (updatedUserData: UserData) => void] => {
   // cast contents of parsed string to correct types
-  const currentLocalStorage = JSON.parse(
-    localStorage.getItem(key) ?? "{}",
+  const userData = JSON.parse(
+    localStorage.getItem("h5p-topic-map-userdata") ?? "{}",
   ) as UserData;
 
-  if (!(dialogId in currentLocalStorage)) {
-    currentLocalStorage[dialogId] = {};
+  if (!(dialogId in userData)) {
+    userData[dialogId] = {};
   } else {
-    currentLocalStorage[dialogId] = currentLocalStorage[dialogId] as DialogData;
+    userData[dialogId] = userData[dialogId] as DialogData;
 
-    if ("links" in currentLocalStorage) {
-      currentLocalStorage.dialogId.links = currentLocalStorage.dialogId
-        .links as Array<Link>;
+    if ("links" in userData) {
+      userData.dialogId.links = userData.dialogId.links as Array<Link>;
     }
   }
 
-  const setStorageValue = (updatedStorageValue: UserData): void => {
-    localStorage.setItem(key, JSON.stringify(updatedStorageValue));
+  const setUserData = (updatedUserData: UserData): void => {
+    localStorage.setItem(
+      "h5p-topic-map-userdata",
+      JSON.stringify(updatedUserData),
+    );
   };
 
-  return [currentLocalStorage, setStorageValue];
+  return [userData, setUserData];
 };

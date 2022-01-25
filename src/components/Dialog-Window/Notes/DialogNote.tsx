@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
-import { localStorageKey } from "../../../utils/localStorage.utils";
 import styles from "./DialogNote.module.scss";
 
 export type NoteProps = {
@@ -9,7 +8,7 @@ export type NoteProps = {
 };
 
 export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
-  const [userData, setUserData] = useLocalStorage(localStorageKey, id);
+  const [userData, setUserData] = useLocalStorage(id);
   const [note, setNote] = React.useState(userData[id].note ?? "");
 
   React.useEffect(() => {
