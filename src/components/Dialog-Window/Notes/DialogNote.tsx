@@ -23,9 +23,11 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
     setSavingTextTimeout(
       setTimeout(() => {
         const timestamp = new Date();
-        const hours = String(timestamp.getHours()).padStart(2, "0");
-        const minutes = String(timestamp.getMinutes()).padStart(2, "0");
-        setDynamicSavingText(`${savedTextLabel} ${hours}:${minutes}`);
+        const localTime = timestamp.toLocaleTimeString("no-NO", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+        setDynamicSavingText(`${savedTextLabel} ${localTime}`);
       }, 650),
     );
   };
