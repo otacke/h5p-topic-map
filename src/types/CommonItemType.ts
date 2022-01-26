@@ -1,5 +1,5 @@
+import { DialogContent } from "./DialogContent";
 import { Image } from "./H5P/Image";
-import { Video } from "./H5P/Video";
 
 export type CommonItemType = {
   id: string;
@@ -19,9 +19,5 @@ export type CommonItemType = {
   /** The height as a percentage of the container's height */
   heightPercentage: number;
 
-  dialog?: {
-    links?: Array<string>;
-    text?: string;
-    video?: Video;
-  };
+  dialog?: DialogContent;
 };
