@@ -76,18 +76,42 @@
                   "label": "Text",
                   "name": "text",
                   "type": "text",
-                  "widget": "html"
+                  "widget": "html",
+                  "optional": true
                 },
                 {
                   "label": "Video",
                   "name": "video",
-                  "type": "video"
+                  "type": "video",
+                  "optional": true
+                },
+                {
+                  "label": "Audio",
+                  "name": "audio",
+                  "type": "group",
+                  "optional": true,
+                  "importance": "low",
+                  "fields": [
+                    {
+                      "label": "Audio",
+                      "name": "audioFile",
+                      "type": "audio"
+                    },
+                    {
+                      "label": "Subtext",
+                      "name": "subtext",
+                      "type": "text",
+                      "widget": "html",
+                      "optional": true
+                    }
+                  ]
                 },
                 {
                   "label": "Links",
                   "name": "links",
                   "description": "These links are as auxiliary links for the user in the element's modal window",
                   "type": "list",
+                  "optional": true,
                   "entity": "linkItem",
                   "field": {
                     "label": "Link",
@@ -183,18 +207,42 @@
                   "label": "Text",
                   "name": "text",
                   "type": "text",
-                  "widget": "html"
+                  "widget": "html",
+                  "optional": true
                 },
                 {
                   "label": "Video",
                   "name": "video",
-                  "type": "video"
+                  "type": "video",
+                  "optional": true
+                },
+                {
+                  "label": "Audio",
+                  "name": "audio",
+                  "type": "group",
+                  "optional": true,
+                  "importance": "low",
+                  "fields": [
+                    {
+                      "label": "Audio",
+                      "name": "audioFile",
+                      "type": "audio"
+                    },
+                    {
+                      "label": "Subtext",
+                      "name": "subtext",
+                      "type": "text",
+                      "widget": "html",
+                      "optional": true
+                    }
+                  ]
                 },
                 {
                   "label": "Links",
                   "name": "links",
                   "description": "These links are as auxiliary links for the user in the element's modal window",
                   "type": "list",
+                  "optional": true,
                   "entity": "linkItem",
                   "field": {
                     "label": "Link",

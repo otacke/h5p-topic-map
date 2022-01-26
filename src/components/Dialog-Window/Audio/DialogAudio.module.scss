@@ -1,9 +1,19 @@
-.description {
-  font-size: 1rem;
-  margin-top: 0.5rem;
+.dialogAudio {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  line-height: 1.6;
 }
 
 audio {
   width: 100%;
   max-width: 50rem;
+}
+
+.copyright {
+  margin: 0.5em 0 1em;
+}
+
+.subtext {
+  margin: 1em 0 0 0;
 }
