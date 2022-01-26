@@ -1,8 +1,10 @@
 import * as React from "react";
 import { useState } from "react";
 import { ArrowDirection } from "../../types/ArrowDirection";
+import { ArrowItemType } from "../../types/ArrowItemType";
 import { ArrowType } from "../../types/ArrowType";
 import { Position } from "../../types/Position";
+import { wrapInAnchor } from "../../utils/element.utils";
 import { DialogWindow } from "../Dialog-Window/DialogWindow";
 import styles from "./Arrow.module.scss";
 import { ArrowBody, ArrowHead, MirroredArrowHead } from "./ArrowParts";
@@ -15,9 +17,9 @@ export type ArrowProps = {
   arrowColor: string;
   circleColor: string;
   iconColor: string;
-  type: ArrowType;
   notes: string;
   completed: boolean;
+  item: ArrowItemType;
 };
 
 export const Arrow: React.FC<ArrowProps> = ({
@@ -26,11 +28,11 @@ export const Arrow: React.FC<ArrowProps> = ({
   arrowColor,
   circleColor,
   iconColor,
-  type,
   notes,
   completed,
+  item,
 }) => {
-  const [isDialogueShown, setIsDialogueShown] = React.useState<boolean>(false);
+  const [isDialogShown, setIsDialogShown] = React.useState(false);
 
   // find angle and direction of arrow
   let angle = Math.atan2(start.y - end.y, end.x - start.x) * (180 / Math.PI);
@@ -77,7 +79,7 @@ export const Arrow: React.FC<ArrowProps> = ({
         arrowColor={arrowColor}
         circleColor={circleColor}
         iconColor={iconColor}
-        type={type}
+        type={item.arrowType}
         direction={direction}
         buttonState={buttonState}
       />
@@ -85,7 +87,7 @@ export const Arrow: React.FC<ArrowProps> = ({
   );
 
   let arrow;
-  switch (type) {
+  switch (item.arrowType) {
     case ArrowType.NonDirectional:
       arrow = (
         <div data-testid="ndArrow" className={classNames} style={length}>
@@ -114,28 +116,30 @@ export const Arrow: React.FC<ArrowProps> = ({
       );
   }
 
-  // apply shadow around arrow
-  arrow = (
+  const itemHasDirectLink = item.dialogOrDirectLink === "directLink";
+  const renderedArrow = (
     <>
       <div
         className={styles.shadow}
-        onKeyDown={e =>
-          ["Space", "Enter"].includes(e.code) && setIsDialogueShown
-        }
-        onClick={() => setIsDialogueShown(true)}
+        onKeyDown={e => ["Space", "Enter"].includes(e.code) && setIsDialogShown}
+        onClick={itemHasDirectLink ? undefined : () => setIsDialogShown(true)}
         role="button"
         tabIndex={0}
       >
         {arrow}
       </div>
-      <DialogWindow
-        title=""
-        notes={notes}
-        open={isDialogueShown}
-        onOpenChange={setIsDialogueShown}
-      />
+      {itemHasDirectLink ? null : (
+        <DialogWindow
+          title=""
+          notes={notes}
+          open={isDialogShown}
+          onOpenChange={setIsDialogShown}
+        />
+      )}
     </>
   );
 
-  return arrow;
+  return itemHasDirectLink
+    ? wrapInAnchor(renderedArrow, item.directLink ?? "#")
+    : renderedArrow;
 };

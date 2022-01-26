@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
+import { ArrowDirection } from "../../types/ArrowDirection";
+import { ArrowItemType } from "../../types/ArrowItemType";
 import { ArrowType } from "../../types/ArrowType";
 import { Arrow } from "./Arrow";
 
@@ -8,16 +10,38 @@ const blue = "#59A0FF";
 const white = "#FFFFFF";
 const black = "#3E3E3E";
 
+const item: ArrowItemType = {
+  arrowDirection: ArrowDirection.Right,
+  arrowType: ArrowType.Directional,
+  topicImage: {
+    path: "https://images.unsplash.com/photo-1621246308836-ea7d366c2795?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80",
+    alt: "Lighthouse on the coast of the Azores",
+    copyright: {
+      author: "Damir Babacic",
+      license: "Unsplash License",
+      source: "https://unsplash.com/photos/kOO1g6HwMU0",
+      title: "Welcome to Azores ✨",
+      version: "1",
+      year: "2021",
+    },
+  },
+  dialogOrDirectLink: "dialog",
+  id: "id-1",
+  heightPercentage: 100,
+  widthPercentage: 100,
+  xPercentagePosition: 0,
+  yPercentagePosition: 0,
+  description:
+    "The Autonomous Region of the Azores (Região Autónoma dos Açores) is one of the two autonomous regions of Portugal (along with Madeira) (Wikipedia)",
+  dialog: {},
+};
+
 export default {
   title: "Organisms/Arrow",
   component: Arrow,
-  argTypes: {
-    type: {
-      // prettier-ignore
-      // prettier removes the button titles.
-      options: {"Directional": ArrowType.Directional, "BiDirectional": ArrowType.BiDirectional, "NonDirectional": ArrowType.NonDirectional},
-      control: { type: "radio" },
-    },
+
+  args: {
+    item,
   },
 } as ComponentMeta<typeof Arrow>;
 
@@ -36,7 +60,6 @@ RightDirectionalEmptyArrow.args = {
   arrowColor: blue,
   circleColor: white,
   iconColor: black,
-  type: ArrowType.Directional,
   notes: "Test note 1",
   completed: false,
 };
@@ -54,7 +77,6 @@ LeftDirectionalCompletedArrow.args = {
   arrowColor: blue,
   circleColor: white,
   iconColor: black,
-  type: ArrowType.Directional,
   notes: "This note is completed",
   completed: true,
 };
@@ -72,7 +94,6 @@ BidirectionalHorizontalEmptyArrow.args = {
   arrowColor: blue,
   circleColor: white,
   iconColor: black,
-  type: ArrowType.BiDirectional,
   notes: "Test note 2",
   completed: false,
 };
@@ -90,7 +111,6 @@ UpDirectionalEditedArrow.args = {
   arrowColor: blue,
   circleColor: white,
   iconColor: black,
-  type: ArrowType.Directional,
   notes: "This note is started, but not marked complete",
   completed: false,
 };
@@ -108,7 +128,6 @@ NonDirectionalVerticalEmptyArrow.args = {
   arrowColor: blue,
   circleColor: white,
   iconColor: black,
-  type: ArrowType.NonDirectional,
   notes: "",
   completed: false,
 };

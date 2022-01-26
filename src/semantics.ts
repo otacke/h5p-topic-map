@@ -3,7 +3,7 @@ import { H5PBehaviour } from "./types/H5P/H5PBehaviour";
 import { H5PFieldGroup } from "./types/H5P/H5PField";
 import { H5PFieldType } from "./types/H5P/H5PFieldType";
 import { H5PL10n } from "./types/H5P/H5PL10n";
-import { colorThemes, itemDialog } from "./utils/semantics.utils";
+import { colorThemes, dialogOrDirectLink } from "./utils/semantics.utils";
 
 export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
   {
@@ -77,7 +77,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               type: H5PFieldType.Image,
             },
 
-            ...itemDialog,
+            ...dialogOrDirectLink(),
 
             {
               label: "Index",
@@ -148,7 +148,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               default: true,
             },
 
-            ...itemDialog,
+            ...dialogOrDirectLink(),
 
             {
               label: "Index",

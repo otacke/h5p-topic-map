@@ -22,11 +22,7 @@ export const Grid: React.FC<GridProps> = ({ items, backgroundImage }) => {
           width: `${item.widthPercentage}%`,
         }}
       >
-        <TopicMapItem
-          dialog={item.dialog}
-          backgroundImage={item.topicImage}
-          title={item.label}
-        />
+        <TopicMapItem item={item} />
       </div>
     ));
   }, [items]);

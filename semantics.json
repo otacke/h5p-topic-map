@@ -68,9 +68,37 @@
               "type": "image"
             },
             {
+              "label": "Dialog or direct link",
+              "description": "A click on the item might either open a dialog containing information, or open a URL in another window",
+              "name": "dialogOrDirectLink",
+              "type": "select",
+              "options": [
+                {
+                  "value": "dialog",
+                  "label": "Dialog"
+                },
+                {
+                  "value": "directLink",
+                  "label": "Direct link"
+                }
+              ],
+              "default": "dialog"
+            },
+            {
               "label": "Dialog",
               "name": "dialog",
               "type": "group",
+              "widget": "NDLAShowWhen",
+              "showWhen": {
+                "rules": [
+                  {
+                    "field": "dialogOrDirectLink",
+                    "equals": [
+                      "dialog"
+                    ]
+                  }
+                ]
+              },
               "fields": [
                 {
                   "label": "Text",
@@ -120,6 +148,22 @@
                   }
                 }
               ]
+            },
+            {
+              "label": "Direct link",
+              "name": "directLink",
+              "type": "text",
+              "widget": "NDLAShowWhen",
+              "showWhen": {
+                "rules": [
+                  {
+                    "field": "dialogOrDirectLink",
+                    "equals": [
+                      "directLink"
+                    ]
+                  }
+                ]
+              }
             },
             {
               "label": "Index",
@@ -187,9 +231,37 @@
               "default": true
             },
             {
+              "label": "Dialog or direct link",
+              "description": "A click on the item might either open a dialog containing information, or open a URL in another window",
+              "name": "dialogOrDirectLink",
+              "type": "select",
+              "options": [
+                {
+                  "value": "dialog",
+                  "label": "Dialog"
+                },
+                {
+                  "value": "directLink",
+                  "label": "Direct link"
+                }
+              ],
+              "default": "dialog"
+            },
+            {
               "label": "Dialog",
               "name": "dialog",
               "type": "group",
+              "widget": "NDLAShowWhen",
+              "showWhen": {
+                "rules": [
+                  {
+                    "field": "dialogOrDirectLink",
+                    "equals": [
+                      "dialog"
+                    ]
+                  }
+                ]
+              },
               "fields": [
                 {
                   "label": "Text",
@@ -239,6 +311,22 @@
                   }
                 }
               ]
+            },
+            {
+              "label": "Direct link",
+              "name": "directLink",
+              "type": "text",
+              "widget": "NDLAShowWhen",
+              "showWhen": {
+                "rules": [
+                  {
+                    "field": "dialogOrDirectLink",
+                    "equals": [
+                      "directLink"
+                    ]
+                  }
+                ]
+              }
             },
             {
               "label": "Index",

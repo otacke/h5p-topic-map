@@ -30,6 +30,7 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         heightPercentage: 25,
         xPercentagePosition: 3,
         yPercentagePosition: 5,
+        dialogOrDirectLink: "dialog",
         dialog: {
           text: "Dialog text",
         },
@@ -40,15 +41,15 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
           path: "https://images.unsplash.com/photo-1533415648777-407b626eb0fa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=987&q=80",
           alt: "",
         },
-        label: "Sheep close up",
+        label: "Sheep close up with link",
         description: "",
         widthPercentage: 30,
         heightPercentage: 60,
         xPercentagePosition: 50,
         yPercentagePosition: 30,
-        dialog: {
-          text: "Dialog text",
-        },
+        dialogOrDirectLink: "directLink",
+        directLink:
+          "https://images.unsplash.com/photo-1533415648777-407b626eb0fa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=987&q=80",
       },
       {
         id: "3",
@@ -65,6 +66,7 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         dialog: {
           text: "Dialog text",
         },
+        dialogOrDirectLink: "dialog",
       },
     ],
   };
