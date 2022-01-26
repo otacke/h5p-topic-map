@@ -41,11 +41,34 @@ export const itemDialog: Array<H5PField> = [
         name: "text",
         type: H5PFieldType.Text,
         widget: "html",
+        optional: true,
       },
       {
         label: "Video",
         name: "video",
         type: H5PFieldType.Video,
+        optional: true,
+      },
+      {
+        label: "Audio",
+        name: "audio",
+        type: H5PFieldType.Group,
+        optional: true,
+        importance: "low",
+        fields: [
+          {
+            label: "Audio",
+            name: "audioFile",
+            type: H5PFieldType.Audio,
+          },
+          {
+            label: "Subtext",
+            name: "subtext",
+            type: H5PFieldType.Text,
+            widget: "html",
+            optional: true,
+          },
+        ],
       },
       {
         label: "Links",
@@ -53,6 +76,7 @@ export const itemDialog: Array<H5PField> = [
         description:
           "These links are as auxiliary links for the user in the element's modal window",
         type: H5PFieldType.List,
+        optional: true,
         entity: "linkItem",
         field: {
           label: "Link",
