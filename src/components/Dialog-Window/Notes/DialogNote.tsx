@@ -11,22 +11,24 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
   const [userData, setUserData] = useLocalStorage(id);
   const [note, setNote] = React.useState(userData[id].note ?? "");
   const [dynamicSavingText, setDynamicSavingText] = React.useState("");
-  const [savingTextTimeout, setSavingTextTimeout] =
-    React.useState<NodeJS.Timeout>();
+  const [savingTextTimeout, setSavingTextTimeout] = React.useState<number>();
 
   // TODO: Translate
-  const savingTextLabel = "lagring...";
-  const savedTextLabel = "lagret";
+  const savingTextLabel = "Saving...";
+  const savedTextLabel = "Saved";
 
   const setSavingText = (): void => {
     setDynamicSavingText(savingTextLabel);
     setSavingTextTimeout(
-      setTimeout(() => {
+      window.setTimeout(() => {
         const timestamp = new Date();
-        const localTime = timestamp.toLocaleTimeString("no-NO", {
-          hour: "2-digit",
-          minute: "2-digit",
-        });
+        const localTime = timestamp.toLocaleTimeString(
+          window.navigator.language,
+          {
+            hour: "2-digit",
+            minute: "2-digit",
+          },
+        );
         setDynamicSavingText(`${savedTextLabel} ${localTime}`);
       }, 650),
     );
@@ -38,7 +40,7 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
     setUserData(userData);
     // ensure there's no memory leak on component unmount during timeout
     return () => {
-      if (savingTextTimeout) clearTimeout(savingTextTimeout);
+      if (savingTextTimeout != null) clearTimeout(savingTextTimeout);
     };
   }, [userData, id, note, setUserData, savingTextTimeout]);
 
