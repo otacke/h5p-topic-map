@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import * as React from "react";
-import { Audio } from "../../../types/h5p/Audio";
+import { Audio } from "../../../types/H5P/Audio";
 import { formatCopyright } from "../../../utils/dialog.utils";
 import styles from "./DialogAudio.module.scss";
 
@@ -29,6 +29,7 @@ export const DialogAudio: React.FC<DialogAudioProps> = ({
       {subtext ? (
         <div
           className={styles.subtext}
+          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: subtext }}
         />
       ) : null}
