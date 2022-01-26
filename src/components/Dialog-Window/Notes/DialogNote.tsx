@@ -16,11 +16,13 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
   const [noteCompleted, setMarkedAsCompleted] = React.useState<boolean>(
     userData[id].noteCompleted ?? false,
   );
+  const [wordCount, setWordCount] = React.useState(0);
 
   const savingTextLabel = useL10n("dialogNoteSaving");
   const savedTextLabel = useL10n("dialogNoteSaved");
   const completedTextLabel = useL10n("dialogNoteMarkAsCompleted");
   const placeholderText = useL10n("dialogNotePlaceholder");
+  const wordTextLabel = "Words";
 
   const handleNoteCompleted = (): void => {
     setMarkedAsCompleted(!noteCompleted);
@@ -44,10 +46,23 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
     );
   };
 
+  const countWords = (): void => {
+    let count = 0;
+    const words = note.split(" ");
+    words.forEach(s => {
+      const trim = s.trim();
+      if (trim.length > 0) {
+        count += 1;
+      }
+    });
+    setWordCount(count);
+  };
+
   React.useEffect(() => {
     // TODO: If this becomes laggy, add a debounce-timer to avoid saving more often than, say, every 100ms.
     userData[id].note = note;
     setUserData(userData);
+    countWords();
     // ensure there's no memory leak on component unmount during timeout
     return () => {
       if (savingTextTimeout != null) clearTimeout(savingTextTimeout);
@@ -82,6 +97,9 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
             {completedTextLabel}
           </label>
         </div>
+        <p className={styles.wordCounter}>
+          {wordCount} {wordTextLabel}
+        </p>
         <p className={styles.counter}>
           {note.length} / {maxLength}
         </p>
