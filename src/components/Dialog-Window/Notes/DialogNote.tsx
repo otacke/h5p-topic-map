@@ -23,11 +23,9 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
     setSavingTextTimeout(
       setTimeout(() => {
         const timestamp = new Date();
-        setDynamicSavingText(
-          `${savedTextLabel} ${timestamp.getHours()}:${String(
-            timestamp.getMinutes(),
-          ).padStart(2, "0")}`,
-        );
+        const hours = String(timestamp.getHours()).padStart(2, "0");
+        const minutes = String(timestamp.getMinutes()).padStart(2, "0");
+        setDynamicSavingText(`${savedTextLabel} ${hours}:${minutes}`);
       }, 650),
     );
   };
