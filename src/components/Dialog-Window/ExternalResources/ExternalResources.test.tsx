@@ -8,6 +8,6 @@ describe(DialogExternalResources.name, () => {
       <DialogExternalResources url="" label="" />,
     ).container;
 
-    expect(resource.querySelector("iframe"));
+    expect(resource.querySelector("iframe")).toBeTruthy();
   });
 });
