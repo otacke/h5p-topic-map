@@ -7,16 +7,17 @@
   font-family: inherit;
 }
 
-.counter {
-  color: gray;
-  position: absolute;
+.counter,
+.dynamicSavingText {
   bottom: -1.5rem;
+  color: var(--theme-color-2);
+  position: absolute;
+}
+
+.counter {
   right: -0.3rem;
 }
 
 .dynamicSavingText {
-  color: gray;
-  position: absolute;
-  bottom: -1.5rem;
   left: 1.5rem;
 }
