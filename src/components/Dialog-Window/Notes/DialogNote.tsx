@@ -97,10 +97,10 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
             {completedTextLabel}
           </label>
         </div>
-        <p className={styles.wordCounter}>
+        <p data-testid="wordCount" className={styles.wordCounter}>
           {wordCount} {wordTextLabel}
         </p>
-        <p className={styles.counter}>
+        <p data-testid="maxLength" className={styles.counter}>
           {note.length} / {maxLength}
         </p>
       </label>
