@@ -12,10 +12,20 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
   const [note, setNote] = React.useState(userData[id].note ?? "");
   const [dynamicSavingText, setDynamicSavingText] = React.useState("");
   const [savingTextTimeout, setSavingTextTimeout] = React.useState<number>();
+  const [noteCompleted, setMarkedAsCompleted] = React.useState<boolean>(
+    userData[id].noteCompleted ?? false,
+  );
 
   // TODO: Translate
   const savingTextLabel = "Saving...";
   const savedTextLabel = "Saved";
+  const completedTextLabel = "Mark as completed";
+  const placeholderText = "Write your notes here...";
+
+  const handleNoteCompleted = (): void => {
+    setMarkedAsCompleted(!noteCompleted);
+    userData[id].noteCompleted = noteCompleted;
+  };
 
   const setSavingText = (): void => {
     setDynamicSavingText(savingTextLabel);
@@ -49,9 +59,6 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
     setNote(e.target.value);
   };
 
-  // TODO: Translate
-  const placeholderText = "Skriv dine notater her...";
-
   return (
     <form>
       <label htmlFor="note">
@@ -64,6 +71,16 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
           defaultValue={note}
         />
         <p className={styles.dynamicSavingText}>{dynamicSavingText}</p>
+        <div className={styles.markAsFinishedCheckbox}>
+          <label htmlFor="note">
+            <input
+              type="checkbox"
+              checked={noteCompleted}
+              onChange={handleNoteCompleted}
+            />
+            {completedTextLabel}
+          </label>
+        </div>
         <p className={styles.counter}>
           {note.length} / {maxLength}
         </p>
