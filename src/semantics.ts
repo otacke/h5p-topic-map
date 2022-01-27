@@ -3,7 +3,7 @@ import { H5PBehaviour } from "./types/H5P/H5PBehaviour";
 import { H5PFieldGroup } from "./types/H5P/H5PField";
 import { H5PFieldType } from "./types/H5P/H5PFieldType";
 import { H5PL10n } from "./types/H5P/H5PL10n";
-import { colorThemes, itemDialog, itemPosition } from "./utils/semantics.utils";
+import { colorThemes, itemDialog } from "./utils/semantics.utils";
 
 export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
   {
@@ -31,9 +31,30 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               type: H5PFieldType.Text,
               widget: "none",
             },
-
-            ...itemPosition,
-
+            {
+              name: "xPercentagePosition",
+              label: "X-position as a percentage of the container width",
+              type: H5PFieldType.Number,
+              widget: "none",
+            },
+            {
+              name: "yPercentagePosition",
+              label: "Y-position as a percentage of the container height",
+              type: H5PFieldType.Number,
+              widget: "none",
+            },
+            {
+              name: "widthPercentage",
+              label: "Width as a percentage of the container width",
+              type: H5PFieldType.Number,
+              widget: "none",
+            },
+            {
+              name: "heightPercentage",
+              label: "Height as a percentage of the container height",
+              type: H5PFieldType.Number,
+              widget: "none",
+            },
             {
               label: "Label",
               description: "The label is shown on top of the background image",
@@ -71,7 +92,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
       },
       {
         label: "Arrows",
-        name: "arrows",
+        name: "arrowItems",
         type: H5PFieldType.List,
         entity: "arrowItem",
         field: {
@@ -85,9 +106,18 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               type: H5PFieldType.Text,
               widget: "none",
             },
-
-            ...itemPosition,
-
+            {
+              name: "startElementId",
+              label: "Id of start element",
+              type: H5PFieldType.Text,
+              widget: "none",
+            },
+            {
+              name: "endElementId",
+              label: "Id of end element",
+              type: H5PFieldType.Text,
+              widget: "none",
+            },
             {
               label: "Description",
               description:

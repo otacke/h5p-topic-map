@@ -8,4 +8,7 @@ export type ArrowItemType = CommonItemType & {
 
   /** The arrow type */
   arrowType: ArrowType;
+
+  startElementId: string;
+  endElementId: string;
 };

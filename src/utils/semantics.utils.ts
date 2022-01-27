@@ -4,33 +4,6 @@ import { H5PFieldType } from "../types/H5P/H5PFieldType";
 import { Params } from "../types/H5P/Params";
 import { Translations } from "../types/Translations";
 
-export const itemPosition: Array<H5PField> = [
-  {
-    name: "xPercentagePosition",
-    label: "X-position as a percentage of the container width",
-    type: H5PFieldType.Number,
-    widget: "none",
-  },
-  {
-    name: "yPercentagePosition",
-    label: "Y-position as a percentage of the container height",
-    type: H5PFieldType.Number,
-    widget: "none",
-  },
-  {
-    name: "widthPercentage",
-    label: "Width as a percentage of the container width",
-    type: H5PFieldType.Number,
-    widget: "none",
-  },
-  {
-    name: "heightPercentage",
-    label: "Height as a percentage of the container height",
-    type: H5PFieldType.Number,
-    widget: "none",
-  },
-];
-
 export const itemDialog: Array<H5PField> = [
   {
     label: "Dialog",
