@@ -71,7 +71,7 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
           defaultValue={note}
         />
         <p className={styles.dynamicSavingText}>{dynamicSavingText}</p>
-        <div className={styles.markAsFinishedCheckbox}>
+        <div className={styles.markAsCompletedCheckbox}>
           <label htmlFor="note">
             <input
               type="checkbox"
