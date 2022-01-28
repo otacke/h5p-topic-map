@@ -376,6 +376,12 @@
         "name": "dialogResourcesAdd",
         "default": "Add",
         "type": "text"
+      },
+      {
+        "label": "Dialog words text label",
+        "name": "dialogWordsLabel",
+        "default": "Words",
+        "type": "text"
       }
     ]
   }

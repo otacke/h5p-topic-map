@@ -8,14 +8,14 @@
   padding-bottom: 2.8rem;
 }
 
-.counter,
-.dynamicSavingText {
-  right: -1rem;
+.dynamicSavingText,
+.wordCounter {
+  bottom: -1.5rem;
   color: var(--theme-color-2);
   position: absolute;
 }
 
-.counter {
+.wordCounter {
   bottom: -1.2rem;
   right: 0rem;
 }

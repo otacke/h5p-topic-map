@@ -16,11 +16,14 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
   const [noteCompleted, setMarkedAsCompleted] = React.useState<boolean>(
     userData[id].noteCompleted ?? false,
   );
+  const [wordCount, setWordCount] = React.useState(0);
+  const [maxWordCount, setMaxWordCount] = React.useState<number | undefined>();
 
   const savingTextLabel = useL10n("dialogNoteSaving");
   const savedTextLabel = useL10n("dialogNoteSaved");
   const completedTextLabel = useL10n("dialogNoteMarkAsCompleted");
   const placeholderText = useL10n("dialogNotePlaceholder");
+  const wordTextLabel = useL10n("dialogWordsLabel");
 
   const handleNoteCompleted = (): void => {
     setMarkedAsCompleted(!noteCompleted);
@@ -44,10 +47,22 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
     );
   };
 
+  const countWords = (): void => {
+    const count = note.split(/\s/).filter(word => word.length > 0).length;
+    setWordCount(count);
+
+    if (count === maxLength && note[note.length - 1] === " ") {
+      setMaxWordCount(count);
+    } else {
+      setMaxWordCount(undefined);
+    }
+  };
+
   React.useEffect(() => {
     // TODO: If this becomes laggy, add a debounce-timer to avoid saving more often than, say, every 100ms.
     userData[id].note = note;
     setUserData(userData);
+    countWords();
     // ensure there's no memory leak on component unmount during timeout
     return () => {
       if (savingTextTimeout != null) clearTimeout(savingTextTimeout);
@@ -66,7 +81,7 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
           className={styles.textArea}
           id="note"
           placeholder={placeholderText}
-          maxLength={maxLength}
+          maxLength={maxWordCount}
           onChange={event => onChange(event)}
           defaultValue={note}
         />
@@ -82,8 +97,8 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
             {completedTextLabel}
           </label>
         </div>
-        <p className={styles.counter}>
-          {note.length} / {maxLength}
+        <p data-testid="wordCount" className={styles.wordCounter}>
+          {wordCount} / {maxLength} {wordTextLabel}
         </p>
       </label>
     </form>

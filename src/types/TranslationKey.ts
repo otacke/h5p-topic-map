@@ -15,4 +15,5 @@ export type TranslationKey =
   | "dialogNoteMarkAsCompleted"
   | "dialogResourcesRelevantLinks"
   | "dialogResourcesCustomLinks"
-  | "dialogResourcesAdd";
+  | "dialogResourcesAdd"
+  | "dialogWordsLabel";
