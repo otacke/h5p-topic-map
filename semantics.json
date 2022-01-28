@@ -133,7 +133,7 @@
       },
       {
         "label": "Arrows",
-        "name": "arrows",
+        "name": "arrowItems",
         "type": "list",
         "entity": "arrowItem",
         "field": {
@@ -148,27 +148,15 @@
               "widget": "none"
             },
             {
-              "name": "xPercentagePosition",
-              "label": "X-position as a percentage of the container width",
-              "type": "number",
+              "name": "startElementId",
+              "label": "Id of start element",
+              "type": "text",
               "widget": "none"
             },
             {
-              "name": "yPercentagePosition",
-              "label": "Y-position as a percentage of the container height",
-              "type": "number",
-              "widget": "none"
-            },
-            {
-              "name": "widthPercentage",
-              "label": "Width as a percentage of the container width",
-              "type": "number",
-              "widget": "none"
-            },
-            {
-              "name": "heightPercentage",
-              "label": "Height as a percentage of the container height",
-              "type": "number",
+              "name": "endElementId",
+              "label": "Id of end element",
+              "type": "text",
               "widget": "none"
             },
             {
