@@ -8,7 +8,6 @@
   padding-bottom: 2.8rem;
 }
 
-.counter,
 .dynamicSavingText,
 .wordCounter {
   bottom: -1.5rem;
@@ -16,7 +15,7 @@
   position: absolute;
 }
 
-.counter {
+.wordCounter {
   bottom: -1.2rem;
   right: 0rem;
 }
@@ -37,10 +36,4 @@
     position: relative;
     top: 0.25rem;
   }
-}
-
-.wordCounter {
-  right: 0;
-  left: 0;
-  text-align: center;
 }

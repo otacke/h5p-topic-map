@@ -10,7 +10,8 @@ describe(Note.name, () => {
 
   it("Should have correct word and character counts", () => {
     const { getByTestId } = render(<Note maxLength={10} id="testId" />);
-    expect(getByTestId("maxLength").textContent).toBe("0 / 10");
-    expect(getByTestId("wordCount").textContent).toBe("0 Words");
+    expect(getByTestId("wordCount").textContent).toBe(
+      "0 / 10 Missing translation: dialogWordsLabel",
+    );
   });
 });

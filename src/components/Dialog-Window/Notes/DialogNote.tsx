@@ -17,6 +17,7 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
     userData[id].noteCompleted ?? false,
   );
   const [wordCount, setWordCount] = React.useState(0);
+  const [maxWordCount, setMaxWordCount] = React.useState<number | undefined>();
 
   const savingTextLabel = useL10n("dialogNoteSaving");
   const savedTextLabel = useL10n("dialogNoteSaved");
@@ -56,6 +57,12 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
       }
     });
     setWordCount(count);
+
+    if (count === maxLength && note[note.length - 1] === " ") {
+      setMaxWordCount(count);
+    } else {
+      setMaxWordCount(undefined);
+    }
   };
 
   React.useEffect(() => {
@@ -81,7 +88,7 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
           className={styles.textArea}
           id="note"
           placeholder={placeholderText}
-          maxLength={maxLength}
+          maxLength={maxWordCount}
           onChange={event => onChange(event)}
           defaultValue={note}
         />
@@ -98,10 +105,7 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
           </label>
         </div>
         <p data-testid="wordCount" className={styles.wordCounter}>
-          {wordCount} {wordTextLabel}
-        </p>
-        <p data-testid="maxLength" className={styles.counter}>
-          {note.length} / {maxLength}
+          {wordCount} / {maxLength} {wordTextLabel}
         </p>
       </label>
     </form>
