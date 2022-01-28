@@ -48,14 +48,7 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
   };
 
   const countWords = (): void => {
-    let count = 0;
-    const words = note.split(" ");
-    words.forEach(s => {
-      const trim = s.trim();
-      if (trim.length > 0) {
-        count += 1;
-      }
-    });
+    const count = note.split(/\s/).filter(word => word.length > 0).length;
     setWordCount(count);
 
     if (count === maxLength && note[note.length - 1] === " ") {
