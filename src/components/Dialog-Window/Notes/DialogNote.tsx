@@ -22,7 +22,7 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
   const savedTextLabel = useL10n("dialogNoteSaved");
   const completedTextLabel = useL10n("dialogNoteMarkAsCompleted");
   const placeholderText = useL10n("dialogNotePlaceholder");
-  const wordTextLabel = "Words";
+  const wordTextLabel = useL10n("dialogWordsLabel");
 
   const handleNoteCompleted = (): void => {
     setMarkedAsCompleted(!noteCompleted);
