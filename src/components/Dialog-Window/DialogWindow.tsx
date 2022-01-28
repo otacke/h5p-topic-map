@@ -8,30 +8,36 @@ import {
 } from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import * as React from "react";
+import { FC } from "react";
 import { useL10n } from "../../hooks/useLocalization";
+import { CommonItemType } from "../../types/CommonItemType";
 import styles from "./DialogWindow.module.scss";
 
 export type DialogWindowProps = {
-  title: string | undefined;
-  notes: string | undefined;
+  item: CommonItemType;
   open: boolean;
   onOpenChange: (open: boolean) => void;
 };
 
-export const DialogWindow: React.FC<DialogWindowProps> = ({
-  title,
-  notes,
+export const DialogWindow: FC<DialogWindowProps> = ({
+  item,
   open,
   onOpenChange,
-}): JSX.Element => {
+}) => {
   const ariaLabel = useL10n("closeDialog");
+
+  if (!item.dialog) {
+    return null;
+  }
 
   return (
     <Root open={open} onOpenChange={onOpenChange}>
       <Overlay className={styles.overlay} />
       <Content className={styles.dialogContent}>
-        <Title className={styles.dialogTitle}>{title}</Title>
-        <Description>{notes}</Description>
+        <Title className={styles.dialogTitle}>{item.label}</Title>
+        {item.dialog.text ? (
+          <Description>{item.dialog.text}</Description>
+        ) : null}
         <Close className={styles.closeButton} aria-label={ariaLabel}>
           <Cross2Icon />
         </Close>

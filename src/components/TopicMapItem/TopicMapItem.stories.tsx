@@ -9,12 +9,30 @@ export default {
   component: TopicMapItem,
 } as ComponentMeta<typeof TopicMapItem>;
 
-const defaultArgs: TopicMapItemProps = {
-  backgroundImage: {
+const item = {
+  id: "1",
+  topicImage: {
+    path: "https://images.unsplash.com/photo-1569587112025-0d460e81a126?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2370&q=80",
     alt: "",
-    path: "https://images.unsplash.com/photo-1484557985045-edf25e08da73?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2146&q=80",
   },
-  title: "Title",
+  label: "Sheep in the distance",
+  description: "",
+  widthPercentage: 50,
+  heightPercentage: 25,
+  xPercentagePosition: 3,
+  yPercentagePosition: 5,
+  dialog: {
+    text: "Dialog text",
+  },
+};
+
+const onClick = (): void => {
+  console.info("Click");
+};
+
+const defaultArgs: TopicMapItemProps = {
+  item,
+  onClick,
 };
 
 export const NoContainer: ComponentStory<typeof TopicMapItem> = () => {

@@ -160,6 +160,13 @@
               "widget": "none"
             },
             {
+              "label": "Label",
+              "description": "The label is used by screen readers and on the summary page",
+              "name": "label",
+              "type": "text",
+              "widget": "none"
+            },
+            {
               "label": "Description",
               "description": "The description is shown on top of the background image, below the label",
               "name": "description",
