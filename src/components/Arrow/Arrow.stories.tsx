@@ -11,7 +11,6 @@ const white = "#FFFFFF";
 const black = "#3E3E3E";
 
 const item: ArrowItemType = {
-  arrowDirection: ArrowDirection.Right,
   arrowType: ArrowType.Directional,
   topicImage: {
     path: "https://images.unsplash.com/photo-1621246308836-ea7d366c2795?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80",
@@ -27,13 +26,11 @@ const item: ArrowItemType = {
   },
   dialogOrDirectLink: "dialog",
   id: "id-1",
-  heightPercentage: 100,
-  widthPercentage: 100,
-  xPercentagePosition: 0,
-  yPercentagePosition: 0,
   description:
     "The Autonomous Region of the Azores (Região Autónoma dos Açores) is one of the two autonomous regions of Portugal (along with Madeira) (Wikipedia)",
   dialog: {},
+  startElementId: "start",
+  endElementId: "end",
 };
 
 export default {
