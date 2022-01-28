@@ -3,6 +3,7 @@ import * as React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { Grid, GridProps } from "./Grid";
+import { ArrowType } from "../../types/ArrowType";
 
 export default {
   title: "Organisms/Grid",
@@ -11,6 +12,7 @@ export default {
 
 const defaultArgs: GridProps = {
   items: [],
+  arrowItems: [],
   backgroundImage: undefined,
 };
 
@@ -62,6 +64,18 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         heightPercentage: 10,
         xPercentagePosition: 20,
         yPercentagePosition: 40,
+        dialog: {
+          text: "Dialog text",
+        },
+      },
+    ],
+    arrowItems: [
+      {
+        arrowType: ArrowType.BiDirectional,
+        startElementId: "1",
+        endElementId: "2",
+        id: "arrow-1",
+        label: "Sheep in the distance ⟶ Sheep close up",
         dialog: {
           text: "Dialog text",
         },

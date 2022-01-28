@@ -17,6 +17,7 @@ export const App: React.FC<AppProps> = ({ params }) => {
     <div className={themeClassName}>
       <Grid
         items={params.topicMap?.topicMapItems ?? []}
+        arrowItems={params.topicMap?.arrowItems ?? []}
         backgroundImage={params.topicMap?.appearance?.backgroundImage}
       />
     </div>

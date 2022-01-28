@@ -1,45 +1,81 @@
 import * as React from "react";
+import { useState } from "react";
+import { Xwrapper } from "react-xarrows";
+import { ArrowItemType } from "../../types/ArrowItemType";
+import { CommonItemType } from "../../types/CommonItemType";
 import { Image } from "../../types/H5P/Image";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
+import { Arrow } from "../Arrow/Arrow";
+import { DialogWindow } from "../Dialog-Window/DialogWindow";
 import { TopicMapItem } from "../TopicMapItem/TopicMapItem";
 import styles from "./Grid.module.scss";
 
 export type GridProps = {
   items: Array<TopicMapItemType>;
+  arrowItems: Array<ArrowItemType>;
   backgroundImage: Image | undefined;
 };
 
-export const Grid: React.FC<GridProps> = ({ items, backgroundImage }) => {
-  const children = React.useMemo(() => {
-    return items.map(item => (
-      <div
-        key={item.id}
-        className={styles.itemWrapper}
-        style={{
-          left: `${item.xPercentagePosition}%`,
-          top: `${item.yPercentagePosition}%`,
-          height: `${item.heightPercentage}%`,
-          width: `${item.widthPercentage}%`,
-        }}
-      >
-        <TopicMapItem
-          dialog={item.dialog}
-          backgroundImage={item.topicImage}
-          title={item.label}
-        />
-      </div>
+export const Grid: React.FC<GridProps> = ({
+  items,
+  arrowItems,
+  backgroundImage,
+}) => {
+  const [itemShowingDialog, setItemShowingDialog] =
+    useState<CommonItemType | null>(null);
+
+  const arrows = React.useMemo(() => {
+    const onClick = (item: ArrowItemType): void => {
+      setItemShowingDialog(item);
+    };
+
+    return arrowItems.map(item => (
+      <Arrow item={item} onClick={() => onClick(item)} />
     ));
-  }, [items]);
+  }, [arrowItems]);
+
+  const children = React.useMemo(
+    () =>
+      items.map(item => (
+        <div
+          key={item.id}
+          id={item.id}
+          className={styles.itemWrapper}
+          style={{
+            left: `${item.xPercentagePosition}%`,
+            top: `${item.yPercentagePosition}%`,
+            height: `${item.heightPercentage}%`,
+            width: `${item.widthPercentage}%`,
+          }}
+        >
+          <TopicMapItem
+            item={item}
+            onClick={() => setItemShowingDialog(item)}
+          />
+        </div>
+      )),
+    [items],
+  );
 
   const bgImageStyle: string | undefined = backgroundImage?.path
     ? `url(${backgroundImage.path})`
     : undefined;
 
   return (
-    <div className={styles.gridWrapper}>
-      <div className={styles.grid} style={{ backgroundImage: bgImageStyle }}>
-        {children}
+    <Xwrapper>
+      <div className={styles.gridWrapper}>
+        <div className={styles.grid} style={{ backgroundImage: bgImageStyle }}>
+          {arrows}
+          {children}
+          {itemShowingDialog?.dialog ? (
+            <DialogWindow
+              item={itemShowingDialog}
+              open={!!itemShowingDialog}
+              onOpenChange={() => setItemShowingDialog(null)}
+            />
+          ) : null}
+        </div>
       </div>
-    </div>
+    </Xwrapper>
   );
 };
