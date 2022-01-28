@@ -1,4 +1,5 @@
 import * as React from "react";
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { useState } from "react";
 import { Xwrapper } from "react-xarrows";
 import { ArrowItemType } from "../../types/ArrowItemType";
@@ -21,6 +22,8 @@ export const Grid: React.FC<GridProps> = ({
   arrowItems,
   backgroundImage,
 }) => {
+  const fullscreen = useFullScreenHandle();
+
   const [itemShowingDialog, setItemShowingDialog] =
     useState<CommonItemType | null>(null);
 
@@ -63,19 +66,31 @@ export const Grid: React.FC<GridProps> = ({
 
   return (
     <Xwrapper>
-      <div className={styles.gridWrapper}>
-        <div className={styles.grid} style={{ backgroundImage: bgImageStyle }}>
-          {arrows}
-          {children}
-          {itemShowingDialog?.dialog ? (
-            <DialogWindow
-              item={itemShowingDialog}
-              open={!!itemShowingDialog}
-              onOpenChange={() => setItemShowingDialog(null)}
-            />
-          ) : null}
+      <FullScreen className={styles.fullscreenStyle} handle={fullscreen}>
+        <div className={styles.gridWrapper}>
+          <div
+            className={styles.grid}
+            style={{ backgroundImage: bgImageStyle }}
+          >
+            <button
+              // className={styles.fullscreenButton}
+              type="button"
+              onClick={fullscreen.active ? fullscreen.exit : fullscreen.enter}
+            >
+              Toggle fullscreen
+            </button>
+            {arrows}
+            {children}
+            {itemShowingDialog?.dialog ? (
+              <DialogWindow
+                item={itemShowingDialog}
+                open={!!itemShowingDialog}
+                onOpenChange={() => setItemShowingDialog(null)}
+              />
+            ) : null}
+          </div>
         </div>
-      </div>
+      </FullScreen>
     </Xwrapper>
   );
 };
