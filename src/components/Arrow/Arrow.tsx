@@ -12,7 +12,7 @@ export type ArrowProps = {
 
 export const Arrow: FC<ArrowProps> = ({ item, onClick }) => {
   return (
-    <div className={`arrow-item ${styles.arrow}`}>
+    <div aria-label={item.label} className={`arrow-item ${styles.arrow}`}>
       <Xarrow
         start={item.startElementId}
         end={item.endElementId}
