@@ -32,7 +32,7 @@ export const Arrow: FC<ArrowProps> = ({ item, onClick }) => {
         start={item.startElementId}
         end={item.endElementId}
         path="grid"
-        gridBreak={item.arrowType === ArrowType.Directional ? "0%" : undefined}        
+        gridBreak={item.arrowType === ArrowType.Directional ? "0%" : undefined}
         showHead={[ArrowType.BiDirectional, ArrowType.Directional].includes(
           item.arrowType,
         )}
