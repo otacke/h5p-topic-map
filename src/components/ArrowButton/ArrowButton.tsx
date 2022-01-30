@@ -1,80 +1,71 @@
-// /* eslint-disable react/destructuring-assignment */
-// import * as React from "react";
-// import { ArrowDirection } from "../../types/ArrowDirection";
-// import { ArrowType } from "../../types/ArrowType";
-// import styles from "./ArrowButton.module.scss";
-// import { CompletedIcon, EditIcon, NoteIcon } from "../Icons/Icons";
-// import { ButtonIconState } from "../Arrow/Utils";
+/* eslint-disable react/destructuring-assignment */
+import * as React from "react";
+import { ArrowType } from "../../types/ArrowType";
+import styles from "./ArrowButton.module.scss";
+import { CompletedIcon, EditIcon, NoteIcon } from "../Icons/Icons";
+import { ArrowButtonIconState } from "../../types/ArrowButtonIconState";
 
-// const renderIcon = (state: ButtonIconState, iconColor: string): JSX.Element => {
-//   switch (state) {
-//     case ButtonIconState.Completed:
-//       return <CompletedIcon iconColor={iconColor} />;
-//     case ButtonIconState.Notes:
-//       return <NoteIcon iconColor={iconColor} />;
-//     default:
-//       return <EditIcon iconColor={iconColor} />;
-//   }
-// };
+const renderIcon = (
+  state: ArrowButtonIconState,
+  iconColor: string,
+): JSX.Element => {
+  switch (state) {
+    case ArrowButtonIconState.Completed:
+      return <CompletedIcon iconColor={iconColor} />;
+    case ArrowButtonIconState.Notes:
+      return <NoteIcon iconColor={iconColor} />;
+    default:
+      return <EditIcon iconColor={iconColor} />;
+  }
+};
 
-// type ArrowButtonProps = {
-//   arrowColor: string;
-//   circleColor: string;
-//   iconColor: string;
-//   type: ArrowType;
-//   direction: ArrowDirection;
-//   buttonState: ButtonIconState;
-// };
+type ArrowButtonProps = {
+  arrowColor: string;
+  circleColor: string;
+  iconColor: string;
+  type: ArrowType;
+  buttonState: ArrowButtonIconState;
+};
 
-// export const ArrowButton: React.FC<ArrowButtonProps> = ({
-//   arrowColor,
-//   circleColor,
-//   iconColor,
-//   type,
-//   direction,
-//   buttonState,
-// }): JSX.Element => {
-//   let classNames = `${styles.button}`;
+export const ArrowButton: React.FC<ArrowButtonProps> = ({
+  arrowColor,
+  circleColor,
+  iconColor,
+  type,
+  buttonState,
+}): JSX.Element => {
+  let classNames = `${styles.button}`;
 
-//   if (type === ArrowType.Directional)
-//     classNames += ` ${styles.buttonDirectional}`;
-//   else classNames += ` ${styles.buttonNonDirectional}`;
+  if (type === ArrowType.Directional)
+    classNames += ` ${styles.buttonDirectional}`;
+  else classNames += ` ${styles.buttonNonDirectional}`;
 
-//   const directionClasses = {
-//     [ArrowDirection.Up]: styles.buttonUp,
-//     [ArrowDirection.Down]: styles.buttonDown,
-//     [ArrowDirection.Left]: styles.buttonLeft,
-//     [ArrowDirection.Right]: styles.buttonRight,
-//   };
+  return (
+    <svg
+      data-testid="svgBtn"
+      className={classNames}
+      viewBox="0 0 11 11"
+      preserveAspectRatio="xMaxYMid"
+    >
+      <circle
+        stroke={arrowColor}
+        fill={circleColor}
+        className={`${styles.buttonCircle}`}
+        cx="6"
+        cy="6"
+        r="4"
+      />
 
-//   classNames += ` ${directionClasses[direction]}`;
+      <svg viewBox="-11 -10 30 30">{renderIcon(buttonState, iconColor)}</svg>
 
-//   return (
-//     <svg
-//       data-testid="svgBtn"
-//       className={classNames}
-//       viewBox="0 0 12 12"
-//       preserveAspectRatio="xMaxYMid"
-//     >
-//       <circle
-//         stroke={arrowColor}
-//         fill={circleColor}
-//         className={`${styles.buttonCircle}`}
-//         cx="6"
-//         cy="6"
-//         r="4px"
-//       />
-
-//       <svg viewBox="-9 -9 30 30">{renderIcon(buttonState, iconColor)}</svg>
-
-//       <circle
-//         fill="transparent"
-//         className={styles.buttonCircle}
-//         style={{ cursor: "pointer" }}
-//         cx="6"
-//         cy="6"
-//         r="4px"
-//       />
-//     </svg>
-//   );
-// };
+      <circle
+        fill="transparent"
+        className={styles.buttonCircle}
+        style={{ cursor: "pointer" }}
+        cx="6"
+        cy="6"
+        r="4"
+      />
+    </svg>
+  );
+};

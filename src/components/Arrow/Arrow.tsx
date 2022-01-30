@@ -1,8 +1,10 @@
 import * as React from "react";
 import { FC, MouseEventHandler } from "react";
 import Xarrow from "react-xarrows";
+import { ArrowButtonIconState } from "../../types/ArrowButtonIconState";
 import { ArrowItemType } from "../../types/ArrowItemType";
 import { ArrowType } from "../../types/ArrowType";
+import { ArrowButton } from "../ArrowButton/ArrowButton";
 import styles from "./Arrow.module.scss";
 
 export type ArrowProps = {
@@ -11,12 +13,26 @@ export type ArrowProps = {
 };
 
 export const Arrow: FC<ArrowProps> = ({ item, onClick }) => {
+  const buttonState = ArrowButtonIconState.Default;
+
   return (
     <div aria-label={item.label} className={`arrow-item ${styles.arrow}`}>
       <Xarrow
+        labels={{
+          middle: (
+            <ArrowButton
+              arrowColor="var(--theme-color-2)"
+              buttonState={buttonState}
+              circleColor="var(--theme-color-3)"
+              iconColor="var(--theme-color-4)"
+              type={item.arrowType}
+            />
+          ),
+        }}
         start={item.startElementId}
         end={item.endElementId}
         path="grid"
+        gridBreak={item.arrowType === ArrowType.Directional ? "0%" : undefined}        
         showHead={[ArrowType.BiDirectional, ArrowType.Directional].includes(
           item.arrowType,
         )}
