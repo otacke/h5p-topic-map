@@ -80,6 +80,16 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
           text: "Dialog text",
         },
       },
+      {
+        arrowType: ArrowType.Directional,
+        startElementId: "3",
+        endElementId: "2",
+        id: "arrow-2",
+        label: "Sheep in the distance ⟶ Sheep close up",
+        dialog: {
+          text: "Dialog text",
+        },
+      },
     ],
   };
   return <Grid {...args} />;

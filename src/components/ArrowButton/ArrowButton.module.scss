@@ -1,13 +1,11 @@
 .button {
+  $size: 2rem;
+  
+  border: 2px solid;
+  border-radius: 50%;
   display: block;
-  transform: translateY(-50%);
-  width: 2rem;
-}
+  height: $size;
+  padding: 0;
 
-.buttonCircle {
-  stroke-width: 0.5;
-}
-
-.editHoverButton {
-  display: none;
+  width: $size;
 }

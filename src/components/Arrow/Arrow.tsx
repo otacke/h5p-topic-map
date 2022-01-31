@@ -21,11 +21,10 @@ export const Arrow: FC<ArrowProps> = ({ item, onClick }) => {
         labels={{
           middle: (
             <ArrowButton
-              arrowColor="var(--theme-color-2)"
+              backgroundColor="var(--theme-color-2)"
               buttonState={buttonState}
-              circleColor="var(--theme-color-3)"
+              borderColor="var(--theme-color-3)"
               iconColor="var(--theme-color-4)"
-              type={item.arrowType}
             />
           ),
         }}
