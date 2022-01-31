@@ -1,5 +1,6 @@
 import * as React from "react";
 import { FullScreenHandle } from "react-full-screen";
+import { useL10n } from "../../hooks/useLocalization";
 import styles from "./FullscreenButton.module.scss";
 
 export type FullscreenButtonProps = {
@@ -9,11 +10,14 @@ export type FullscreenButtonProps = {
 export const FullscreenButton: React.FC<FullscreenButtonProps> = ({
   fullscreenHandle,
 }) => {
+  const fullscreenButtonLabel = useL10n("fullscreenButtonLabel");
+
   return (
     <button
       className={styles.fullscreenButton}
       type="button"
-      title="Toggle fullscreen mode"
+      title={fullscreenButtonLabel}
+      aria-label={fullscreenButtonLabel}
       onClick={
         fullscreenHandle.active ? fullscreenHandle.exit : fullscreenHandle.enter
       }
