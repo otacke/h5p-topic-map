@@ -9,7 +9,7 @@ export default {
 } as ComponentMeta<typeof DialogNote>;
 
 const Template: ComponentStory<typeof DialogNote> = args => (
-  <div style={{ height: "40%", width: "60%" }}>
+  <div style={{ height: "80vh", width: "80vw" }}>
     <DialogNote {...args} />
   </div>
 );
