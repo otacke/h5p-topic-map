@@ -416,6 +416,24 @@
         "name": "navbarHelpSectionLabel",
         "default": "Help",
         "type": "text"
+      },
+      {
+        "label": "Navbar help section title",
+        "name": "navbarHelpSectionTitle",
+        "default": "Hjelp",
+        "type": "text"
+      },
+      {
+        "label": "Navbar help section left",
+        "name": "navbarHelpSectionLeft",
+        "default": "Formålet med denne oppgaven er å forbedre læringen din ved å knytte dine egne notater opp mot et tankekart. Tankekartet består av hendelser (bokser) og sammenhenger (piler). Du skal legge inn notater til både hendelser og sammenhenger.<br />Trykk på boksene og pilene for å legge til et notat til en hendelse eller en sammenheng. Notatene du skriver inn, blir automatisk lagret lokalt i nettleseren på datamaskinen du bruker, slik at du kan fortsette på eller lese notatene på et senere tidspunkt.",
+        "type": "text"
+      },
+      {
+        "label": "Navbar help section right",
+        "name": "navbarHelpSectionRight",
+        "default": "<b></b> Progresjonsmåleren viser hvor mange prosent av hendelsene og sammenhengene som har fått notater. 100% betyr at du har lagt inn notater på alle tilgjengelige stader.<br /><b>Eksporter notater</b> gir deg en oversikt over alle notatene du har skrevet. Der kan du skrive ut eller kopiere notatene for å f.eks. å lime dem inn i et dokument eller en e-post.<br /><b>Slett alle notater</b> sletter alle notatene fra nettleseren på datamaskinen du bruker.",
+        "type": "text"
       }
     ]
   }
