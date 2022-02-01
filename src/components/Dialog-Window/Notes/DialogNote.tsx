@@ -8,7 +8,7 @@ export type NoteProps = {
   id: string;
 };
 
-export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
+export const DialogNote: React.FC<NoteProps> = ({ maxLength, id }) => {
   const [userData, setUserData] = useLocalStorage(id);
   const [note, setNote] = React.useState(userData[id].note ?? "");
   const [dynamicSavingText, setDynamicSavingText] = React.useState("");
@@ -77,6 +77,7 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
   return (
     <form>
       <label htmlFor="note">
+        <p className={styles.dynamicSavingText}>{dynamicSavingText}</p>
         <textarea
           className={styles.textArea}
           id="note"
@@ -85,7 +86,6 @@ export const Note: React.FC<NoteProps> = ({ maxLength, id }) => {
           onChange={event => onChange(event)}
           defaultValue={note}
         />
-        <p className={styles.dynamicSavingText}>{dynamicSavingText}</p>
         <div className={styles.markAsCompletedCheckbox}>
           <label htmlFor="note-completed-checkbox">
             <input
