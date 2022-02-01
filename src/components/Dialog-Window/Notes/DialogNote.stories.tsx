@@ -1,19 +1,21 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import * as React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Note } from "./DialogNote";
+import { DialogNote } from "./DialogNote";
 
 export default {
   title: "Molecules/Dialog Content/Dialog Notes",
-  component: Note,
-} as ComponentMeta<typeof Note>;
+  component: DialogNote,
+} as ComponentMeta<typeof DialogNote>;
 
-const Template: ComponentStory<typeof Note> = args => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <Note {...args} />
+const Template: ComponentStory<typeof DialogNote> = args => (
+  <div style={{ height: "40%", width: "60%" }}>
+    <DialogNote {...args} />
+  </div>
 );
 
-export const NoteSimple = Template.bind({});
-NoteSimple.args = {
+export const DialogNoteSimple = Template.bind({});
+DialogNoteSimple.args = {
   maxLength: 160,
   id: "myId",
 };
