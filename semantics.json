@@ -382,6 +382,12 @@
         "name": "dialogWordsLabel",
         "default": "Words",
         "type": "text"
+      },
+      {
+        "label": "Fullscreen button label",
+        "name": "fullscreenButtonLabel",
+        "default": "Toggle fullscreen mode",
+        "type": "text"
       }
     ]
   }

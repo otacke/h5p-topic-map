@@ -284,6 +284,12 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         default: "Words",
         type: H5PFieldType.Text,
       },
+      {
+        label: "Fullscreen button label",
+        name: "fullscreenButtonLabel",
+        default: "Toggle fullscreen mode",
+        type: H5PFieldType.Text,
+      },
     ],
   },
 ];

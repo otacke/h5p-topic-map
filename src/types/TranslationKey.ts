@@ -16,4 +16,5 @@ export type TranslationKey =
   | "dialogResourcesRelevantLinks"
   | "dialogResourcesCustomLinks"
   | "dialogResourcesAdd"
-  | "dialogWordsLabel";
+  | "dialogWordsLabel"
+  | "fullscreenButtonLabel";
