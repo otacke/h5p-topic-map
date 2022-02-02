@@ -78,28 +78,30 @@ export const DialogNote: React.FC<NoteProps> = ({ maxLength, id }) => {
     <form>
       <label htmlFor="note">
         <p className={styles.dynamicSavingText}>{dynamicSavingText}</p>
-        <textarea
-          className={styles.textArea}
-          id="note"
-          placeholder={placeholderText}
-          maxLength={maxWordCount}
-          onChange={event => onChange(event)}
-          defaultValue={note}
-        />
-        <div className={styles.markAsCompletedCheckbox}>
-          <label htmlFor="note-completed-checkbox">
-            <input
-              id="note-completed-checkbox"
-              type="checkbox"
-              checked={noteCompleted}
-              onChange={handleNoteCompleted}
-            />
-            {completedTextLabel}
-          </label>
+        <div className={styles.textAreaWrapper}>
+          <textarea
+            className={styles.textArea}
+            id="note"
+            placeholder={placeholderText}
+            maxLength={maxWordCount}
+            onChange={event => onChange(event)}
+            defaultValue={note}
+          />
+          <div className={styles.markAsCompletedCheckbox}>
+            <label htmlFor="note-completed-checkbox">
+              <input
+                id="note-completed-checkbox"
+                type="checkbox"
+                checked={noteCompleted}
+                onChange={handleNoteCompleted}
+              />
+              {completedTextLabel}
+            </label>
+          </div>
+          <p data-testid="wordCount" className={styles.wordCounter}>
+            {wordCount} / {maxLength} {wordTextLabel}
+          </p>
         </div>
-        <p data-testid="wordCount" className={styles.wordCounter}>
-          {wordCount} / {maxLength} {wordTextLabel}
-        </p>
       </label>
     </form>
   );
