@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { HelpSection } from "./HelpSection";
 
 export default {
-  title: "Molecules/Top Navbar/Help Section",
+  title: "Molecules/Navbar/Help Section",
   component: HelpSection,
 } as ComponentMeta<typeof HelpSection>;
 
