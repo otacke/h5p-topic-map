@@ -1,80 +1,46 @@
-// /* eslint-disable react/destructuring-assignment */
-// import * as React from "react";
-// import { ArrowDirection } from "../../types/ArrowDirection";
-// import { ArrowType } from "../../types/ArrowType";
-// import styles from "./ArrowButton.module.scss";
-// import { CompletedIcon, EditIcon, NoteIcon } from "../Icons/Icons";
-// import { ButtonIconState } from "../Arrow/Utils";
+/* eslint-disable react/destructuring-assignment */
+import * as React from "react";
+import styles from "./ArrowButton.module.scss";
+import { CompletedIcon, EditIcon, IconProps, NoteIcon } from "../Icons/Icons";
+import { ArrowButtonIconState } from "../../types/ArrowButtonIconState";
 
-// const renderIcon = (state: ButtonIconState, iconColor: string): JSX.Element => {
-//   switch (state) {
-//     case ButtonIconState.Completed:
-//       return <CompletedIcon iconColor={iconColor} />;
-//     case ButtonIconState.Notes:
-//       return <NoteIcon iconColor={iconColor} />;
-//     default:
-//       return <EditIcon iconColor={iconColor} />;
-//   }
-// };
+const icons: Record<ArrowButtonIconState, React.FC<IconProps>> = {
+  [ArrowButtonIconState.Completed]: CompletedIcon,
+  [ArrowButtonIconState.Notes]: NoteIcon,
+  [ArrowButtonIconState.Default]: EditIcon,
+};
 
-// type ArrowButtonProps = {
-//   arrowColor: string;
-//   circleColor: string;
-//   iconColor: string;
-//   type: ArrowType;
-//   direction: ArrowDirection;
-//   buttonState: ButtonIconState;
-// };
+const renderIcon = (
+  state: ArrowButtonIconState,
+  iconColor: string,
+): JSX.Element => {
+  const Icon = icons[state];
+  return <Icon iconColor={iconColor} />;
+};
 
-// export const ArrowButton: React.FC<ArrowButtonProps> = ({
-//   arrowColor,
-//   circleColor,
-//   iconColor,
-//   type,
-//   direction,
-//   buttonState,
-// }): JSX.Element => {
-//   let classNames = `${styles.button}`;
+type ArrowButtonProps = {
+  backgroundColor: string;
+  borderColor: string;
+  iconColor: string;
+  buttonState: ArrowButtonIconState;
+};
 
-//   if (type === ArrowType.Directional)
-//     classNames += ` ${styles.buttonDirectional}`;
-//   else classNames += ` ${styles.buttonNonDirectional}`;
+export const ArrowButton: React.FC<ArrowButtonProps> = ({
+  backgroundColor,
+  borderColor,
+  iconColor,
+  buttonState,
+}): JSX.Element => {
+  const classNames = `${styles.button}`;
 
-//   const directionClasses = {
-//     [ArrowDirection.Up]: styles.buttonUp,
-//     [ArrowDirection.Down]: styles.buttonDown,
-//     [ArrowDirection.Left]: styles.buttonLeft,
-//     [ArrowDirection.Right]: styles.buttonRight,
-//   };
-
-//   classNames += ` ${directionClasses[direction]}`;
-
-//   return (
-//     <svg
-//       data-testid="svgBtn"
-//       className={classNames}
-//       viewBox="0 0 12 12"
-//       preserveAspectRatio="xMaxYMid"
-//     >
-//       <circle
-//         stroke={arrowColor}
-//         fill={circleColor}
-//         className={`${styles.buttonCircle}`}
-//         cx="6"
-//         cy="6"
-//         r="4px"
-//       />
-
-//       <svg viewBox="-9 -9 30 30">{renderIcon(buttonState, iconColor)}</svg>
-
-//       <circle
-//         fill="transparent"
-//         className={styles.buttonCircle}
-//         style={{ cursor: "pointer" }}
-//         cx="6"
-//         cy="6"
-//         r="4px"
-//       />
-//     </svg>
-//   );
-// };
+  return (
+    <button
+      type="button"
+      data-testid="svgBtn"
+      className={classNames}
+      style={{ backgroundColor, borderColor }}
+    >
+      {renderIcon(buttonState, iconColor)}
+    </button>
+  );
+};
