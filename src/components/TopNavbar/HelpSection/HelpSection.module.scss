@@ -1,7 +1,11 @@
-.mainBody {
+.mainBody,
+.mainBodyContentWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.mainBody {
   background-color: #3d6060;
   height: 100%;
   width: 100%;
@@ -15,14 +19,15 @@
 }
 
 .mainBodyContentWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 75%;
 }
 
-.mainBodyContent {
+.mainBodyContent,
+.mainBodyText {
   display: flex;
+}
+
+.mainBodyContent {
   flex-direction: column;
   align-items: flex-start;
 }
@@ -33,15 +38,14 @@
 }
 
 .mainBodyText {
-  display: flex;
   flex-direction: row;
+}
+
+.mainBodyTextLeft,
+.mainBodyTextRight {
+  width: 100%;
 }
 
 .mainBodyTextLeft {
   margin-right: 2rem;
-  width: 100%;
-}
-
-.mainBodyTextRight {
-  width: 100%;
 }
