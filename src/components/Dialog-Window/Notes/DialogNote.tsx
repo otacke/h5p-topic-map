@@ -47,7 +47,7 @@ export const DialogNote: React.FC<NoteProps> = ({ maxLength, id }) => {
     );
   };
 
-  const countWords = (): void => {
+  const countWords = React.useCallback((): void => {
     const count = note.split(/\s/).filter(word => word.length > 0).length;
     setWordCount(count);
 
@@ -56,7 +56,8 @@ export const DialogNote: React.FC<NoteProps> = ({ maxLength, id }) => {
     } else {
       setMaxWordCount(undefined);
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [maxLength, note, savingTextTimeout]);
 
   React.useEffect(() => {
     // TODO: If this becomes laggy, add a debounce-timer to avoid saving more often than, say, every 100ms.
@@ -67,7 +68,7 @@ export const DialogNote: React.FC<NoteProps> = ({ maxLength, id }) => {
     return () => {
       if (savingTextTimeout != null) clearTimeout(savingTextTimeout);
     };
-  }, [userData, id, note, setUserData, savingTextTimeout]);
+  }, [userData, id, note, setUserData, savingTextTimeout, countWords]);
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     setSavingText();
@@ -87,20 +88,22 @@ export const DialogNote: React.FC<NoteProps> = ({ maxLength, id }) => {
             onChange={event => onChange(event)}
             defaultValue={note}
           />
-          <div className={styles.markAsCompletedCheckbox}>
-            <label htmlFor="note-completed-checkbox">
-              <input
-                id="note-completed-checkbox"
-                type="checkbox"
-                checked={noteCompleted}
-                onChange={handleNoteCompleted}
-              />
-              {completedTextLabel}
-            </label>
+          <div className={styles.bottomGroup}>
+            <div className={styles.markAsCompletedCheckbox}>
+              <label htmlFor="note-completed-checkbox">
+                <input
+                  id="note-completed-checkbox"
+                  type="checkbox"
+                  checked={noteCompleted}
+                  onChange={handleNoteCompleted}
+                />
+                {completedTextLabel}
+              </label>
+            </div>
+            <div data-testid="wordCount" className={styles.wordCounter}>
+              {wordCount} / {maxLength} {wordTextLabel}
+            </div>
           </div>
-          <p data-testid="wordCount" className={styles.wordCounter}>
-            {wordCount} / {maxLength} {wordTextLabel}
-          </p>
         </div>
       </label>
     </form>
