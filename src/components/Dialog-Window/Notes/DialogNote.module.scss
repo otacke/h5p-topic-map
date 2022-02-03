@@ -20,13 +20,16 @@ form {
 }
 
 .textAreaWrapper {
-  border: 1px solid black;
+  border: 2px solid #eeeeee;
   display: flex;
   flex-direction: column;
   overflow: auto;
   height: 100%;
   position: relative;
   top: 0.5rem;
+  &:focus-within {
+    border: 2px solid #2360c5;
+  }
 }
 
 .dynamicSavingText {
