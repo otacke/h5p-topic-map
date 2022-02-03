@@ -1,20 +1,24 @@
 import * as React from "react";
 import { Trigger, Content, Tabs, TabsList } from "@radix-ui/react-tabs";
 import styles from "./Navbar.module.scss";
-// import { useL10n } from "../../hooks/useLocalization";
+import { useL10n } from "../../hooks/useLocalization";
+import { TranslationKey } from "../../types/TranslationKey";
 
 export type NavbarProps = {
   navbarTitle: string;
-  navbarContent: { title: string; content: JSX.Element; ariaLabel: string }[];
+  navbarContent: {
+    title: TranslationKey | string;
+    content: JSX.Element;
+    ariaLabel: TranslationKey | string;
+  }[];
 };
 
 export const Navbar: React.FC<NavbarProps> = ({
   navbarContent,
   navbarTitle,
 }) => {
-  // TODO translate
-  const navbarAriaLabel = "Navigation bar with elements to control the content";
-  // useL10n();
+  const navbarAriaLabel = useL10n("navbarTabsListAriaLabel");
+  // TODO need to add translations to titles and aria labels of each tab
 
   return (
     <div className={styles.mainBody}>
