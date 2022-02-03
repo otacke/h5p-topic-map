@@ -2,51 +2,96 @@ import * as React from "react";
 import { Trigger, Content, Tabs, TabsList } from "@radix-ui/react-tabs";
 import styles from "./Navbar.module.scss";
 import { useL10n } from "../../hooks/useLocalization";
-import { TranslationKey } from "../../types/TranslationKey";
 
 export type NavbarProps = {
   navbarTitle: string;
-  navbarContent: {
-    title: TranslationKey | string;
-    content: JSX.Element;
-    ariaLabel: TranslationKey | string;
-  }[];
 };
 
-export const Navbar: React.FC<NavbarProps> = ({
-  navbarContent,
-  navbarTitle,
-}) => {
+export const Navbar: React.FC<NavbarProps> = ({ navbarTitle }) => {
   const navbarAriaLabel = useL10n("navbarTabsListAriaLabel");
-  // TODO need to add translations to titles and aria labels of each tab
+  const topicMapSectionLabel = useL10n("navbarTopicMapSectionLabel");
+  const notesSectionLabel = useL10n("navbarNotesSectionLabel");
+  const helpSectionLabel = useL10n("navbarHelpSectionLabel");
 
   return (
     <div className={styles.mainBody}>
       <button className={styles.navbarTitle} type="button">
         {navbarTitle}
       </button>
-      <Tabs defaultValue={navbarContent[0].title}>
+      <Tabs defaultValue={topicMapSectionLabel}>
         <TabsList className={styles.sectionsMenu} aria-label={navbarAriaLabel}>
-          {navbarContent.map(section => (
-            <Trigger
-              className={styles.sectionTitle}
-              key={section.title}
-              value={section.title}
-              aria-label={section.ariaLabel}
-            >
-              {section.title}
-            </Trigger>
-          ))}
-        </TabsList>
-        {navbarContent.map(section => (
-          <Content
-            className={styles.sectionContent}
-            key={section.title}
-            value={section.title}
+          <Trigger
+            className={styles.sectionTitle}
+            key={topicMapSectionLabel}
+            value={topicMapSectionLabel}
+            aria-label={topicMapSectionLabel}
           >
-            {section.content}
-          </Content>
-        ))}
+            {topicMapSectionLabel}
+          </Trigger>
+          <Trigger
+            className={styles.sectionTitle}
+            key={notesSectionLabel}
+            value={notesSectionLabel}
+            aria-label={notesSectionLabel}
+          >
+            {notesSectionLabel}
+          </Trigger>
+          <Trigger
+            className={styles.sectionTitle}
+            key={helpSectionLabel}
+            value={helpSectionLabel}
+            aria-label={helpSectionLabel}
+          >
+            {helpSectionLabel}
+          </Trigger>
+          <Trigger
+            className={styles.sectionTitle}
+            key="▰▰▰▰▱▱▱▱▱▱ 40%"
+            value="▰▰▰▰▱▱▱▱▱▱ 40%"
+            aria-label="Progress bar"
+          >
+            ▰▰▰▰▱▱▱▱▱▱ 40%
+          </Trigger>
+          <Trigger
+            className={styles.sectionTitle}
+            key="©"
+            value="©"
+            aria-label="Copyright"
+          >
+            ©
+          </Trigger>
+        </TabsList>
+        <Content
+          className={styles.sectionContent}
+          key={topicMapSectionLabel}
+          value={topicMapSectionLabel}
+        >
+          <div />
+        </Content>
+        <Content
+          className={styles.sectionContent}
+          key={notesSectionLabel}
+          value={notesSectionLabel}
+        >
+          <h3>Notes section</h3>
+        </Content>
+        <Content
+          className={styles.sectionContent}
+          key={helpSectionLabel}
+          value={helpSectionLabel}
+        >
+          <h3>Help section</h3>
+        </Content>
+        <Content
+          className={styles.sectionContent}
+          key="▰▰▰▰▱▱▱▱▱▱ 40%"
+          value="▰▰▰▰▱▱▱▱▱▱ 40%"
+        >
+          <h3>Progress bar section</h3>
+        </Content>
+        <Content className={styles.sectionContent} key="©" value="©">
+          <h3>Copyright info</h3>
+        </Content>
       </Tabs>
     </div>
   );
