@@ -1,0 +1,42 @@
+.mainBody {
+  display: flex;
+  background-color: #3d6060;
+  flex-direction: row;
+  // align-items: center;
+  // justify-content: space-between;
+  width: 100%;
+  padding: 1rem 2rem;
+}
+
+.navbarTitle {
+  font-size: 22px;
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  position: absolute;
+  padding: 0;
+}
+
+// .root {
+//   right: 0;
+// }
+
+.sectionTitle {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding-right: 1rem;
+  padding-top: 0;
+  color: #ffffff;
+}
+
+.sectionContent {
+  width: 100%;
+  padding-top: 2rem;
+  color: #ffffff;
+}
+
+.sectionsMenu {
+  position: absolute;
+  right: 2rem;
+}
