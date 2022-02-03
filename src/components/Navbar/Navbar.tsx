@@ -25,7 +25,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <button className={styles.navbarTitle} type="button">
         {navbarTitle}
       </button>
-      <Tabs className={styles.root} defaultValue={navbarContent[0].title}>
+      <Tabs defaultValue={navbarContent[0].title}>
         <TabsList className={styles.sectionsMenu} aria-label={navbarAriaLabel}>
           {navbarContent.map(section => (
             <Trigger

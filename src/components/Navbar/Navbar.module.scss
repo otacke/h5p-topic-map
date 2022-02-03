@@ -2,8 +2,6 @@
   display: flex;
   background-color: #3d6060;
   flex-direction: row;
-  // align-items: center;
-  // justify-content: space-between;
   width: 100%;
   padding: 1rem 2rem;
 }
@@ -17,10 +15,6 @@
   padding: 0;
 }
 
-// .root {
-//   right: 0;
-// }
-
 .sectionTitle {
   background-color: transparent;
   border: none;
@@ -28,11 +22,15 @@
   padding-right: 1rem;
   padding-top: 0;
   color: #ffffff;
+
+  &[data-state="active"] {
+    text-decoration: underline;
+  }
 }
 
 .sectionContent {
   width: 100%;
-  padding-top: 2rem;
+  padding-top: 1.5rem;
   color: #ffffff;
 }
 

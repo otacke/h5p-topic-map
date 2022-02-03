@@ -19,27 +19,27 @@ NavBar.args = {
   navbarContent: [
     {
       title: "Topic map" as TranslationKey,
-      content: <h1>Temakart section (should be empty)</h1>,
+      content: <div />,
       ariaLabel: "Topic map" as TranslationKey,
     },
     {
       title: "See notes" as TranslationKey,
-      content: <h1>Notes section</h1>,
+      content: <h3>Notes section</h3>,
       ariaLabel: "See notes" as TranslationKey,
     },
     {
       title: "Help" as TranslationKey,
-      content: <h1>Help section</h1>,
+      content: <h3>Help section</h3>,
       ariaLabel: "Help" as TranslationKey,
     },
     {
       title: "▰▰▰▰▱▱▱▱▱▱ 40%",
-      content: <h1>Progress bar section</h1>,
+      content: <h3>Progress bar section</h3>,
       ariaLabel: "Progress bar" as TranslationKey,
     },
     {
       title: "©",
-      content: <h1>Copyright info</h1>,
+      content: <h3>Copyright info</h3>,
       ariaLabel: "Copyright" as TranslationKey,
     },
   ],
