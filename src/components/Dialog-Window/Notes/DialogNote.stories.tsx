@@ -16,6 +16,6 @@ const Template: ComponentStory<typeof DialogNote> = args => (
 
 export const DialogNoteSimple = Template.bind({});
 DialogNoteSimple.args = {
-  maxLength: 160,
+  maxLength: 150,
   id: "myId",
 };
