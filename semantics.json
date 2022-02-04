@@ -392,6 +392,30 @@
         "name": "fullscreenButtonLabel",
         "default": "Toggle fullscreen mode",
         "type": "text"
+      },
+      {
+        "label": "Navbar tabs list aria label",
+        "name": "navbarTabsListAriaLabel",
+        "default": "Navigation bar",
+        "type": "text"
+      },
+      {
+        "label": "Navbar topic map section label",
+        "name": "navbarTopicMapSectionLabel",
+        "default": "Topic map",
+        "type": "text"
+      },
+      {
+        "label": "Navbar notes section label",
+        "name": "navbarNotesSectionLabel",
+        "default": "See notes",
+        "type": "text"
+      },
+      {
+        "label": "Navbar help section label",
+        "name": "navbarHelpSectionLabel",
+        "default": "Help",
+        "type": "text"
       }
     ]
   }

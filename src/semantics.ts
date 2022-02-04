@@ -290,6 +290,30 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         default: "Toggle fullscreen mode",
         type: H5PFieldType.Text,
       },
+      {
+        label: "Navbar tabs list aria label",
+        name: "navbarTabsListAriaLabel",
+        default: "Navigation bar",
+        type: H5PFieldType.Text,
+      },
+      {
+        label: "Navbar topic map section label",
+        name: "navbarTopicMapSectionLabel",
+        default: "Topic map",
+        type: H5PFieldType.Text,
+      },
+      {
+        label: "Navbar notes section label",
+        name: "navbarNotesSectionLabel",
+        default: "See notes",
+        type: H5PFieldType.Text,
+      },
+      {
+        label: "Navbar help section label",
+        name: "navbarHelpSectionLabel",
+        default: "Help",
+        type: H5PFieldType.Text,
+      },
     ],
   },
 ];
