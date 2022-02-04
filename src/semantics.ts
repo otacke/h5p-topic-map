@@ -317,60 +317,23 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
       {
         label: "Navbar help section title",
         name: "navbarHelpSectionTitle",
-        default: "Hjelp",
+        default: "Help",
         type: H5PFieldType.Text,
       },
       {
-        label: "Navbar help section left part one",
-        name: "navbarHelpSectionLeftPartOne",
+        label: "Navbar help section left",
+        name: "navbarHelpSectionLeft",
+        widget: "html",
         default:
-          "Formålet med denne oppgaven er å forbedre læringen din ved å knytte dine egne notater opp mot et tankekart. Tankekartet består av hendelser (bokser) og sammenhenger (piler). Du skal legge inn notater til både hendelser og sammenhenger.",
+          "<p>The purpose of this exercise is to enhance your learning by linking your own notes to a topic map. The topic map consists of events (boxes) and connections (arrows). You must enter notes for both events and connections.</p><br /><p>Click or tap the boxes and arrows to add a note to an event or connection. The notes you enter are automatically saved locally in the browser of the device you are using, so you can continue on or read the notes at a later time.</p>",
         type: H5PFieldType.Text,
       },
       {
-        label: "Navbar help section left part two",
-        name: "navbarHelpSectionLeftPartTwo",
+        label: "Navbar help section right",
+        name: "navbarHelpSectionRight",
+        widget: "html",
         default:
-          "Trykk på boksene og pilene for å legge til et notat til en hendelse eller en sammenheng. Notatene du skriver inn, blir automatisk lagret lokalt i nettleseren på datamaskinen du bruker, slik at du kan fortsette på eller lese notatene på et senere tidspunkt.",
-        type: H5PFieldType.Text,
-      },
-      {
-        label: "Navbar help section right part one title",
-        name: "navbarHelpSectionRightPartOneTitle",
-        default: "Progresjonsmåleren",
-        type: H5PFieldType.Text,
-      },
-      {
-        label: "Navbar help section right part one body",
-        name: "navbarHelpSectionRightPartOneBody",
-        default:
-          "viser hvor mange prosent av hendelsene og sammenhengene som har fått notater. 100% betyr at du har lagt inn notater på alle tilgjengelige stader.",
-        type: H5PFieldType.Text,
-      },
-      {
-        label: "Navbar help section right part two title",
-        name: "navbarHelpSectionRightPartTwoTitle",
-        default: "Eksporter notater",
-        type: H5PFieldType.Text,
-      },
-      {
-        label: "Navbar help section right part two body",
-        name: "navbarHelpSectionRightPartTwoBody",
-        default:
-          "gir deg en oversikt over alle notatene du har skrevet. Der kan du skrive ut eller kopiere notatene for å f.eks. å lime dem inn i et dokument eller en e-post.",
-        type: H5PFieldType.Text,
-      },
-      {
-        label: "Navbar help section right part three title",
-        name: "navbarHelpSectionRightPartThreeTitle",
-        default: "Slett alle notater",
-        type: H5PFieldType.Text,
-      },
-      {
-        label: "Navbar help section right part three body",
-        name: "navbarHelpSectionRightPartThreeBody",
-        default:
-          "sletter alle notatene fra nettleseren på datamaskinen du bruker.",
+          "<p><strong>Progress bar</strong> shows what percentage of the events and connections have received notes. 100% means you have posted notes in all available places.</p><br /><p><strong>Export the notes</strong> gives you an overview of all the notes you have written. There you can print or copy the notes to e.g. paste them into a document or email.</p><br /><p><strong>Delete all notes</strong> removes all notes from the browser on the device you are using.</p>",
         type: H5PFieldType.Text,
       },
     ],

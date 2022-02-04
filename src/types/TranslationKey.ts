@@ -25,11 +25,5 @@ export type TranslationKey =
   | "navbarHelpSectionLabel"
   | "fullscreenButtonLabel"
   | "navbarHelpSectionTitle"
-  | "navbarHelpSectionLeftPartOne"
-  | "navbarHelpSectionLeftPartTwo"
-  | "navbarHelpSectionRightPartOneTitle"
-  | "navbarHelpSectionRightPartOneBody"
-  | "navbarHelpSectionRightPartTwoTitle"
-  | "navbarHelpSectionRightPartTwoBody"
-  | "navbarHelpSectionRightPartThreeTitle"
-  | "navbarHelpSectionRightPartThreeBody";
+  | "navbarHelpSectionLeft"
+  | "navbarHelpSectionRight";
