@@ -17,10 +17,12 @@ export const HelpSection: React.FC = () => {
           <div className={styles.mainBodyText}>
             <div
               className={styles.mainBodyTextLeft}
+              // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html: mainBodyTextLeft }}
             />
             <div
               className={styles.mainBodyTextRight}
+              // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html: mainBodyTextRight }}
             />
           </div>
