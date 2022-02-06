@@ -6,7 +6,6 @@ import {
   List,
   Trigger,
   Content,
-  TabsContent,
 } from "@radix-ui/react-tabs";
 import styles from "./DialogTabs.module.scss";
 import { DialogContent } from "../../../types/DialogContent";
