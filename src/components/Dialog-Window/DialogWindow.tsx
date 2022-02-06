@@ -2,7 +2,6 @@ import {
   Close,
   Content,
   Description,
-  Dialog,
   Overlay,
   Root,
   Title,

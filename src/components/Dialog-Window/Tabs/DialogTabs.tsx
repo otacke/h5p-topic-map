@@ -1,12 +1,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable react/no-array-index-key */
 import * as React from "react";
-import {
-  Root,
-  List,
-  Trigger,
-  Content,
-} from "@radix-ui/react-tabs";
+import { Root, List, Trigger, Content } from "@radix-ui/react-tabs";
 import styles from "./DialogTabs.module.scss";
 import { DialogContent } from "../../../types/DialogContent";
 import { DialogText } from "../Text/DialogText";
