@@ -18,9 +18,14 @@ export type TranslationKey =
   | "dialogResourcesAdd"
   | "dialogWordsLabel"
   | "fullscreenButtonLabel"
+<<<<<<< HEAD
   | "navbarTabsListAriaLabel"
   | "navbarTopicMapSectionLabel"
   | "navbarNotesSectionLabel"
   | "navbarHelpSectionLabel"
   | "navbarHelpSectionTitle"
   | "navbarHelpSectionBody";
+=======
+  | "dialogResourcesLabel"
+  | "dialogTextLabel";
+>>>>>>> Add l10n translation for tabs
