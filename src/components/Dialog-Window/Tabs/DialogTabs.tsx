@@ -14,9 +14,17 @@ import { DialogText } from "../Text/DialogText";
 import { DialogResources } from "../Resources/DialogResources";
 import { DialogVideo } from "../Video/DialogVideo";
 import { DialogAudio } from "../Audio/DialogAudio";
+import { useL10n } from "../../../hooks/useLocalization";
 
 export type TabProps = {
   tabContents: DialogContent;
+};
+
+type Translation = {
+  audio: string;
+  video: string;
+  links: string;
+  text: string;
 };
 
 const defaultTabValue = (tabContents: DialogContent): string => {
@@ -34,33 +42,36 @@ const defaultTabValue = (tabContents: DialogContent): string => {
   }
 };
 
-const tabLabelItems = (tabContents: DialogContent): JSX.Element[] => {
+const tabLabelItems = (
+  tabContents: DialogContent,
+  translation: Translation,
+): JSX.Element[] => {
   const items = [];
   tabContents.text
     ? items.push(
         <Trigger value="Text" className={styles.trigger}>
-          Textl10n
+          {translation.text}
         </Trigger>,
       )
     : null;
   tabContents.links
     ? items.push(
         <Trigger key="links" className={styles.trigger} value="Resources">
-          Resourcesl10n
+          {translation.links}
         </Trigger>,
       )
     : null;
   tabContents.video && tabContents.video.path
     ? items.push(
         <Trigger key="video" className={styles.trigger} value="Video">
-          Videol10n
+          {translation.video}
         </Trigger>,
       )
     : null;
   tabContents.audio && tabContents.audio.file && tabContents.audio.file.path
     ? items.push(
         <Trigger key="audio" className={styles.trigger} value="Audio">
-          Audiol10n
+          {translation.audio}
         </Trigger>,
       )
     : null;
@@ -118,6 +129,13 @@ const tabItems = (tabContents: DialogContent): JSX.Element[] => {
 };
 
 export const DialogTabs: React.FC<TabProps> = ({ tabContents }) => {
+  const translation: Translation = {
+    audio: useL10n("copyrightAudio"),
+    video: useL10n("copyrightVideo"),
+    links: useL10n("dialogResourcesLabel"),
+    text: useL10n("dialogTextLabel"),
+  };
+
   return (
     <Root
       className={styles.tabs}
@@ -125,7 +143,7 @@ export const DialogTabs: React.FC<TabProps> = ({ tabContents }) => {
       orientation="vertical"
     >
       <List className={styles.list} aria-label="tabs list">
-        {tabLabelItems(tabContents)}
+        {tabLabelItems(tabContents, translation)}
       </List>
       {tabItems(tabContents)}
     </Root>

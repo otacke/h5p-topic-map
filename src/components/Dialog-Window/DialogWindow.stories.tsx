@@ -54,3 +54,15 @@ DialogWindowLong.args = {
   },
   open: true,
 };
+
+export const DialogWindowTabs = Template.bind({});
+DialogWindowTabs.args = {
+  item: {
+    ...item,
+    dialog: {
+      ...item.dialog,
+      links: ["www.google.com", "www.youtube.com"],
+    },
+  },
+  open: true,
+};
