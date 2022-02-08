@@ -314,6 +314,20 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         default: "Help",
         type: H5PFieldType.Text,
       },
+      {
+        label: "Navbar help section title",
+        name: "navbarHelpSectionTitle",
+        default: "Help",
+        type: H5PFieldType.Text,
+      },
+      {
+        label: "Navbar help section body",
+        name: "navbarHelpSectionBody",
+        widget: "html",
+        default:
+          "<p>The purpose of this exercise is to enhance your learning by linking your own notes to a topic map. The topic map consists of events (boxes) and connections (arrows). You must enter notes for both events and connections.</p><br /><p>Click or tap the boxes and arrows to add a note to an event or connection. The notes you enter are automatically saved locally in the browser of the device you are using, so you can continue on or read the notes at a later time.</p><br /><p><strong>Progress bar</strong> shows what percentage of the events and connections have received notes. 100% means you have posted notes in all available places.</p><br /><p><strong>Export the notes</strong> gives you an overview of all the notes you have written. There you can print or copy the notes to e.g. paste them into a document or email.</p><br /><p><strong>Delete all notes</strong> removes all notes from the browser on the device you are using.</p>",
+        type: H5PFieldType.Text,
+      },
     ],
   },
 ];

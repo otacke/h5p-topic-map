@@ -21,4 +21,6 @@ export type TranslationKey =
   | "navbarTabsListAriaLabel"
   | "navbarTopicMapSectionLabel"
   | "navbarNotesSectionLabel"
-  | "navbarHelpSectionLabel";
+  | "navbarHelpSectionLabel"
+  | "navbarHelpSectionTitle"
+  | "navbarHelpSectionBody";

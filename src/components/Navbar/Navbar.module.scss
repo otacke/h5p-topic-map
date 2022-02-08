@@ -1,13 +1,13 @@
 .mainBody {
   display: flex;
-  background-color: #3d6060;
+  background-color: var(--theme-color-2);
   flex-direction: row;
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 0.5rem 0.5rem;
 }
 
 .navbarTitle {
-  font-size: 22px;
+  font-size: 11px;
   background-color: transparent;
   color: #ffffff;
   border: none;
@@ -19,7 +19,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-  padding-right: 1rem;
+  padding-right: 0.3rem;
   padding-top: 0;
   color: #ffffff;
 
@@ -36,5 +36,28 @@
 
 .sectionsMenu {
   position: absolute;
-  right: 2rem;
+  top: 1.6rem;
+  right: 1.3rem;
+  font-size: 13px;
+}
+
+@media (min-width: 768px) {
+  .mainBody {
+    padding: 1rem 2rem;
+  }
+
+  .sectionTitle {
+    padding-right: 1rem;
+    font-size: inherit;
+  }
+
+  .sectionsMenu {
+    right: 2rem;
+    font-size: inherit;
+    top: 2rem;
+  }
+
+  .navbarTitle {
+    font-size: inherit;
+  }
 }
