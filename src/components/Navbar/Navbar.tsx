@@ -45,7 +45,7 @@ export const Navbar: React.FC<NavbarProps> = ({ navbarTitle }) => {
           >
             {helpSectionLabel}
           </Trigger>
-          <Trigger
+          {/* <Trigger
             className={styles.sectionTitle}
             key="▰▰▰▰▱▱▱▱▱▱ 40%"
             value="▰▰▰▰▱▱▱▱▱▱ 40%"
@@ -53,14 +53,7 @@ export const Navbar: React.FC<NavbarProps> = ({ navbarTitle }) => {
           >
             ▰▰▰▰▱▱▱▱▱▱ 40%
           </Trigger>
-          <Trigger
-            className={styles.sectionTitle}
-            key="©"
-            value="©"
-            aria-label="Copyright"
-          >
-            ©
-          </Trigger>
+          */}
         </TabsList>
         <Content
           className={styles.sectionContent}
@@ -83,16 +76,13 @@ export const Navbar: React.FC<NavbarProps> = ({ navbarTitle }) => {
         >
           <HelpSection />
         </Content>
-        <Content
+        {/* <Content
           className={styles.sectionContent}
           key="▰▰▰▰▱▱▱▱▱▱ 40%"
           value="▰▰▰▰▱▱▱▱▱▱ 40%"
         >
           <h3>Progress bar section</h3>
-        </Content>
-        <Content className={styles.sectionContent} key="©" value="©">
-          <h3>Copyright info</h3>
-        </Content>
+        </Content> */}
       </Tabs>
     </div>
   );

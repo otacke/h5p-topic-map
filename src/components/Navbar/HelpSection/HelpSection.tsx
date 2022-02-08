@@ -4,29 +4,19 @@ import styles from "./HelpSection.module.scss";
 
 export const HelpSection: React.FC = () => {
   const mainBodyTitle = useL10n("navbarHelpSectionTitle");
-  const mainBodyTextLeft = useL10n("navbarHelpSectionLeft");
-  const mainBodyTextRight = useL10n("navbarHelpSectionRight");
+  const mainBodyText = useL10n("navbarHelpSectionBody");
 
   return (
     <div className={styles.mainBody}>
-      <div className={styles.mainBodyContentWrapper}>
-        <div className={styles.mainBodyContent}>
-          <div className={styles.mainBodyTitle}>
-            <p>{mainBodyTitle}</p>
-          </div>
-          <div className={styles.mainBodyText}>
-            <div
-              className={styles.mainBodyTextLeft}
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: mainBodyTextLeft }}
-            />
-            <div
-              className={styles.mainBodyTextRight}
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: mainBodyTextRight }}
-            />
-          </div>
+      <div className={styles.mainBodyContent}>
+        <div className={styles.mainBodyTitle}>
+          <p>{mainBodyTitle}</p>
         </div>
+        <div
+          className={styles.mainBodyText}
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: mainBodyText }}
+        />
       </div>
     </div>
   );

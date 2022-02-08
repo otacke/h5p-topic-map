@@ -17,13 +17,10 @@ export type TranslationKey =
   | "dialogResourcesCustomLinks"
   | "dialogResourcesAdd"
   | "dialogWordsLabel"
-  | "navbarHelpSectionLabel"
-  | "navbarHelpSectionLeft"
+  | "fullscreenButtonLabel"
   | "navbarTabsListAriaLabel"
   | "navbarTopicMapSectionLabel"
   | "navbarNotesSectionLabel"
   | "navbarHelpSectionLabel"
-  | "fullscreenButtonLabel"
   | "navbarHelpSectionTitle"
-  | "navbarHelpSectionLeft"
-  | "navbarHelpSectionRight";
+  | "navbarHelpSectionBody";
