@@ -124,7 +124,7 @@
             {
               "label": "Index",
               "description": "⚠️ Advanced feature: Used for manually setting tab order.",
-              "name": "label",
+              "name": "index",
               "type": "number",
               "optional": true
             }
@@ -249,7 +249,7 @@
             },
             {
               "label": "Index",
-              "name": "label",
+              "name": "index",
               "type": "number",
               "optional": true,
               "widget": "none"
