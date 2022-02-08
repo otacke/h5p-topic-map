@@ -32,6 +32,7 @@
   z-index: calc(var(--overlay-z-index) + 1);
   padding: 1.5625rem;
   overflow: auto;
+  overflow-y: hidden;
 }
 
 .dialogContent {
@@ -45,7 +46,7 @@
 .tabWrapper {
   width: 45%;
   display: inline-block;
-  max-height: 90%;
+  height: 90%;
 }
 
 .noteWrapper {

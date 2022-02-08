@@ -68,19 +68,3 @@ export const DialogWindow: FC<DialogWindowProps> = ({
     </Root>
   );
 };
-
-// <Root open={open} onOpenChange={onOpenChange}>
-//   <Overlay className={styles.overlay} />
-//   <Content className={styles.dialogContent}>
-//     <Title className={styles.dialogTitle}>{item.label}</Title>
-//     <div style={{width: "45%", display: "inline-block"}}>
-//       <DialogTabs tabContents={item.dialog} />
-//     </div>
-//     <div style={{float: "right", width: "45%", height:"40vh"}}>
-//       <DialogNote maxLength={10} id="random"/>
-//     </div>
-//     <Close className={styles.closeButton} aria-label={ariaLabel}>
-//       <Cross2Icon />
-//     </Close>
-//   </Content>
-// </Root>

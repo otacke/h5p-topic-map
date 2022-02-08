@@ -139,7 +139,9 @@ export const DialogTabs: React.FC<TabProps> = ({ tabContents }) => {
       <List className={styles.list} aria-label="tabs list">
         {tabLabelItems(tabContents, translation)}
       </List>
-      {tabItems(tabContents)}
+      <div style={{ overflowY: "scroll", overflow: "auto", height: "100%" }}>
+        {tabItems(tabContents)}
+      </div>
     </Root>
   );
 };
