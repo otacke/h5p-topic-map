@@ -20,20 +20,43 @@
   cursor: pointer;
 }
 
-.dialogContent {
+.dialogContent,
+.dialogContentWithNote {
   background-color: white;
   border-radius: 6px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90vw;
-  max-width: 28.125rem;
-  max-height: 85vh;
-  padding: 1.5625rem;
+  height: 85vh;
   z-index: calc(var(--overlay-z-index) + 1);
+  padding: 1.5625rem;
+  overflow: auto;
 }
-.dialogContent:focus {
+
+.dialogContent {
+  width: 40vw;
+}
+
+.dialogContentWithNote {
+  width: 70vw;
+}
+
+.tabWrapper {
+  width: 45%;
+  display: inline-block;
+  max-height: 90%;
+}
+
+.noteWrapper {
+  float: right;
+  width: 45%;
+  height: 70vh;
+  padding-top: 2rem;
+}
+
+.dialogContent:focus,
+.dialogContentWithNote:focus {
   outline: none;
 }
 

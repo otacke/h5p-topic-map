@@ -66,3 +66,16 @@ DialogWindowTabs.args = {
   },
   open: true,
 };
+
+export const DialogWindowWithNote = Template.bind({});
+DialogWindowWithNote.args = {
+  item: {
+    ...item,
+    dialog: {
+      ...item.dialog,
+      links: ["www.google.com", "www.youtube.com"],
+      note: true,
+    },
+  },
+  open: true,
+};
