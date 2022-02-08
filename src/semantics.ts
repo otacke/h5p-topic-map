@@ -83,7 +83,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               label: "Index",
               description:
                 "⚠️ Advanced feature: Used for manually setting tab order.",
-              name: "label",
+              name: "index",
               type: H5PFieldType.Number,
               optional: true,
             },
@@ -161,7 +161,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
 
             {
               label: "Index",
-              name: "label",
+              name: "index",
               type: H5PFieldType.Number,
               optional: true,
               widget: "none",
