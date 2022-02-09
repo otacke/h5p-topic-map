@@ -3,6 +3,7 @@ import { Trigger, Content, Tabs, TabsList } from "@radix-ui/react-tabs";
 import styles from "./Navbar.module.scss";
 import { useL10n } from "../../hooks/useLocalization";
 import { HelpSection } from "./HelpSection/HelpSection";
+import { NotesSection } from "./NotesSection/NotesSection";
 
 export type NavbarProps = {
   navbarTitle: string;
@@ -67,7 +68,7 @@ export const Navbar: React.FC<NavbarProps> = ({ navbarTitle }) => {
           key={notesSectionLabel}
           value={notesSectionLabel}
         >
-          <h3>Notes section</h3>
+          <NotesSection />
         </Content>
         <Content
           className={styles.sectionContent}

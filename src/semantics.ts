@@ -352,6 +352,31 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         default: "Tabs List",
         type: H5PFieldType.Text,
       },
+      {
+        label: "Navbar notes section title",
+        name: "navbarNotesSectionTitle",
+        default: "See notes",
+        type: H5PFieldType.Text,
+      },
+      {
+        label: "Navbar notes section body",
+        name: "navbarNotesSectionBody",
+        default:
+          "Here you see an overview of all the notes you have written. You can print or copy the notes to paste them into a document or e-mail, for example.",
+        type: H5PFieldType.Text,
+      },
+      {
+        label: "Navbar notes print button label",
+        name: "navbarNotesSectionPrintLabel",
+        default: "Print",
+        type: H5PFieldType.Text,
+      },
+      {
+        label: "Navbar notes delete all notes button label",
+        name: "navbarNotesSectionDeleteLabel",
+        default: "Delete all notes",
+        type: H5PFieldType.Text,
+      },
     ],
   },
 ];
