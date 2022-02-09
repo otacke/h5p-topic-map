@@ -73,6 +73,12 @@
               "type": "group",
               "fields": [
                 {
+                  "label": "dialogLabelHack",
+                  "name": "hiddenText",
+                  "type": "text",
+                  "widget": "none"
+                },
+                {
                   "label": "Text",
                   "name": "text",
                   "type": "text",
@@ -198,6 +204,12 @@
               "name": "dialog",
               "type": "group",
               "fields": [
+                {
+                  "label": "dialogLabelHack",
+                  "name": "hiddenText",
+                  "type": "text",
+                  "widget": "none"
+                },
                 {
                   "label": "Text",
                   "name": "text",

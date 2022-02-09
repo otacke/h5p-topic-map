@@ -11,6 +11,12 @@ export const itemDialog: Array<H5PField> = [
     type: H5PFieldType.Group,
     fields: [
       {
+        label: "dialogLabelHack",
+        name: "hiddenText",
+        type: H5PFieldType.Text,
+        widget: "none",
+      },
+      {
         label: "Text",
         name: "text",
         type: H5PFieldType.Text,
