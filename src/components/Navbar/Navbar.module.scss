@@ -1,4 +1,5 @@
-.mainBody {
+.mainBody,
+.notesList {
   display: flex;
   background-color: var(--theme-color-2);
   flex-direction: row;
@@ -41,8 +42,13 @@
   font-size: 13px;
 }
 
+.notesList {
+  background-color: #ffffff;
+}
+
 @media (min-width: 768px) {
-  .mainBody {
+  .mainBody,
+  .notesList {
     padding: 1rem 2rem;
   }
 

@@ -2,11 +2,22 @@ import * as React from "react";
 import { useL10n } from "../../../hooks/useLocalization";
 import styles from "./NotesSection.module.scss";
 
-export const NotesSection: React.FC = () => {
+export type NotesSectionProps = {
+  setVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const NotesSection: React.FC<NotesSectionProps> = ({
+  setVisibility,
+}) => {
   const mainBodyTitle = useL10n("navbarNotesSectionTitle");
   const mainBodyText = useL10n("navbarNotesSectionBody");
   const printText = useL10n("navbarNotesSectionPrintLabel");
   const deleteText = useL10n("navbarNotesSectionDeleteLabel");
+
+  React.useEffect(() => {
+    setVisibility(true);
+    return () => setVisibility(false);
+  });
 
   return (
     <div className={styles.mainBody}>
