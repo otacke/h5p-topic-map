@@ -340,6 +340,12 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         default: "Text",
         type: H5PFieldType.Text,
       },
+      {
+        label: "Note",
+        name: "dialogNoteLabel",
+        default: "Note",
+        type: H5PFieldType.Text,
+      },
     ],
   },
 ];

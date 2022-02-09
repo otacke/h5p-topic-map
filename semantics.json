@@ -477,6 +477,12 @@
         "default": "Text",
 >>>>>>> Add l10n translation for tabs
         "type": "text"
+      },
+      {
+        "label": "Note",
+        "name": "dialogNoteLabel",
+        "default": "Note",
+        "type": "text"
       }
     ]
   }

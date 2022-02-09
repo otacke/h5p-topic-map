@@ -1,3 +1,4 @@
+import { Title } from "@radix-ui/react-dialog";
 import * as React from "react";
 import { useL10n } from "../../../hooks/useLocalization";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
@@ -24,6 +25,7 @@ export const DialogNote: React.FC<NoteProps> = ({ maxLength, id }) => {
   const completedTextLabel = useL10n("dialogNoteMarkAsCompleted");
   const placeholderText = useL10n("dialogNotePlaceholder");
   const wordTextLabel = useL10n("dialogWordsLabel");
+  const wordNoteLabel = useL10n("dialogNoteLabel");
 
   const handleNoteCompleted = (): void => {
     setMarkedAsCompleted(!noteCompleted);
@@ -78,6 +80,7 @@ export const DialogNote: React.FC<NoteProps> = ({ maxLength, id }) => {
   return (
     <form>
       <label htmlFor="note">
+        <p className={styles.noteLabel}>{wordNoteLabel}</p>
         <p className={styles.dynamicSavingText}>{dynamicSavingText}</p>
         <div className={styles.textAreaWrapper}>
           <textarea
