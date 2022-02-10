@@ -22,12 +22,7 @@ export const itemDialog: Array<H5PField> = [
         type: H5PFieldType.Text,
         widget: "html",
         optional: true,
-        tags: [
-          "p",
-          "br",
-          "strong",
-          "em",
-        ]
+        tags: ["p", "br", "strong", "em"],
       },
       {
         label: "Video",
@@ -53,12 +48,7 @@ export const itemDialog: Array<H5PField> = [
             type: H5PFieldType.Text,
             widget: "html",
             optional: true,
-            tags: [
-              "p",
-              "br",
-              "strong",
-              "em",
-            ]
+            tags: ["p", "br", "strong", "em"],
           },
         ],
       },
