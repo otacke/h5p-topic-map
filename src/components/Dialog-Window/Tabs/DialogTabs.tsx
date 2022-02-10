@@ -12,6 +12,7 @@ import { useL10n } from "../../../hooks/useLocalization";
 
 export type TabProps = {
   tabContents: DialogContent;
+  id: string;
 };
 
 type Translation = {
@@ -72,7 +73,7 @@ const tabLabelItems = (
   return items;
 };
 
-const tabItems = (tabContents: DialogContent): JSX.Element[] => {
+const tabItems = (tabContents: DialogContent, id: string): JSX.Element[] => {
   const items: JSX.Element[] = [];
   tabContents.text
     ? items.push(
@@ -88,7 +89,7 @@ const tabItems = (tabContents: DialogContent): JSX.Element[] => {
   tabContents.links
     ? items.push(
         <Content key="links" value="Resources">
-          <DialogResources relevantLinks={tabContents.links} id="testId" />
+          <DialogResources relevantLinks={tabContents.links} id={id} />
         </Content>,
       )
     : null;
@@ -122,7 +123,7 @@ const tabItems = (tabContents: DialogContent): JSX.Element[] => {
   return items;
 };
 
-export const DialogTabs: React.FC<TabProps> = ({ tabContents }) => {
+export const DialogTabs: React.FC<TabProps> = ({ tabContents, id }) => {
   const translation: Translation = {
     audio: useL10n("copyrightAudio"),
     video: useL10n("copyrightVideo"),
@@ -140,7 +141,7 @@ export const DialogTabs: React.FC<TabProps> = ({ tabContents }) => {
         {tabLabelItems(tabContents, translation)}
       </List>
       <div style={{ overflowY: "scroll", overflow: "auto", height: "100%" }}>
-        {tabItems(tabContents)}
+        {tabItems(tabContents, id)}
       </div>
     </Root>
   );

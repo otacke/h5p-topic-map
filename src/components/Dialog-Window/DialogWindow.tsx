@@ -35,7 +35,7 @@ export const DialogWindow: FC<DialogWindowProps> = ({
   let content = (
     <Content className={styles.dialogContent}>
       <Title className={styles.dialogTitle}>{item.label}</Title>
-      <DialogTabs tabContents={item.dialog} />
+      <DialogTabs tabContents={item.dialog} id={item.id} />
       <Close className={styles.closeButton} aria-label={ariaLabel}>
         <Cross2Icon />
       </Close>
@@ -47,10 +47,10 @@ export const DialogWindow: FC<DialogWindowProps> = ({
       <Content className={styles.dialogContentWithNote}>
         <Title className={styles.dialogTitle}>{item.label}</Title>
         <div className={styles.tabWrapper}>
-          <DialogTabs tabContents={item.dialog} />
+          <DialogTabs tabContents={item.dialog} id={item.id} />
         </div>
         <div className={styles.noteWrapper}>
-          <DialogNote maxLength={10} id="random" />
+          <DialogNote maxLength={10} id={item.id} />
         </div>
         <Close className={styles.closeButton} aria-label={ariaLabel}>
           <Cross2Icon />
