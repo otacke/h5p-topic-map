@@ -23,4 +23,7 @@ export type TranslationKey =
   | "navbarNotesSectionLabel"
   | "navbarHelpSectionLabel"
   | "navbarHelpSectionTitle"
-  | "navbarHelpSectionBody";
+  | "navbarHelpSectionBody"
+  | "dialogResourcesLabel"
+  | "dialogTextLabel"
+  | "dialogNoteLabel";
