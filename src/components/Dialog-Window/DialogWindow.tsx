@@ -35,6 +35,9 @@ export const DialogWindow: FC<DialogWindowProps> = ({
   let content = (
     <Content className={styles.dialogContent}>
       <Title className={styles.dialogTitle}>{item.label}</Title>
+      {item.dialog.text ? (
+        <Description dangerouslySetInnerHTML={{ __html: item.dialog.text }} />
+      ) : null}
       <DialogTabs tabContents={item.dialog} id={item.id} />
       <Close className={styles.closeButton} aria-label={ariaLabel}>
         <Cross2Icon />
