@@ -43,7 +43,7 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
           alt: "",
         },
         label: "Sheep close up",
-        description: "",
+        description: "Sheep looking right at you.",
         widthPercentage: 30,
         heightPercentage: 60,
         xPercentagePosition: 50,
