@@ -20,7 +20,9 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({ item, onClick }) => {
       )}
 
       <div
-        className={`${styles.inner} ${item.topicImage?.path ?? styles.noImage}`}
+        className={`${styles.inner} ${
+          item.topicImage?.path ? "" : styles.noImage
+        }`}
       >
         <div className={styles.label}>{item.label}</div>
         {item.description && (
