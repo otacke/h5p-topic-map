@@ -13,12 +13,22 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({ item, onClick }) => {
     <button type="button" className={styles.topicMapItem} onClick={onClick}>
       {item.topicImage?.path && (
         <img
-          className={styles.bgImage}
+          className={styles.image}
           src={item.topicImage.path}
           alt={item.topicImage.alt ?? ""}
         />
       )}
-      <div className={styles.title}>{item.label}</div>
+
+      <div
+        className={`${styles.inner} ${
+          item.topicImage?.path ? "" : styles.noImage
+        }`}
+      >
+        <div className={styles.label}>{item.label}</div>
+        {item.description && (
+          <div className={styles.description}>{item.description}</div>
+        )}
+      </div>
     </button>
   );
 };

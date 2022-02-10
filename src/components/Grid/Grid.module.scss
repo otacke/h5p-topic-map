@@ -18,6 +18,10 @@
   overflow: hidden;
   position: absolute;
   z-index: 1;
+
+  &:focus-within {
+    box-shadow: 0 0 0 2px #2360c5, 0 0 0 3px rgb(255, 255, 255);
+  }
 }
 
 .fullscreenStyle {
