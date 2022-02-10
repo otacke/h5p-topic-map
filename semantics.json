@@ -483,6 +483,12 @@
         "name": "dialogNoteLabel",
         "default": "Note",
         "type": "text"
+      },
+      {
+        "label": "Note",
+        "name": "dialogTabListAriaLabel",
+        "default": "Tabs List",
+        "type": "text"
       }
     ]
   }

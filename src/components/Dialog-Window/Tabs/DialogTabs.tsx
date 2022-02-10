@@ -131,18 +131,18 @@ export const DialogTabs: React.FC<TabProps> = ({ tabContents, id }) => {
     text: useL10n("dialogTextLabel"),
   };
 
+  const listAriaLabel = useL10n("dialogTabListAriaLabel");
+
   return (
     <Root
       className={styles.tabs}
       defaultValue={defaultTabValue(tabContents)}
       orientation="vertical"
     >
-      <List className={styles.list} aria-label="tabs list">
+      <List className={styles.list} aria-label={listAriaLabel}>
         {tabLabelItems(tabContents, translation)}
       </List>
-      <div style={{ overflowY: "scroll", overflow: "auto", height: "100%" }}>
-        {tabItems(tabContents, id)}
-      </div>
+      <div className={styles.tabItemWrapper}>{tabItems(tabContents, id)}</div>
     </Root>
   );
 };

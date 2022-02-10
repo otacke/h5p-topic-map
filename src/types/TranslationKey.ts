@@ -26,4 +26,5 @@ export type TranslationKey =
   | "navbarHelpSectionBody"
   | "dialogResourcesLabel"
   | "dialogTextLabel"
-  | "dialogNoteLabel";
+  | "dialogNoteLabel"
+  | "dialogTabListAriaLabel";

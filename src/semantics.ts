@@ -346,6 +346,12 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         default: "Note",
         type: H5PFieldType.Text,
       },
+      {
+        label: "Note",
+        name: "dialogTabListAriaLabel",
+        default: "Tabs List",
+        type: H5PFieldType.Text,
+      },
     ],
   },
 ];
