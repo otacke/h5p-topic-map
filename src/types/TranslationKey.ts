@@ -31,4 +31,6 @@ export type TranslationKey =
   | "navbarNotesSectionTitle"
   | "navbarNotesSectionBody"
   | "navbarNotesSectionPrintLabel"
-  | "navbarNotesSectionDeleteLabel";
+  | "navbarNotesSectionDeleteLabel"
+  | "navbarNotesEmptyListLabel"
+  | "navbarNotesMissingNoteLabel";

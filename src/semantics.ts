@@ -377,6 +377,18 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         default: "Delete all notes",
         type: H5PFieldType.Text,
       },
+      {
+        label: "Navbar notes empty list label",
+        name: "navbarNotesEmptyListLabel",
+        default: "No dialogue notes available in this topic map.",
+        type: H5PFieldType.Text,
+      },
+      {
+        label: "Navbar notes missing note label",
+        name: "navbarNotesMissingNoteLabel",
+        default: "━ Notes are missing for this card!",
+        type: H5PFieldType.Text,
+      },
     ],
   },
 ];

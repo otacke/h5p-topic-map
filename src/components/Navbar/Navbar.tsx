@@ -4,13 +4,18 @@ import styles from "./Navbar.module.scss";
 import { useL10n } from "../../hooks/useLocalization";
 import { HelpSection } from "./HelpSection/HelpSection";
 import { NotesSection } from "./NotesSection/NotesSection";
-import { NotesList } from "./NotesSection/NotesList";
+import { NotesList } from "./NotesSection/NotesList/NotesList";
+import { TopicMapItemType } from "../../types/TopicMapItemType";
 
 export type NavbarProps = {
   navbarTitle: string;
+  topicMapItems: TopicMapItemType[];
 };
 
-export const Navbar: React.FC<NavbarProps> = ({ navbarTitle }) => {
+export const Navbar: React.FC<NavbarProps> = ({
+  navbarTitle,
+  topicMapItems,
+}) => {
   const navbarAriaLabel = useL10n("navbarTabsListAriaLabel");
   const topicMapSectionLabel = useL10n("navbarTopicMapSectionLabel");
   const notesSectionLabel = useL10n("navbarNotesSectionLabel");
@@ -97,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({ navbarTitle }) => {
         </Tabs>
       </div>
       <div className={styles.notesList}>
-        {isNotesSectionShown && <NotesList />}
+        {isNotesSectionShown && <NotesList topicMapItems={topicMapItems} />}
       </div>
     </>
   );

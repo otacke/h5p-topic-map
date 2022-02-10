@@ -29,10 +29,18 @@ export const NotesSection: React.FC<NotesSectionProps> = ({
           <div className={styles.mainBodyText}>{mainBodyText}</div>
           <br />
           <div className={styles.mainBodyButtons}>
-            <button type="button" className={styles.mainBodyButton}>
+            <button
+              className={styles.mainBodyButton}
+              type="button"
+              aria-label={printText}
+            >
               {printText}
             </button>
-            <button type="button" className={styles.mainBodyButton}>
+            <button
+              className={styles.mainBodyButton}
+              type="button"
+              aria-label={deleteText}
+            >
               {deleteText}
             </button>
           </div>

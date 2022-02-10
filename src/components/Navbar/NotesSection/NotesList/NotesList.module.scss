@@ -1,0 +1,23 @@
+.mainBody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.mainBodyContent {
+  width: 75%;
+}
+
+.mainBodyListElementWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mainBodyListElementHeader {
+  font-weight: bold;
+}
