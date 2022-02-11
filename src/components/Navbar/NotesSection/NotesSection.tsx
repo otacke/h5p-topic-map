@@ -4,10 +4,14 @@ import styles from "./NotesSection.module.scss";
 
 export type NotesSectionProps = {
   setVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+  setDeleteConfirmationVisibility: React.Dispatch<
+    React.SetStateAction<boolean>
+  >;
 };
 
 export const NotesSection: React.FC<NotesSectionProps> = ({
   setVisibility,
+  setDeleteConfirmationVisibility,
 }) => {
   const mainBodyTitle = useL10n("navbarNotesSectionTitle");
   const mainBodyText = useL10n("navbarNotesSectionBody");
@@ -40,6 +44,7 @@ export const NotesSection: React.FC<NotesSectionProps> = ({
               className={styles.mainBodyButton}
               type="button"
               aria-label={deleteText}
+              onClick={() => setDeleteConfirmationVisibility(true)}
             >
               {deleteText}
             </button>

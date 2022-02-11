@@ -33,4 +33,7 @@ export type TranslationKey =
   | "navbarNotesSectionPrintLabel"
   | "navbarNotesSectionDeleteLabel"
   | "navbarNotesEmptyListLabel"
-  | "navbarNotesMissingNoteLabel";
+  | "navbarNotesMissingNoteLabel"
+  | "deleteNotesConfirmationWindowLabel"
+  | "deleteNotesConfirmLabel"
+  | "deleteNotesDenyLabel";

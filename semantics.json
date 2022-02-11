@@ -525,6 +525,24 @@
         "name": "navbarNotesMissingNoteLabel",
         "default": "━ Notes are missing for this card!",
         "type": "text"
+      },
+      {
+        "label": "Delete all notes confirmation window label",
+        "name": "deleteNotesConfirmationWindowLabel",
+        "default": "Are you sure you want to delete all your notes?",
+        "type": "text"
+      },
+      {
+        "label": "Delete all notes confirm deletion label",
+        "name": "deleteNotesConfirmLabel",
+        "default": "Confirm deletion",
+        "type": "text"
+      },
+      {
+        "label": "Delete all notes deny deletion label",
+        "name": "deleteNotesDenyLabel",
+        "default": "Cancel",
+        "type": "text"
       }
     ]
   }
