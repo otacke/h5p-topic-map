@@ -1,10 +1,10 @@
 import * as React from "react";
 import { getUserData } from "../../../../hooks/useLocalStorage";
 import { useL10n } from "../../../../hooks/useLocalization";
-import styles from "./NotesList.module.scss";
 import { ArrowButton } from "../../../ArrowButton/ArrowButton";
 import { ArrowButtonIconState } from "../../../../types/ArrowButtonIconState";
 import { TopicMapItemType } from "../../../../types/TopicMapItemType";
+import styles from "./NotesList.module.scss";
 
 export type NotesListProps = {
   topicMapItems: TopicMapItemType[];
@@ -17,8 +17,7 @@ export const NotesList: React.FC<NotesListProps> = ({ topicMapItems }) => {
 
   const userDataEntries = topicMapItems.map(item => {
     const doesNoteExist = item.id in userData && userData[item.id].note;
-    const isNoteCompleted =
-      item.id in userData && userData[item.id].noteCompleted;
+    const isNoteCompleted = doesNoteExist && userData[item.id].noteCompleted;
 
     return (
       item.dialog && ( // TODO add check if notes section is enabled for this dialogue
@@ -40,7 +39,13 @@ export const NotesList: React.FC<NotesListProps> = ({ topicMapItems }) => {
             >
               {item.label}
             </p>
-            <p>{doesNoteExist ? userData[item.id].note : missingNoteText}</p>
+            <p
+              aria-label={
+                doesNoteExist ? userData[item.id].note : missingNoteText
+              }
+            >
+              {doesNoteExist ? userData[item.id].note : missingNoteText}
+            </p>
           </div>
         </div>
       )
