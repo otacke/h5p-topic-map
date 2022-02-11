@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { DialogWindow } from "./DialogWindow";
+import { TopicMapItemType } from "../../types/TopicMapItemType";
 
 export default {
   title: "Organisms/DialogWindow",
@@ -17,7 +18,7 @@ const openClose = (open: boolean): void => {
   console.info("Toggle dialog", { open });
 };
 
-const item = {
+const item: TopicMapItemType = {
   id: "1",
   topicImage: {
     path: "https://images.unsplash.com/photo-1569587112025-0d460e81a126?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2370&q=80",
@@ -30,6 +31,7 @@ const item = {
   xPercentagePosition: 3,
   yPercentagePosition: 5,
   dialog: {
+    hasNote: true,
     text: "Dialog text",
   },
 };
@@ -47,6 +49,7 @@ DialogWindowLong.args = {
     ...item,
     dialog: {
       ...item.dialog,
+      hasNote: true,
       text: `You don't want to kill all your dark areas they are very important. I really recommend you use odorless thinner or your spouse is gonna run you right out into the yard and you'll be working by yourself. There we go. There's nothing wrong with having a tree as a friend.
 
   You can create anything that makes you happy. If we're going to have animals around we all have to be concerned about them and take care of them. Just use the old one inch brush. We spend so much of our life looking - but never seeing. Here we're limited by the time we have.`,
@@ -61,6 +64,7 @@ DialogWindowTabs.args = {
     ...item,
     dialog: {
       ...item.dialog,
+      hasNote: false,
       links: ["www.google.com", "www.youtube.com"],
     },
   },
@@ -74,7 +78,7 @@ DialogWindowWithNote.args = {
     dialog: {
       ...item.dialog,
       links: ["www.google.com", "www.youtube.com"],
-      note: true,
+      hasNote: true,
     },
   },
   open: true,

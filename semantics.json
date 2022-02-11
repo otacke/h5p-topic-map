@@ -73,10 +73,10 @@
               "type": "group",
               "fields": [
                 {
-                  "label": "dialogLabelHack",
-                  "name": "hiddenText",
-                  "type": "text",
-                  "widget": "none"
+                  "label": "Show notes textarea",
+                  "name": "hasNotes",
+                  "type": "boolean",
+                  "default": true
                 },
                 {
                   "label": "Text",
@@ -217,10 +217,10 @@
               "type": "group",
               "fields": [
                 {
-                  "label": "dialogLabelHack",
-                  "name": "hiddenText",
-                  "type": "text",
-                  "widget": "none"
+                  "label": "Show notes textarea",
+                  "name": "hasNotes",
+                  "type": "boolean",
+                  "default": true
                 },
                 {
                   "label": "Text",

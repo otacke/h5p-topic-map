@@ -15,6 +15,7 @@ const Template: ComponentStory<typeof DialogTabs> = args => (
 export const Tabs = Template.bind({});
 Tabs.args = {
   tabContents: {
+    hasNote: true,
     text: "Text text for testing Text text test.",
     links: ["www.youtube.com", "www.ndla.com"],
     video: {

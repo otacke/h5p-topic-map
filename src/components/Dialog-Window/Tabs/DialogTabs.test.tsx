@@ -5,7 +5,13 @@ import { DialogTabs } from "./DialogTabs";
 describe(DialogTabs.name, () => {
   it("should have rendered.", () => {
     const tabs = render(
-      <DialogTabs tabContents={{ text: "" }} id="test" />,
+      <DialogTabs
+        tabContents={{
+          text: "",
+          hasNote: true,
+        }}
+        id="test"
+      />,
     ).container;
 
     expect(tabs.querySelector("div")).toBeTruthy();

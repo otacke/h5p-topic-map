@@ -3,13 +3,14 @@ import * as React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { TopicMapItem, TopicMapItemProps } from "./TopicMapItem";
+import { TopicMapItemType } from "../../types/TopicMapItemType";
 
 export default {
   title: "Molecules/TopicMapItem",
   component: TopicMapItem,
 } as ComponentMeta<typeof TopicMapItem>;
 
-const item = {
+const item: TopicMapItemType = {
   id: "1",
   topicImage: {
     path: "https://images.unsplash.com/photo-1569587112025-0d460e81a126?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2370&q=80",
@@ -23,6 +24,7 @@ const item = {
   yPercentagePosition: 5,
   dialog: {
     text: "Dialog text",
+    hasNote: true,
   },
 };
 

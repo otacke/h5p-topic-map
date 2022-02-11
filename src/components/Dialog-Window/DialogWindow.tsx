@@ -45,7 +45,7 @@ export const DialogWindow: FC<DialogWindowProps> = ({
     </Content>
   );
 
-  if (item.dialog.note) {
+  if (item.dialog.hasNote) {
     content = (
       <Content className={styles.dialogContentWithNote}>
         <Title className={styles.dialogTitle}>{item.label}</Title>
