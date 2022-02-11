@@ -7,6 +7,7 @@ import { NotesSection } from "./NotesSection/NotesSection";
 import { NotesList } from "./NotesSection/NotesList/NotesList";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
 import { Dialog } from "../Dialog/Dialog";
+import { getUserData, setUserData } from "../../hooks/useLocalStorage";
 
 export type NavbarProps = {
   navbarTitle: string;
@@ -24,6 +25,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const deleteAllNotesText = useL10n("deleteNotesConfirmationWindowLabel");
   const deleteAllNotesConfirmText = useL10n("deleteNotesConfirmLabel");
   const deleteAllNotesDenyText = useL10n("deleteNotesDenyLabel");
+  const userData = getUserData();
 
   const [isNotesSectionShown, setIsNotesSectionIsShown] =
     React.useState<boolean>(false);
@@ -32,6 +34,13 @@ export const Navbar: React.FC<NavbarProps> = ({
     React.useState<boolean>(false);
 
   const deleteAllNotes = (): void => {
+    topicMapItems.forEach(item => {
+      if (item.id in userData) {
+        userData[item.id].note = undefined;
+        userData[item.id].noteCompleted = undefined;
+      }
+    });
+    setUserData(userData);
     setIsDeleteConfirmationVisible(false);
   };
 

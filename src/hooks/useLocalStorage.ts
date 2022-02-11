@@ -8,6 +8,13 @@ export const getUserData = (): UserData => {
   ) as UserData;
 };
 
+export const setUserData = (updatedUserData: UserData): void => {
+  localStorage.setItem(
+    "h5p-topic-map-userdata",
+    JSON.stringify(updatedUserData),
+  );
+};
+
 /**
  * Read the stored data from local storage based on the current default storage key.
  * Return a UserData object with correct types and a function to update it.
@@ -29,13 +36,6 @@ export const useLocalStorage = (
       userData.dialogId.links = userData.dialogId.links as Array<Link>;
     }
   }
-
-  const setUserData = (updatedUserData: UserData): void => {
-    localStorage.setItem(
-      "h5p-topic-map-userdata",
-      JSON.stringify(updatedUserData),
-    );
-  };
 
   return [userData, setUserData];
 };
