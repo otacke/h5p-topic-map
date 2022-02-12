@@ -79,9 +79,10 @@ const tabItems = (tabContents: DialogContent, id: string): JSX.Element[] => {
     ? items.push(
         <Content key="text" value="Text">
           <DialogText
+            description={tabContents.text}
             topicImage={undefined}
             introduction={undefined}
-            bodyText={tabContents.text}
+            bodyText={undefined}
           />
         </Content>,
       )

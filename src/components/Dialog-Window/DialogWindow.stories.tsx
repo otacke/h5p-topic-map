@@ -31,8 +31,8 @@ const item: TopicMapItemType = {
   xPercentagePosition: 3,
   yPercentagePosition: 5,
   dialog: {
-    hasNote: true,
-    text: "Dialog text",
+    hasNote: false,
+    text: "Den franske revolusjon var en periode med store sosiale og politiske omveltningene i Frankrike i perioden 1789-1799. Året 1789 markerer det første viktige vendepunktet under revolusjonen. 14. juli dette året brøt det ut masseopprør i Paris og fengselet Bastillen ble stormet.",
   },
 };
 
@@ -49,7 +49,7 @@ DialogWindowLong.args = {
     ...item,
     dialog: {
       ...item.dialog,
-      hasNote: true,
+      hasNote: false,
       text: `You don't want to kill all your dark areas they are very important. I really recommend you use odorless thinner or your spouse is gonna run you right out into the yard and you'll be working by yourself. There we go. There's nothing wrong with having a tree as a friend.
 
   You can create anything that makes you happy. If we're going to have animals around we all have to be concerned about them and take care of them. Just use the old one inch brush. We spend so much of our life looking - but never seeing. Here we're limited by the time we have.`,

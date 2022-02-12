@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import * as React from "react";
 import { useL10n } from "../../../hooks/useLocalization";
 import { Image } from "../../../types/H5P/Image";
@@ -5,12 +6,14 @@ import { formatCopyright } from "../../../utils/dialog.utils";
 import styles from "./DialogText.module.scss";
 
 export type DialogTextProps = {
+  description: string;
   topicImage: Image | undefined;
   introduction: string | undefined;
   bodyText: string | undefined;
 };
 
 export const DialogText: React.FC<DialogTextProps> = ({
+  description,
   topicImage,
   introduction,
   bodyText,
@@ -19,6 +22,12 @@ export const DialogText: React.FC<DialogTextProps> = ({
 
   return (
     <div className={styles.dialogText}>
+      {description ? (
+        <div
+          className={styles.description}
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
+      ) : null}
       {topicImage ? (
         <>
           <img
