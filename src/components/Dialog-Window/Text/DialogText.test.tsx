@@ -20,6 +20,7 @@ describe(DialogText.name, () => {
         topicImage={topicImage}
         introduction={introduction}
         bodyText={bodyText}
+        description="<p>Test!</p>"
       />,
     );
 
