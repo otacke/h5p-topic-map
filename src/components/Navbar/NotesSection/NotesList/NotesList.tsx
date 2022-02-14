@@ -24,7 +24,8 @@ export const NotesList: React.FC<NotesListProps> = ({
     const isNoteCompleted = doesNoteExist && userData[item.id].noteCompleted;
 
     return (
-      item.dialog && ( // TODO add check if notes section is enabled for this dialogue
+      item.dialog &&
+      item.dialog.hasNote && (
         <React.Fragment key={item.id}>
           <div className={styles.mainBodyListElementWrapper}>
             <div className={styles.pageBreak} />

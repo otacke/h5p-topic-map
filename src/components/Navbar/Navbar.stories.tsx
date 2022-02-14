@@ -30,6 +30,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
         yPercentagePosition: 5,
         dialog: {
           text: "Dialog text",
+          hasNote: true,
         },
       },
       {
@@ -46,6 +47,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
         yPercentagePosition: 30,
         dialog: {
           text: "Dialog text",
+          hasNote: true,
         },
       },
       {
@@ -62,6 +64,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
         yPercentagePosition: 40,
         dialog: {
           text: "Dialog text",
+          hasNote: true,
         },
       },
       {
@@ -78,6 +81,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
         yPercentagePosition: 40,
         dialog: {
           text: "Dialog text",
+          hasNote: true,
         },
       },
       {
@@ -94,6 +98,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
         yPercentagePosition: 40,
         dialog: {
           text: "Dialog text",
+          hasNote: true,
         },
       },
       {
@@ -110,6 +115,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
         yPercentagePosition: 40,
         dialog: {
           text: "Dialog text",
+          hasNote: true,
         },
       },
       {
@@ -126,6 +132,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
         yPercentagePosition: 40,
         dialog: {
           text: "Dialog text",
+          hasNote: true,
         },
       },
       {
@@ -142,6 +149,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
         yPercentagePosition: 40,
         dialog: {
           text: "Dialog text",
+          hasNote: true,
         },
       },
       {
@@ -158,6 +166,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
         yPercentagePosition: 40,
         dialog: {
           text: "Dialog text",
+          hasNote: true,
         },
       },
       {
@@ -174,6 +183,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
         yPercentagePosition: 40,
         dialog: {
           text: "Dialog text",
+          hasNote: true,
         },
       },
       {
@@ -190,6 +200,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
         yPercentagePosition: 40,
         dialog: {
           text: "Dialog text",
+          hasNote: true,
         },
       },
       {
@@ -206,6 +217,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
         yPercentagePosition: 40,
         dialog: {
           text: "Dialog text",
+          hasNote: true,
         },
       },
       {
@@ -222,6 +234,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
         yPercentagePosition: 40,
         dialog: {
           text: "Dialog text",
+          hasNote: false,
         },
       },
     ],
