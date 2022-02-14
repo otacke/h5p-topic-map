@@ -27,10 +27,18 @@ export const Navbar: React.FC<NavbarProps> = ({
   const deleteAllNotesConfirmText = useL10n("deleteNotesConfirmLabel");
   const deleteAllNotesDenyText = useL10n("deleteNotesDenyLabel");
   const userData = getUserData();
+
+  let navbarTitleForPrint = "";
+  const updateNavbarTitleForPrint = (): void => {
+    navbarTitleForPrint = navbarTitleForPrint ? "" : navbarTitle;
+  };
+
   const componentRef = React.useRef(null);
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: navbarTitle,
+    onBeforeGetContent: updateNavbarTitleForPrint,
+    onAfterPrint: updateNavbarTitleForPrint,
   });
 
   const [isNotesSectionShown, setIsNotesSectionIsShown] =
@@ -88,7 +96,11 @@ export const Navbar: React.FC<NavbarProps> = ({
   );
 
   const notesSection = (
-    <div className={styles.notesList} ref={componentRef} title={navbarTitle}>
+    <div
+      className={styles.notesList}
+      ref={componentRef}
+      title={navbarTitleForPrint}
+    >
       {isNotesSectionShown && (
         <div>
           <NotesList topicMapItems={topicMapItems} navbarTitle={navbarTitle} />
