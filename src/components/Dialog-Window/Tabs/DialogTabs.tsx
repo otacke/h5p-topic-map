@@ -2,6 +2,7 @@
 /* eslint-disable react/no-array-index-key */
 import * as React from "react";
 import { Root, List, Trigger, Content } from "@radix-ui/react-tabs";
+import { useMedia } from "react-use";
 import styles from "./DialogTabs.module.scss";
 import { DialogContent } from "../../../types/DialogContent";
 import { DialogText } from "../Text/DialogText";
@@ -9,6 +10,7 @@ import { DialogResources } from "../Resources/DialogResources";
 import { DialogVideo } from "../Video/DialogVideo";
 import { DialogAudio } from "../Audio/DialogAudio";
 import { useL10n } from "../../../hooks/useLocalization";
+import { DialogNote } from "../Notes/DialogNote";
 
 export type TabProps = {
   tabContents: DialogContent;
@@ -133,6 +135,8 @@ export const DialogTabs: React.FC<TabProps> = ({ tabContents, id }) => {
   };
 
   const listAriaLabel = useL10n("dialogTabListAriaLabel");
+  const noteLabel = useL10n("dialogNoteLabel");
+  const smallScreen = useMedia("(max-width: 768px)");
 
   return (
     <Root
@@ -142,8 +146,20 @@ export const DialogTabs: React.FC<TabProps> = ({ tabContents, id }) => {
     >
       <List className={styles.list} aria-label={listAriaLabel}>
         {tabLabelItems(tabContents, translation)}
+        {smallScreen ? (
+          <Trigger key="notes" className={styles.trigger} value="notes">
+            {noteLabel}
+          </Trigger>
+        ) : null}
       </List>
-      <div className={styles.tabItemWrapper}>{tabItems(tabContents, id)}</div>
+      <div className={styles.tabItemWrapper}>
+        {tabItems(tabContents, id)}
+        {smallScreen ? (
+          <Content key="notes" value="notes" className={styles.noteWrapper}>
+            <DialogNote maxLength={160} id={id} />
+          </Content>
+        ) : null}
+      </div>
     </Root>
   );
 };

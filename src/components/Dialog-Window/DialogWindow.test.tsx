@@ -1,9 +1,20 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import * as React from "react";
 import { getByText, render } from "@testing-library/react";
 import { DialogWindow } from "./DialogWindow";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
 
 const onOpenChange = console.info;
+
+Object.defineProperty(window, "matchMedia", {
+  value: () => {
+    return {
+      matches: false,
+      addListener: () => {},
+      removeListener: () => {},
+    };
+  },
+});
 
 describe(DialogWindow.name, () => {
   it("should render", () => {
@@ -31,6 +42,7 @@ describe(DialogWindow.name, () => {
 
     setTimeout(() => {
       expect(dialogWindow.querySelector("div")).toBeTruthy();
+      expect(dialogWindow.querySelector("div")).toBe(null);
     }, 100);
   });
 
