@@ -170,18 +170,18 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         },
       },
       {
+        label: "Background image",
+        name: "gridBackgroundImage",
+        type: H5PFieldType.Image,
+        optional: true,
+      },
+      {
         label: "Appearance",
         name: "appearance",
         type: H5PFieldType.Group,
         importance: "low",
         widget: "none",
         fields: [
-          {
-            label: "Background image",
-            name: "gridBackgroundImage",
-            type: H5PFieldType.Image,
-            optional: true,
-          },
           {
             label: "Color theme",
             name: "colorTheme",

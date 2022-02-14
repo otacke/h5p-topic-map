@@ -65,12 +65,12 @@ export const normalizeGridBackgroundImagePath = <Type extends Params>(
   params: Type,
   contentId: string,
 ): Type => {
-  if (!params.topicMap?.appearance?.backgroundImage?.path) {
+  if (!params.topicMap?.gridBackgroundImage?.path) {
     return params;
   }
 
   const path = normalizeAssetPath(
-    params.topicMap.appearance.backgroundImage.path,
+    params.topicMap.gridBackgroundImage.path,
     contentId,
   );
 
@@ -78,12 +78,9 @@ export const normalizeGridBackgroundImagePath = <Type extends Params>(
     ...params,
     topicMap: {
       ...(params.topicMap ?? {}),
-      appearance: {
-        ...(params.topicMap?.appearance ?? {}),
-        backgroundImage: {
-          ...(params.topicMap?.appearance?.backgroundImage ?? {}),
-          path,
-        },
+      gridBackgroundImage: {
+        ...(params.topicMap?.gridBackgroundImage ?? {}),
+        path,
       },
     },
   };

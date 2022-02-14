@@ -294,18 +294,18 @@
         }
       },
       {
+        "label": "Background image",
+        "name": "gridBackgroundImage",
+        "type": "image",
+        "optional": true
+      },
+      {
         "label": "Appearance",
         "name": "appearance",
         "type": "group",
         "importance": "low",
         "widget": "none",
         "fields": [
-          {
-            "label": "Background image",
-            "name": "gridBackgroundImage",
-            "type": "image",
-            "optional": true
-          },
           {
             "label": "Color theme",
             "name": "colorTheme",
