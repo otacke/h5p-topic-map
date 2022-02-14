@@ -11,9 +11,14 @@
 }
 
 .mainBodyListElementWrapper {
+  display: inline-block;
+  width: 100%;
+  gap: 1rem;
+}
+
+.mainBodyListElement {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
   align-items: center;
   gap: 1rem;
 }
@@ -23,8 +28,9 @@
 }
 
 @media all {
-  .page-break {
-    display: none;
+  .pageBreak {
+    overflow: hidden;
+    height: 0;
   }
 }
 
@@ -38,7 +44,7 @@
 }
 
 @media print {
-  .page-break {
+  .pageBreak {
     margin-top: 1rem;
     display: block;
     page-break-before: auto;
