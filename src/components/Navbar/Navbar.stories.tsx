@@ -64,6 +64,166 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
           text: "Dialog text",
         },
       },
+      {
+        id: "4",
+        topicImage: {
+          path: "",
+          alt: "",
+        },
+        label: "Sheeps everywhere",
+        description: "",
+        widthPercentage: 10,
+        heightPercentage: 10,
+        xPercentagePosition: 20,
+        yPercentagePosition: 40,
+        dialog: {
+          text: "Dialog text",
+        },
+      },
+      {
+        id: "5",
+        topicImage: {
+          path: "",
+          alt: "",
+        },
+        label: "Sheeps everywhere",
+        description: "",
+        widthPercentage: 10,
+        heightPercentage: 10,
+        xPercentagePosition: 20,
+        yPercentagePosition: 40,
+        dialog: {
+          text: "Dialog text",
+        },
+      },
+      {
+        id: "6",
+        topicImage: {
+          path: "",
+          alt: "",
+        },
+        label: "Sheeps everywhere",
+        description: "",
+        widthPercentage: 10,
+        heightPercentage: 10,
+        xPercentagePosition: 20,
+        yPercentagePosition: 40,
+        dialog: {
+          text: "Dialog text",
+        },
+      },
+      {
+        id: "7",
+        topicImage: {
+          path: "",
+          alt: "",
+        },
+        label: "Sheeps everywhere",
+        description: "",
+        widthPercentage: 10,
+        heightPercentage: 10,
+        xPercentagePosition: 20,
+        yPercentagePosition: 40,
+        dialog: {
+          text: "Dialog text",
+        },
+      },
+      {
+        id: "8",
+        topicImage: {
+          path: "",
+          alt: "",
+        },
+        label: "Sheeps everywhere",
+        description: "",
+        widthPercentage: 10,
+        heightPercentage: 10,
+        xPercentagePosition: 20,
+        yPercentagePosition: 40,
+        dialog: {
+          text: "Dialog text",
+        },
+      },
+      {
+        id: "9",
+        topicImage: {
+          path: "",
+          alt: "",
+        },
+        label: "Sheeps everywhere",
+        description: "",
+        widthPercentage: 10,
+        heightPercentage: 10,
+        xPercentagePosition: 20,
+        yPercentagePosition: 40,
+        dialog: {
+          text: "Dialog text",
+        },
+      },
+      {
+        id: "10",
+        topicImage: {
+          path: "",
+          alt: "",
+        },
+        label: "Sheeps everywhere",
+        description: "",
+        widthPercentage: 10,
+        heightPercentage: 10,
+        xPercentagePosition: 20,
+        yPercentagePosition: 40,
+        dialog: {
+          text: "Dialog text",
+        },
+      },
+      {
+        id: "11",
+        topicImage: {
+          path: "",
+          alt: "",
+        },
+        label: "Sheeps everywhere",
+        description: "",
+        widthPercentage: 10,
+        heightPercentage: 10,
+        xPercentagePosition: 20,
+        yPercentagePosition: 40,
+        dialog: {
+          text: "Dialog text",
+        },
+      },
+      {
+        id: "12",
+        topicImage: {
+          path: "",
+          alt: "",
+        },
+        label: "Sheeps everywhere",
+        description: "",
+        widthPercentage: 10,
+        heightPercentage: 10,
+        xPercentagePosition: 20,
+        yPercentagePosition: 40,
+        dialog: {
+          text: "Dialog text",
+        },
+      },
+      {
+        id: "13",
+        topicImage: {
+          path: "",
+          alt: "",
+        },
+        label: "Sheeps everywhere",
+        description: "",
+        widthPercentage: 10,
+        heightPercentage: 10,
+        xPercentagePosition: 20,
+        yPercentagePosition: 40,
+        dialog: {
+          text: "Dialog text",
+        },
+      },
     ],
   };
   // eslint-disable-next-line react/jsx-props-no-spreading
