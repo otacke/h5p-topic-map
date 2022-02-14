@@ -12,7 +12,7 @@ export const itemDialog: Array<H5PField> = [
     fields: [
       {
         label: "Show notes textarea",
-        name: "hasNotes",
+        name: "hasNote",
         type: H5PFieldType.Boolean,
         default: true,
       },
