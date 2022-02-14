@@ -34,7 +34,15 @@ export const DialogWindow: FC<DialogWindowProps> = ({
     return null;
   }
 
-  let content = (
+  let content = smallScreen ? (
+    <Content className={styles.dialogContentWithNote}>
+      <Title className={styles.dialogTitle}>{item.label}</Title>
+      <DialogTabs tabContents={item.dialog} id={item.id} />
+      <Close className={styles.closeButton} aria-label={ariaLabel}>
+        <Cross2Icon />
+      </Close>
+    </Content>
+  ) : (
     <Content className={styles.dialogContent}>
       <Title className={styles.dialogTitle}>{item.label}</Title>
       <DialogTabs tabContents={item.dialog} id={item.id} />
