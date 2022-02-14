@@ -16,6 +16,17 @@ export const parameters = {
       order: ["Atoms", "Molecules", "Organisms", "Templates", "Pages"],
     },
   },
+  themes: {
+    default: "Blue",
+    list: [
+      { name: "Blue", class: "theme-1", color: "#40586f" },
+      { name: "Green", class: "theme-2", color: "#3d6060" },
+      { name: "Red", class: "theme-3", color: "#981b1e" },
+      { name: "Grey", class: "theme-4", color: "#373d3f" },
+    ],
+    target: ".h5p-topic-map .h5p-topic-map, .h5p-topic-map",
+    clearable: false,
+  },
 };
 
 const translations = Object.fromEntries(
