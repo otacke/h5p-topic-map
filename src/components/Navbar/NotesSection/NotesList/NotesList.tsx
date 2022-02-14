@@ -8,9 +8,13 @@ import styles from "./NotesList.module.scss";
 
 export type NotesListProps = {
   topicMapItems: TopicMapItemType[];
+  navbarTitle: string;
 };
 
-export const NotesList: React.FC<NotesListProps> = ({ topicMapItems }) => {
+export const NotesList: React.FC<NotesListProps> = ({
+  topicMapItems,
+  navbarTitle,
+}) => {
   const userData = getUserData();
   const noItemsInListText = useL10n("navbarNotesEmptyListLabel");
   const missingNoteText = useL10n("navbarNotesMissingNoteLabel");
@@ -53,6 +57,9 @@ export const NotesList: React.FC<NotesListProps> = ({ topicMapItems }) => {
   return (
     <div className={styles.mainBody}>
       <div className={styles.mainBodyContent}>
+        <div className={styles.mainBodyHeaderForPrint}>
+          <p>{navbarTitle}</p>
+        </div>
         {userDataEntries || noItemsInListText}
       </div>
     </div>

@@ -27,6 +27,13 @@
   font-weight: bold;
 }
 
+.mainBodyHeaderForPrint {
+  font-size: large;
+  font-weight: bold;
+  overflow: hidden;
+  height: 0;
+}
+
 @media all {
   .pageBreak {
     overflow: hidden;
@@ -48,6 +55,11 @@
     margin-top: 1rem;
     display: block;
     page-break-before: auto;
+  }
+
+  .mainBodyHeaderForPrint {
+    overflow: visible;
+    height: 100%;
   }
 }
 

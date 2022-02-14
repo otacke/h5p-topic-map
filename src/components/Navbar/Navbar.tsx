@@ -28,7 +28,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   const deleteAllNotesDenyText = useL10n("deleteNotesDenyLabel");
   const userData = getUserData();
   const componentRef = React.useRef(null);
-  const handlePrint = useReactToPrint({ content: () => componentRef.current });
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    documentTitle: navbarTitle,
+  });
 
   const [isNotesSectionShown, setIsNotesSectionIsShown] =
     React.useState<boolean>(false);
@@ -55,6 +58,44 @@ export const Navbar: React.FC<NavbarProps> = ({
   const denyDeletion = (): void => {
     setIsDeleteConfirmationVisible(false);
   };
+
+  const deleteConfirmation = (
+    <Dialog
+      isOpen={isDeleteConfirmationVisible}
+      title={deleteAllNotesText}
+      onOpenChange={isOpen => {
+        if (!isOpen) denyDeletion();
+      }}
+      size="medium"
+    >
+      <div className={styles.deleteConfirmationButtons}>
+        <button
+          type="button"
+          className={styles.deleteConfirmationPositive}
+          onClick={confirmDeletion}
+        >
+          {deleteAllNotesConfirmText}
+        </button>
+        <button
+          type="button"
+          className={styles.deleteConfirmationNegative}
+          onClick={denyDeletion}
+        >
+          {deleteAllNotesDenyText}
+        </button>
+      </div>
+    </Dialog>
+  );
+
+  const notesSection = (
+    <div className={styles.notesList} ref={componentRef} title={navbarTitle}>
+      {isNotesSectionShown && (
+        <div>
+          <NotesList topicMapItems={topicMapItems} navbarTitle={navbarTitle} />
+        </div>
+      )}
+    </div>
+  );
 
   return (
     <>
@@ -135,34 +176,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         </Content> */}
         </Tabs>
       </div>
-      <div className={styles.notesList} ref={componentRef}>
-        {isNotesSectionShown && <NotesList topicMapItems={topicMapItems} />}
-      </div>
-      <Dialog
-        isOpen={isDeleteConfirmationVisible}
-        title={deleteAllNotesText}
-        onOpenChange={isOpen => {
-          if (!isOpen) denyDeletion();
-        }}
-        size="medium"
-      >
-        <div className={styles.deleteConfirmationButtons}>
-          <button
-            type="button"
-            className={styles.deleteConfirmationPositive}
-            onClick={confirmDeletion}
-          >
-            {deleteAllNotesConfirmText}
-          </button>
-          <button
-            type="button"
-            className={styles.deleteConfirmationNegative}
-            onClick={denyDeletion}
-          >
-            {deleteAllNotesDenyText}
-          </button>
-        </div>
-      </Dialog>
+      {notesSection}
+      {deleteConfirmation}
     </>
   );
 };
