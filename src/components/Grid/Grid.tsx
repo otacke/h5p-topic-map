@@ -70,7 +70,7 @@ export const Grid: React.FC<GridProps> = ({
       <FullScreen className={styles.fullscreenStyle} handle={fullscreen}>
         <div className={styles.gridWrapper}>
           <div
-            className={styles.grid}
+            className={`${styles.grid} ${styles.backgroundImage}`}
             style={{ backgroundImage: bgImageStyle }}
           >
             <FullscreenButton fullscreenHandle={fullscreen} />

@@ -18,7 +18,7 @@ export const App: React.FC<AppProps> = ({ params }) => {
       <Grid
         items={params.topicMap?.topicMapItems ?? []}
         arrowItems={params.topicMap?.arrowItems ?? []}
-        backgroundImage={params.topicMap?.appearance?.backgroundImage}
+        backgroundImage={params.topicMap?.gridBackgroundImage}
       />
     </div>
   );
