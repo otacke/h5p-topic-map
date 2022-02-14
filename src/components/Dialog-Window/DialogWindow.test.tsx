@@ -5,6 +5,16 @@ import { TopicMapItemType } from "../../types/TopicMapItemType";
 
 const onOpenChange = console.info;
 
+Object.defineProperty(window, "matchMedia", {
+  value: () => {
+    return {
+      matches: false,
+      addListener: () => {},
+      removeListener: () => {},
+    };
+  },
+});
+
 describe(DialogWindow.name, () => {
   it("should render", () => {
     const item: TopicMapItemType = {
@@ -31,6 +41,7 @@ describe(DialogWindow.name, () => {
 
     setTimeout(() => {
       expect(dialogWindow.querySelector("div")).toBeTruthy();
+      expect(dialogWindow.querySelector("div")).toBe(null);
     }, 100);
   });
 
