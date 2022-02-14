@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import * as React from "react";
 import { getByText, render } from "@testing-library/react";
 import { DialogWindow } from "./DialogWindow";

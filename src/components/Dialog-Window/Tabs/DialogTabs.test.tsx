@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { render } from "@testing-library/react";
 import * as React from "react";
 import { DialogTabs } from "./DialogTabs";
