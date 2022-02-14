@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Trigger, Content, Tabs, TabsList } from "@radix-ui/react-tabs";
-import styles from "./Navbar.module.scss";
+import { useReactToPrint } from "react-to-print";
 import { useL10n } from "../../hooks/useLocalization";
 import { HelpSection } from "./HelpSection/HelpSection";
 import { NotesSection } from "./NotesSection/NotesSection";
@@ -8,6 +8,7 @@ import { NotesList } from "./NotesSection/NotesList/NotesList";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
 import { Dialog } from "../Dialog/Dialog";
 import { getUserData, setUserData } from "../../hooks/useLocalStorage";
+import styles from "./Navbar.module.scss";
 
 export type NavbarProps = {
   navbarTitle: string;
@@ -26,6 +27,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   const deleteAllNotesConfirmText = useL10n("deleteNotesConfirmLabel");
   const deleteAllNotesDenyText = useL10n("deleteNotesDenyLabel");
   const userData = getUserData();
+  const componentRef = React.useRef(null);
+  const handlePrint = useReactToPrint({ content: () => componentRef.current });
 
   const [isNotesSectionShown, setIsNotesSectionIsShown] =
     React.useState<boolean>(false);
@@ -113,6 +116,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <NotesSection
               setVisibility={setIsNotesSectionIsShown}
               setDeleteConfirmationVisibility={setIsDeleteConfirmationVisible}
+              handlePrint={handlePrint}
             />
           </Content>
           <Content
@@ -131,7 +135,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </Content> */}
         </Tabs>
       </div>
-      <div className={styles.notesList}>
+      <div className={styles.notesList} ref={componentRef}>
         {isNotesSectionShown && <NotesList topicMapItems={topicMapItems} />}
       </div>
       <Dialog

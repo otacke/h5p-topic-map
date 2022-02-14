@@ -7,11 +7,13 @@ export type NotesSectionProps = {
   setDeleteConfirmationVisibility: React.Dispatch<
     React.SetStateAction<boolean>
   >;
+  handlePrint: () => void;
 };
 
 export const NotesSection: React.FC<NotesSectionProps> = ({
   setVisibility,
   setDeleteConfirmationVisibility,
+  handlePrint,
 }) => {
   const mainBodyTitle = useL10n("navbarNotesSectionTitle");
   const mainBodyText = useL10n("navbarNotesSectionBody");
@@ -37,6 +39,7 @@ export const NotesSection: React.FC<NotesSectionProps> = ({
               className={styles.mainBodyButton}
               type="button"
               aria-label={printText}
+              onClick={handlePrint}
             >
               {printText}
             </button>
