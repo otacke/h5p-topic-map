@@ -9,6 +9,7 @@ import {
 import { Cross2Icon } from "@radix-ui/react-icons";
 import * as React from "react";
 import { FC } from "react";
+import { useMedia } from "react-use";
 import { useL10n } from "../../hooks/useLocalization";
 import { CommonItemType } from "../../types/CommonItemType";
 import styles from "./DialogWindow.module.scss";
@@ -27,6 +28,7 @@ export const DialogWindow: FC<DialogWindowProps> = ({
   onOpenChange,
 }) => {
   const ariaLabel = useL10n("closeDialog");
+  const smallScreen = useMedia("(max-width: 768px)");
 
   if (!item.dialog) {
     return null;
@@ -42,7 +44,7 @@ export const DialogWindow: FC<DialogWindowProps> = ({
     </Content>
   );
 
-  if (item.dialog.hasNote) {
+  if (item.dialog.hasNote && !smallScreen) {
     content = (
       <Content className={styles.dialogContentWithNote}>
         <Title className={styles.dialogTitle}>{item.label}</Title>
@@ -50,7 +52,7 @@ export const DialogWindow: FC<DialogWindowProps> = ({
           <DialogTabs tabContents={item.dialog} id={item.id} />
         </div>
         <div className={styles.noteWrapper}>
-          <DialogNote maxLength={10} id={item.id} />
+          <DialogNote maxLength={160} id={item.id} />
         </div>
         <Close className={styles.closeButton} aria-label={ariaLabel}>
           <Cross2Icon />
