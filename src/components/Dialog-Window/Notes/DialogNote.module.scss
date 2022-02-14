@@ -34,7 +34,7 @@ form {
 
 .dynamicSavingText {
   position: absolute;
-  top: -2rem;
+  top: -1rem;
   right: 0;
 }
 
@@ -58,4 +58,10 @@ form {
 
 .wordCounter {
   vertical-align: middle;
+}
+
+.noteLabel {
+  margin-block-start: 0.8rem;
+  margin-block-end: 0.2rem;
+  font-weight: 700;
 }

@@ -1,7 +1,7 @@
 .dialogText {
   display: flex;
   flex-direction: column;
-  font-size: 0.75rem;
+  font-size: 1rem;
   line-height: 1.6;
 }
 
@@ -16,4 +16,9 @@
 
 .introduction {
   font-weight: 600;
+}
+
+.description {
+  font-weight: 700;
+  padding: 1rem 0;
 }

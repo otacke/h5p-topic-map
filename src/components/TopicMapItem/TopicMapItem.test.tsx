@@ -18,6 +18,7 @@ describe(TopicMapItem.name, () => {
       yPercentagePosition: 5,
       dialog: {
         text: "Dialog text",
+        hasNote: true,
       },
     };
 

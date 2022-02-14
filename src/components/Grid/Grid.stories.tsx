@@ -34,6 +34,7 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         yPercentagePosition: 5,
         dialog: {
           text: "Dialog text",
+          hasNote: true,
         },
       },
       {
@@ -50,6 +51,7 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         yPercentagePosition: 30,
         dialog: {
           text: "Dialog text",
+          hasNote: false,
         },
       },
       {
@@ -66,6 +68,7 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         yPercentagePosition: 40,
         dialog: {
           text: "Dialog text",
+          hasNote: true,
         },
       },
     ],
@@ -78,6 +81,7 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         label: "Sheep in the distance ⟶ Sheep close up",
         dialog: {
           text: "Dialog text",
+          hasNote: true,
         },
       },
       {
@@ -88,6 +92,7 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         label: "Sheep in the distance ⟶ Sheep close up",
         dialog: {
           text: "Dialog text",
+          hasNote: false,
         },
       },
     ],

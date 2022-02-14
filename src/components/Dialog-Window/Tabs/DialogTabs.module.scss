@@ -35,4 +35,11 @@
   display: flex;
   flex-direction: column;
   width: 300;
+  height: 100%;
+}
+
+.tabItemWrapper {
+  overflow-y: scroll;
+  overflow: auto;
+  height: 100%;
 }

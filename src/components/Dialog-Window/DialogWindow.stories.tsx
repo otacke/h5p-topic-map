@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { DialogWindow } from "./DialogWindow";
+import { TopicMapItemType } from "../../types/TopicMapItemType";
 
 export default {
   title: "Organisms/DialogWindow",
@@ -17,7 +18,7 @@ const openClose = (open: boolean): void => {
   console.info("Toggle dialog", { open });
 };
 
-const item = {
+const item: TopicMapItemType = {
   id: "1",
   topicImage: {
     path: "https://images.unsplash.com/photo-1569587112025-0d460e81a126?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2370&q=80",
@@ -30,7 +31,8 @@ const item = {
   xPercentagePosition: 3,
   yPercentagePosition: 5,
   dialog: {
-    text: "Dialog text",
+    hasNote: false,
+    text: "Den franske revolusjon var en periode med store sosiale og politiske omveltningene i Frankrike i perioden 1789-1799. Året 1789 markerer det første viktige vendepunktet under revolusjonen. 14. juli dette året brøt det ut masseopprør i Paris og fengselet Bastillen ble stormet.",
   },
 };
 
@@ -47,9 +49,36 @@ DialogWindowLong.args = {
     ...item,
     dialog: {
       ...item.dialog,
+      hasNote: false,
       text: `You don't want to kill all your dark areas they are very important. I really recommend you use odorless thinner or your spouse is gonna run you right out into the yard and you'll be working by yourself. There we go. There's nothing wrong with having a tree as a friend.
 
   You can create anything that makes you happy. If we're going to have animals around we all have to be concerned about them and take care of them. Just use the old one inch brush. We spend so much of our life looking - but never seeing. Here we're limited by the time we have.`,
+    },
+  },
+  open: true,
+};
+
+export const DialogWindowTabs = Template.bind({});
+DialogWindowTabs.args = {
+  item: {
+    ...item,
+    dialog: {
+      ...item.dialog,
+      hasNote: false,
+      links: ["www.google.com", "www.youtube.com"],
+    },
+  },
+  open: true,
+};
+
+export const DialogWindowWithNote = Template.bind({});
+DialogWindowWithNote.args = {
+  item: {
+    ...item,
+    dialog: {
+      ...item.dialog,
+      links: ["www.google.com", "www.youtube.com"],
+      hasNote: true,
     },
   },
   open: true,

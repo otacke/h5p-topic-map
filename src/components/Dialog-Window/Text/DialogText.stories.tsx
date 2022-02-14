@@ -15,6 +15,7 @@ const Template: ComponentStory<typeof DialogText> = args => (
 export const SimpleText = Template.bind({});
 
 SimpleText.args = {
+  description: "<h1>Top Secrets Are Sealed</h1>",
   topicImage: {
     path: "https://images.unsplash.com/photo-1557657043-23eec69b89c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1746&q=80",
     alt: "White seal on soil",
