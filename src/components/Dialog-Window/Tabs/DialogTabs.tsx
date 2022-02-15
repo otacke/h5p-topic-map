@@ -83,7 +83,6 @@ const tabItems = (item: CommonItemType): JSX.Element[] => {
     ? items.push(
         <Content key="text" value="Text">
           <DialogText
-            description={dialog?.text}
             topicImage={topicImage}
             introduction={description}
             bodyText={dialog?.text}

@@ -34,7 +34,7 @@ const item = {
   },
   dialog: {
     hasNote: true,
-    text: "Text text for testing Text text test.",
+    text: "Text text for testing Text text test. This is a body",
     links: ["www.youtube.com", "www.ndla.com"],
     video: {
       path: "https://player.vimeo.com/video/224857514?title=0&portrait=0&byline=0&autoplay=1&loop=1&transparent=1",

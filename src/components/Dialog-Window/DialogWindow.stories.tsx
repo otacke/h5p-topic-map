@@ -25,7 +25,7 @@ const item: TopicMapItemType = {
     alt: "",
   },
   label: "Sheep in the distance",
-  description: "",
+  description: "Description for storybooks!",
   widthPercentage: 50,
   heightPercentage: 25,
   xPercentagePosition: 3,
