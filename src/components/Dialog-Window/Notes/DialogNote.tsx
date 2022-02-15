@@ -1,4 +1,3 @@
-import { Title } from "@radix-ui/react-dialog";
 import * as React from "react";
 import { useL10n } from "../../../hooks/useLocalization";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";

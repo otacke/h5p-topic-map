@@ -6,9 +6,9 @@ import { HelpSection } from "./HelpSection/HelpSection";
 import { NotesSection } from "./NotesSection/NotesSection";
 import { NotesList } from "./NotesSection/NotesList/NotesList";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
-import { Dialog } from "../Dialog/Dialog";
 import { getUserData, setUserData } from "../../hooks/useLocalStorage";
 import styles from "./Navbar.module.scss";
+import { DialogWindow } from "../Dialog-Window/DialogWindow";
 
 export type NavbarProps = {
   navbarTitle: string;
@@ -67,32 +67,25 @@ export const Navbar: React.FC<NavbarProps> = ({
     setIsDeleteConfirmationVisible(false);
   };
 
+  const fakeItem = {
+    id: "id",
+    label: deleteAllNotesText,
+  };
+
   const deleteConfirmation = (
-    <Dialog
-      isOpen={isDeleteConfirmationVisible}
-      title={deleteAllNotesText}
+    <DialogWindow
+      item={fakeItem}
+      open={isDeleteConfirmationVisible}
       onOpenChange={isOpen => {
         if (!isOpen) denyDeletion();
       }}
-      size="medium"
-    >
-      <div className={styles.deleteConfirmationButtons}>
-        <button
-          type="button"
-          className={styles.deleteConfirmationPositive}
-          onClick={confirmDeletion}
-        >
-          {deleteAllNotesConfirmText}
-        </button>
-        <button
-          type="button"
-          className={styles.deleteConfirmationNegative}
-          onClick={denyDeletion}
-        >
-          {deleteAllNotesDenyText}
-        </button>
-      </div>
-    </Dialog>
+      confirmWindow={{
+        confirmAction: confirmDeletion,
+        denyAction: denyDeletion,
+        confirmText: deleteAllNotesConfirmText,
+        denyText: deleteAllNotesDenyText,
+      }}
+    />
   );
 
   const notesSection = (
