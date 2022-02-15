@@ -61,6 +61,8 @@ object-assign
 
 /*! ./utils/GetPosition */
 
+/*! For license information please see index.js.LICENSE.txt */
+
 /*! lodash */
 
 /*! prop-types */
