@@ -46,7 +46,7 @@ const tabLabelItems = (
   const items = [];
   tabContents?.text
     ? items.push(
-        <Trigger value="Text" className={styles.trigger}>
+        <Trigger key="Text" value="Text" className={styles.trigger}>
           {translation.text}
         </Trigger>,
       )
