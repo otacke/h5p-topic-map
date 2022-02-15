@@ -352,6 +352,61 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         default: "Tabs List",
         type: H5PFieldType.Text,
       },
+      {
+        label: "Navbar notes section title",
+        name: "navbarNotesSectionTitle",
+        default: "See notes",
+        type: H5PFieldType.Text,
+      },
+      {
+        label: "Navbar notes section body",
+        name: "navbarNotesSectionBody",
+        default:
+          "Here you see an overview of all the notes you have written. You can print or copy the notes to paste them into a document or e-mail, for example.",
+        type: H5PFieldType.Text,
+      },
+      {
+        label: "Navbar notes print button label",
+        name: "navbarNotesSectionPrintLabel",
+        default: "Print",
+        type: H5PFieldType.Text,
+      },
+      {
+        label: "Navbar notes delete all notes button label",
+        name: "navbarNotesSectionDeleteLabel",
+        default: "Delete all notes",
+        type: H5PFieldType.Text,
+      },
+      {
+        label: "Navbar notes empty list label",
+        name: "navbarNotesEmptyListLabel",
+        default: "No dialogue notes available in this topic map.",
+        type: H5PFieldType.Text,
+      },
+      {
+        label: "Navbar notes missing note label",
+        name: "navbarNotesMissingNoteLabel",
+        default: "━ Notes are missing for this card!",
+        type: H5PFieldType.Text,
+      },
+      {
+        label: "Delete all notes confirmation window label",
+        name: "deleteNotesConfirmationWindowLabel",
+        default: "Are you sure you want to delete all your notes?",
+        type: H5PFieldType.Text,
+      },
+      {
+        label: "Delete all notes confirm deletion label",
+        name: "deleteNotesConfirmLabel",
+        default: "Confirm deletion",
+        type: H5PFieldType.Text,
+      },
+      {
+        label: "Delete all notes deny deletion label",
+        name: "deleteNotesDenyLabel",
+        default: "Cancel",
+        type: H5PFieldType.Text,
+      },
     ],
   },
 ];

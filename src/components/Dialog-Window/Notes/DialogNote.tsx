@@ -1,4 +1,3 @@
-import { Title } from "@radix-ui/react-dialog";
 import * as React from "react";
 import { useL10n } from "../../../hooks/useLocalization";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
@@ -28,8 +27,9 @@ export const DialogNote: React.FC<NoteProps> = ({ maxLength, id }) => {
   const wordNoteLabel = useL10n("dialogNoteLabel");
 
   const handleNoteCompleted = (): void => {
+    userData[id].noteCompleted = !noteCompleted;
     setMarkedAsCompleted(!noteCompleted);
-    userData[id].noteCompleted = noteCompleted;
+    setUserData(userData);
   };
 
   const setSavingText = (): void => {

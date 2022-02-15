@@ -27,4 +27,13 @@ export type TranslationKey =
   | "dialogResourcesLabel"
   | "dialogTextLabel"
   | "dialogNoteLabel"
-  | "dialogTabListAriaLabel";
+  | "dialogTabListAriaLabel"
+  | "navbarNotesSectionTitle"
+  | "navbarNotesSectionBody"
+  | "navbarNotesSectionPrintLabel"
+  | "navbarNotesSectionDeleteLabel"
+  | "navbarNotesEmptyListLabel"
+  | "navbarNotesMissingNoteLabel"
+  | "deleteNotesConfirmationWindowLabel"
+  | "deleteNotesConfirmLabel"
+  | "deleteNotesDenyLabel";
