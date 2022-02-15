@@ -24,48 +24,54 @@ type Translation = {
   text: string;
 };
 
-const defaultTabValue = (tabContents: DialogContent | undefined): string => {
+const defaultTabValue = (item: CommonItemType): string => {
+  const { description, topicImage, dialog } = item;
   switch (true) {
-    case tabContents?.text !== undefined:
+    case dialog?.text !== undefined ||
+      topicImage !== undefined ||
+      description !== undefined:
       return "Text";
-    case tabContents?.video !== undefined:
-      return "Video";
-    case tabContents?.audio !== undefined:
-      return "Audio";
-    case tabContents?.links !== undefined:
+    case dialog?.links !== undefined:
       return "Resources";
+    case dialog?.video !== undefined:
+      return "Video";
+    case dialog?.audio !== undefined:
+      return "Audio";
     default:
       return "";
   }
 };
 
 const tabLabelItems = (
-  tabContents: DialogContent | undefined,
+  item: CommonItemType,
   translation: Translation,
 ): JSX.Element[] => {
+  const { description, topicImage, dialog } = item;
   const items = [];
-  tabContents?.text
+
+  const showTextTab = dialog?.text || topicImage || description;
+  showTextTab
     ? items.push(
         <Trigger key="Text" value="Text" className={styles.trigger}>
           {translation.text}
         </Trigger>,
       )
     : null;
-  tabContents?.links
+  dialog?.links
     ? items.push(
         <Trigger key="links" className={styles.trigger} value="Resources">
           {translation.links}
         </Trigger>,
       )
     : null;
-  tabContents?.video && tabContents.video.path
+  dialog?.video && dialog.video.path
     ? items.push(
         <Trigger key="video" className={styles.trigger} value="Video">
           {translation.video}
         </Trigger>,
       )
     : null;
-  tabContents?.audio && tabContents.audio.file && tabContents.audio.file.path
+  dialog?.audio && dialog.audio.file && dialog.audio.file.path
     ? items.push(
         <Trigger key="audio" className={styles.trigger} value="Audio">
           {translation.audio}
@@ -77,9 +83,10 @@ const tabLabelItems = (
 
 const tabItems = (item: CommonItemType): JSX.Element[] => {
   const { id, description, topicImage, dialog } = item;
-
   const items: JSX.Element[] = [];
-  dialog?.text
+
+  const showTextTab = dialog?.text || topicImage || description;
+  showTextTab
     ? items.push(
         <Content key="text" value="Text">
           <DialogText
@@ -142,11 +149,11 @@ export const DialogTabs: React.FC<TabProps> = ({ item }) => {
   return (
     <Root
       className={styles.tabs}
-      defaultValue={defaultTabValue(item.dialog)}
+      defaultValue={defaultTabValue(item)}
       orientation="vertical"
     >
       <List className={styles.list} aria-label={listAriaLabel}>
-        {tabLabelItems(item.dialog, translation)}
+        {tabLabelItems(item, translation)}
         {smallScreen ? (
           <Trigger key="notes" className={styles.trigger} value="notes">
             {noteLabel}
