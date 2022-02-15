@@ -69,7 +69,7 @@ export const DialogWindow: FC<DialogWindowProps> = ({
   let content = smallScreen ? (
     <Content className={styles.dialogContentWithNote}>
       <Title className={styles.dialogTitle}>{item.label}</Title>
-      <DialogTabs tabContents={item.dialog} id={item.id} />
+      <DialogTabs item={item} />
       <Close className={styles.closeButton} aria-label={ariaLabel}>
         <Cross2Icon />
       </Close>
@@ -77,7 +77,7 @@ export const DialogWindow: FC<DialogWindowProps> = ({
   ) : (
     <Content className={styles.dialogContent}>
       <Title className={styles.dialogTitle}>{item.label}</Title>
-      <DialogTabs tabContents={item.dialog} id={item.id} />
+      <DialogTabs item={item} />
       <Close className={styles.closeButton} aria-label={ariaLabel}>
         <Cross2Icon />
       </Close>
@@ -89,7 +89,7 @@ export const DialogWindow: FC<DialogWindowProps> = ({
       <Content className={styles.dialogContentWithNote}>
         <Title className={styles.dialogTitle}>{item.label}</Title>
         <div className={styles.tabWrapper}>
-          <DialogTabs tabContents={item.dialog} id={item.id} />
+          <DialogTabs item={item} />
         </div>
         <div className={styles.noteWrapper}>
           <DialogNote maxLength={160} id={item.id} />

@@ -11,10 +11,10 @@ import { DialogVideo } from "../Video/DialogVideo";
 import { DialogAudio } from "../Audio/DialogAudio";
 import { useL10n } from "../../../hooks/useLocalization";
 import { DialogNote } from "../Notes/DialogNote";
+import { CommonItemType } from "../../../types/CommonItemType";
 
 export type TabProps = {
-  tabContents: DialogContent;
-  id: string;
+  item: CommonItemType;
 };
 
 type Translation = {
@@ -24,7 +24,7 @@ type Translation = {
   text: string;
 };
 
-const defaultTabValue = (tabContents: DialogContent): string => {
+const defaultTabValue = (tabContents: DialogContent | undefined): string => {
   switch (true) {
     case tabContents?.text !== undefined:
       return "Text";
@@ -40,32 +40,32 @@ const defaultTabValue = (tabContents: DialogContent): string => {
 };
 
 const tabLabelItems = (
-  tabContents: DialogContent,
+  tabContents: DialogContent | undefined,
   translation: Translation,
 ): JSX.Element[] => {
   const items = [];
-  tabContents.text
+  tabContents?.text
     ? items.push(
         <Trigger value="Text" className={styles.trigger}>
           {translation.text}
         </Trigger>,
       )
     : null;
-  tabContents.links
+  tabContents?.links
     ? items.push(
         <Trigger key="links" className={styles.trigger} value="Resources">
           {translation.links}
         </Trigger>,
       )
     : null;
-  tabContents.video && tabContents.video.path
+  tabContents?.video && tabContents.video.path
     ? items.push(
         <Trigger key="video" className={styles.trigger} value="Video">
           {translation.video}
         </Trigger>,
       )
     : null;
-  tabContents.audio && tabContents.audio.file && tabContents.audio.file.path
+  tabContents?.audio && tabContents.audio.file && tabContents.audio.file.path
     ? items.push(
         <Trigger key="audio" className={styles.trigger} value="Audio">
           {translation.audio}
@@ -75,50 +75,52 @@ const tabLabelItems = (
   return items;
 };
 
-const tabItems = (tabContents: DialogContent, id: string): JSX.Element[] => {
+const tabItems = (item: CommonItemType): JSX.Element[] => {
+  const { id, description, topicImage, dialog } = item;
+
   const items: JSX.Element[] = [];
-  tabContents.text
+  dialog?.text
     ? items.push(
         <Content key="text" value="Text">
           <DialogText
-            description={tabContents.text}
-            topicImage={undefined}
-            introduction={undefined}
-            bodyText={undefined}
+            description={dialog?.text}
+            topicImage={topicImage}
+            introduction={description}
+            bodyText={dialog?.text}
           />
         </Content>,
       )
     : null;
-  tabContents.links
+  dialog?.links
     ? items.push(
         <Content key="links" value="Resources">
-          <DialogResources relevantLinks={tabContents.links} id={id} />
+          <DialogResources relevantLinks={dialog.links} id={id} />
         </Content>,
       )
     : null;
-  tabContents.video && tabContents.video.path
+  dialog?.video && dialog.video.path
     ? items.push(
         <Content key="video" value="Video">
           <DialogVideo
             video={{
-              path: tabContents.video.path,
-              mime: tabContents.video.mime,
-              copyright: tabContents.video.copyright,
+              path: dialog.video.path,
+              mime: dialog.video.mime,
+              copyright: dialog.video.copyright,
             }}
           />
         </Content>,
       )
     : null;
-  tabContents.audio && tabContents.audio.file && tabContents.audio.file.path
+  dialog?.audio && dialog.audio.file && dialog.audio.file.path
     ? items.push(
         <Content key="audio" value="Audio">
           <DialogAudio
             audioTrack={{
-              path: tabContents.audio.file.path,
-              mime: tabContents.audio.file.mime,
-              copyright: tabContents.audio.file.copyright,
+              path: dialog.audio.file.path,
+              mime: dialog.audio.file.mime,
+              copyright: dialog.audio.file.copyright,
             }}
-            subtext={tabContents.audio.subtext}
+            subtext={dialog.audio.subtext}
           />
         </Content>,
       )
@@ -126,7 +128,7 @@ const tabItems = (tabContents: DialogContent, id: string): JSX.Element[] => {
   return items;
 };
 
-export const DialogTabs: React.FC<TabProps> = ({ tabContents, id }) => {
+export const DialogTabs: React.FC<TabProps> = ({ item }) => {
   const translation: Translation = {
     audio: useL10n("copyrightAudio"),
     video: useL10n("copyrightVideo"),
@@ -141,11 +143,11 @@ export const DialogTabs: React.FC<TabProps> = ({ tabContents, id }) => {
   return (
     <Root
       className={styles.tabs}
-      defaultValue={defaultTabValue(tabContents)}
+      defaultValue={defaultTabValue(item.dialog)}
       orientation="vertical"
     >
       <List className={styles.list} aria-label={listAriaLabel}>
-        {tabLabelItems(tabContents, translation)}
+        {tabLabelItems(item.dialog, translation)}
         {smallScreen ? (
           <Trigger key="notes" className={styles.trigger} value="notes">
             {noteLabel}
@@ -153,10 +155,10 @@ export const DialogTabs: React.FC<TabProps> = ({ tabContents, id }) => {
         ) : null}
       </List>
       <div className={styles.tabItemWrapper}>
-        {tabItems(tabContents, id)}
+        {tabItems(item)}
         {smallScreen ? (
           <Content key="notes" value="notes" className={styles.noteWrapper}>
-            <DialogNote maxLength={160} id={id} />
+            <DialogNote maxLength={160} id={item.id} />
           </Content>
         ) : null}
       </div>
