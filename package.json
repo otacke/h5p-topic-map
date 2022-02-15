@@ -19,7 +19,8 @@
     "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "generate-semantics": "ts-node generate-semantics.ts"
+    "generate-semantics": "ts-node generate-semantics.ts",
+    "watch-semantics": "nodemon generate-semantics.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^0.1.5",
@@ -68,6 +69,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
     "mini-css-extract-plugin": "^2.5.3",
+    "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
     "sass": "^1.49.7",
     "sass-loader": "^12.4.0",
