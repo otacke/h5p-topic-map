@@ -1,5 +1,8 @@
 .gridWrapper {
+  background-blend-mode: soft-light;
   background-color: var(--theme-color-1);
+  background-repeat: no-repeat;
+  background-size: cover;
   padding-top: 60%;
   position: relative;
 }
@@ -7,13 +10,6 @@
 .grid {
   inset: 1rem;
   position: absolute;
-
-  &.backgroundImage {
-    background-repeat: no-repeat;
-    background-size: cover;
-    object-fit: cover;
-    background-blend-mode: soft-light;
-  }
 }
 
 .itemWrapper {
