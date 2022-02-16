@@ -11,6 +11,8 @@ import {
   normalizeGridBackgroundImagePath,
   normalizeSizes,
   normalizeTopicMapItemPaths,
+  normalizeDialogAudioPaths,
+  normalizeDialogVideoPaths,
 } from "./H5P.util";
 
 export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
@@ -33,6 +35,16 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
     );
 
     paramsWithFallbacks = normalizeGridBackgroundImagePath(
+      paramsWithFallbacks,
+      contentId,
+    );
+
+    paramsWithFallbacks = normalizeDialogAudioPaths(
+      paramsWithFallbacks,
+      contentId,
+    );
+
+    paramsWithFallbacks = normalizeDialogVideoPaths(
       paramsWithFallbacks,
       contentId,
     );

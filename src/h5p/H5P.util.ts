@@ -1,5 +1,7 @@
 import { H5PObject } from "../../H5P";
+import { Audio } from "../types/H5P/Audio";
 import { Params } from "../types/H5P/Params";
+import { Video } from "../types/H5P/Video";
 import { TopicMapItemType } from "../types/TopicMapItemType";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -113,6 +115,155 @@ export const normalizeSizes = (params: Required<Params>): Required<Params> => {
         heightPercentage,
       };
     });
+
+  return {
+    ...params,
+    topicMap: {
+      ...(params.topicMap ?? {}),
+      topicMapItems,
+    },
+  };
+};
+
+/**
+ * Replace relative paths to audio(s) in Dialog(s) with absolute paths
+ *
+ * @param items An array with Audio Items being used in the current H5P
+ * @param contentId Content id of the H5P being shown
+ */
+export const makeAudioPathsAbsolute = (
+  items: Array<Audio> | undefined,
+  contentId: string,
+): Array<Audio> | undefined => {
+  if (!items) return undefined;
+
+  return items.map(item => {
+    if (!item.path) return item;
+
+    return {
+      ...item,
+      path: normalizeAssetPath(item.path, contentId),
+    };
+  });
+};
+
+/**
+ * Replace relative paths to image(s) in Topic Map Item(s) with absolute paths
+ *
+ * @param items An array with Topic Map Items being used in the current H5P
+ * @param contentId Content id of the H5P being shown
+ */
+export const makeDialogAudioPathsAbsolute = (
+  items: Array<TopicMapItemType> | undefined,
+  contentId: string,
+): Array<TopicMapItemType> | undefined => {
+  if (!items) return undefined;
+
+  return items.map(item => {
+    if (!item.dialog?.audio?.audioFile) return item;
+
+    const audioFile = makeAudioPathsAbsolute(
+      item.dialog?.audio.audioFile,
+      contentId,
+    );
+
+    return {
+      ...item,
+      dialog: {
+        ...item.dialog,
+        audio: {
+          ...item.dialog.audio,
+          audioFile,
+        },
+      },
+    };
+  });
+};
+
+export const normalizeDialogAudioPaths = <Type extends Params>(
+  params: Type,
+  contentId: string,
+): Type => {
+  let topicMapItems: TopicMapItemType[] | undefined;
+  if (params.topicMap) {
+    topicMapItems = makeDialogAudioPathsAbsolute(
+      params.topicMap.topicMapItems,
+      contentId,
+    );
+  }
+
+  return {
+    ...params,
+    topicMap: {
+      ...(params.topicMap ?? {}),
+      topicMapItems,
+    },
+  };
+};
+
+/**
+ * Replace relative paths to video(s) in Dialog(s) with absolute paths
+ *
+ * @param items An array with Video Items being used in the current H5P
+ * @param contentId Content id of the H5P being shown
+ */
+export const makeVideoPathsAbsolute = (
+  items: Array<Video> | undefined,
+  contentId: string,
+): Array<Video> | undefined => {
+  if (!items) return undefined;
+
+  return items.map(item => {
+    if (!item.path) return item;
+
+    return {
+      ...item,
+      path: normalizeAssetPath(item.path, contentId),
+    };
+  });
+};
+
+/**
+ * Replace relative paths to image(s) in Topic Map Item(s) with absolute paths
+ *
+ * @param items An array with Topic Map Items being used in the current H5P
+ * @param contentId Content id of the H5P being shown
+ */
+export const makeDialogVideoPathsAbsolute = (
+  items: Array<TopicMapItemType> | undefined,
+  contentId: string,
+): Array<TopicMapItemType> | undefined => {
+  if (!items) return undefined;
+
+  return items.map(item => {
+    if (!item.dialog?.video) return item;
+
+    const videoFile = makeVideoPathsAbsolute(item.dialog?.video, contentId);
+
+    return {
+      ...item,
+      dialog: {
+        ...item.dialog,
+        video: {
+          ...item.dialog.video,
+          videoFile,
+        },
+      },
+    };
+  });
+};
+
+export const normalizeDialogVideoPaths = <Type extends Params>(
+  params: Type,
+  contentId: string,
+): Type => {
+  let topicMapItems: TopicMapItemType[] | undefined;
+  if (params.topicMap) {
+    topicMapItems = makeDialogVideoPathsAbsolute(
+      params.topicMap.topicMapItems,
+      contentId,
+    );
+  }
 
   return {
     ...params,
