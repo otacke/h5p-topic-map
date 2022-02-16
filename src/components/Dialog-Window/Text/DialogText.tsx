@@ -34,9 +34,13 @@ export const DialogText: React.FC<DialogTextProps> = ({
             alt={topicImage.alt ?? ""}
           />
           {topicImage?.copyright ? (
-            <div className={styles.copyright}>
-              {formatCopyright(copyrightTitle, topicImage.copyright)}
-            </div>
+            <div
+              className={styles.copyright}
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{
+                __html: formatCopyright(copyrightTitle, topicImage.copyright),
+              }}
+            />
           ) : null}
         </>
       ) : null}

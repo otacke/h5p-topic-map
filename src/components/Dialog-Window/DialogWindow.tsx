@@ -76,7 +76,11 @@ export const DialogWindow: FC<DialogWindowProps> = ({
     </Content>
   ) : (
     <Content className={styles.dialogContent}>
-      <Title className={styles.dialogTitle}>{item.label}</Title>
+      <Title
+        className={styles.dialogTitle}
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: item.label }}
+      />
       <DialogTabs item={item} />
       <Close className={styles.closeButton} aria-label={ariaLabel}>
         <Cross2Icon />
@@ -87,7 +91,11 @@ export const DialogWindow: FC<DialogWindowProps> = ({
   if (item.dialog.hasNote && !smallScreen) {
     content = (
       <Content className={styles.dialogContentWithNote}>
-        <Title className={styles.dialogTitle}>{item.label}</Title>
+        <Title
+          className={styles.dialogTitle}
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: item.label }}
+        />
         <div className={styles.tabWrapper}>
           <DialogTabs item={item} />
         </div>
