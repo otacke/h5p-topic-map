@@ -1,6 +1,6 @@
 import * as React from "react";
-import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { useState } from "react";
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { Xwrapper } from "react-xarrows";
 import { ArrowItemType } from "../../types/ArrowItemType";
 import { CommonItemType } from "../../types/CommonItemType";
@@ -8,8 +8,8 @@ import { Image } from "../../types/H5P/Image";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
 import { Arrow } from "../Arrow/Arrow";
 import { DialogWindow } from "../Dialog-Window/DialogWindow";
-import { TopicMapItem } from "../TopicMapItem/TopicMapItem";
 import { FullscreenButton } from "../FullscreenButton/FullscreenButton";
+import { TopicMapItem } from "../TopicMapItem/TopicMapItem";
 import styles from "./Grid.module.scss";
 
 export type GridProps = {
@@ -34,7 +34,7 @@ export const Grid: React.FC<GridProps> = ({
     };
 
     return arrowItems.map(item => (
-      <Arrow item={item} onClick={() => onClick(item)} />
+      <Arrow key={item.id} item={item} onClick={() => onClick(item)} />
     ));
   }, [arrowItems]);
 

@@ -146,19 +146,19 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               name: "arrowType",
               type: H5PFieldType.Select,
               widget: "none",
-              default: 0,
+              default: "0",
               options: [
                 {
                   label: "Directional",
-                  value: 0,
+                  value: "0",
                 },
                 {
                   label: "Bi-directional",
-                  value: 1,
+                  value: "1",
                 },
                 {
                   label: "Non-directional",
-                  value: 2,
+                  value: "2",
                 },
               ],
             },
