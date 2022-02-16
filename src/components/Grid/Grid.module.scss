@@ -1,3 +1,5 @@
+$item-z-index: 1;
+
 .gridWrapper {
   background-blend-mode: soft-light;
   background-color: var(--theme-color-1);
@@ -17,7 +19,7 @@
   box-shadow: 0 0 0 2px var(--theme-color-4), 0 1px 4px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   position: absolute;
-  z-index: 1;
+  z-index: $item-z-index;
 
   &:focus-within {
     box-shadow: 0 0 0 2px #2360c5, 0 0 0 3px rgb(255, 255, 255);
@@ -32,4 +34,5 @@
   position: absolute;
   right: -0.5rem;
   top: -0.5rem;
+  z-index: $item-z-index + 1;
 }
