@@ -19,9 +19,13 @@ export const DialogVideo: React.FC<DialogVideoProps> = ({ video }) => {
       </video>
 
       {video.copyright ? (
-        <p className={styles.copyright}>
-          {formatCopyright(copyrightTitle, video.copyright)}
-        </p>
+        <p
+          className={styles.copyright}
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: formatCopyright(copyrightTitle, video.copyright),
+          }}
+        />
       ) : null}
     </div>
   );

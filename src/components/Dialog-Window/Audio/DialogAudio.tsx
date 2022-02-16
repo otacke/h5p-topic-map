@@ -21,9 +21,13 @@ export const DialogAudio: React.FC<DialogAudioProps> = ({
       <audio className={styles.audioPlayer} src={audioTrack.path} controls />
 
       {audioTrack.copyright ? (
-        <p className={styles.copyright}>
-          {formatCopyright(copyrightTitle, audioTrack.copyright)}
-        </p>
+        <p
+          className={styles.copyright}
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: formatCopyright(copyrightTitle, audioTrack.copyright),
+          }}
+        />
       ) : null}
 
       {subtext ? (

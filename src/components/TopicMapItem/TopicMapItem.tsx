@@ -24,9 +24,17 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({ item, onClick }) => {
           item.topicImage?.path ? "" : styles.noImage
         }`}
       >
-        <div className={styles.label}>{item.label}</div>
+        <div
+          className={styles.label}
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: item.label }}
+        />
         {item.description && (
-          <div className={styles.description}>{item.description}</div>
+          <div
+            className={styles.description}
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: item.description }}
+          />
         )}
       </div>
     </button>
