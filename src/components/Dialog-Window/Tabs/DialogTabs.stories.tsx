@@ -36,11 +36,13 @@ const item = {
     hasNote: true,
     text: "<p>Text text for testing Text text test. This is a body<p>",
     links: ["www.youtube.com", "www.ndla.com"],
-    video: {
-      path: "https://player.vimeo.com/video/224857514?title=0&portrait=0&byline=0&autoplay=1&loop=1&transparent=1",
-    },
+    video: [
+      {
+        path: "https://player.vimeo.com/video/224857514?title=0&portrait=0&byline=0&autoplay=1&loop=1&transparent=1",
+      },
+    ],
     audio: {
-      file: { path: "https://bigsoundbank.com/UPLOAD/mp3/0001.mp3" },
+      audioFile: [{ path: "https://bigsoundbank.com/UPLOAD/mp3/0001.mp3" }],
       subtext: `
         <b>
           Den franske revolusjon var en periode med store sosiale og politiske
@@ -80,11 +82,13 @@ const itemWithOnlyImage = {
   dialog: {
     hasNote: true,
     links: ["www.youtube.com", "www.ndla.com"],
-    video: {
-      path: "https://player.vimeo.com/video/224857514?title=0&portrait=0&byline=0&autoplay=1&loop=1&transparent=1",
-    },
+    video: [
+      {
+        path: "https://player.vimeo.com/video/224857514?title=0&portrait=0&byline=0&autoplay=1&loop=1&transparent=1",
+      },
+    ],
     audio: {
-      file: { path: "https://bigsoundbank.com/UPLOAD/mp3/0001.mp3" },
+      audioFile: [{ path: "https://bigsoundbank.com/UPLOAD/mp3/0001.mp3" }],
       subtext: `
         <b>
           Den franske revolusjon var en periode med store sosiale og politiske
@@ -122,11 +126,13 @@ const itemWithoutImage = {
     hasNote: true,
     links: ["www.youtube.com", "www.ndla.com"],
     text: "<p>Body text from storybook.<p>",
-    video: {
-      path: "https://player.vimeo.com/video/224857514?title=0&portrait=0&byline=0&autoplay=1&loop=1&transparent=1",
-    },
+    video: [
+      {
+        path: "https://player.vimeo.com/video/224857514?title=0&portrait=0&byline=0&autoplay=1&loop=1&transparent=1",
+      },
+    ],
     audio: {
-      file: { path: "https://bigsoundbank.com/UPLOAD/mp3/0001.mp3" },
+      audioFile: [{ path: "https://bigsoundbank.com/UPLOAD/mp3/0001.mp3" }],
       subtext: `
         <b>
           Den franske revolusjon var en periode med store sosiale og politiske

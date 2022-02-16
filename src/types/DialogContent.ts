@@ -5,14 +5,14 @@ export type DialogContent = {
   hasNote: boolean;
   links?: Array<string>;
   text?: string;
-  video?: Video;
+  video?: Array<Video>;
   audio?: {
     /**
      * "Optional" because we can't force the user
      * to add a file, therefore there's an off-chance
      * that the value will be nullish
      *  */
-    file?: Audio;
+    audioFile?: Array<Audio>;
     subtext?: string;
   };
 };

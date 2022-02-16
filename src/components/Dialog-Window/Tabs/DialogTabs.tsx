@@ -4,7 +4,6 @@ import * as React from "react";
 import { Root, List, Trigger, Content } from "@radix-ui/react-tabs";
 import { useMedia } from "react-use";
 import styles from "./DialogTabs.module.scss";
-import { DialogContent } from "../../../types/DialogContent";
 import { DialogText } from "../Text/DialogText";
 import { DialogResources } from "../Resources/DialogResources";
 import { DialogVideo } from "../Video/DialogVideo";
@@ -64,14 +63,14 @@ const tabLabelItems = (
         </Trigger>,
       )
     : null;
-  dialog?.video && dialog.video.path
+  dialog?.video?.[0]?.path
     ? items.push(
         <Trigger key="video" className={styles.trigger} value="Video">
           {translation.video}
         </Trigger>,
       )
     : null;
-  dialog?.audio && dialog.audio.file && dialog.audio.file.path
+  dialog?.audio?.audioFile?.[0]?.path
     ? items.push(
         <Trigger key="audio" className={styles.trigger} value="Audio">
           {translation.audio}
@@ -104,28 +103,18 @@ const tabItems = (item: CommonItemType): JSX.Element[] => {
         </Content>,
       )
     : null;
-  dialog?.video && dialog.video.path
+  dialog?.video?.[0]?.path
     ? items.push(
         <Content key="video" value="Video">
-          <DialogVideo
-            video={{
-              path: dialog.video.path,
-              mime: dialog.video.mime,
-              copyright: dialog.video.copyright,
-            }}
-          />
+          <DialogVideo video={dialog.video[0]} />
         </Content>,
       )
     : null;
-  dialog?.audio && dialog.audio.file && dialog.audio.file.path
+  dialog?.audio?.audioFile?.[0]?.path
     ? items.push(
         <Content key="audio" value="Audio">
           <DialogAudio
-            audioTrack={{
-              path: dialog.audio.file.path,
-              mime: dialog.audio.file.mime,
-              copyright: dialog.audio.file.copyright,
-            }}
+            audioTrack={dialog.audio.audioFile[0]}
             subtext={dialog.audio.subtext}
           />
         </Content>,
