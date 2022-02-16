@@ -1,15 +1,13 @@
 .gridWrapper {
+  background-color: var(--theme-color-1);
   padding-top: 60%;
   position: relative;
 }
 
 .grid {
-  background-color: var(--theme-color-1);
-  height: 100%;
-  left: 0;
+  inset: 1rem;
+  left: 1rem;
   position: absolute;
-  top: 0;
-  width: 100%;
 
   &.backgroundImage {
     background-repeat: no-repeat;
