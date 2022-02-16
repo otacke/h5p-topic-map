@@ -56,7 +56,8 @@
   gap: 0.5rem;
 }
 
-.sectionsMenu.hidden {
+.sectionsMenu.hidden,
+.progressBarWrapper {
   display: none;
 }
 
@@ -96,16 +97,10 @@
   gap: 0.3rem;
 }
 
-.progressBarWrapper {
-  overflow: hidden;
-  height: 0;
-  width: 0;
-}
-
 @media (min-width: 768px) {
   .mainBody,
   .notesList {
-    padding: 1rem 2rem 1.1rem;
+    padding: 1rem 1rem 1.1rem;
   }
 
   .sectionTitle {
@@ -125,18 +120,12 @@
     font-size: inherit;
   }
 
-  .hamburgerButton {
+  .hamburgerButton,
+  .progressBarMobileWrapper {
     display: none;
   }
 
-  .progressBarMobileWrapper {
-    overflow: hidden;
-    height: 0;
-  }
-
   .progressBarWrapper {
-    overflow: visible;
-    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -147,5 +136,9 @@
 
   .progressBar {
     width: 10rem;
+  }
+
+  .progressBarTitle {
+    padding-right: 0;
   }
 }
