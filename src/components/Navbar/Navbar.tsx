@@ -129,12 +129,29 @@ export const Navbar: React.FC<NavbarProps> = ({
     </div>
   );
 
+  const progressBar = (
+    <>
+      <div
+        className={styles.progressPercentage}
+        aria-label={progressPercentageLabel}
+      >{`${progressPercentage}%`}</div>
+      <ProgressBar
+        className={styles.progressBar}
+        completed={progressPercentage}
+        baseBgColor="var(--theme-color-1)"
+        bgColor="var(--theme-color-4)"
+        isLabelVisible={false}
+      />
+    </>
+  );
+
   return (
     <>
       <div className={styles.mainBody}>
         <button className={styles.navbarTitle} type="button">
           {navbarTitle}
         </button>
+        <div className={styles.progressBarMobileWrapper}>{progressBar}</div>
         <button
           type="button"
           className={styles.hamburgerButton}
@@ -184,19 +201,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               aria-label={progressBarLabel}
               disabled
             >
-              <div className={styles.progressBarWrapper}>
-                <div
-                  className={styles.progressPercentage}
-                  aria-label={progressPercentageLabel}
-                >{`${progressPercentage}%`}</div>
-                <ProgressBar
-                  className={styles.progressBar}
-                  completed={progressPercentage}
-                  baseBgColor="var(--theme-color-1)"
-                  bgColor="var(--theme-color-4)"
-                  isLabelVisible={false}
-                />
-              </div>
+              <div className={styles.progressBarWrapper}>{progressBar}</div>
             </Trigger>
           </TabsList>
           <Content
