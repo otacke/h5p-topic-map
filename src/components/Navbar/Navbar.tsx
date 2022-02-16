@@ -7,8 +7,9 @@ import { NotesSection } from "./NotesSection/NotesSection";
 import { NotesList } from "./NotesSection/NotesList/NotesList";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
 import { getUserData, setUserData } from "../../hooks/useLocalStorage";
-import styles from "./Navbar.module.scss";
 import { DialogWindow } from "../Dialog-Window/DialogWindow";
+import { HamburgerIcon, HamburgerCloseIcon } from "../Icons/Icons";
+import styles from "./Navbar.module.scss";
 
 export type NavbarProps = {
   navbarTitle: string;
@@ -46,6 +47,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const [isDeleteConfirmationVisible, setIsDeleteConfirmationVisible] =
     React.useState<boolean>(false);
+
+  const [isHamburgerOpen, setIsHamburgerOpen] = React.useState<boolean>(false);
 
   const deleteAllNotes = (): void => {
     topicMapItems.forEach(item => {
@@ -108,9 +111,22 @@ export const Navbar: React.FC<NavbarProps> = ({
         <button className={styles.navbarTitle} type="button">
           {navbarTitle}
         </button>
+        <button
+          type="button"
+          className={styles.hamburgerButton}
+          onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}
+        >
+          {isHamburgerOpen ? (
+            <HamburgerCloseIcon iconColor="#fff" />
+          ) : (
+            <HamburgerIcon iconColor="#fff" />
+          )}
+        </button>
         <Tabs defaultValue={topicMapSectionLabel}>
           <TabsList
-            className={styles.sectionsMenu}
+            className={`${styles.sectionsMenu} ${
+              !isHamburgerOpen && styles.hidden
+            }`}
             aria-label={navbarAriaLabel}
           >
             <Trigger
