@@ -15,15 +15,16 @@ Object.defineProperty(window, "matchMedia", {
 
 describe(DialogTabs.name, () => {
   it("should have rendered.", () => {
-    const tabs = render(
-      <DialogTabs
-        tabContents={{
-          text: "",
-          hasNote: true,
-        }}
-        id="test"
-      />,
-    ).container;
+    const item = {
+      id: "testid",
+      label: "Test label",
+      description: "Testing",
+      dialog: {
+        hasNote: true,
+        text: "Dialog test",
+      },
+    };
+    const tabs = render(<DialogTabs item={item} />).container;
 
     expect(tabs.querySelector("div")).toBeTruthy();
   });

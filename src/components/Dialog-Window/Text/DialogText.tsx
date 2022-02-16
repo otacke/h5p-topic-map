@@ -6,14 +6,12 @@ import { formatCopyright } from "../../../utils/dialog.utils";
 import styles from "./DialogText.module.scss";
 
 export type DialogTextProps = {
-  description: string;
   topicImage: Image | undefined;
   introduction: string | undefined;
   bodyText: string | undefined;
 };
 
 export const DialogText: React.FC<DialogTextProps> = ({
-  description,
   topicImage,
   introduction,
   bodyText,
@@ -22,10 +20,10 @@ export const DialogText: React.FC<DialogTextProps> = ({
 
   return (
     <div className={styles.dialogText}>
-      {description ? (
+      {introduction ? (
         <div
           className={styles.description}
-          dangerouslySetInnerHTML={{ __html: description }}
+          dangerouslySetInnerHTML={{ __html: introduction }}
         />
       ) : null}
       {topicImage ? (
@@ -43,11 +41,12 @@ export const DialogText: React.FC<DialogTextProps> = ({
         </>
       ) : null}
 
-      {introduction ? (
-        <p className={styles.introduction}>{introduction}</p>
+      {bodyText ? (
+        <div
+          className={styles.bodyText}
+          dangerouslySetInnerHTML={{ __html: bodyText }}
+        />
       ) : null}
-
-      {bodyText ? <p className={styles.bodyText}>{bodyText}</p> : null}
     </div>
   );
 };
