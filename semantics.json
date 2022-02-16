@@ -543,6 +543,18 @@
         "name": "deleteNotesDenyLabel",
         "default": "Cancel",
         "type": "text"
+      },
+      {
+        "label": "Navbar progress bar label",
+        "name": "progressBarLabel",
+        "default": "Progress",
+        "type": "text"
+      },
+      {
+        "label": "Navbar progress percentage label",
+        "name": "progressPercentageLabel",
+        "default": "Progress in percent",
+        "type": "text"
       }
     ]
   }

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Trigger, Content, Tabs, TabsList } from "@radix-ui/react-tabs";
 import { useReactToPrint } from "react-to-print";
+import ProgressBar from "@ramonak/react-progress-bar";
 import { useL10n } from "../../hooks/useLocalization";
 import { HelpSection } from "./HelpSection/HelpSection";
 import { NotesSection } from "./NotesSection/NotesSection";
@@ -24,10 +25,33 @@ export const Navbar: React.FC<NavbarProps> = ({
   const topicMapSectionLabel = useL10n("navbarTopicMapSectionLabel");
   const notesSectionLabel = useL10n("navbarNotesSectionLabel");
   const helpSectionLabel = useL10n("navbarHelpSectionLabel");
+  const progressBarLabel = useL10n("progressBarLabel");
+  const progressPercentageLabel = useL10n("progressPercentageLabel");
   const deleteAllNotesText = useL10n("deleteNotesConfirmationWindowLabel");
   const deleteAllNotesConfirmText = useL10n("deleteNotesConfirmLabel");
   const deleteAllNotesDenyText = useL10n("deleteNotesDenyLabel");
   const userData = getUserData();
+  const [progressBarValue, setProgressBarValue] = React.useState<number>(0);
+  const totalNotesToComplete = React.useMemo(
+    () => topicMapItems.filter(item => item.dialog?.hasNote).length,
+    [topicMapItems],
+  );
+  const [progressPercentage, setProgressPercentage] =
+    React.useState<number>(progressBarValue);
+
+  React.useEffect(() => {
+    setProgressBarValue(
+      topicMapItems.filter(
+        item =>
+          item.dialog?.hasNote &&
+          item.id in userData &&
+          userData[item.id].noteCompleted,
+      ).length,
+    );
+    setProgressPercentage(
+      Math.round((progressBarValue / totalNotesToComplete) * 100),
+    );
+  }, [progressBarValue, topicMapItems, totalNotesToComplete, userData]);
 
   let navbarTitleForPrint = "";
   const updateNavbarTitleForPrint = (): void => {
@@ -105,12 +129,29 @@ export const Navbar: React.FC<NavbarProps> = ({
     </div>
   );
 
+  const progressBar = (
+    <>
+      <div
+        className={styles.progressPercentage}
+        aria-label={progressPercentageLabel}
+      >{`${progressPercentage}%`}</div>
+      <ProgressBar
+        className={styles.progressBar}
+        completed={progressPercentage}
+        baseBgColor="var(--theme-color-1)"
+        bgColor="var(--theme-color-4)"
+        isLabelVisible={false}
+      />
+    </>
+  );
+
   return (
     <>
       <div className={styles.mainBody}>
         <button className={styles.navbarTitle} type="button">
           {navbarTitle}
         </button>
+        <div className={styles.progressBarMobileWrapper}>{progressBar}</div>
         <button
           type="button"
           className={styles.hamburgerButton}
@@ -153,15 +194,15 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               {helpSectionLabel}
             </Trigger>
-            {/* <Trigger
-            className={styles.sectionTitle}
-            key="▰▰▰▰▱▱▱▱▱▱ 40%"
-            value="▰▰▰▰▱▱▱▱▱▱ 40%"
-            aria-label="Progress bar"
-          >
-            ▰▰▰▰▱▱▱▱▱▱ 40%
-          </Trigger>
-          */}
+            <Trigger
+              className={styles.progressBarTitle}
+              key={progressBarLabel}
+              value={`${progressBarValue}`}
+              aria-label={progressBarLabel}
+              disabled
+            >
+              <div className={styles.progressBarWrapper}>{progressBar}</div>
+            </Trigger>
           </TabsList>
           <Content
             className={styles.sectionContent}
@@ -188,13 +229,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <HelpSection />
           </Content>
-          {/* <Content
-          className={styles.sectionContent}
-          key="▰▰▰▰▱▱▱▱▱▱ 40%"
-          value="▰▰▰▰▱▱▱▱▱▱ 40%"
-        >
-          <h3>Progress bar section</h3>
-        </Content> */}
         </Tabs>
       </div>
       {notesSection}

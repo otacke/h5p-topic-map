@@ -36,4 +36,6 @@ export type TranslationKey =
   | "navbarNotesMissingNoteLabel"
   | "deleteNotesConfirmationWindowLabel"
   | "deleteNotesConfirmLabel"
-  | "deleteNotesDenyLabel";
+  | "deleteNotesDenyLabel"
+  | "progressBarLabel"
+  | "progressPercentageLabel";
