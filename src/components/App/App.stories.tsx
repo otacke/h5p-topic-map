@@ -83,7 +83,7 @@ DenFranskeRevolusjon.args = {
             text: "",
           },
           topicImage: {
-            path: "images/topicImage-620cbb35e9c1b.jpeg",
+            path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/07_02_bunkerhill.jpg",
             mime: "image/jpeg",
             copyright: {
               license: "PD",
@@ -111,7 +111,7 @@ DenFranskeRevolusjon.args = {
             text: "",
           },
           topicImage: {
-            path: "images/topicImage-620cc034bcb8f.jpeg",
+            path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/07_03_3g05913v_copy.jpg",
             mime: "image/jpeg",
             copyright: {
               license: "PD",
@@ -150,7 +150,7 @@ DenFranskeRevolusjon.args = {
             audio: {},
           },
           topicImage: {
-            path: "images/topicImage-620cc0285eac5.jpeg",
+            path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/07_05_szbadbb5.jpg",
             mime: "image/jpeg",
             copyright: {
               license: "U",
@@ -174,7 +174,7 @@ DenFranskeRevolusjon.args = {
             audio: {},
           },
           topicImage: {
-            path: "images/topicImage-620cc01d5a286.jpeg",
+            path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/07_06_estatesgeneral_1.jpg",
             mime: "image/jpeg",
             copyright: {
               license: "PD",
@@ -199,7 +199,7 @@ DenFranskeRevolusjon.args = {
             audio: {},
           },
           topicImage: {
-            path: "images/topicImage-620cc015a86a5.jpeg",
+            path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/01_08_ballhuseden.jpg",
             mime: "image/jpeg",
             copyright: {
               license: "PD",
@@ -223,7 +223,7 @@ DenFranskeRevolusjon.args = {
             audio: {},
           },
           topicImage: {
-            path: "images/topicImage-620cc00b72d60.jpg",
+            path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/07_09_szbd4871.jpg",
             mime: "image/jpeg",
             copyright: {
               license: "U",
@@ -247,7 +247,7 @@ DenFranskeRevolusjon.args = {
             audio: {},
           },
           topicImage: {
-            path: "images/topicImage-620cbfe499b03.jpg",
+            path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/07_11_Battle_of_Borodino.jpg",
             mime: "image/jpeg",
             copyright: {
               license: "PD",
@@ -271,7 +271,7 @@ DenFranskeRevolusjon.args = {
             audio: {},
           },
           topicImage: {
-            path: "images/topicImage-620cbff47f24f.jpg",
+            path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/07_08_Napoleon_kopi.jpg",
             mime: "image/jpeg",
             copyright: {
               license: "PD",
@@ -298,7 +298,7 @@ DenFranskeRevolusjon.args = {
             text: "",
           },
           topicImage: {
-            path: "images/topicImage-620cc00073ea9.jpg",
+            path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/07_10_skisse_szbadf10.jpg",
             mime: "image/jpeg",
             copyright: {
               license: "U",
