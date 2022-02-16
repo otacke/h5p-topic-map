@@ -41,7 +41,12 @@ export const DialogText: React.FC<DialogTextProps> = ({
         </>
       ) : null}
 
-      {bodyText ? <p className={styles.bodyText}>{bodyText}</p> : null}
+      {bodyText ? (
+        <div
+          className={styles.bodyText}
+          dangerouslySetInnerHTML={{ __html: bodyText }}
+        />
+      ) : null}
     </div>
   );
 };

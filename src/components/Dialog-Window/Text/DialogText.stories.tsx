@@ -32,8 +32,8 @@ SimpleText.args = {
   første viktige vendepunktet under revolusjonen. 14. juli dette året brøt
   det ut masseopprør i Paris og fengselet Bastillen ble stormet.`,
 
-  bodyText: `Perioden 1787-1789 kalles gjerne førrevolusjonen, men langsiktige
+  bodyText: `<p> Perioden 1787-1789 kalles gjerne førrevolusjonen, men langsiktige
   årsaker til revolusjonen strekker seg naturligvis mye lenger tilbake i
   tid. De viktigste politiske, sosiale og administrative omveltninger
-  skjedde i perioden 1789-1794.`,
+  skjedde i perioden 1789-1794. <p>`,
 };
