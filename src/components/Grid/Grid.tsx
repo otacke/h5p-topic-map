@@ -73,7 +73,9 @@ export const Grid: React.FC<GridProps> = ({
           style={{ backgroundImage: bgImageStyle }}
         >
           <div className={styles.grid}>
-            <FullscreenButton fullscreenHandle={fullscreen} />
+            <div className={styles.fullscreenButtonWrapper}>
+              <FullscreenButton fullscreenHandle={fullscreen} />
+            </div>
             {arrows}
             {children}
             {itemShowingDialog?.dialog ? (
