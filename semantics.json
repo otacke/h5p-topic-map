@@ -198,11 +198,25 @@
               "type": "image"
             },
             {
-              "label": "Show start arrow-head",
-              "name": "showStartHead",
-              "type": "boolean",
+              "label": "Arrow type",
+              "name": "arrowType",
+              "type": "select",
               "widget": "none",
-              "default": false
+              "default": 0,
+              "options": [
+                {
+                  "label": "Directional",
+                  "value": 0
+                },
+                {
+                  "label": "Bi-directional",
+                  "value": 1
+                },
+                {
+                  "label": "Non-directional",
+                  "value": 2
+                }
+              ]
             },
             {
               "label": "Show end arrow-head",
@@ -300,37 +314,29 @@
         "optional": true
       },
       {
-        "label": "Appearance",
-        "name": "appearance",
-        "type": "group",
-        "importance": "low",
-        "widget": "none",
-        "fields": [
+        "label": "Color theme",
+        "name": "colorTheme",
+        "type": "select",
+        "default": "1",
+        "options": [
           {
-            "label": "Color theme",
-            "name": "colorTheme",
-            "type": "select",
-            "default": "1",
-            "options": [
-              {
-                "label": "Blue",
-                "value": "1"
-              },
-              {
-                "label": "Green",
-                "value": "2"
-              },
-              {
-                "label": "Red",
-                "value": "3"
-              },
-              {
-                "label": "Gray",
-                "value": "4"
-              }
-            ]
+            "label": "Blue",
+            "value": "1"
+          },
+          {
+            "label": "Green",
+            "value": "2"
+          },
+          {
+            "label": "Red",
+            "value": "3"
+          },
+          {
+            "label": "Gray",
+            "value": "4"
           }
-        ]
+        ],
+        "widget": "none"
       }
     ]
   },
