@@ -547,13 +547,13 @@
       {
         "label": "Navbar progress bar label",
         "name": "progressBarLabel",
-        "default": "Progress bar",
+        "default": "Progress",
         "type": "text"
       },
       {
         "label": "Navbar progress percentage label",
         "name": "progressPercentageLabel",
-        "default": "Progress bar percentage",
+        "default": "Progress in percent",
         "type": "text"
       }
     ]

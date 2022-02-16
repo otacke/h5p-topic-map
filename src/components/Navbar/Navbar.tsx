@@ -32,9 +32,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   const deleteAllNotesDenyText = useL10n("deleteNotesDenyLabel");
   const userData = getUserData();
   const [progressBarValue, setProgressBarValue] = React.useState<number>(0);
-  const totalNotesToComplete = topicMapItems.filter(
-    item => item.dialog && item.dialog.hasNote,
-  ).length;
+  const totalNotesToComplete = React.useMemo(
+    () => topicMapItems.filter(item => item.dialog?.hasNote).length,
+    [topicMapItems],
+  );
   const [progressPercentage, setProgressPercentage] =
     React.useState<number>(progressBarValue);
 
@@ -42,8 +43,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     setProgressBarValue(
       topicMapItems.filter(
         item =>
-          item.dialog &&
-          item.dialog.hasNote &&
+          item.dialog?.hasNote &&
           item.id in userData &&
           userData[item.id].noteCompleted,
       ).length,
@@ -229,13 +229,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <HelpSection />
           </Content>
-          {/* <Content
-          className={styles.sectionContent}
-          key="▰▰▰▰▱▱▱▱▱▱ 40%"
-          value="▰▰▰▰▱▱▱▱▱▱ 40%"
-        >
-          <h3>Progress bar section</h3>
-        </Content> */}
         </Tabs>
       </div>
       {notesSection}
