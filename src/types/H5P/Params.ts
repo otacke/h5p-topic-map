@@ -10,11 +10,9 @@ export type Params = Readonly<{
   topicMap?: {
     topicMapItems?: Array<TopicMapItemType>;
     arrowItems?: Array<ArrowItemType>;
-    gridBackgroundImage?: Image;
 
-    appearance?: {
-      colorTheme?: ColorTheme;
-    };
+    gridBackgroundImage?: Image;
+    colorTheme?: ColorTheme;
   };
 
   l10n?: Translations;

@@ -141,13 +141,26 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               name: "topicImage",
               type: H5PFieldType.Image,
             },
-
             {
-              label: "Show start arrow-head",
-              name: "showStartHead",
-              type: H5PFieldType.Boolean,
+              label: "Arrow type",
+              name: "arrowType",
+              type: H5PFieldType.Select,
               widget: "none",
-              default: false,
+              default: "0",
+              options: [
+                {
+                  label: "Directional",
+                  value: "0",
+                },
+                {
+                  label: "Bi-directional",
+                  value: "1",
+                },
+                {
+                  label: "Non-directional",
+                  value: "2",
+                },
+              ],
             },
             {
               label: "Show end arrow-head",
@@ -176,20 +189,12 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         optional: true,
       },
       {
-        label: "Appearance",
-        name: "appearance",
-        type: H5PFieldType.Group,
-        importance: "low",
+        label: "Color theme",
+        name: "colorTheme",
+        type: H5PFieldType.Select,
+        default: ColorTheme.Blue,
+        options: [...colorThemes],
         widget: "none",
-        fields: [
-          {
-            label: "Color theme",
-            name: "colorTheme",
-            type: H5PFieldType.Select,
-            default: ColorTheme.Blue,
-            options: [...colorThemes],
-          },
-        ],
       },
     ],
   },

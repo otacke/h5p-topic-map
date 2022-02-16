@@ -79,9 +79,7 @@ export const getEmptyParams = (): Required<Params> => {
   return {
     topicMap: {
       topicMapItems: [],
-      appearance: {
-        colorTheme: defaultTheme,
-      },
+      colorTheme: defaultTheme,
     },
     behaviour: null,
     l10n: {} as Translations,
