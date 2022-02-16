@@ -51,6 +51,8 @@ DenFranskeRevolusjon.args = {
       navbarNotesSectionDeleteLabel: "Delete",
       navbarNotesSectionPrintLabel: "Print",
       navbarNotesSectionTitle: "Title",
+      progressBarLabel: "Progress",
+      progressPercentageLabel: "Progress percentage",
     },
     topicMap: {
       topicMapItems: [
