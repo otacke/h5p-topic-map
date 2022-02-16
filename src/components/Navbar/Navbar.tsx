@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Trigger, Content, Tabs, TabsList } from "@radix-ui/react-tabs";
 import { useReactToPrint } from "react-to-print";
+import ProgressBar from "@ramonak/react-progress-bar";
 import { useL10n } from "../../hooks/useLocalization";
 import { HelpSection } from "./HelpSection/HelpSection";
 import { NotesSection } from "./NotesSection/NotesSection";
@@ -25,11 +26,17 @@ export const Navbar: React.FC<NavbarProps> = ({
   const notesSectionLabel = useL10n("navbarNotesSectionLabel");
   const helpSectionLabel = useL10n("navbarHelpSectionLabel");
   const progressBarLabel = useL10n("progressBarLabel");
+  const progressPercentageLabel = useL10n("progressPercentageLabel");
   const deleteAllNotesText = useL10n("deleteNotesConfirmationWindowLabel");
   const deleteAllNotesConfirmText = useL10n("deleteNotesConfirmLabel");
   const deleteAllNotesDenyText = useL10n("deleteNotesDenyLabel");
   const userData = getUserData();
   const [progressBarValue, setProgressBarValue] = React.useState<number>(0);
+  const totalNotesToComplete = topicMapItems.filter(
+    item => item.dialog && item.dialog.hasNote,
+  ).length;
+  const [progressPercentage, setProgressPercentage] =
+    React.useState<number>(progressBarValue);
 
   React.useEffect(() => {
     setProgressBarValue(
@@ -41,7 +48,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           userData[item.id].noteCompleted,
       ).length,
     );
-  }, [topicMapItems, userData]);
+    setProgressPercentage(
+      Math.round((progressBarValue / totalNotesToComplete) * 100),
+    );
+  }, [progressBarValue, topicMapItems, totalNotesToComplete, userData]);
 
   let navbarTitleForPrint = "";
   const updateNavbarTitleForPrint = (): void => {
@@ -168,15 +178,26 @@ export const Navbar: React.FC<NavbarProps> = ({
               {helpSectionLabel}
             </Trigger>
             <Trigger
-              className={styles.sectionTitle}
+              className={styles.progressBarTitle}
               key={progressBarLabel}
               value={`${progressBarValue}`}
               aria-label={progressBarLabel}
               disabled
-            >{`${progressBarValue} / ${
-              topicMapItems.filter(item => item.dialog && item.dialog.hasNote)
-                .length
-            }`}</Trigger>
+            >
+              <div className={styles.progressBarWrapper}>
+                <div
+                  className={styles.progressPercentage}
+                  aria-label={progressPercentageLabel}
+                >{`${progressPercentage}%`}</div>
+                <ProgressBar
+                  className={styles.progressBar}
+                  completed={progressPercentage}
+                  baseBgColor="var(--theme-color-1)"
+                  bgColor="var(--theme-color-4)"
+                  isLabelVisible={false}
+                />
+              </div>
+            </Trigger>
           </TabsList>
           <Content
             className={styles.sectionContent}
