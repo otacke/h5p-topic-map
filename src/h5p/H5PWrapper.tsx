@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { IH5PWrapper } from "../../H5P";
 import { App } from "../components/App/App";
+import { ContentIdContext } from "../contexts/ContentIdContext";
 import { LocalizationContext } from "../contexts/LocalizationContext";
 import { Params } from "../types/H5P/Params";
 import { Translations } from "../types/Translations";
@@ -20,6 +21,8 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
 
   constructor(params: Params, contentId: string, extras?: unknown) {
     super();
+    console.log("hei")
+    
     this.wrapper = H5PWrapper.createWrapperElement();
 
     console.info({ params, contentId, extras });
@@ -55,9 +58,11 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
     const l10n = params.l10n ?? ({} as Translations);
 
     ReactDOM.render(
-      <LocalizationContext.Provider value={l10n}>
-        <App params={paramsWithFallbacks} />
-      </LocalizationContext.Provider>,
+      <ContentIdContext.Provider value={contentId}>
+        <LocalizationContext.Provider value={l10n}>
+          <App params={paramsWithFallbacks} />
+        </LocalizationContext.Provider>
+      </ContentIdContext.Provider>,
       this.wrapper,
     );
   }

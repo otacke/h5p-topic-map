@@ -3,9 +3,17 @@
 import { H5PWrapper } from "./src/h5p/H5PWrapper";
 
 export interface H5PObject {
+  jQuery: typeof JQuery;
   EventDispatcher: typeof EventDispatcher;
   TopicMap: typeof H5PWrapper;
   getPath: (path: string, contentId: string) => string;
+  newRunnable: (
+    library: { library: string, params: unknown },
+    contentId: string,
+    $attachTo: JQuery,
+    skipResize?: boolean,
+    extras?: unknown,
+  ) => void;
 }
 
 declare class EventDispatcher {
