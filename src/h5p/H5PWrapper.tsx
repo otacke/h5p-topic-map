@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { IH5PWrapper } from "../../H5P";
-import { App } from "../App";
+import { App } from "../components/App/App";
 import { LocalizationContext } from "../contexts/LocalizationContext";
 import { Params } from "../types/H5P/Params";
 import { Translations } from "../types/Translations";
