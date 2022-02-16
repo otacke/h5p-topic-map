@@ -98,7 +98,12 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   });
 
   return (
-    <form>
+    <form
+      onSubmit={event => {
+        updateCustomList();
+        event.preventDefault();
+      }}
+    >
       <p> {relevantLinkLabel}: </p>
       <ul>{relevantItems}</ul>
       <p> {customLinkLabel}: </p>
