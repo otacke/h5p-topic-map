@@ -63,14 +63,14 @@ const tabLabelItems = (
         </Trigger>,
       )
     : null;
-  dialog?.video && dialog.video[0].path
+  dialog?.video?.[0]?.path
     ? items.push(
         <Trigger key="video" className={styles.trigger} value="Video">
           {translation.video}
         </Trigger>,
       )
     : null;
-  dialog?.audio && dialog.audio.audioFile && dialog.audio.audioFile[0].path
+  dialog?.audio?.audioFile?.[0]?.path
     ? items.push(
         <Trigger key="audio" className={styles.trigger} value="Audio">
           {translation.audio}
@@ -103,28 +103,18 @@ const tabItems = (item: CommonItemType): JSX.Element[] => {
         </Content>,
       )
     : null;
-  dialog?.video && dialog.video[0].path
+  dialog?.video?.[0]?.path
     ? items.push(
         <Content key="video" value="Video">
-          <DialogVideo
-            video={{
-              path: dialog.video[0].path,
-              mime: dialog.video[0].mime,
-              copyright: dialog.video[0].copyright,
-            }}
-          />
+          <DialogVideo video={dialog.video[0]} />
         </Content>,
       )
     : null;
-  dialog?.audio && dialog.audio.audioFile && dialog.audio.audioFile[0].path
+  dialog?.audio?.audioFile?.[0]?.path
     ? items.push(
         <Content key="audio" value="Audio">
           <DialogAudio
-            audioTrack={{
-              path: dialog.audio.audioFile[0].path,
-              mime: dialog.audio.audioFile[0].mime,
-              copyright: dialog.audio.audioFile[0].copyright,
-            }}
+            audioTrack={dialog.audio.audioFile[0]}
             subtext={dialog.audio.subtext}
           />
         </Content>,
