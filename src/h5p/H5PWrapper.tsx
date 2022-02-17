@@ -4,6 +4,7 @@ import { IH5PWrapper } from "../../H5P";
 import { App } from "../components/App/App";
 import { ContentIdContext } from "../contexts/ContentIdContext";
 import { LocalizationContext } from "../contexts/LocalizationContext";
+import { H5PExtras } from "../types/H5P/H5PExtras";
 import { Params } from "../types/H5P/Params";
 import { Translations } from "../types/Translations";
 import { getEmptyParams } from "../utils/semantics.utils";
@@ -18,7 +19,7 @@ import {
 export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
   private wrapper: HTMLElement;
 
-  constructor(params: Params, contentId: string, extras?: unknown) {
+  constructor(params: Params, contentId: string, extras?: H5PExtras) {
     super();
 
     this.wrapper = H5PWrapper.createWrapperElement();
@@ -49,11 +50,13 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
 
     // eslint-disable-next-line react/jsx-no-constructed-context-values
     const l10n = params.l10n ?? ({} as Translations);
+    // eslint-disable-next-line no-unsafe-optional-chaining
+    const title = extras?.metadata.title;
 
     ReactDOM.render(
       <ContentIdContext.Provider value={contentId}>
         <LocalizationContext.Provider value={l10n}>
-          <App params={paramsWithFallbacks} />
+          <App params={paramsWithFallbacks} title={title} />
         </LocalizationContext.Provider>
       </ContentIdContext.Provider>,
       this.wrapper,

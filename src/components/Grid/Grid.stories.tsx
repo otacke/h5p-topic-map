@@ -11,6 +11,7 @@ export default {
 } as ComponentMeta<typeof Grid>;
 
 const defaultArgs: GridProps = {
+  title: "",
   items: [],
   arrowItems: [],
   backgroundImage: undefined,
@@ -96,6 +97,7 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         },
       },
     ],
+    title: "Sheep title is looking ok",
   };
   return <Grid {...args} />;
 };
@@ -192,6 +194,7 @@ export const WithBackgroundImage: ComponentStory<typeof Grid> = () => {
         year: "2018",
       },
     },
+    title: "Sheep title is looking ok",
   };
   return <Grid {...args} />;
 };
