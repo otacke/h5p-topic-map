@@ -36,9 +36,26 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
     populateCustomLinks();
   };
 
+  const normalizeLinkPath = (linkPath: string): string => {
+    const pathAlreadyAbsolute =
+      linkPath.startsWith("http://") || linkPath.startsWith("https://");
+
+    if (pathAlreadyAbsolute) {
+      return linkPath;
+    }
+
+    return `https://${linkPath}`;
+  };
+
   const relevantItems = relevantLinks.map((item: string) => (
     <li key={item} className={styles.li}>
-      <a href={item}>{item}</a>
+      <a
+        href={normalizeLinkPath(item)}
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        {item}
+      </a>
     </li>
   ));
 
@@ -51,7 +68,13 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
 
     const updatedLinks = links.map((item: Link) => (
       <li key={item.id} className={styles.li}>
-        <a href={item.url}>{item.url}</a>
+        <a
+          href={normalizeLinkPath(item.url)}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          {item.url}
+        </a>
         <button
           className={styles.removeButton}
           type="button"
