@@ -8,7 +8,7 @@ export interface H5PObject {
   TopicMap: typeof H5PWrapper;
   getPath: (path: string, contentId: string) => string;
   newRunnable: (
-    library: { library: string, params: unknown },
+    library: { library: string; params: unknown },
     contentId: string,
     $attachTo: JQuery,
     skipResize?: boolean,
