@@ -14,6 +14,7 @@ export type ArrowProps = {
 
 export const Arrow: FC<ArrowProps> = ({ item, onClick }) => {
   const buttonState = ArrowButtonIconState.Default;
+  return null;
 
   return (
     <div aria-label={item.label} className={`arrow-item ${styles.arrow}`}>
