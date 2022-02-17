@@ -16,9 +16,11 @@ export type GridProps = {
   items: Array<TopicMapItemType>;
   arrowItems: Array<ArrowItemType>;
   backgroundImage: Image | undefined;
+  title: string | undefined;
 };
 
 export const Grid: React.FC<GridProps> = ({
+  title,
   items,
   arrowItems,
   backgroundImage,

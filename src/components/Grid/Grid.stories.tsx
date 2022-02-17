@@ -96,6 +96,7 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         },
       },
     ],
+    title: "Sheep title is looking ok",
   };
   return <Grid {...args} />;
 };
