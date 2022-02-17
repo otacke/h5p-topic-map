@@ -64,7 +64,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
 
     const updatedLinks = links.map((item: Link) => (
       <li key={item.id} className={styles.li}>
-        <a href={normalizeLinkPath(item.url)} target="_blank" rel="noreferrer">
+        <a href={normalizeLinkPath(item.url)} target="_blank" rel="noreferrer noopener">
           {item.url}
         </a>
         <button
