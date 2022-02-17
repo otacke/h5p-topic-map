@@ -13,7 +13,6 @@ import {
   normalizeSizes,
   normalizeTopicMapItemPaths,
   normalizeDialogAudioPaths,
-  normalizeDialogVideoPaths,
 } from "./H5P.util";
 
 export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
@@ -21,8 +20,7 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
 
   constructor(params: Params, contentId: string, extras?: unknown) {
     super();
-    console.log("hei")
-    
+
     this.wrapper = H5PWrapper.createWrapperElement();
 
     console.info({ params, contentId, extras });
@@ -43,11 +41,6 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
     );
 
     paramsWithFallbacks = normalizeDialogAudioPaths(
-      paramsWithFallbacks,
-      contentId,
-    );
-
-    paramsWithFallbacks = normalizeDialogVideoPaths(
       paramsWithFallbacks,
       contentId,
     );

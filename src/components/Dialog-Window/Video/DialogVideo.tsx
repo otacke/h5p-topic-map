@@ -25,7 +25,15 @@ export const DialogVideo: React.FC<DialogVideoProps> = ({ sources }) => {
     const videoLibraryName = "H5P.Video 1.5";
 
     H5P.newRunnable(
-      { library: videoLibraryName, params: { sources: [sources[0]] } },
+      {
+        library: videoLibraryName,
+        params: {
+          sources: [sources[0]],
+          visuals: {
+            controls: true,
+          },
+        },
+      },
       contentId,
       $wrapper,
     );
