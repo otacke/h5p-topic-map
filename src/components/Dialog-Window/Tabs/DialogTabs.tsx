@@ -106,7 +106,7 @@ const tabItems = (item: CommonItemType): JSX.Element[] => {
   dialog?.video?.[0]?.path
     ? items.push(
         <Content key="video" value="Video">
-          <DialogVideo video={dialog.video[0]} />
+          <DialogVideo sources={dialog.video} />
         </Content>,
       )
     : null;

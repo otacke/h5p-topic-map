@@ -28,5 +28,5 @@ const video: Video = {
 
 export const SimpleVideo = Template.bind({});
 SimpleVideo.args = {
-  video,
+  sources: [video],
 };

@@ -65,8 +65,8 @@ DenFranskeRevolusjon.args = {
           label: "Opplysningstiden",
           description: "",
           dialog: {
-            hasNote: true,
-            audio: {},
+            hasNote: false,
+            text: `Opplysningstiden var en epoke i Europas intellektuelle historie der vitenskap, fornuft, frihet, toleranse og framskritt ble innsatt som nye idealer og autoriteter. Opplysningstenkerne argumenterte blant annet for ytringsfrihet, trykkefrihet, religionsfrihet, likhet for loven og demokrati. Det var også under opplysningstiden at begrepet om menneskerettigheter oppstod.`,
           },
         },
         {
@@ -79,9 +79,6 @@ DenFranskeRevolusjon.args = {
           description: "",
           dialog: {
             hasNote: true,
-            audio: {
-              subtext: "",
-            },
             text: "",
           },
           topicImage: {
@@ -195,10 +192,12 @@ DenFranskeRevolusjon.args = {
           widthPercentage: 20,
           heightPercentage: 100,
           label: "Den franske revolusjon",
-          description: "",
+          description:
+            "Den franske revolusjon var en periode med store sosiale og politiske omveltningene i Frankrike i perioden 1789–1799. Året 1789 markerer det første viktige vendepunktet under revolusjonen. 14. juli dette året brøt det ut masseopprør i Paris og fengselet Bastillen ble stormet. (Store norske leksikon)",
           dialog: {
             hasNote: true,
             audio: {},
+            text: `Perioden 1787–1789 kalles gjerne før-revolusjonen, men langsiktige årsaker til revolusjonen strekker seg naturligvis mye lenger tilbake i tid. De viktigste politiske, sosiale og administrative omveltninger skjedde i perioden 1789–1794. Deretter fulgte en periode hvor mange av de mest radikale tiltak fra tidligere ble moderert eller reversert, men hvor myndighetene mislyktes i å oppnå stabilitet og legitimitet. Med Napoleon Bonapartes statskupp i 1799 fikk Frankrike igjen et stabilt styre, til prisen av den politiske frihet.`,
           },
           topicImage: {
             path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/01_08_ballhuseden.jpg",

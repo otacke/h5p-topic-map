@@ -1,4 +1,5 @@
 import * as React from "react";
+import { ContentIdContext } from "../src/contexts/ContentIdContext";
 import { LocalizationContext } from "../src/contexts/LocalizationContext";
 import { semantics } from "../src/semantics";
 import "!style-loader!css-loader!sass-loader!../src/styles.scss";
@@ -38,8 +39,10 @@ const translations = Object.fromEntries(
 
 export const decorators = [
   Story => (
-    <LocalizationContext.Provider value={translations}>
-      <Story />
-    </LocalizationContext.Provider>
+    <ContentIdContext.Provider value="1">
+      <LocalizationContext.Provider value={translations}>
+        <Story />
+      </LocalizationContext.Provider>
+    </ContentIdContext.Provider>
   ),
 ];
