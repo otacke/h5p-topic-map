@@ -1,8 +1,8 @@
 import * as React from "react";
 import { getUserData } from "../../../../hooks/useLocalStorage";
 import { useL10n } from "../../../../hooks/useLocalization";
-import { ArrowButton } from "../../../ArrowButton/ArrowButton";
-import { ArrowButtonIconState } from "../../../../types/ArrowButtonIconState";
+import { NoteButton } from "../../../NoteButton/NoteButton";
+import { NoteButtonIconState } from "../../../../types/NoteButtonIconState";
 import { TopicMapItemType } from "../../../../types/TopicMapItemType";
 import styles from "./NotesList.module.scss";
 
@@ -31,14 +31,14 @@ export const NotesList: React.FC<NotesListProps> = ({
             <div className={styles.pageBreak} />
             <div className={styles.mainBodyListElement}>
               <div className={styles.mainBodyButton}>
-                <ArrowButton
+                <NoteButton
                   backgroundColor="var(--theme-color-2)"
                   borderColor="var(--theme-color-3)"
                   iconColor="var(--theme-color-4)"
                   buttonState={
                     doesNoteExist && isNoteCompleted
-                      ? ArrowButtonIconState.Completed
-                      : ArrowButtonIconState.Default
+                      ? NoteButtonIconState.Completed
+                      : NoteButtonIconState.Default
                   }
                 />
               </div>
