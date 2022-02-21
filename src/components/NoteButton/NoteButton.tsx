@@ -34,13 +34,12 @@ export const NoteButton: React.FC<NoteButtonProps> = ({
   const classNames = `${styles.button}`;
 
   return (
-    <button
-      type="button"
+    <div
       data-testid="svgBtn"
       className={classNames}
       style={{ backgroundColor, borderColor }}
     >
       {renderIcon(buttonState, iconColor)}
-    </button>
+    </div>
   );
 };
