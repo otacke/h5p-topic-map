@@ -231,7 +231,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </Content>
         </Tabs>
       </div>
-      {notesSection}
+      {isNotesSectionShown && notesSection}
       {deleteConfirmation}
     </>
   );

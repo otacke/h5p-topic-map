@@ -9,6 +9,7 @@ import { TopicMapItemType } from "../../types/TopicMapItemType";
 import { Arrow } from "../Arrow/Arrow";
 import { DialogWindow } from "../Dialog-Window/DialogWindow";
 import { FullscreenButton } from "../FullscreenButton/FullscreenButton";
+import { Navbar } from "../Navbar/Navbar";
 import { TopicMapItem } from "../TopicMapItem/TopicMapItem";
 import styles from "./Grid.module.scss";
 
@@ -70,6 +71,9 @@ export const Grid: React.FC<GridProps> = ({
   return (
     <Xwrapper>
       <FullScreen className={styles.fullscreenStyle} handle={fullscreen}>
+        <div className={styles.navbarWrapper}>
+          <Navbar navbarTitle={title ?? ""} topicMapItems={items} />
+        </div>
         <div
           className={styles.gridWrapper}
           style={{ backgroundImage: bgImageStyle }}

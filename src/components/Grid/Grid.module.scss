@@ -7,6 +7,7 @@ $item-z-index: 1;
   background-size: cover;
   padding-top: 60%;
   position: relative;
+  top: 2.52rem;
 }
 
 .grid {
@@ -35,4 +36,17 @@ $item-z-index: 1;
   right: -0.5rem;
   top: -0.5rem;
   z-index: $item-z-index + 1;
+}
+
+.navbarWrapper {
+  position: relative;
+  float: right;
+  width: 100%;
+  z-index: $item-z-index + 2;
+}
+
+@media (min-width: 768px) {
+  .gridWrapper {
+    top: 3.52rem;
+  }
 }
