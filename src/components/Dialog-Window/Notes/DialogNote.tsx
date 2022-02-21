@@ -53,7 +53,10 @@ export const DialogNote: React.FC<NoteProps> = ({ maxLength, id }) => {
     const count = note.split(/\s/).filter(word => word.length > 0).length;
     setWordCount(count);
 
-    if (count === maxLength && note[note.length - 1] === " ") {
+    // TODO: Enforce max length when pasting in text,
+    // perhaps by removing all words past the max length mark.
+    const tooManyWords = count >= maxLength && note[note.length - 1] === " ";
+    if (tooManyWords) {
       setMaxWordCount(count);
     } else {
       setMaxWordCount(undefined);
