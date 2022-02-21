@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import { FullScreen, useFullScreenHandle } from "react-full-screen";
+import { FullScreenHandle } from "react-full-screen";
 import { Xwrapper } from "react-xarrows";
 import { ArrowItemType } from "../../types/ArrowItemType";
 import { CommonItemType } from "../../types/CommonItemType";
@@ -9,7 +9,6 @@ import { TopicMapItemType } from "../../types/TopicMapItemType";
 import { Arrow } from "../Arrow/Arrow";
 import { DialogWindow } from "../Dialog-Window/DialogWindow";
 import { FullscreenButton } from "../FullscreenButton/FullscreenButton";
-import { Navbar } from "../Navbar/Navbar";
 import { TopicMapItem } from "../TopicMapItem/TopicMapItem";
 import styles from "./Grid.module.scss";
 
@@ -17,17 +16,15 @@ export type GridProps = {
   items: Array<TopicMapItemType>;
   arrowItems: Array<ArrowItemType>;
   backgroundImage: Image | undefined;
-  title: string | undefined;
+  fullscreenHandle: FullScreenHandle;
 };
 
 export const Grid: React.FC<GridProps> = ({
-  title,
   items,
   arrowItems,
   backgroundImage,
+  fullscreenHandle,
 }) => {
-  const fullscreen = useFullScreenHandle();
-
   const [itemShowingDialog, setItemShowingDialog] =
     useState<CommonItemType | null>(null);
 
@@ -70,30 +67,25 @@ export const Grid: React.FC<GridProps> = ({
 
   return (
     <Xwrapper>
-      <FullScreen className={styles.fullscreenStyle} handle={fullscreen}>
-        <div className={styles.navbarWrapper}>
-          <Navbar navbarTitle={title ?? ""} topicMapItems={items} />
-        </div>
-        <div
-          className={styles.gridWrapper}
-          style={{ backgroundImage: bgImageStyle }}
-        >
-          <div className={styles.grid}>
-            <div className={styles.fullscreenButtonWrapper}>
-              <FullscreenButton fullscreenHandle={fullscreen} />
-            </div>
-            {arrows}
-            {children}
-            {itemShowingDialog?.dialog ? (
-              <DialogWindow
-                item={itemShowingDialog}
-                open={!!itemShowingDialog}
-                onOpenChange={() => setItemShowingDialog(null)}
-              />
-            ) : null}
+      <div
+        className={styles.gridWrapper}
+        style={{ backgroundImage: bgImageStyle }}
+      >
+        <div className={styles.grid}>
+          <div className={styles.fullscreenButtonWrapper}>
+            <FullscreenButton fullscreenHandle={fullscreenHandle} />
           </div>
+          {arrows}
+          {children}
+          {itemShowingDialog?.dialog ? (
+            <DialogWindow
+              item={itemShowingDialog}
+              open={!!itemShowingDialog}
+              onOpenChange={() => setItemShowingDialog(null)}
+            />
+          ) : null}
         </div>
-      </FullScreen>
+      </div>
     </Xwrapper>
   );
 };

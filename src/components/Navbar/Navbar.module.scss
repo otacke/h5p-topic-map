@@ -1,8 +1,14 @@
 $navbar-height: 2.52rem;
+$grid-z-index: 1;
+
+.contentWrapper {
+  position: absolute;
+  width: 100%;
+}
 
 .mainBody {
   background-color: var(--theme-color-2);
-  padding: 0.5rem 0.5rem;
+  padding-top: 1rem;
 }
 
 .navbarTitle {
@@ -12,6 +18,8 @@ $navbar-height: 2.52rem;
   border: none;
   position: absolute;
   padding: 0;
+  top: 0.5rem;
+  left: 1rem;
 }
 
 .sectionTitle,
@@ -52,10 +60,12 @@ $navbar-height: 2.52rem;
   right: 0;
   top: $navbar-height;
   gap: 0.5rem;
+  z-index: calc(#{$grid-z-index} + 2);
 }
 
 .sectionsMenu.hidden,
-.progressBarWrapper {
+.progressBarWrapper,
+.progressBarMobileWrapper {
   display: none;
 }
 
@@ -66,6 +76,7 @@ $navbar-height: 2.52rem;
 .hamburgerButton {
   position: absolute;
   right: 1rem;
+  top: 0.6rem;
   padding: 0;
   background-color: transparent;
   border: none;
@@ -84,20 +95,13 @@ $navbar-height: 2.52rem;
   height: 1.1rem;
 }
 
-.progressBarMobileWrapper {
-  position: absolute;
-  right: 3rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 0.3rem;
-}
-
 @media (min-width: 768px) {
-  .mainBody,
   .notesList {
     padding: 1rem 1rem;
+  }
+
+  .mainBody {
+    padding-top: 2rem;
   }
 
   .sectionTitle {
@@ -110,12 +114,13 @@ $navbar-height: 2.52rem;
     font-size: inherit;
     right: 0.4rem;
     display: block;
-    top: initial;
+    top: 1rem;
     padding-top: 0;
   }
 
   .navbarTitle {
     font-size: inherit;
+    top: 1rem;
   }
 
   .hamburgerButton,

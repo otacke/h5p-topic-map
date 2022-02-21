@@ -3,7 +3,8 @@ import * as React from "react";
 import { AppWidthContext } from "../../contexts/AppWidthContext";
 import { Params } from "../../types/H5P/Params";
 import { defaultTheme } from "../../utils/semantics.utils";
-import { Grid } from "../Grid/Grid";
+import { Navbar } from "../Navbar/Navbar";
+import styles from "./App.module.scss";
 
 export type AppProps = {
   params: Params;
@@ -29,14 +30,14 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
 
   return (
     <AppWidthContext.Provider value={width}>
-      <div className={themeClassName} ref={containerRef}>
-        <Grid
-          title={title}
-          items={params.topicMap?.topicMapItems ?? []}
-          arrowItems={params.topicMap?.arrowItems ?? []}
-          backgroundImage={params.topicMap?.gridBackgroundImage}
+    <div className={themeClassName}>
+      <div className={styles.navbarWrapper}>
+        <Navbar
+          navbarTitle={title ?? "Den franske revolusjon"}
+          params={params}
         />
       </div>
+    </div>
     </AppWidthContext.Provider>
   );
 };

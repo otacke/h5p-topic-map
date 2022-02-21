@@ -1,26 +1,26 @@
 import * as React from "react";
 import { Trigger, Content, Tabs, TabsList } from "@radix-ui/react-tabs";
 import { useReactToPrint } from "react-to-print";
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useL10n } from "../../hooks/useLocalization";
 import { HelpSection } from "./HelpSection/HelpSection";
 import { NotesSection } from "./NotesSection/NotesSection";
 import { NotesList } from "./NotesSection/NotesList/NotesList";
-import { TopicMapItemType } from "../../types/TopicMapItemType";
 import { getUserData, setUserData } from "../../hooks/useLocalStorage";
 import { DialogWindow } from "../Dialog-Window/DialogWindow";
 import { HamburgerIcon, HamburgerCloseIcon } from "../Icons/Icons";
+import { CommonItemType } from "../../types/CommonItemType";
+import { Grid } from "../Grid/Grid";
+import { Params } from "../../types/H5P/Params";
 import styles from "./Navbar.module.scss";
 
 export type NavbarProps = {
   navbarTitle: string;
-  topicMapItems: TopicMapItemType[];
+  params: Params;
 };
 
-export const Navbar: React.FC<NavbarProps> = ({
-  navbarTitle,
-  topicMapItems,
-}) => {
+export const Navbar: React.FC<NavbarProps> = ({ navbarTitle, params }) => {
   const navbarAriaLabel = useL10n("navbarTabsListAriaLabel");
   const topicMapSectionLabel = useL10n("navbarTopicMapSectionLabel");
   const notesSectionLabel = useL10n("navbarNotesSectionLabel");
@@ -32,16 +32,25 @@ export const Navbar: React.FC<NavbarProps> = ({
   const deleteAllNotesDenyText = useL10n("deleteNotesDenyLabel");
   const userData = getUserData();
   const [progressBarValue, setProgressBarValue] = React.useState<number>(0);
+  const fullscreenhandle = useFullScreenHandle();
+  const allItems = React.useMemo(
+    () =>
+      ((params.topicMap?.topicMapItems ?? []) as CommonItemType[]).concat(
+        (params.topicMap?.arrowItems ?? []) as CommonItemType[],
+      ),
+    [params.topicMap?.arrowItems, params.topicMap?.topicMapItems],
+  );
+
   const totalNotesToComplete = React.useMemo(
-    () => topicMapItems.filter(item => item.dialog?.hasNote).length,
-    [topicMapItems],
+    () => allItems.filter(item => item.dialog?.hasNote).length,
+    [allItems],
   );
   const [progressPercentage, setProgressPercentage] =
     React.useState<number>(progressBarValue);
 
   React.useEffect(() => {
     setProgressBarValue(
-      topicMapItems.filter(
+      allItems.filter(
         item =>
           item.dialog?.hasNote &&
           item.id in userData &&
@@ -51,7 +60,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     setProgressPercentage(
       Math.round((progressBarValue / totalNotesToComplete) * 100),
     );
-  }, [progressBarValue, topicMapItems, totalNotesToComplete, userData]);
+  }, [progressBarValue, allItems, totalNotesToComplete, userData]);
 
   let navbarTitleForPrint = "";
   const updateNavbarTitleForPrint = (): void => {
@@ -75,7 +84,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [isHamburgerOpen, setIsHamburgerOpen] = React.useState<boolean>(false);
 
   const deleteAllNotes = (): void => {
-    topicMapItems.forEach(item => {
+    allItems.forEach(item => {
       if (item.id in userData) {
         userData[item.id].note = undefined;
         userData[item.id].noteCompleted = undefined;
@@ -123,7 +132,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     >
       {isNotesSectionShown && (
         <div>
-          <NotesList topicMapItems={topicMapItems} navbarTitle={navbarTitle} />
+          <NotesList topicMapItems={allItems} navbarTitle={navbarTitle} />
         </div>
       )}
     </div>
@@ -146,93 +155,100 @@ export const Navbar: React.FC<NavbarProps> = ({
   );
 
   return (
-    <>
-      <div className={styles.mainBody}>
-        <button className={styles.navbarTitle} type="button">
-          {navbarTitle}
-        </button>
-        <div className={styles.progressBarMobileWrapper}>{progressBar}</div>
-        <button
-          type="button"
-          className={styles.hamburgerButton}
-          onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}
-        >
-          {isHamburgerOpen ? (
-            <HamburgerCloseIcon iconColor="#fff" />
-          ) : (
-            <HamburgerIcon iconColor="#fff" />
-          )}
-        </button>
-        <Tabs defaultValue={topicMapSectionLabel}>
-          <TabsList
-            className={`${styles.sectionsMenu} ${
-              !isHamburgerOpen && styles.hidden
-            }`}
-            aria-label={navbarAriaLabel}
+    <div className={styles.contentWrapper}>
+      <FullScreen handle={fullscreenhandle}>
+        <div className={styles.mainBody}>
+          <button className={styles.navbarTitle} type="button">
+            {navbarTitle}
+          </button>
+          <div className={styles.progressBarMobileWrapper}>{progressBar}</div>
+          <button
+            type="button"
+            className={styles.hamburgerButton}
+            onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}
           >
-            <Trigger
-              className={styles.sectionTitle}
+            {isHamburgerOpen ? (
+              <HamburgerCloseIcon iconColor="#fff" />
+            ) : (
+              <HamburgerIcon iconColor="#fff" />
+            )}
+          </button>
+          <Tabs defaultValue={topicMapSectionLabel}>
+            <TabsList
+              className={`${styles.sectionsMenu} ${
+                !isHamburgerOpen && styles.hidden
+              }`}
+              aria-label={navbarAriaLabel}
+            >
+              <Trigger
+                className={styles.sectionTitle}
+                key={topicMapSectionLabel}
+                value={topicMapSectionLabel}
+                aria-label={topicMapSectionLabel}
+              >
+                {topicMapSectionLabel}
+              </Trigger>
+              <Trigger
+                className={styles.sectionTitle}
+                key={notesSectionLabel}
+                value={notesSectionLabel}
+                aria-label={notesSectionLabel}
+              >
+                {notesSectionLabel}
+              </Trigger>
+              <Trigger
+                className={styles.sectionTitle}
+                key={helpSectionLabel}
+                value={helpSectionLabel}
+                aria-label={helpSectionLabel}
+              >
+                {helpSectionLabel}
+              </Trigger>
+              <Trigger
+                className={styles.progressBarTitle}
+                key={progressBarLabel}
+                value={`${progressBarValue}`}
+                aria-label={progressBarLabel}
+                disabled
+              >
+                <div className={styles.progressBarWrapper}>{progressBar}</div>
+              </Trigger>
+            </TabsList>
+            <Content
+              className={styles.sectionContent}
               key={topicMapSectionLabel}
               value={topicMapSectionLabel}
-              aria-label={topicMapSectionLabel}
             >
-              {topicMapSectionLabel}
-            </Trigger>
-            <Trigger
-              className={styles.sectionTitle}
+              <Grid
+                items={params.topicMap?.topicMapItems ?? []}
+                arrowItems={params.topicMap?.arrowItems ?? []}
+                backgroundImage={params.topicMap?.gridBackgroundImage}
+                fullscreenHandle={fullscreenhandle}
+              />
+            </Content>
+            <Content
+              className={styles.sectionContent}
               key={notesSectionLabel}
               value={notesSectionLabel}
-              aria-label={notesSectionLabel}
             >
-              {notesSectionLabel}
-            </Trigger>
-            <Trigger
-              className={styles.sectionTitle}
+              <NotesSection
+                setVisibility={setIsNotesSectionIsShown}
+                setDeleteConfirmationVisibility={setIsDeleteConfirmationVisible}
+                handlePrint={handlePrint}
+              />
+            </Content>
+            <Content
+              className={styles.sectionContent}
               key={helpSectionLabel}
               value={helpSectionLabel}
-              aria-label={helpSectionLabel}
             >
-              {helpSectionLabel}
-            </Trigger>
-            <Trigger
-              className={styles.progressBarTitle}
-              key={progressBarLabel}
-              value={`${progressBarValue}`}
-              aria-label={progressBarLabel}
-              disabled
-            >
-              <div className={styles.progressBarWrapper}>{progressBar}</div>
-            </Trigger>
-          </TabsList>
-          <Content
-            className={styles.sectionContent}
-            key={topicMapSectionLabel}
-            value={topicMapSectionLabel}
-          >
-            <div />
-          </Content>
-          <Content
-            className={styles.sectionContent}
-            key={notesSectionLabel}
-            value={notesSectionLabel}
-          >
-            <NotesSection
-              setVisibility={setIsNotesSectionIsShown}
-              setDeleteConfirmationVisibility={setIsDeleteConfirmationVisible}
-              handlePrint={handlePrint}
-            />
-          </Content>
-          <Content
-            className={styles.sectionContent}
-            key={helpSectionLabel}
-            value={helpSectionLabel}
-          >
-            <HelpSection />
-          </Content>
-        </Tabs>
-      </div>
-      {isNotesSectionShown && notesSection}
-      {deleteConfirmation}
-    </>
+              <HelpSection />
+            </Content>
+          </Tabs>
+        </div>
+        {isNotesSectionShown && notesSection}
+        {deleteConfirmation}
+      </FullScreen>
+    </div>
   );
 };
