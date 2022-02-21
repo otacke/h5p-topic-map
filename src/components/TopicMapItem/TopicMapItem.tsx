@@ -26,6 +26,7 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({ item, onClick }) => {
     [appWidth],
   );
   const [userData, setUserData] = useLocalStorage(item.id);
+  const test = localStorage;
   let btnState = 2;
   if (item.dialog?.hasNote) {
     switch (true) {
@@ -58,7 +59,7 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({ item, onClick }) => {
         }`}
       >
         {item.dialog?.hasNote ? (
-          <div className={styles.button}>
+          <div className={styles.icon}>
             <NoteButton
               backgroundColor="var(--theme-color-3)"
               borderColor="white"
