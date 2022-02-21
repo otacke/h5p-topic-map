@@ -1,5 +1,7 @@
 import * as React from "react";
 import { FC, MouseEventHandler } from "react";
+import { useAppWidth } from "../../hooks/useAppWidth";
+import { BreakpointSize } from "../../types/BreakpointSize";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
 import styles from "./TopicMapItem.module.scss";
 
@@ -8,9 +10,22 @@ export type TopicMapItemProps = {
   onClick: MouseEventHandler;
 };
 
+const sizeClassname = {
+  [BreakpointSize.Large]: styles.large,
+  [BreakpointSize.Medium]: styles.medium,
+  [BreakpointSize.Small]: styles.small,
+};
+
 export const TopicMapItem: FC<TopicMapItemProps> = ({ item, onClick }) => {
+  const appWidth = useAppWidth();
+
+  const className = React.useMemo(
+    () => [styles.topicMapItem, sizeClassname[appWidth]].join(" "),
+    [appWidth],
+  );
+
   return (
-    <button type="button" className={styles.topicMapItem} onClick={onClick}>
+    <button type="button" className={className} onClick={onClick}>
       {item.topicImage?.path && (
         <img
           className={styles.image}
