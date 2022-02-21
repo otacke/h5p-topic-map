@@ -165,8 +165,9 @@ export const Navbar: React.FC<NavbarProps> = ({
         </button>
         <Tabs defaultValue={topicMapSectionLabel}>
           <TabsList
-            className={styles.sectionsMenu}
-            hidden={!isHamburgerOpen}
+            className={`${styles.sectionsMenu} ${
+              !isHamburgerOpen && styles.hidden
+            }`}
             aria-label={navbarAriaLabel}
           >
             <Trigger
