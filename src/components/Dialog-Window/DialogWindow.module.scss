@@ -95,7 +95,7 @@
   border-radius: 0.25em;
   border: 2px solid currentColor;
   box-sizing: border-box;
-  color: #0d2769;
+  color: var(--theme-color-2);
   cursor: pointer;
   display: inline-block;
   font-weight: 600;
@@ -105,7 +105,7 @@
 }
 
 .confirmButton {
-  background-color: #0d2769;
+  background-color: var(--theme-color-2);
   color: #fff;
 }
 
