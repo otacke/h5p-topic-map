@@ -25,8 +25,7 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({ item, onClick }) => {
     () => [styles.topicMapItem, sizeClassname[appWidth]].join(" "),
     [appWidth],
   );
-  const [userData, setUserData] = useLocalStorage(item.id);
-  const test = localStorage;
+  const [userData] = useLocalStorage(item.id);
   let btnState = 2;
   if (item.dialog?.hasNote) {
     switch (true) {
