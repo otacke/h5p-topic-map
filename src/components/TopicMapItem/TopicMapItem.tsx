@@ -57,7 +57,7 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({ item, onClick }) => {
       <div
         className={`${styles.inner} ${
           item.topicImage?.path ? "" : styles.noImage
-        }`}
+        } ${item.dialog?.hasNote ? styles.withNote : ""}`}
       >
         {item.dialog?.hasNote ? (
           <div
