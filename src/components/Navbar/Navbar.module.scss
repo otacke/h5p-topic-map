@@ -95,6 +95,11 @@ $grid-z-index: 1;
   height: 1.1rem;
 }
 
+.fullscreenStyle {
+  overflow: auto;
+  background-color: var(--theme-color-1);
+}
+
 @media (min-width: 768px) {
   .notesList {
     padding: 1rem 1rem;

@@ -156,7 +156,7 @@ export const Navbar: React.FC<NavbarProps> = ({ navbarTitle, params }) => {
 
   return (
     <div className={styles.contentWrapper}>
-      <FullScreen handle={fullscreenhandle}>
+      <FullScreen className={styles.fullscreenStyle} handle={fullscreenhandle}>
         <div className={styles.mainBody}>
           <button className={styles.navbarTitle} type="button">
             {navbarTitle}
