@@ -6,6 +6,7 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
 import { NoteButton } from "../NoteButton/NoteButton";
 import styles from "./TopicMapItem.module.scss";
+import { NoteButtonIconState } from "../../types/NoteButtonIconState";
 
 export type TopicMapItemProps = {
   item: TopicMapItemType;
@@ -26,17 +27,18 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({ item, onClick }) => {
     [appWidth],
   );
   const [userData] = useLocalStorage(item.id);
-  let btnState = 2;
+
+  let btnState: NoteButtonIconState;
   if (item.dialog?.hasNote) {
     switch (true) {
       case userData[item.id].noteCompleted:
-        btnState = 0;
+        btnState = NoteButtonIconState.Completed;
         break;
       case userData[item.id]?.note && userData[item.id]?.note?.length !== 0:
-        btnState = 1;
+        btnState = NoteButtonIconState.Notes;
         break;
       default:
-        btnState = 2;
+        btnState = NoteButtonIconState.Default;
     }
   }
 
