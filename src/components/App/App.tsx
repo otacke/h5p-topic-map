@@ -33,7 +33,7 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
       <div className={themeClassName}>
         <div className={styles.navbarWrapper}>
           <Navbar
-            navbarTitle={title ?? "Den franske revolusjon"}
+            navbarTitle={title ?? ""}
             params={params}
           />
         </div>
