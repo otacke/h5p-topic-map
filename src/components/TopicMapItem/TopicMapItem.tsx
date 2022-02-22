@@ -16,6 +16,8 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({ item, onClick }) => {
           className={styles.image}
           src={item.topicImage.path}
           alt={item.topicImage.alt ?? ""}
+          width={item.topicImage.width}
+          height={item.topicImage.height}
         />
       )}
 

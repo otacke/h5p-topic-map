@@ -32,6 +32,8 @@ export const DialogText: React.FC<DialogTextProps> = ({
             className={styles.topicImage}
             src={topicImage.path}
             alt={topicImage.alt ?? ""}
+            width={topicImage.width}
+            height={topicImage.height}
           />
           {topicImage?.copyright ? (
             <div
