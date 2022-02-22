@@ -16,6 +16,7 @@ const defaultArgs: GridProps = {
   arrowItems: [],
   backgroundImage: undefined,
   fullscreenHandle: {} as FullScreenHandle,
+  setUserDataCopy: () => null,
 };
 
 export const WithItems: ComponentStory<typeof Grid> = () => {

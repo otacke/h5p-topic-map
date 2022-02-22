@@ -10,6 +10,7 @@ export default {
 const defaultArgs: NavbarProps = {
   navbarTitle: "National romanticism",
   params: {},
+  setUserDataCopy: () => null,
 };
 
 export const NavBar: ComponentStory<typeof Navbar> = () => {

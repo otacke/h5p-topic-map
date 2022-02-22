@@ -3,7 +3,6 @@ import { getUserData } from "../../../../hooks/useLocalStorage";
 import { useL10n } from "../../../../hooks/useLocalization";
 import { NoteButton } from "../../../NoteButton/NoteButton";
 import { NoteButtonIconState } from "../../../../types/NoteButtonIconState";
-import { TopicMapItemType } from "../../../../types/TopicMapItemType";
 import { CommonItemType } from "../../../../types/CommonItemType";
 import styles from "./NotesList.module.scss";
 

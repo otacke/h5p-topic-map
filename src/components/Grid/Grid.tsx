@@ -6,6 +6,7 @@ import { ArrowItemType } from "../../types/ArrowItemType";
 import { CommonItemType } from "../../types/CommonItemType";
 import { Image } from "../../types/H5P/Image";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
+import { UserData } from "../../types/UserData";
 import { Arrow } from "../Arrow/Arrow";
 import { DialogWindow } from "../Dialog-Window/DialogWindow";
 import { FullscreenButton } from "../FullscreenButton/FullscreenButton";
@@ -17,6 +18,7 @@ export type GridProps = {
   arrowItems: Array<ArrowItemType>;
   backgroundImage: Image | undefined;
   fullscreenHandle: FullScreenHandle;
+  setUserDataCopy: React.Dispatch<React.SetStateAction<UserData>>;
 };
 
 export const Grid: React.FC<GridProps> = ({
@@ -24,6 +26,7 @@ export const Grid: React.FC<GridProps> = ({
   arrowItems,
   backgroundImage,
   fullscreenHandle,
+  setUserDataCopy,
 }) => {
   const [itemShowingDialog, setItemShowingDialog] =
     useState<CommonItemType | null>(null);
@@ -82,6 +85,7 @@ export const Grid: React.FC<GridProps> = ({
               item={itemShowingDialog}
               open={!!itemShowingDialog}
               onOpenChange={() => setItemShowingDialog(null)}
+              setUserDataCopy={setUserDataCopy}
             />
           ) : null}
         </div>

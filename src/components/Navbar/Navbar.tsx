@@ -13,14 +13,20 @@ import { HamburgerIcon, HamburgerCloseIcon } from "../Icons/Icons";
 import { CommonItemType } from "../../types/CommonItemType";
 import { Grid } from "../Grid/Grid";
 import { Params } from "../../types/H5P/Params";
+import { UserData } from "../../types/UserData";
 import styles from "./Navbar.module.scss";
 
 export type NavbarProps = {
   navbarTitle: string;
   params: Params;
+  setUserDataCopy: React.Dispatch<React.SetStateAction<UserData>>;
 };
 
-export const Navbar: React.FC<NavbarProps> = ({ navbarTitle, params }) => {
+export const Navbar: React.FC<NavbarProps> = ({
+  navbarTitle,
+  params,
+  setUserDataCopy,
+}) => {
   const navbarAriaLabel = useL10n("navbarTabsListAriaLabel");
   const topicMapSectionLabel = useL10n("navbarTopicMapSectionLabel");
   const notesSectionLabel = useL10n("navbarNotesSectionLabel");
@@ -224,6 +230,7 @@ export const Navbar: React.FC<NavbarProps> = ({ navbarTitle, params }) => {
                 arrowItems={params.topicMap?.arrowItems ?? []}
                 backgroundImage={params.topicMap?.gridBackgroundImage}
                 fullscreenHandle={fullscreenhandle}
+                setUserDataCopy={setUserDataCopy}
               />
             </Content>
             <Content
