@@ -23,7 +23,9 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
   React.useMemo(() => setUserData(userDataCopy), [userDataCopy]);
 
   React.useLayoutEffect(() => {
-    setWidth(containerRef.current?.getBoundingClientRect().width ?? 0);
+    const initialWidth =
+      containerRef.current?.getBoundingClientRect().width ?? 0;
+    setWidth(initialWidth);
   }, []);
 
   useResizeObserver(containerRef.current, ({ contentRect }) => {
@@ -37,7 +39,7 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
 
   return (
     <AppWidthContext.Provider value={width}>
-      <div className={themeClassName}>
+      <div className={themeClassName} ref={containerRef}>
         <div className={styles.navbarWrapper}>
           <Navbar
             navbarTitle={title ?? ""}
