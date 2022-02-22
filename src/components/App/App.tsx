@@ -1,5 +1,5 @@
-import useResizeObserver from "@react-hook/resize-observer";
 import * as React from "react";
+import useResizeObserver from "@react-hook/resize-observer";
 import { AppWidthContext } from "../../contexts/AppWidthContext";
 import { Params } from "../../types/H5P/Params";
 import { defaultTheme } from "../../utils/semantics.utils";
@@ -30,14 +30,14 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
 
   return (
     <AppWidthContext.Provider value={width}>
-    <div className={themeClassName}>
-      <div className={styles.navbarWrapper}>
-        <Navbar
-          navbarTitle={title ?? "Den franske revolusjon"}
-          params={params}
-        />
+      <div className={themeClassName}>
+        <div className={styles.navbarWrapper}>
+          <Navbar
+            navbarTitle={title ?? "Den franske revolusjon"}
+            params={params}
+          />
+        </div>
       </div>
-    </div>
     </AppWidthContext.Provider>
   );
 };
