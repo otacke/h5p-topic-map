@@ -60,7 +60,7 @@ $grid-z-index: 1;
   right: 0;
   top: $navbar-height;
   gap: 0.5rem;
-  z-index: calc(#{$grid-z-index} + 2);
+  z-index: $grid-z-index + 2;
 }
 
 .sectionsMenu.hidden,
