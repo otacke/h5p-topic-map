@@ -1,31 +1,33 @@
-import * as React from "react";
-import { Trigger, Content, Tabs, TabsList } from "@radix-ui/react-tabs";
-import { useReactToPrint } from "react-to-print";
-import { FullScreen, useFullScreenHandle } from "react-full-screen";
+import { Content, Tabs, TabsList, Trigger } from "@radix-ui/react-tabs";
 import ProgressBar from "@ramonak/react-progress-bar";
+import * as React from "react";
+import type { FullScreenHandle } from "react-full-screen";
+import { useReactToPrint } from "react-to-print";
 import { useL10n } from "../../hooks/useLocalization";
-import { HelpSection } from "./HelpSection/HelpSection";
-import { NotesSection } from "./NotesSection/NotesSection";
-import { NotesList } from "./NotesSection/NotesList/NotesList";
 import { getUserData, setUserData } from "../../hooks/useLocalStorage";
-import { DialogWindow } from "../Dialog-Window/DialogWindow";
-import { HamburgerIcon, HamburgerCloseIcon } from "../Icons/Icons";
 import { CommonItemType } from "../../types/CommonItemType";
-import { Grid } from "../Grid/Grid";
 import { Params } from "../../types/H5P/Params";
 import { UserData } from "../../types/UserData";
+import { DialogWindow } from "../Dialog-Window/DialogWindow";
+import { Grid } from "../Grid/Grid";
+import { HamburgerCloseIcon, HamburgerIcon } from "../Icons/Icons";
+import { HelpSection } from "./HelpSection/HelpSection";
 import styles from "./Navbar.module.scss";
+import { NotesList } from "./NotesSection/NotesList/NotesList";
+import { NotesSection } from "./NotesSection/NotesSection";
 
 export type NavbarProps = {
   navbarTitle: string;
   params: Params;
   setUserDataCopy: React.Dispatch<React.SetStateAction<UserData>>;
+  fullscreenHandle: FullScreenHandle;
 };
 
 export const Navbar: React.FC<NavbarProps> = ({
   navbarTitle,
   params,
   setUserDataCopy,
+  fullscreenHandle,
 }) => {
   const navbarAriaLabel = useL10n("navbarTabsListAriaLabel");
   const topicMapSectionLabel = useL10n("navbarTopicMapSectionLabel");
@@ -38,7 +40,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   const deleteAllNotesDenyText = useL10n("deleteNotesDenyLabel");
   const userData = getUserData();
   const [progressBarValue, setProgressBarValue] = React.useState<number>(0);
-  const fullscreenhandle = useFullScreenHandle();
   const allItems = React.useMemo(
     () =>
       ((params.topicMap?.topicMapItems ?? []) as CommonItemType[]).concat(
@@ -162,100 +163,98 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <div className={styles.contentWrapper}>
-      <FullScreen className={styles.fullscreenStyle} handle={fullscreenhandle}>
-        <div className={styles.mainBody}>
-          <button className={styles.navbarTitle} type="button">
-            {navbarTitle}
-          </button>
-          <div className={styles.progressBarMobileWrapper}>{progressBar}</div>
-          <button
-            type="button"
-            className={styles.hamburgerButton}
-            onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}
+      <div className={styles.mainBody}>
+        <button className={styles.navbarTitle} type="button">
+          {navbarTitle}
+        </button>
+        <div className={styles.progressBarMobileWrapper}>{progressBar}</div>
+        <button
+          type="button"
+          className={styles.hamburgerButton}
+          onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}
+        >
+          {isHamburgerOpen ? (
+            <HamburgerCloseIcon iconColor="#fff" />
+          ) : (
+            <HamburgerIcon iconColor="#fff" />
+          )}
+        </button>
+        <Tabs defaultValue={topicMapSectionLabel}>
+          <TabsList
+            className={`${styles.sectionsMenu} ${
+              !isHamburgerOpen && styles.hidden
+            }`}
+            aria-label={navbarAriaLabel}
           >
-            {isHamburgerOpen ? (
-              <HamburgerCloseIcon iconColor="#fff" />
-            ) : (
-              <HamburgerIcon iconColor="#fff" />
-            )}
-          </button>
-          <Tabs defaultValue={topicMapSectionLabel}>
-            <TabsList
-              className={`${styles.sectionsMenu} ${
-                !isHamburgerOpen && styles.hidden
-              }`}
-              aria-label={navbarAriaLabel}
-            >
-              <Trigger
-                className={styles.sectionTitle}
-                key={topicMapSectionLabel}
-                value={topicMapSectionLabel}
-                aria-label={topicMapSectionLabel}
-              >
-                {topicMapSectionLabel}
-              </Trigger>
-              <Trigger
-                className={styles.sectionTitle}
-                key={notesSectionLabel}
-                value={notesSectionLabel}
-                aria-label={notesSectionLabel}
-              >
-                {notesSectionLabel}
-              </Trigger>
-              <Trigger
-                className={styles.sectionTitle}
-                key={helpSectionLabel}
-                value={helpSectionLabel}
-                aria-label={helpSectionLabel}
-              >
-                {helpSectionLabel}
-              </Trigger>
-              <Trigger
-                className={styles.progressBarTitle}
-                key={progressBarLabel}
-                value={`${progressBarValue}`}
-                aria-label={progressBarLabel}
-                disabled
-              >
-                <div className={styles.progressBarWrapper}>{progressBar}</div>
-              </Trigger>
-            </TabsList>
-            <Content
-              className={styles.sectionContent}
+            <Trigger
+              className={styles.sectionTitle}
               key={topicMapSectionLabel}
               value={topicMapSectionLabel}
+              aria-label={topicMapSectionLabel}
             >
-              <Grid
-                items={params.topicMap?.topicMapItems ?? []}
-                arrowItems={params.topicMap?.arrowItems ?? []}
-                backgroundImage={params.topicMap?.gridBackgroundImage}
-                fullscreenHandle={fullscreenhandle}
-                setUserDataCopy={setUserDataCopy}
-              />
-            </Content>
-            <Content
-              className={styles.sectionContent}
+              {topicMapSectionLabel}
+            </Trigger>
+            <Trigger
+              className={styles.sectionTitle}
               key={notesSectionLabel}
               value={notesSectionLabel}
+              aria-label={notesSectionLabel}
             >
-              <NotesSection
-                setVisibility={setIsNotesSectionIsShown}
-                setDeleteConfirmationVisibility={setIsDeleteConfirmationVisible}
-                handlePrint={handlePrint}
-              />
-            </Content>
-            <Content
-              className={styles.sectionContent}
+              {notesSectionLabel}
+            </Trigger>
+            <Trigger
+              className={styles.sectionTitle}
               key={helpSectionLabel}
               value={helpSectionLabel}
+              aria-label={helpSectionLabel}
             >
-              <HelpSection />
-            </Content>
-          </Tabs>
-        </div>
-        {isNotesSectionShown && notesSection}
-        {deleteConfirmation}
-      </FullScreen>
+              {helpSectionLabel}
+            </Trigger>
+            <Trigger
+              className={styles.progressBarTitle}
+              key={progressBarLabel}
+              value={`${progressBarValue}`}
+              aria-label={progressBarLabel}
+              disabled
+            >
+              <div className={styles.progressBarWrapper}>{progressBar}</div>
+            </Trigger>
+          </TabsList>
+          <Content
+            className={styles.sectionContent}
+            key={topicMapSectionLabel}
+            value={topicMapSectionLabel}
+          >
+            <Grid
+              items={params.topicMap?.topicMapItems ?? []}
+              arrowItems={params.topicMap?.arrowItems ?? []}
+              backgroundImage={params.topicMap?.gridBackgroundImage}
+              fullscreenHandle={fullscreenHandle}
+              setUserDataCopy={setUserDataCopy}
+            />
+          </Content>
+          <Content
+            className={styles.sectionContent}
+            key={notesSectionLabel}
+            value={notesSectionLabel}
+          >
+            <NotesSection
+              setVisibility={setIsNotesSectionIsShown}
+              setDeleteConfirmationVisibility={setIsDeleteConfirmationVisible}
+              handlePrint={handlePrint}
+            />
+          </Content>
+          <Content
+            className={styles.sectionContent}
+            key={helpSectionLabel}
+            value={helpSectionLabel}
+          >
+            <HelpSection />
+          </Content>
+        </Tabs>
+      </div>
+      {isNotesSectionShown && notesSection}
+      {deleteConfirmation}
     </div>
   );
 };

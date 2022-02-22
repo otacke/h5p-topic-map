@@ -1,11 +1,12 @@
-import * as React from "react";
 import useResizeObserver from "@react-hook/resize-observer";
+import * as React from "react";
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { AppWidthContext } from "../../contexts/AppWidthContext";
+import { getUserData, setUserData } from "../../hooks/useLocalStorage";
 import { Params } from "../../types/H5P/Params";
+import { UserData } from "../../types/UserData";
 import { defaultTheme } from "../../utils/semantics.utils";
 import { Navbar } from "../Navbar/Navbar";
-import { getUserData, setUserData } from "../../hooks/useLocalStorage";
-import { UserData } from "../../types/UserData";
 import styles from "./App.module.scss";
 
 export type AppProps = {
@@ -14,6 +15,8 @@ export type AppProps = {
 };
 
 export const App: React.FC<AppProps> = ({ params, title }) => {
+  const fullscreenHandle = useFullScreenHandle();
+
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [width, setWidth] = React.useState(0);
   const [userDataCopy, setUserDataCopy] = React.useState<UserData>(
@@ -28,7 +31,7 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
     setWidth(initialWidth);
   }, []);
 
-  useResizeObserver(containerRef.current, ({ contentRect }) => {
+  useResizeObserver(containerRef, ({ contentRect }) => {
     setWidth(contentRect.width);
   });
 
@@ -39,14 +42,20 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
 
   return (
     <AppWidthContext.Provider value={width}>
-      <div className={themeClassName} ref={containerRef}>
-        <div className={styles.navbarWrapper}>
-          <Navbar
-            navbarTitle={title ?? ""}
-            params={params}
-            setUserDataCopy={setUserDataCopy}
-          />
-        </div>
+      <div className={themeClassName}>
+        <FullScreen
+          className={styles.fullscreenStyle}
+          handle={fullscreenHandle}
+        >
+          <div className={styles.navbarWrapper} ref={containerRef}>
+            <Navbar
+              navbarTitle={title ?? ""}
+              params={params}
+              setUserDataCopy={setUserDataCopy}
+              fullscreenHandle={fullscreenHandle}
+            />
+          </div>
+        </FullScreen>
       </div>
     </AppWidthContext.Provider>
   );

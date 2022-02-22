@@ -1,5 +1,6 @@
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { FullScreenHandle } from "react-full-screen";
 import { Navbar, NavbarProps } from "./Navbar";
 
 export default {
@@ -11,6 +12,7 @@ const defaultArgs: NavbarProps = {
   navbarTitle: "National romanticism",
   params: {},
   setUserDataCopy: () => null,
+  fullscreenHandle: {} as FullScreenHandle,
 };
 
 export const NavBar: ComponentStory<typeof Navbar> = () => {
