@@ -40,6 +40,8 @@ form {
 }
 
 .markAsCompletedCheckbox {
+  color: var(--theme-color-2);
+
   input[type="checkbox"] {
     height: 20px;
     width: 20px;
