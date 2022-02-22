@@ -3,8 +3,14 @@
 
   border: 2px solid;
   border-radius: 50%;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: $size;
   padding: 0;
   width: $size;
+}
+
+.svgIcon {
+  margin: 0 auto;
 }
