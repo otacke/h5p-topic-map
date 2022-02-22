@@ -1,10 +1,10 @@
 import * as React from "react";
 import { FC, MouseEventHandler } from "react";
 import Xarrow from "react-xarrows";
-import { ArrowButtonIconState } from "../../types/ArrowButtonIconState";
+import { NoteButtonIconState } from "../../types/NoteButtonIconState";
 import { ArrowItemType } from "../../types/ArrowItemType";
 import { ArrowType } from "../../types/ArrowType";
-import { ArrowButton } from "../ArrowButton/ArrowButton";
+import { NoteButton } from "../NoteButton/NoteButton";
 import styles from "./Arrow.module.scss";
 
 export type ArrowProps = {
@@ -13,7 +13,7 @@ export type ArrowProps = {
 };
 
 export const Arrow: FC<ArrowProps> = ({ item, onClick }) => {
-  const buttonState = ArrowButtonIconState.Default;
+  const buttonState = NoteButtonIconState.Default;
   return null;
 
   return (
@@ -21,7 +21,7 @@ export const Arrow: FC<ArrowProps> = ({ item, onClick }) => {
       <Xarrow
         labels={{
           middle: (
-            <ArrowButton
+            <NoteButton
               backgroundColor="var(--theme-color-2)"
               buttonState={buttonState}
               borderColor="var(--theme-color-3)"

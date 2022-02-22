@@ -1,31 +1,31 @@
 /* eslint-disable react/destructuring-assignment */
 import * as React from "react";
-import styles from "./ArrowButton.module.scss";
+import styles from "./NoteButton.module.scss";
 import { CompletedIcon, EditIcon, IconProps, NoteIcon } from "../Icons/Icons";
-import { ArrowButtonIconState } from "../../types/ArrowButtonIconState";
+import { NoteButtonIconState } from "../../types/NoteButtonIconState";
 
-const icons: Record<ArrowButtonIconState, React.FC<IconProps>> = {
-  [ArrowButtonIconState.Completed]: CompletedIcon,
-  [ArrowButtonIconState.Notes]: NoteIcon,
-  [ArrowButtonIconState.Default]: EditIcon,
+const icons: Record<NoteButtonIconState, React.FC<IconProps>> = {
+  [NoteButtonIconState.Completed]: CompletedIcon,
+  [NoteButtonIconState.Notes]: NoteIcon,
+  [NoteButtonIconState.Default]: EditIcon,
 };
 
 const renderIcon = (
-  state: ArrowButtonIconState,
+  state: NoteButtonIconState,
   iconColor: string,
 ): JSX.Element => {
   const Icon = icons[state];
   return <Icon iconColor={iconColor} />;
 };
 
-type ArrowButtonProps = {
+type NoteButtonProps = {
   backgroundColor: string;
   borderColor: string;
   iconColor: string;
-  buttonState: ArrowButtonIconState;
+  buttonState: NoteButtonIconState;
 };
 
-export const ArrowButton: React.FC<ArrowButtonProps> = ({
+export const NoteButton: React.FC<NoteButtonProps> = ({
   backgroundColor,
   borderColor,
   iconColor,
@@ -34,13 +34,12 @@ export const ArrowButton: React.FC<ArrowButtonProps> = ({
   const classNames = `${styles.button}`;
 
   return (
-    <button
-      type="button"
+    <div
       data-testid="svgBtn"
       className={classNames}
       style={{ backgroundColor, borderColor }}
     >
       {renderIcon(buttonState, iconColor)}
-    </button>
+    </div>
   );
 };

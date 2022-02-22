@@ -2,8 +2,11 @@ import * as React from "react";
 import { FC, MouseEventHandler } from "react";
 import { useAppWidth } from "../../hooks/useAppWidth";
 import { BreakpointSize } from "../../types/BreakpointSize";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
+import { NoteButton } from "../NoteButton/NoteButton";
 import styles from "./TopicMapItem.module.scss";
+import { NoteButtonIconState } from "../../types/NoteButtonIconState";
 
 export type TopicMapItemProps = {
   item: TopicMapItemType;
@@ -23,6 +26,21 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({ item, onClick }) => {
     () => [styles.topicMapItem, sizeClassname[appWidth]].join(" "),
     [appWidth],
   );
+  const [userData] = useLocalStorage(item.id);
+
+  let btnState: NoteButtonIconState = NoteButtonIconState.Default;
+  if (item.dialog?.hasNote) {
+    switch (true) {
+      case userData[item.id].noteCompleted:
+        btnState = NoteButtonIconState.Completed;
+        break;
+      case userData[item.id]?.note && userData[item.id]?.note?.length !== 0:
+        btnState = NoteButtonIconState.Notes;
+        break;
+      default:
+        btnState = NoteButtonIconState.Default;
+    }
+  }
 
   return (
     <button type="button" className={className} onClick={onClick}>
@@ -39,8 +57,22 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({ item, onClick }) => {
       <div
         className={`${styles.inner} ${
           item.topicImage?.path ? "" : styles.noImage
-        }`}
+        } ${item.dialog?.hasNote ? styles.withNote : ""}`}
       >
+        {item.dialog?.hasNote ? (
+          <div
+            className={`${styles.icon} ${
+              item.topicImage?.path ? "" : styles.withoutImage
+            }`}
+          >
+            <NoteButton
+              backgroundColor="var(--theme-color-3)"
+              borderColor="white"
+              iconColor="white"
+              buttonState={btnState}
+            />
+          </div>
+        ) : null}
         <div
           className={styles.label}
           // eslint-disable-next-line react/no-danger

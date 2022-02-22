@@ -1,4 +1,4 @@
-export enum ArrowButtonIconState {
+export enum NoteButtonIconState {
   Completed,
   Notes,
   Default,
