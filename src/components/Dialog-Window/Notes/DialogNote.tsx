@@ -1,14 +1,20 @@
 import * as React from "react";
 import { useL10n } from "../../../hooks/useLocalization";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import { UserData } from "../../../types/UserData";
 import styles from "./DialogNote.module.scss";
 
 export type NoteProps = {
   maxLength: number;
   id: string;
+  setUserDataCopy?: React.Dispatch<React.SetStateAction<UserData>>;
 };
 
-export const DialogNote: React.FC<NoteProps> = ({ maxLength, id }) => {
+export const DialogNote: React.FC<NoteProps> = ({
+  maxLength,
+  id,
+  setUserDataCopy,
+}) => {
   const [userData, setUserData] = useLocalStorage(id);
   const [note, setNote] = React.useState(userData[id].note ?? "");
   const [dynamicSavingText, setDynamicSavingText] = React.useState("");
@@ -30,6 +36,7 @@ export const DialogNote: React.FC<NoteProps> = ({ maxLength, id }) => {
     userData[id].noteCompleted = !noteCompleted;
     setMarkedAsCompleted(!noteCompleted);
     setUserData(userData);
+    if (setUserDataCopy) setUserDataCopy(userData);
   };
 
   const setSavingText = (): void => {

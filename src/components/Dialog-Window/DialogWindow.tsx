@@ -1,13 +1,14 @@
+import * as React from "react";
 import { Close, Content, Overlay, Root, Title } from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
-import * as React from "react";
 import { FC } from "react";
 import { useMedia } from "react-use";
 import { useL10n } from "../../hooks/useLocalization";
 import { CommonItemType } from "../../types/CommonItemType";
-import styles from "./DialogWindow.module.scss";
+import { UserData } from "../../types/UserData";
 import { DialogNote } from "./Notes/DialogNote";
 import { DialogTabs } from "./Tabs/DialogTabs";
+import styles from "./DialogWindow.module.scss";
 
 export type DialogWindowProps = {
   item: CommonItemType;
@@ -19,6 +20,7 @@ export type DialogWindowProps = {
     confirmText: string;
     denyText: string;
   };
+  setUserDataCopy?: React.Dispatch<React.SetStateAction<UserData>>;
 };
 
 export const DialogWindow: FC<DialogWindowProps> = ({
@@ -27,6 +29,7 @@ export const DialogWindow: FC<DialogWindowProps> = ({
   onOpenChange,
   confirmWindow,
   children,
+  setUserDataCopy,
 }) => {
   const ariaLabel = useL10n("closeDialog");
   const smallScreen = useMedia("(max-width: 768px)");
@@ -100,7 +103,11 @@ export const DialogWindow: FC<DialogWindowProps> = ({
           <DialogTabs item={item} />
         </div>
         <div className={styles.noteWrapper}>
-          <DialogNote maxLength={160} id={item.id} />
+          <DialogNote
+            maxLength={160}
+            id={item.id}
+            setUserDataCopy={setUserDataCopy}
+          />
         </div>
         <Close className={styles.closeButton} aria-label={ariaLabel}>
           <Cross2Icon />

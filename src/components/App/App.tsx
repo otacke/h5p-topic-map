@@ -1,9 +1,12 @@
-import useResizeObserver from "@react-hook/resize-observer";
 import * as React from "react";
+import useResizeObserver from "@react-hook/resize-observer";
 import { AppWidthContext } from "../../contexts/AppWidthContext";
 import { Params } from "../../types/H5P/Params";
 import { defaultTheme } from "../../utils/semantics.utils";
-import { Grid } from "../Grid/Grid";
+import { Navbar } from "../Navbar/Navbar";
+import { getUserData, setUserData } from "../../hooks/useLocalStorage";
+import { UserData } from "../../types/UserData";
+import styles from "./App.module.scss";
 
 export type AppProps = {
   params: Params;
@@ -13,6 +16,11 @@ export type AppProps = {
 export const App: React.FC<AppProps> = ({ params, title }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [width, setWidth] = React.useState(0);
+  const [userDataCopy, setUserDataCopy] = React.useState<UserData>(
+    getUserData(),
+  );
+
+  React.useMemo(() => setUserData(userDataCopy), [userDataCopy]);
 
   React.useLayoutEffect(() => {
     setWidth(containerRef.current?.getBoundingClientRect().width ?? 0);
@@ -29,13 +37,14 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
 
   return (
     <AppWidthContext.Provider value={width}>
-      <div className={themeClassName} ref={containerRef}>
-        <Grid
-          title={title}
-          items={params.topicMap?.topicMapItems ?? []}
-          arrowItems={params.topicMap?.arrowItems ?? []}
-          backgroundImage={params.topicMap?.gridBackgroundImage}
-        />
+      <div className={themeClassName}>
+        <div className={styles.navbarWrapper}>
+          <Navbar
+            navbarTitle={title ?? ""}
+            params={params}
+            setUserDataCopy={setUserDataCopy}
+          />
+        </div>
       </div>
     </AppWidthContext.Provider>
   );

@@ -2,6 +2,7 @@
 import * as React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
+import { FullScreenHandle } from "react-full-screen";
 import { Grid, GridProps } from "./Grid";
 import { ArrowType } from "../../types/ArrowType";
 
@@ -11,10 +12,11 @@ export default {
 } as ComponentMeta<typeof Grid>;
 
 const defaultArgs: GridProps = {
-  title: "",
   items: [],
   arrowItems: [],
   backgroundImage: undefined,
+  fullscreenHandle: {} as FullScreenHandle,
+  setUserDataCopy: () => null,
 };
 
 export const WithItems: ComponentStory<typeof Grid> = () => {
@@ -97,7 +99,6 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         },
       },
     ],
-    title: "Sheep title is looking ok",
   };
   return <Grid {...args} />;
 };
@@ -194,7 +195,6 @@ export const WithBackgroundImage: ComponentStory<typeof Grid> = () => {
         year: "2018",
       },
     },
-    title: "Sheep title is looking ok",
   };
   return <Grid {...args} />;
 };

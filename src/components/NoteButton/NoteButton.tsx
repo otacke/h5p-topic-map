@@ -15,7 +15,11 @@ const renderIcon = (
   iconColor: string,
 ): JSX.Element => {
   const Icon = icons[state];
-  return <Icon iconColor={iconColor} />;
+  return (
+    <div className={styles.svgIcon}>
+      <Icon iconColor={iconColor} />
+    </div>
+  );
 };
 
 type NoteButtonProps = {
