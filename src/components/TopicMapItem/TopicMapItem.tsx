@@ -28,7 +28,7 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({ item, onClick }) => {
   );
   const [userData] = useLocalStorage(item.id);
 
-  let btnState: NoteButtonIconState;
+  let btnState: NoteButtonIconState = NoteButtonIconState.Default;
   if (item.dialog?.hasNote) {
     switch (true) {
       case userData[item.id].noteCompleted:
