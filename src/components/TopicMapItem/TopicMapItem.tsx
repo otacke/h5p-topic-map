@@ -58,7 +58,11 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({ item, onClick }) => {
         }`}
       >
         {item.dialog?.hasNote ? (
-          <div className={styles.icon}>
+          <div
+            className={`${styles.icon} ${
+              item.topicImage?.path ? "" : styles.withoutImage
+            }`}
+          >
             <NoteButton
               backgroundColor="var(--theme-color-3)"
               borderColor="white"

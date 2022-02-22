@@ -1,3 +1,6 @@
+$--half-note-btn-size: 1rem;
+$--note-btn-padding: 0.75rem;
+
 .topicMapItem {
   background-color: var(--theme-color-3);
   border: none;
@@ -15,6 +18,10 @@
 
     .inner {
       padding: 1em 1.25em;
+
+      &.withNote:not(.noImage) {
+        padding: calc(1em + $--note-btn-padding) 1.25em 1em;
+      }
     }
   }
 
@@ -23,6 +30,10 @@
 
     .inner {
       padding: 0.75em 1em;
+
+      &.withNote:not(.noImage) {
+        padding: calc(0.75tem + $--note-btn-padding) 1em 0.75em;
+      }
     }
   }
 
@@ -31,6 +42,10 @@
 
     .inner {
       padding: 0.75em;
+
+      &.withNote:not(.noImage) {
+        padding: calc(0.75tem + $--note-btn-padding) 0.75em 0.75em;
+      }
     }
   }
 }
@@ -49,6 +64,7 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  position: relative;
 
   &.noImage {
     flex-grow: 1;
@@ -71,5 +87,15 @@
 }
 
 .icon {
+  left: calc(50% - $--half-note-btn-size);
   margin: auto;
+  position: absolute;
+  top: calc(0px - $--half-note-btn-size);
+
+  &.withoutImage {
+    left: auto;
+    margin: 0 auto 0.5em;
+    position: relative;
+    top: auto;
+  }
 }
