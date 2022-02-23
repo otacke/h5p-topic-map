@@ -153,7 +153,7 @@ export const DialogTabs: React.FC<TabProps> = ({ item }) => {
         {tabItems(item)}
         {smallScreen ? (
           <Content key="notes" value="notes" className={styles.noteWrapper}>
-            <DialogNote maxLength={160} id={item.id} />
+            <DialogNote maxLength={160} id={item.id} smallScreen />
           </Content>
         ) : null}
       </div>

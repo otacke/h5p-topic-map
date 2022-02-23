@@ -8,12 +8,14 @@ export type NoteProps = {
   maxLength: number;
   id: string;
   setUserDataCopy?: React.Dispatch<React.SetStateAction<UserData>>;
+  smallScreen?: boolean;
 };
 
 export const DialogNote: React.FC<NoteProps> = ({
   maxLength,
   id,
   setUserDataCopy,
+  smallScreen,
 }) => {
   const [userData, setUserData] = useLocalStorage(id);
   const [note, setNote] = React.useState(userData[id].note ?? "");
@@ -90,8 +92,10 @@ export const DialogNote: React.FC<NoteProps> = ({
   return (
     <form>
       <label htmlFor="note">
-        <p className={styles.noteLabel}>{wordNoteLabel}</p>
-        <p className={styles.dynamicSavingText}>{dynamicSavingText}</p>
+        <div className={styles.topGroup}>
+          {!smallScreen && <p className={styles.noteLabel}>{wordNoteLabel}</p>}
+          <p className={styles.dynamicSavingText}>{dynamicSavingText}</p>
+        </div>
         <div className={styles.textAreaWrapper}>
           <textarea
             className={styles.textArea}
