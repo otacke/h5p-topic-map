@@ -2,7 +2,6 @@
 import * as React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { FullScreenHandle } from "react-full-screen";
 import { Grid, GridProps } from "./Grid";
 import { ArrowType } from "../../types/ArrowType";
 
@@ -15,7 +14,6 @@ const defaultArgs: GridProps = {
   items: [],
   arrowItems: [],
   backgroundImage: undefined,
-  fullscreenHandle: {} as FullScreenHandle,
   setUserDataCopy: () => null,
 };
 

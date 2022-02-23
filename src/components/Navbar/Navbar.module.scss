@@ -7,7 +7,7 @@ $grid-z-index: 1;
 
 .mainBody {
   background-color: var(--theme-color-2);
-  padding-top: 1rem;
+  // padding-top: 1rem;
 }
 
 .navbarTitle {
@@ -42,7 +42,7 @@ $grid-z-index: 1;
 
 .sectionContent {
   width: 100%;
-  padding-top: 1.5rem;
+  padding-top: 2.5rem;
 }
 
 .sectionsMenu,
@@ -93,13 +93,18 @@ $grid-z-index: 1;
   height: 1.1rem;
 }
 
+.fullscreenButton {
+  display: none;
+}
+
 @media (min-width: 768px) {
   .notesList {
     padding: 1rem 1rem;
   }
 
-  .mainBody {
-    padding-top: 2rem;
+  .sectionContent {
+    width: 100%;
+    padding-top: 3.5rem;
   }
 
   .sectionTitle {
@@ -110,9 +115,12 @@ $grid-z-index: 1;
   .sectionsMenu,
   .sectionsMenu.hidden {
     font-size: inherit;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    top: 0.8rem;
     right: 0.4rem;
-    display: block;
-    top: 1rem;
     padding-top: 0;
   }
 
@@ -140,6 +148,13 @@ $grid-z-index: 1;
   }
 
   .progressBarTitle {
+    padding-right: 0;
+  }
+
+  .fullscreenButton {
+    background-color: transparent;
+    border: none;
+    display: block;
     padding-right: 0;
   }
 }
