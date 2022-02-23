@@ -53,6 +53,7 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
               params={params}
               setUserDataCopy={setUserDataCopy}
               fullscreenHandle={fullscreenHandle}
+              userDataCopy={userDataCopy}
             />
           </div>
         </FullScreen>

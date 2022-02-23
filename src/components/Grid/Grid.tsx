@@ -16,6 +16,7 @@ export type GridProps = {
   arrowItems: Array<ArrowItemType>;
   backgroundImage: Image | undefined;
   setUserDataCopy: React.Dispatch<React.SetStateAction<UserData>>;
+  userDataCopy: UserData;
 };
 
 export const Grid: React.FC<GridProps> = ({
@@ -23,6 +24,7 @@ export const Grid: React.FC<GridProps> = ({
   arrowItems,
   backgroundImage,
   setUserDataCopy,
+  userDataCopy,
 }) => {
   const [itemShowingDialog, setItemShowingDialog] =
     useState<CommonItemType | null>(null);
@@ -53,11 +55,13 @@ export const Grid: React.FC<GridProps> = ({
         >
           <TopicMapItem
             item={item}
+            setUserDataCopy={setUserDataCopy}
             onClick={() => setItemShowingDialog(item)}
+            userDataCopy={userDataCopy}
           />
         </div>
       )),
-    [items],
+    [items, userDataCopy],
   );
 
   const bgImageStyle: string | undefined = backgroundImage?.path

@@ -22,13 +22,14 @@ export type NavbarProps = {
   params: Params;
   setUserDataCopy: React.Dispatch<React.SetStateAction<UserData>>;
   fullscreenHandle: FullScreenHandle;
+  userDataCopy: UserData;
 };
 
 export const Navbar: React.FC<NavbarProps> = ({
   navbarTitle,
   params,
   setUserDataCopy,
-  fullscreenHandle,
+  userDataCopy,
 }) => {
   const navbarAriaLabel = useL10n("navbarTabsListAriaLabel");
   const topicMapSectionLabel = useL10n("navbarTopicMapSectionLabel");
@@ -241,6 +242,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               arrowItems={params.topicMap?.arrowItems ?? []}
               backgroundImage={params.topicMap?.gridBackgroundImage}
               setUserDataCopy={setUserDataCopy}
+                userDataCopy={userDataCopy}
             />
           </Content>
           <Content
