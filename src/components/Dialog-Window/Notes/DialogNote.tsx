@@ -40,7 +40,6 @@ export const DialogNote: React.FC<NoteProps> = ({
     userDataCopy[id].noteCompleted = !noteCompleted;
     setMarkedAsCompleted(!noteCompleted);
     setUserDataCopy(userDataCopy);
-    console.info(userDataCopy);
   };
 
   const setSavingText = (): void => {
@@ -82,7 +81,6 @@ export const DialogNote: React.FC<NoteProps> = ({
   React.useEffect(() => {
     // TODO: If this becomes laggy, add a debounce-timer to avoid saving more often than, say, every 100ms.
     userDataCopy[id].note = note;
-    setUserDataCopy(userDataCopy);
     countWords();
     // ensure there's no memory leak on component unmount during timeout
     return () => {
@@ -93,9 +91,8 @@ export const DialogNote: React.FC<NoteProps> = ({
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     setSavingText();
     setNote(e.target.value);
+    setUserDataCopy(userDataCopy);
   };
-
-  console.info("coppyyyyy ", userDataCopy);
 
   return (
     <form>
