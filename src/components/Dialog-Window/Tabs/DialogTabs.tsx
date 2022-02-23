@@ -11,9 +11,12 @@ import { DialogAudio } from "../Audio/DialogAudio";
 import { useL10n } from "../../../hooks/useLocalization";
 import { DialogNote } from "../Notes/DialogNote";
 import { CommonItemType } from "../../../types/CommonItemType";
+import { UserData } from "../../../types/UserData";
 
 export type TabProps = {
   item: CommonItemType;
+  userDataCopy: UserData;
+  setUserDataCopy: React.Dispatch<React.SetStateAction<UserData>>;
 };
 
 type Translation = {
@@ -123,7 +126,11 @@ const tabItems = (item: CommonItemType): JSX.Element[] => {
   return items;
 };
 
-export const DialogTabs: React.FC<TabProps> = ({ item }) => {
+export const DialogTabs: React.FC<TabProps> = ({
+  item,
+  setUserDataCopy,
+  userDataCopy,
+}) => {
   const translation: Translation = {
     audio: useL10n("copyrightAudio"),
     video: useL10n("copyrightVideo"),
@@ -157,6 +164,8 @@ export const DialogTabs: React.FC<TabProps> = ({ item }) => {
               maxLength={item.dialog?.maxWordCount ?? 160}
               id={item.id}
               smallScreen
+              setUserDataCopy={setUserDataCopy}
+              userDataCopy={userDataCopy}
             />
           </Content>
         ) : null}

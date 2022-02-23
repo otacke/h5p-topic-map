@@ -1,14 +1,15 @@
+/* eslint-disable no-param-reassign */
 import * as React from "react";
 import { useL10n } from "../../../hooks/useLocalization";
-import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { UserData } from "../../../types/UserData";
 import styles from "./DialogNote.module.scss";
 
 export type NoteProps = {
   maxLength: number;
   id: string;
-  setUserDataCopy?: React.Dispatch<React.SetStateAction<UserData>>;
   smallScreen?: boolean;
+  setUserDataCopy: React.Dispatch<React.SetStateAction<UserData>>;
+  userDataCopy: UserData;
 };
 
 export const DialogNote: React.FC<NoteProps> = ({
@@ -16,13 +17,13 @@ export const DialogNote: React.FC<NoteProps> = ({
   id,
   setUserDataCopy,
   smallScreen,
+  userDataCopy,
 }) => {
-  const [userData, setUserData] = useLocalStorage(id);
-  const [note, setNote] = React.useState(userData[id].note ?? "");
+  const [note, setNote] = React.useState(userDataCopy[id].note ?? "");
   const [dynamicSavingText, setDynamicSavingText] = React.useState("");
   const [savingTextTimeout, setSavingTextTimeout] = React.useState<number>();
   const [noteCompleted, setMarkedAsCompleted] = React.useState<boolean>(
-    userData[id].noteCompleted ?? false,
+    userDataCopy[id].noteCompleted ?? false,
   );
   const [wordCount, setWordCount] = React.useState(0);
   const [maxWordCount, setMaxWordCount] = React.useState<number | undefined>();
@@ -36,10 +37,10 @@ export const DialogNote: React.FC<NoteProps> = ({
   const wordNoteLabel = useL10n("dialogNoteLabel");
 
   const handleNoteCompleted = (): void => {
-    userData[id].noteCompleted = !noteCompleted;
+    userDataCopy[id].noteCompleted = !noteCompleted;
     setMarkedAsCompleted(!noteCompleted);
-    setUserData(userData);
-    if (setUserDataCopy) setUserDataCopy(userData);
+    setUserDataCopy(userDataCopy);
+    console.info(userDataCopy);
   };
 
   const setSavingText = (): void => {
@@ -80,19 +81,21 @@ export const DialogNote: React.FC<NoteProps> = ({
 
   React.useEffect(() => {
     // TODO: If this becomes laggy, add a debounce-timer to avoid saving more often than, say, every 100ms.
-    userData[id].note = note;
-    setUserData(userData);
+    userDataCopy[id].note = note;
+    setUserDataCopy(userDataCopy);
     countWords();
     // ensure there's no memory leak on component unmount during timeout
     return () => {
       if (savingTextTimeout != null) clearTimeout(savingTextTimeout);
     };
-  }, [userData, id, note, setUserData, savingTextTimeout, countWords]);
+  }, [userDataCopy, id, note, setUserDataCopy, savingTextTimeout, countWords]);
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     setSavingText();
     setNote(e.target.value);
   };
+
+  console.info("coppyyyyy ", userDataCopy);
 
   return (
     <form>

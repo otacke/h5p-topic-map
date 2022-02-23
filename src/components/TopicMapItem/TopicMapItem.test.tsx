@@ -25,7 +25,14 @@ describe(TopicMapItem.name, () => {
     const onClick = jest.fn();
 
     const { container } = render(
-      <TopicMapItem item={item} onClick={onClick} />,
+      <TopicMapItem
+        item={item}
+        onClick={onClick}
+        setUserDataCopy={() => {
+          return null;
+        }}
+        userDataCopy={{}}
+      />,
     );
 
     expect(container.querySelector("button")).toBeTruthy();

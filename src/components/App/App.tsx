@@ -23,7 +23,15 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
     getUserData(),
   );
 
-  React.useMemo(() => setUserData(userDataCopy), [userDataCopy]);
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const setDataHandler = (data: React.SetStateAction<UserData>) => {
+    setUserDataCopy(data);
+    //setUserData(userDataCopy);
+  };
+
+  React.useMemo(() => {
+    setUserData(userDataCopy);
+  }, [userDataCopy]);
 
   React.useLayoutEffect(() => {
     const initialWidth =

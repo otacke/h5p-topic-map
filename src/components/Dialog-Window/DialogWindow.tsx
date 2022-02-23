@@ -20,7 +20,8 @@ export type DialogWindowProps = {
     confirmText: string;
     denyText: string;
   };
-  setUserDataCopy?: React.Dispatch<React.SetStateAction<UserData>>;
+  setUserDataCopy: React.Dispatch<React.SetStateAction<UserData>>;
+  userDataCopy: UserData;
 };
 
 export const DialogWindow: FC<DialogWindowProps> = ({
@@ -30,6 +31,7 @@ export const DialogWindow: FC<DialogWindowProps> = ({
   confirmWindow,
   children,
   setUserDataCopy,
+  userDataCopy,
 }) => {
   const ariaLabel = useL10n("closeDialog");
   const smallScreen = useMedia("(max-width: 768px)");
@@ -72,7 +74,11 @@ export const DialogWindow: FC<DialogWindowProps> = ({
   let content = smallScreen ? (
     <Content className={styles.dialogContentWithNote}>
       <Title className={styles.dialogTitle}>{item.label}</Title>
-      <DialogTabs item={item} />
+      <DialogTabs
+        item={item}
+        userDataCopy={userDataCopy}
+        setUserDataCopy={setUserDataCopy}
+      />
       <Close className={styles.closeButton} aria-label={ariaLabel}>
         <Cross2Icon />
       </Close>
@@ -84,7 +90,11 @@ export const DialogWindow: FC<DialogWindowProps> = ({
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: item.label }}
       />
-      <DialogTabs item={item} />
+      <DialogTabs
+        item={item}
+        userDataCopy={userDataCopy}
+        setUserDataCopy={setUserDataCopy}
+      />
       <Close className={styles.closeButton} aria-label={ariaLabel}>
         <Cross2Icon />
       </Close>
@@ -100,13 +110,18 @@ export const DialogWindow: FC<DialogWindowProps> = ({
           dangerouslySetInnerHTML={{ __html: item.label }}
         />
         <div className={styles.tabWrapper}>
-          <DialogTabs item={item} />
+          <DialogTabs
+            item={item}
+            userDataCopy={userDataCopy}
+            setUserDataCopy={setUserDataCopy}
+          />
         </div>
         <div className={styles.noteWrapper}>
           <DialogNote
             maxLength={item.dialog.maxWordCount ?? 160}
             id={item.id}
             setUserDataCopy={setUserDataCopy}
+            userDataCopy={userDataCopy}
           />
         </div>
         <Close className={styles.closeButton} aria-label={ariaLabel}>

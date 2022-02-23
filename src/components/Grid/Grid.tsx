@@ -83,6 +83,7 @@ export const Grid: React.FC<GridProps> = ({
               open={!!itemShowingDialog}
               onOpenChange={() => setItemShowingDialog(null)}
               setUserDataCopy={setUserDataCopy}
+              userDataCopy={userDataCopy}
             />
           ) : null}
         </div>

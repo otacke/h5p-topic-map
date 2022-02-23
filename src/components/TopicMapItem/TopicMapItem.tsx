@@ -2,7 +2,6 @@ import * as React from "react";
 import { FC, MouseEventHandler } from "react";
 import { useAppWidth } from "../../hooks/useAppWidth";
 import { BreakpointSize } from "../../types/BreakpointSize";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
 import { NoteButton } from "../NoteButton/NoteButton";
 import styles from "./TopicMapItem.module.scss";
