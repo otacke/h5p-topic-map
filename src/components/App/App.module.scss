@@ -2,3 +2,8 @@
   position: relative;
   width: 100%;
 }
+
+.fullscreenStyle {
+  overflow: auto;
+  background-color: var(--theme-color-1);
+}
