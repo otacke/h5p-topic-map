@@ -79,6 +79,14 @@
                   "default": true
                 },
                 {
+                  "label": "Maximum number of words",
+                  "description": "Specifies the maximum number of words for the note. Default is 160 words.",
+                  "name": "maxWordCount",
+                  "type": "number",
+                  "optional": true,
+                  "default": 160
+                },
+                {
                   "label": "Text",
                   "name": "text",
                   "type": "text",
@@ -238,6 +246,14 @@
                   "default": true
                 },
                 {
+                  "label": "Maximum number of words",
+                  "description": "Specifies the maximum number of words for the note. Default is 160 words.",
+                  "name": "maxWordCount",
+                  "type": "number",
+                  "optional": true,
+                  "default": 160
+                },
+                {
                   "label": "Text",
                   "name": "text",
                   "type": "text",
@@ -393,6 +409,12 @@
         "label": "Saved note label",
         "name": "dialogNoteSaved",
         "default": "Saved",
+        "type": "text"
+      },
+      {
+        "label": "Word limit exceeded label",
+        "name": "dialogNoteLimitExceeded",
+        "default": "Too many words",
         "type": "text"
       },
       {

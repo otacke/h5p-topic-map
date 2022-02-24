@@ -104,7 +104,7 @@ export const DialogWindow: FC<DialogWindowProps> = ({
         </div>
         <div className={styles.noteWrapper}>
           <DialogNote
-            maxLength={160}
+            maxLength={item.dialog.maxWordCount ?? 160}
             id={item.id}
             setUserDataCopy={setUserDataCopy}
           />

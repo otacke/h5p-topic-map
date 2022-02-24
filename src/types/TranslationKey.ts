@@ -11,6 +11,7 @@ export type TranslationKey =
   | "copyrightVideo"
   | "dialogNoteSaving"
   | "dialogNoteSaved"
+  | "dialogNoteLimitExceeded"
   | "dialogNotePlaceholder"
   | "dialogNoteMarkAsCompleted"
   | "dialogResourcesRelevantLinks"
