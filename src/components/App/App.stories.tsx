@@ -24,6 +24,7 @@ DenFranskeRevolusjon.args = {
       copyrightVideo: "Video",
       dialogNoteSaving: "Saving…",
       dialogNoteSaved: "Saved",
+      dialogNoteLimitExceeded: "Limit exceeded",
       dialogNotePlaceholder: "Write your notes here…",
       dialogNoteMarkAsCompleted: "Mark as completed",
       dialogResourcesRelevantLinks: "Relevant links",
