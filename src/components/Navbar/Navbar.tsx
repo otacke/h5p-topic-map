@@ -5,7 +5,6 @@ import * as React from "react";
 import type { FullScreenHandle } from "react-full-screen";
 import { useReactToPrint } from "react-to-print";
 import { useL10n } from "../../hooks/useLocalization";
-import { getUserData, setUserData } from "../../hooks/useLocalStorage";
 import { CommonItemType } from "../../types/CommonItemType";
 import { Params } from "../../types/H5P/Params";
 import { UserData } from "../../types/UserData";
@@ -31,6 +30,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   params,
   setUserDataCopy,
   userDataCopy,
+  fullscreenHandle,
 }) => {
   const navbarAriaLabel = useL10n("navbarTabsListAriaLabel");
   const topicMapSectionLabel = useL10n("navbarTopicMapSectionLabel");
