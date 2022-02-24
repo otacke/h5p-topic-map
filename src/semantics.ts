@@ -256,7 +256,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
       {
         label: "Word limit exceeded label",
         name: "dialogNoteLimitExceeded",
-        default: "Limit exceeded",
+        default: "Too many words",
         type: H5PFieldType.Text,
       },
       {
