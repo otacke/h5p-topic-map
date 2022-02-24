@@ -197,6 +197,7 @@ DenFranskeRevolusjon.args = {
             "Den franske revolusjon var en periode med store sosiale og politiske omveltningene i Frankrike i perioden 1789–1799. Året 1789 markerer det første viktige vendepunktet under revolusjonen. 14. juli dette året brøt det ut masseopprør i Paris og fengselet Bastillen ble stormet. (Store norske leksikon)",
           dialog: {
             hasNote: true,
+            maxWordCount: 300,
             audio: {},
             text: `Perioden 1787–1789 kalles gjerne før-revolusjonen, men langsiktige årsaker til revolusjonen strekker seg naturligvis mye lenger tilbake i tid. De viktigste politiske, sosiale og administrative omveltninger skjedde i perioden 1789–1794. Deretter fulgte en periode hvor mange av de mest radikale tiltak fra tidligere ble moderert eller reversert, men hvor myndighetene mislyktes i å oppnå stabilitet og legitimitet. Med Napoleon Bonapartes statskupp i 1799 fikk Frankrike igjen et stabilt styre, til prisen av den politiske frihet.`,
           },
@@ -270,6 +271,7 @@ DenFranskeRevolusjon.args = {
           description: "",
           dialog: {
             hasNote: true,
+            maxWordCount: 260,
             audio: {},
           },
           topicImage: {
