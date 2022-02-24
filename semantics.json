@@ -396,6 +396,12 @@
         "type": "text"
       },
       {
+        "label": "Word limit exceeded label",
+        "name": "dialogNoteLimitExceeded",
+        "default": "Limit exceeded",
+        "type": "text"
+      },
+      {
         "label": "Note placeholder",
         "name": "dialogNotePlaceholder",
         "default": "Write your notes here…",

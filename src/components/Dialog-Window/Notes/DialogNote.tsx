@@ -29,6 +29,7 @@ export const DialogNote: React.FC<NoteProps> = ({
 
   const savingTextLabel = useL10n("dialogNoteSaving");
   const savedTextLabel = useL10n("dialogNoteSaved");
+  const wordLimitExceededTextLabel = useL10n("dialogNoteLimitExceeded");
   const completedTextLabel = useL10n("dialogNoteMarkAsCompleted");
   const placeholderText = useL10n("dialogNotePlaceholder");
   const wordTextLabel = useL10n("dialogWordsLabel");
@@ -53,7 +54,11 @@ export const DialogNote: React.FC<NoteProps> = ({
             minute: "2-digit",
           },
         );
-        setDynamicSavingText(`${savedTextLabel} ${localTime}`);
+        setDynamicSavingText(
+          `${
+            maxWordCount ? `${wordLimitExceededTextLabel} - ` : ""
+          } ${savedTextLabel} ${localTime}`,
+        );
       }, 650),
     );
   };
@@ -64,7 +69,7 @@ export const DialogNote: React.FC<NoteProps> = ({
 
     // TODO: Enforce max length when pasting in text,
     // perhaps by removing all words past the max length mark.
-    const tooManyWords = count >= maxLength && note[note.length - 1] === " ";
+    const tooManyWords = count > maxLength;
     if (tooManyWords) {
       setMaxWordCount(count);
     } else {
@@ -96,12 +101,15 @@ export const DialogNote: React.FC<NoteProps> = ({
           {!smallScreen && <p className={styles.noteLabel}>{wordNoteLabel}</p>}
           <p className={styles.dynamicSavingText}>{dynamicSavingText}</p>
         </div>
-        <div className={styles.textAreaWrapper}>
+        <div
+          className={`${styles.textAreaWrapper} ${
+            maxWordCount ? styles.maxWords : ""
+          }`}
+        >
           <textarea
             className={styles.textArea}
             id="note"
             placeholder={placeholderText}
-            maxLength={maxWordCount}
             onChange={event => onChange(event)}
             defaultValue={note}
           />
@@ -117,7 +125,12 @@ export const DialogNote: React.FC<NoteProps> = ({
                 {completedTextLabel}
               </label>
             </div>
-            <div data-testid="wordCount" className={styles.wordCounter}>
+            <div
+              data-testid="wordCount"
+              className={`${styles.wordCounter} ${
+                maxWordCount ? styles.redText : ""
+              }`}
+            >
               {wordCount} / {maxLength} {wordTextLabel}
             </div>
           </div>

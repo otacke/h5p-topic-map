@@ -31,6 +31,11 @@ form {
   &:focus-within {
     border: 2px solid #2360c5;
   }
+  &.maxWords {
+    &:focus-within {
+      border: 2px solid #cd2026;
+    }
+  }
 }
 
 .dynamicSavingText {
@@ -71,6 +76,10 @@ form {
 
 .wordCounter {
   vertical-align: middle;
+
+  &.redText {
+    color: #cd2026;
+  }
 }
 
 .noteLabel {
