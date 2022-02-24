@@ -23,7 +23,7 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
     getUserData(),
   );
 
-  React.useCallback(() => {
+  React.useMemo(() => {
     setUserData(userDataCopy);
   }, [userDataCopy]);
 
