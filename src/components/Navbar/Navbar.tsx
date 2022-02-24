@@ -227,13 +227,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <div className={styles.progressBarWrapper}>{progressBar}</div>
             </Trigger>
-            <Trigger
-              value="fullscreenButton"
-              disabled
-              className={styles.fullscreenButton}
-            >
-              <FullscreenButton fullscreenHandle={fullscreenHandle} />
-            </Trigger>
+            <FullscreenButton fullscreenHandle={fullscreenHandle} />
           </TabsList>
           <Content
             className={styles.sectionContent}
