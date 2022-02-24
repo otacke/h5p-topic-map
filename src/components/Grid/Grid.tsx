@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useState } from "react";
-import { FullScreenHandle } from "react-full-screen";
 import { Xwrapper } from "react-xarrows";
 import { ArrowItemType } from "../../types/ArrowItemType";
 import { CommonItemType } from "../../types/CommonItemType";
@@ -9,7 +8,6 @@ import { TopicMapItemType } from "../../types/TopicMapItemType";
 import { UserData } from "../../types/UserData";
 import { Arrow } from "../Arrow/Arrow";
 import { DialogWindow } from "../Dialog-Window/DialogWindow";
-import { FullscreenButton } from "../FullscreenButton/FullscreenButton";
 import { TopicMapItem } from "../TopicMapItem/TopicMapItem";
 import styles from "./Grid.module.scss";
 
@@ -17,7 +15,6 @@ export type GridProps = {
   items: Array<TopicMapItemType>;
   arrowItems: Array<ArrowItemType>;
   backgroundImage: Image | undefined;
-  fullscreenHandle: FullScreenHandle;
   setUserDataCopy: React.Dispatch<React.SetStateAction<UserData>>;
 };
 
@@ -25,7 +22,6 @@ export const Grid: React.FC<GridProps> = ({
   items,
   arrowItems,
   backgroundImage,
-  fullscreenHandle,
   setUserDataCopy,
 }) => {
   const [itemShowingDialog, setItemShowingDialog] =
@@ -75,9 +71,6 @@ export const Grid: React.FC<GridProps> = ({
         style={{ backgroundImage: bgImageStyle }}
       >
         <div className={styles.grid}>
-          <div className={styles.fullscreenButtonWrapper}>
-            <FullscreenButton fullscreenHandle={fullscreenHandle} />
-          </div>
           {arrows}
           {children}
           {itemShowingDialog?.dialog ? (

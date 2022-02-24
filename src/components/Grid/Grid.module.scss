@@ -25,10 +25,3 @@ $item-z-index: 1;
     box-shadow: 0 0 0 2px #2360c5, 0 0 0 3px rgb(255, 255, 255);
   }
 }
-
-.fullscreenButtonWrapper {
-  position: absolute;
-  right: -0.5rem;
-  top: -0.5rem;
-  z-index: $item-z-index + 1;
-}

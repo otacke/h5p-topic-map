@@ -9,6 +9,7 @@ import { CommonItemType } from "../../types/CommonItemType";
 import { Params } from "../../types/H5P/Params";
 import { UserData } from "../../types/UserData";
 import { DialogWindow } from "../Dialog-Window/DialogWindow";
+import { FullscreenButton } from "../FullscreenButton/FullscreenButton";
 import { Grid } from "../Grid/Grid";
 import { HamburgerCloseIcon, HamburgerIcon } from "../Icons/Icons";
 import { HelpSection } from "./HelpSection/HelpSection";
@@ -168,17 +169,24 @@ export const Navbar: React.FC<NavbarProps> = ({
           {navbarTitle}
         </button>
         <div className={styles.progressBarMobileWrapper}>{progressBar}</div>
-        <button
-          type="button"
-          className={styles.hamburgerButton}
-          onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}
-        >
-          {isHamburgerOpen ? (
-            <HamburgerCloseIcon iconColor="#fff" />
-          ) : (
-            <HamburgerIcon iconColor="#fff" />
-          )}
-        </button>
+        <div className={styles.navButtonsMobileWrapper}>
+          <div className={styles.navButtonsMobile}>
+            <button
+              type="button"
+              className={styles.hamburgerButton}
+              onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}
+            >
+              {isHamburgerOpen ? (
+                <HamburgerCloseIcon iconColor="#fff" />
+              ) : (
+                <HamburgerIcon iconColor="#fff" />
+              )}
+            </button>
+            <div className={styles.fullscreenButtonMobile}>
+              <FullscreenButton fullscreenHandle={fullscreenHandle} />
+            </div>
+          </div>
+        </div>
         <Tabs defaultValue={topicMapSectionLabel}>
           <TabsList
             className={`${styles.sectionsMenu} ${
@@ -219,6 +227,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <div className={styles.progressBarWrapper}>{progressBar}</div>
             </Trigger>
+            <Trigger
+              value="fullscreenButton"
+              disabled
+              className={styles.fullscreenButton}
+            >
+              <FullscreenButton fullscreenHandle={fullscreenHandle} />
+            </Trigger>
           </TabsList>
           <Content
             className={styles.sectionContent}
@@ -229,7 +244,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               items={params.topicMap?.topicMapItems ?? []}
               arrowItems={params.topicMap?.arrowItems ?? []}
               backgroundImage={params.topicMap?.gridBackgroundImage}
-              fullscreenHandle={fullscreenHandle}
               setUserDataCopy={setUserDataCopy}
             />
           </Content>
