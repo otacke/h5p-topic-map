@@ -15,6 +15,7 @@ const defaultArgs: GridProps = {
   arrowItems: [],
   backgroundImage: undefined,
   setUserDataCopy: () => null,
+  userDataCopy: {},
 };
 
 export const WithItems: ComponentStory<typeof Grid> = () => {

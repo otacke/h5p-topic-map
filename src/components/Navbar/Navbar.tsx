@@ -244,7 +244,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               arrowItems={params.topicMap?.arrowItems ?? []}
               backgroundImage={params.topicMap?.gridBackgroundImage}
               setUserDataCopy={setUserDataCopy}
-                userDataCopy={userDataCopy}
+              userDataCopy={userDataCopy}
             />
           </Content>
           <Content

@@ -12,6 +12,7 @@ const defaultArgs: NavbarProps = {
   navbarTitle: "National romanticism",
   params: {},
   setUserDataCopy: () => null,
+  userDataCopy: {},
   fullscreenHandle: {} as FullScreenHandle,
 };
 
