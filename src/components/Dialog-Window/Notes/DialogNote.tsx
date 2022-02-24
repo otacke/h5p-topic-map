@@ -37,7 +37,8 @@ export const DialogNote: React.FC<NoteProps> = ({
   const wordNoteLabel = useL10n("dialogNoteLabel");
 
   const handleNoteCompleted = (): void => {
-    if (userDataCopy[id].noteCompleted !== undefined) userDataCopy[id].noteCompleted = false;
+    if (userDataCopy[id].noteCompleted !== undefined)
+      userDataCopy[id].noteCompleted = false;
     userDataCopy[id].noteCompleted = !noteCompleted;
     setMarkedAsCompleted(!noteCompleted);
     setUserDataCopy(userDataCopy);

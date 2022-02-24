@@ -19,5 +19,5 @@ DialogNoteSimple.args = {
   maxLength: 150,
   id: "myId",
   userDataCopy: {},
-  setUserDataCopy: () => null
+  setUserDataCopy: () => null,
 };
