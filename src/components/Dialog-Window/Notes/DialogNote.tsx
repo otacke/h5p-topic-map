@@ -37,8 +37,9 @@ export const DialogNote: React.FC<NoteProps> = ({
   const wordNoteLabel = useL10n("dialogNoteLabel");
 
   const handleNoteCompleted = (): void => {
-    if (userDataCopy[id].noteCompleted !== undefined)
-      userDataCopy[id].noteCompleted = false;
+    if (userDataCopy[id] === undefined) {
+      userDataCopy[id] = {};
+    }
     userDataCopy[id].noteCompleted = !noteCompleted;
     setMarkedAsCompleted(!noteCompleted);
     setUserDataCopy(userDataCopy);
@@ -82,7 +83,8 @@ export const DialogNote: React.FC<NoteProps> = ({
 
   React.useEffect(() => {
     // TODO: If this becomes laggy, add a debounce-timer to avoid saving more often than, say, every 100ms.
-    if (userDataCopy[id]) userDataCopy[id].note = note;
+    if (userDataCopy[id] === undefined) userDataCopy[id] = {};
+    userDataCopy[id].note = note;
     countWords();
     // ensure there's no memory leak on component unmount during timeout
     return () => {
