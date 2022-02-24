@@ -4,7 +4,14 @@ import { DialogNote } from "./DialogNote";
 
 describe(DialogNote.name, () => {
   it("should render", () => {
-    const dialogNote = render(<DialogNote maxLength={0} id="myID" />).container;
+    const dialogNote = render(
+      <DialogNote
+        maxLength={0}
+        id="myID"
+        setUserDataCopy={() => null}
+        userDataCopy={{}}
+      />,
+    ).container;
     expect(dialogNote.querySelector("form")).toBeTruthy();
   });
 
