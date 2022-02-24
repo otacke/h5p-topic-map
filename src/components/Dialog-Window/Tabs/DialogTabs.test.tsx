@@ -24,7 +24,9 @@ describe(DialogTabs.name, () => {
         text: "Dialog test",
       },
     };
-    const tabs = render(<DialogTabs item={item} />).container;
+    const tabs = render(
+      <DialogTabs item={item} userDataCopy={{}} setUserDataCopy={() => null} />,
+    ).container;
 
     expect(tabs.querySelector("div")).toBeTruthy();
   });

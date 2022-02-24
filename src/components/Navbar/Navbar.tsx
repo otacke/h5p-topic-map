@@ -1,10 +1,10 @@
 import { Content, Tabs, TabsList, Trigger } from "@radix-ui/react-tabs";
 import ProgressBar from "@ramonak/react-progress-bar";
+/* eslint-disable no-param-reassign */
 import * as React from "react";
 import type { FullScreenHandle } from "react-full-screen";
 import { useReactToPrint } from "react-to-print";
 import { useL10n } from "../../hooks/useLocalization";
-import { getUserData, setUserData } from "../../hooks/useLocalStorage";
 import { CommonItemType } from "../../types/CommonItemType";
 import { Params } from "../../types/H5P/Params";
 import { UserData } from "../../types/UserData";
@@ -22,12 +22,14 @@ export type NavbarProps = {
   params: Params;
   setUserDataCopy: React.Dispatch<React.SetStateAction<UserData>>;
   fullscreenHandle: FullScreenHandle;
+  userDataCopy: UserData;
 };
 
 export const Navbar: React.FC<NavbarProps> = ({
   navbarTitle,
   params,
   setUserDataCopy,
+  userDataCopy,
   fullscreenHandle,
 }) => {
   const navbarAriaLabel = useL10n("navbarTabsListAriaLabel");
@@ -39,7 +41,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   const deleteAllNotesText = useL10n("deleteNotesConfirmationWindowLabel");
   const deleteAllNotesConfirmText = useL10n("deleteNotesConfirmLabel");
   const deleteAllNotesDenyText = useL10n("deleteNotesDenyLabel");
-  const userData = getUserData();
   const [progressBarValue, setProgressBarValue] = React.useState<number>(0);
   const allItems = React.useMemo(
     () =>
@@ -61,14 +62,14 @@ export const Navbar: React.FC<NavbarProps> = ({
       allItems.filter(
         item =>
           item.dialog?.hasNote &&
-          item.id in userData &&
-          userData[item.id].noteCompleted,
+          item.id in userDataCopy &&
+          userDataCopy[item.id].noteCompleted,
       ).length,
     );
     setProgressPercentage(
       Math.round((progressBarValue / totalNotesToComplete) * 100),
     );
-  }, [progressBarValue, allItems, totalNotesToComplete, userData]);
+  }, [progressBarValue, allItems, totalNotesToComplete, userDataCopy]);
 
   let navbarTitleForPrint = "";
   const updateNavbarTitleForPrint = (): void => {
@@ -93,12 +94,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const deleteAllNotes = (): void => {
     allItems.forEach(item => {
-      if (item.id in userData) {
-        userData[item.id].note = undefined;
-        userData[item.id].noteCompleted = undefined;
+      if (item.id in userDataCopy) {
+        userDataCopy[item.id].note = undefined;
+        userDataCopy[item.id].noteCompleted = undefined;
       }
     });
-    setUserData(userData);
+    setUserDataCopy(userDataCopy);
     setIsDeleteConfirmationVisible(false);
   };
 
@@ -129,6 +130,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         confirmText: deleteAllNotesConfirmText,
         denyText: deleteAllNotesDenyText,
       }}
+      setUserDataCopy={setUserDataCopy}
+      userDataCopy={userDataCopy}
     />
   );
 
@@ -241,6 +244,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               arrowItems={params.topicMap?.arrowItems ?? []}
               backgroundImage={params.topicMap?.gridBackgroundImage}
               setUserDataCopy={setUserDataCopy}
+              userDataCopy={userDataCopy}
             />
           </Content>
           <Content

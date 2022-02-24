@@ -2,15 +2,17 @@ import * as React from "react";
 import { FC, MouseEventHandler } from "react";
 import { useAppWidth } from "../../hooks/useAppWidth";
 import { BreakpointSize } from "../../types/BreakpointSize";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
 import { NoteButton } from "../NoteButton/NoteButton";
 import styles from "./TopicMapItem.module.scss";
 import { NoteButtonIconState } from "../../types/NoteButtonIconState";
+import { UserData } from "../../types/UserData";
 
 export type TopicMapItemProps = {
   item: TopicMapItemType;
   onClick: MouseEventHandler;
+  setUserDataCopy: React.Dispatch<React.SetStateAction<UserData>>;
+  userDataCopy: UserData;
 };
 
 const sizeClassname = {
@@ -19,22 +21,26 @@ const sizeClassname = {
   [BreakpointSize.Small]: styles.small,
 };
 
-export const TopicMapItem: FC<TopicMapItemProps> = ({ item, onClick }) => {
+export const TopicMapItem: FC<TopicMapItemProps> = ({
+  item,
+  onClick,
+  userDataCopy,
+}) => {
   const appWidth = useAppWidth();
 
   const className = React.useMemo(
     () => [styles.topicMapItem, sizeClassname[appWidth]].join(" "),
     [appWidth],
   );
-  const [userData] = useLocalStorage(item.id);
 
   let btnState: NoteButtonIconState = NoteButtonIconState.Default;
   if (item.dialog?.hasNote) {
     switch (true) {
-      case userData[item.id].noteCompleted:
+      case userDataCopy[item.id]?.noteCompleted:
         btnState = NoteButtonIconState.Completed;
         break;
-      case userData[item.id]?.note && userData[item.id]?.note?.length !== 0:
+      case userDataCopy[item.id]?.note &&
+        userDataCopy[item.id]?.note?.length !== 0:
         btnState = NoteButtonIconState.Notes;
         break;
       default:

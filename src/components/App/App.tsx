@@ -23,7 +23,9 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
     getUserData(),
   );
 
-  React.useMemo(() => setUserData(userDataCopy), [userDataCopy]);
+  React.useEffect(() => {
+    setUserData(userDataCopy);
+  }, [userDataCopy]);
 
   React.useLayoutEffect(() => {
     const initialWidth =
@@ -53,6 +55,7 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
               params={params}
               setUserDataCopy={setUserDataCopy}
               fullscreenHandle={fullscreenHandle}
+              userDataCopy={{ ...userDataCopy }}
             />
           </div>
         </FullScreen>

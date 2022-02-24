@@ -37,7 +37,13 @@ describe(DialogWindow.name, () => {
     };
 
     const dialogWindow = render(
-      <DialogWindow item={item} open={false} onOpenChange={onOpenChange} />,
+      <DialogWindow
+        item={item}
+        open={false}
+        onOpenChange={onOpenChange}
+        setUserDataCopy={() => null}
+        userDataCopy={{}}
+      />,
     ).container;
 
     setTimeout(() => {
@@ -66,7 +72,13 @@ describe(DialogWindow.name, () => {
     };
 
     const dialogWindow = render(
-      <DialogWindow item={item} open={false} onOpenChange={onOpenChange} />,
+      <DialogWindow
+        item={item}
+        open={false}
+        onOpenChange={onOpenChange}
+        setUserDataCopy={() => null}
+        userDataCopy={{}}
+      />,
     ).container;
 
     setTimeout(() => {
