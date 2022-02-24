@@ -61,7 +61,7 @@ export const Grid: React.FC<GridProps> = ({
           />
         </div>
       )),
-    [items, userDataCopy],
+    [items, userDataCopy, itemShowingDialog],
   );
 
   const bgImageStyle: string | undefined = backgroundImage?.path
