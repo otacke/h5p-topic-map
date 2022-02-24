@@ -169,17 +169,24 @@ export const Navbar: React.FC<NavbarProps> = ({
           {navbarTitle}
         </button>
         <div className={styles.progressBarMobileWrapper}>{progressBar}</div>
-        <button
-          type="button"
-          className={styles.hamburgerButton}
-          onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}
-        >
-          {isHamburgerOpen ? (
-            <HamburgerCloseIcon iconColor="#fff" />
-          ) : (
-            <HamburgerIcon iconColor="#fff" />
-          )}
-        </button>
+        <div className={styles.navButtonsMobileWrapper}>
+          <div className={styles.navButtonsMobile}>
+            <button
+              type="button"
+              className={styles.hamburgerButton}
+              onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}
+            >
+              {isHamburgerOpen ? (
+                <HamburgerCloseIcon iconColor="#fff" />
+              ) : (
+                <HamburgerIcon iconColor="#fff" />
+              )}
+            </button>
+            <div className={styles.fullscreenButtonMobile}>
+              <FullscreenButton fullscreenHandle={fullscreenHandle} />
+            </div>
+          </div>
+        </div>
         <Tabs defaultValue={topicMapSectionLabel}>
           <TabsList
             className={`${styles.sectionsMenu} ${

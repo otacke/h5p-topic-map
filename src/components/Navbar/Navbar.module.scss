@@ -7,7 +7,6 @@ $grid-z-index: 1;
 
 .mainBody {
   background-color: var(--theme-color-2);
-  // padding-top: 1rem;
 }
 
 .navbarTitle {
@@ -72,9 +71,6 @@ $grid-z-index: 1;
 }
 
 .hamburgerButton {
-  position: absolute;
-  right: 1rem;
-  top: 0.6rem;
   padding: 0;
   background-color: transparent;
   border: none;
@@ -95,6 +91,22 @@ $grid-z-index: 1;
 
 .fullscreenButton {
   display: none;
+}
+
+.navButtonsMobileWrapper {
+  position: absolute;
+  right: 0.35rem;
+  top: 0.35rem;
+}
+
+.navButtonsMobile {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.fullscreenButtonMobile {
+  transform: scale(0.75);
 }
 
 @media (min-width: 768px) {
@@ -129,7 +141,7 @@ $grid-z-index: 1;
     top: 1rem;
   }
 
-  .hamburgerButton,
+  .navButtonsMobileWrapper,
   .progressBarMobileWrapper {
     display: none;
   }
