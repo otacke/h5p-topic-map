@@ -19,11 +19,11 @@ export const DialogNote: React.FC<NoteProps> = ({
   smallScreen,
   userDataCopy,
 }) => {
-  const [note, setNote] = React.useState(userDataCopy[id].note ?? "");
+  const [note, setNote] = React.useState(userDataCopy[id]?.note ?? "");
   const [dynamicSavingText, setDynamicSavingText] = React.useState("");
   const [savingTextTimeout, setSavingTextTimeout] = React.useState<number>();
   const [noteCompleted, setMarkedAsCompleted] = React.useState<boolean>(
-    userDataCopy[id].noteCompleted ?? false,
+    userDataCopy[id]?.noteCompleted ?? false,
   );
   const [wordCount, setWordCount] = React.useState(0);
   const [maxWordCount, setMaxWordCount] = React.useState<number | undefined>();
@@ -37,6 +37,7 @@ export const DialogNote: React.FC<NoteProps> = ({
   const wordNoteLabel = useL10n("dialogNoteLabel");
 
   const handleNoteCompleted = (): void => {
+    if (userDataCopy[id].noteCompleted !== undefined) userDataCopy[id].noteCompleted = false;
     userDataCopy[id].noteCompleted = !noteCompleted;
     setMarkedAsCompleted(!noteCompleted);
     setUserDataCopy(userDataCopy);
@@ -80,7 +81,7 @@ export const DialogNote: React.FC<NoteProps> = ({
 
   React.useEffect(() => {
     // TODO: If this becomes laggy, add a debounce-timer to avoid saving more often than, say, every 100ms.
-    userDataCopy[id].note = note;
+    if (userDataCopy[id]) userDataCopy[id].note = note;
     countWords();
     // ensure there's no memory leak on component unmount during timeout
     return () => {

@@ -21,7 +21,9 @@ describe(DialogNote.name, () => {
         maxLength={10}
         id="testId"
         setUserDataCopy={() => null}
-        userDataCopy={{}}
+        userDataCopy={{"wordCount": {
+          note: ""
+        }}}
       />,
     );
     expect(getByTestId("wordCount").textContent).toBe(
