@@ -165,6 +165,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     </>
   );
 
+  const hasNotes = totalNotesToComplete > 0;
+
   return (
     <div className={styles.contentWrapper}>
       <div className={styles.mainBody}>
@@ -205,14 +207,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               {topicMapSectionLabel}
             </Trigger>
-            <Trigger
-              className={styles.sectionTitle}
-              key={notesSectionLabel}
-              value={notesSectionLabel}
-              aria-label={notesSectionLabel}
-            >
-              {notesSectionLabel}
-            </Trigger>
+            {hasNotes && (
+              <Trigger
+                className={styles.sectionTitle}
+                key={notesSectionLabel}
+                value={notesSectionLabel}
+                aria-label={notesSectionLabel}
+              >
+                {notesSectionLabel}
+              </Trigger>
+            )}
             <Trigger
               className={styles.sectionTitle}
               key={helpSectionLabel}
@@ -221,15 +225,17 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               {helpSectionLabel}
             </Trigger>
-            <Trigger
-              className={styles.progressBarTitle}
-              key={progressBarLabel}
-              value={`${progressBarValue}`}
-              aria-label={progressBarLabel}
-              disabled
-            >
-              <div className={styles.progressBarWrapper}>{progressBar}</div>
-            </Trigger>
+            {hasNotes && (
+              <Trigger
+                className={styles.progressBarTitle}
+                key={progressBarLabel}
+                value={`${progressBarValue}`}
+                aria-label={progressBarLabel}
+                disabled
+              >
+                <div className={styles.progressBarWrapper}>{progressBar}</div>
+              </Trigger>
+            )}
             <div className={styles.fullscreenButton}>
               <FullscreenButton fullscreenHandle={fullscreenHandle} />
             </div>
@@ -247,17 +253,19 @@ export const Navbar: React.FC<NavbarProps> = ({
               userDataCopy={userDataCopy}
             />
           </Content>
-          <Content
-            className={styles.sectionContent}
-            key={notesSectionLabel}
-            value={notesSectionLabel}
-          >
-            <NotesSection
-              setVisibility={setIsNotesSectionIsShown}
-              setDeleteConfirmationVisibility={setIsDeleteConfirmationVisible}
-              handlePrint={handlePrint}
-            />
-          </Content>
+          {hasNotes && (
+            <Content
+              className={styles.sectionContent}
+              key={notesSectionLabel}
+              value={notesSectionLabel}
+            >
+              <NotesSection
+                setVisibility={setIsNotesSectionIsShown}
+                setDeleteConfirmationVisibility={setIsDeleteConfirmationVisible}
+                handlePrint={handlePrint}
+              />
+            </Content>
+          )}
           <Content
             className={styles.sectionContent}
             key={helpSectionLabel}
