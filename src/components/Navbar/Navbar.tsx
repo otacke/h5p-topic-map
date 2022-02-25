@@ -165,6 +165,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     </>
   );
 
+  const notesToComplete = totalNotesToComplete > 0;
+
   return (
     <div className={styles.contentWrapper}>
       <div className={styles.mainBody}>
@@ -205,7 +207,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               {topicMapSectionLabel}
             </Trigger>
-            {totalNotesToComplete !== 0 && (
+            {notesToComplete && (
               <Trigger
                 className={styles.sectionTitle}
                 key={notesSectionLabel}
@@ -223,7 +225,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               {helpSectionLabel}
             </Trigger>
-            {totalNotesToComplete !== 0 && (
+            {notesToComplete && (
               <Trigger
                 className={styles.progressBarTitle}
                 key={progressBarLabel}
@@ -251,17 +253,19 @@ export const Navbar: React.FC<NavbarProps> = ({
               userDataCopy={userDataCopy}
             />
           </Content>
-          <Content
-            className={styles.sectionContent}
-            key={notesSectionLabel}
-            value={notesSectionLabel}
-          >
-            <NotesSection
-              setVisibility={setIsNotesSectionIsShown}
-              setDeleteConfirmationVisibility={setIsDeleteConfirmationVisible}
-              handlePrint={handlePrint}
-            />
-          </Content>
+          {notesToComplete && (
+            <Content
+              className={styles.sectionContent}
+              key={notesSectionLabel}
+              value={notesSectionLabel}
+            >
+              <NotesSection
+                setVisibility={setIsNotesSectionIsShown}
+                setDeleteConfirmationVisibility={setIsDeleteConfirmationVisible}
+                handlePrint={handlePrint}
+              />
+            </Content>
+          )}
           <Content
             className={styles.sectionContent}
             key={helpSectionLabel}
