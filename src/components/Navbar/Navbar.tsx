@@ -165,7 +165,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     </>
   );
 
-  const notesToComplete = totalNotesToComplete > 0;
+  const hasNotes = totalNotesToComplete > 0;
 
   return (
     <div className={styles.contentWrapper}>
@@ -207,7 +207,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               {topicMapSectionLabel}
             </Trigger>
-            {notesToComplete && (
+            {hasNotes && (
               <Trigger
                 className={styles.sectionTitle}
                 key={notesSectionLabel}
@@ -225,7 +225,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               {helpSectionLabel}
             </Trigger>
-            {notesToComplete && (
+            {hasNotes && (
               <Trigger
                 className={styles.progressBarTitle}
                 key={progressBarLabel}
@@ -253,7 +253,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               userDataCopy={userDataCopy}
             />
           </Content>
-          {notesToComplete && (
+          {hasNotes && (
             <Content
               className={styles.sectionContent}
               key={notesSectionLabel}
