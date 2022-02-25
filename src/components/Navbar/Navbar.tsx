@@ -205,14 +205,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               {topicMapSectionLabel}
             </Trigger>
-            <Trigger
-              className={styles.sectionTitle}
-              key={notesSectionLabel}
-              value={notesSectionLabel}
-              aria-label={notesSectionLabel}
-            >
-              {notesSectionLabel}
-            </Trigger>
+            {totalNotesToComplete !== 0 && (
+              <Trigger
+                className={styles.sectionTitle}
+                key={notesSectionLabel}
+                value={notesSectionLabel}
+                aria-label={notesSectionLabel}
+              >
+                {notesSectionLabel}
+              </Trigger>
+            )}
             <Trigger
               className={styles.sectionTitle}
               key={helpSectionLabel}
@@ -221,15 +223,17 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               {helpSectionLabel}
             </Trigger>
-            <Trigger
-              className={styles.progressBarTitle}
-              key={progressBarLabel}
-              value={`${progressBarValue}`}
-              aria-label={progressBarLabel}
-              disabled
-            >
-              <div className={styles.progressBarWrapper}>{progressBar}</div>
-            </Trigger>
+            {totalNotesToComplete !== 0 && (
+              <Trigger
+                className={styles.progressBarTitle}
+                key={progressBarLabel}
+                value={`${progressBarValue}`}
+                aria-label={progressBarLabel}
+                disabled
+              >
+                <div className={styles.progressBarWrapper}>{progressBar}</div>
+              </Trigger>
+            )}
             <div className={styles.fullscreenButton}>
               <FullscreenButton fullscreenHandle={fullscreenHandle} />
             </div>
