@@ -69,13 +69,13 @@ form {
 .bottomGroup {
   align-items: flex-end;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   padding: 0.5rem;
 }
 
 .wordCounter {
   vertical-align: middle;
+  white-space: nowrap;
 
   &.redText {
     color: #cd2026;
