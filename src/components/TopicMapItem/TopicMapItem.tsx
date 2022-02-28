@@ -19,6 +19,7 @@ const sizeClassname = {
   [BreakpointSize.Large]: styles.large,
   [BreakpointSize.Medium]: styles.medium,
   [BreakpointSize.Small]: styles.small,
+  [BreakpointSize.XSmall]: styles.xSmall,
 };
 
 export const TopicMapItem: FC<TopicMapItemProps> = ({

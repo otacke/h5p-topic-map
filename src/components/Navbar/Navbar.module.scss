@@ -1,6 +1,5 @@
 $navbar-height: 2.52rem;
 $grid-z-index: 1;
-$app-breakpoint-size-medium: 1024px;
 
 .contentWrapper {
   width: 100%;
@@ -110,7 +109,9 @@ $app-breakpoint-size-medium: 1024px;
   transform: scale(0.75);
 }
 
-@media (min-width: $app-breakpoint-size-medium) {
+.small,
+.medium,
+.large {
   .notesList {
     padding: 1rem 1rem;
   }

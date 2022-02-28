@@ -1,10 +1,12 @@
-import { Content, Tabs, TabsList, Trigger } from "@radix-ui/react-tabs";
-import ProgressBar from "@ramonak/react-progress-bar";
 /* eslint-disable no-param-reassign */
 import * as React from "react";
+import { Content, Tabs, TabsList, Trigger } from "@radix-ui/react-tabs";
+import ProgressBar from "@ramonak/react-progress-bar";
 import type { FullScreenHandle } from "react-full-screen";
 import { useReactToPrint } from "react-to-print";
+import { useAppWidth } from "../../hooks/useAppWidth";
 import { useL10n } from "../../hooks/useLocalization";
+import { BreakpointSize } from "../../types/BreakpointSize";
 import { CommonItemType } from "../../types/CommonItemType";
 import { Params } from "../../types/H5P/Params";
 import { UserData } from "../../types/UserData";
@@ -13,9 +15,9 @@ import { FullscreenButton } from "../FullscreenButton/FullscreenButton";
 import { Grid } from "../Grid/Grid";
 import { HamburgerCloseIcon, HamburgerIcon } from "../Icons/Icons";
 import { HelpSection } from "./HelpSection/HelpSection";
-import styles from "./Navbar.module.scss";
 import { NotesList } from "./NotesSection/NotesList/NotesList";
 import { NotesSection } from "./NotesSection/NotesSection";
+import styles from "./Navbar.module.scss";
 
 export type NavbarProps = {
   navbarTitle: string;
@@ -23,6 +25,13 @@ export type NavbarProps = {
   setUserDataCopy: React.Dispatch<React.SetStateAction<UserData>>;
   fullscreenHandle: FullScreenHandle;
   userDataCopy: UserData;
+};
+
+const sizeClassname = {
+  [BreakpointSize.Large]: styles.large,
+  [BreakpointSize.Medium]: styles.medium,
+  [BreakpointSize.Small]: styles.small,
+  [BreakpointSize.XSmall]: styles.xSmall,
 };
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -48,6 +57,13 @@ export const Navbar: React.FC<NavbarProps> = ({
         (params.topicMap?.arrowItems ?? []) as CommonItemType[],
       ),
     [params.topicMap?.arrowItems, params.topicMap?.topicMapItems],
+  );
+
+  const appWidth = useAppWidth();
+
+  const sizeClassName = React.useMemo(
+    () => sizeClassname[appWidth],
+    [appWidth],
   );
 
   const totalNotesToComplete = React.useMemo(
@@ -168,7 +184,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const hasNotes = totalNotesToComplete > 0;
 
   return (
-    <div className={styles.contentWrapper}>
+    <div className={`${styles.contentWrapper} ${sizeClassName}`}>
       <div className={styles.mainBody}>
         <button className={styles.navbarTitle} type="button">
           {navbarTitle}
