@@ -21,7 +21,7 @@
 }
 
 .dialogContent,
-.dialogContentWithNote {
+.dialogContentWide {
   background-color: white;
   border-radius: 6px;
   position: fixed;
@@ -39,7 +39,7 @@
   width: 40vw;
 }
 
-.dialogContentWithNote {
+.dialogContentWide {
   width: 70vw;
 }
 
@@ -53,10 +53,15 @@
   float: right;
   width: 47%;
   height: 80%;
+
+  &.fullWidth {
+    float: left;
+    width: 100%;
+  }
 }
 
 .dialogContent:focus,
-.dialogContentWithNote:focus {
+.dialogContentWide:focus {
   outline: none;
 }
 

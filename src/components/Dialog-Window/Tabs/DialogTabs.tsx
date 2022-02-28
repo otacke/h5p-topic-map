@@ -142,6 +142,8 @@ export const DialogTabs: React.FC<TabProps> = ({
   const noteLabel = useL10n("dialogNoteLabel");
   const smallScreen = useMedia("(max-width: 768px)");
 
+  const hasNote = item.dialog?.hasNote;
+
   return (
     <Root
       className={styles.tabs}
@@ -150,7 +152,7 @@ export const DialogTabs: React.FC<TabProps> = ({
     >
       <List className={styles.list} aria-label={listAriaLabel}>
         {tabLabelItems(item, translation)}
-        {smallScreen ? (
+        {smallScreen && hasNote ? (
           <Trigger key="notes" className={styles.trigger} value="notes">
             {noteLabel}
           </Trigger>
@@ -158,7 +160,7 @@ export const DialogTabs: React.FC<TabProps> = ({
       </List>
       <div className={styles.tabItemWrapper}>
         {tabItems(item)}
-        {smallScreen ? (
+        {smallScreen && hasNote ? (
           <Content key="notes" value="notes" className={styles.noteWrapper}>
             <DialogNote
               maxLength={item.dialog?.maxWordCount ?? 160}

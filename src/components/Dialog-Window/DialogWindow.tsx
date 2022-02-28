@@ -71,8 +71,16 @@ export const DialogWindow: FC<DialogWindowProps> = ({
     return null;
   }
 
+  const noTabItems =
+    !item.description &&
+    !item.topicImage &&
+    !item.dialog.audio?.audioFile &&
+    !item.dialog.links &&
+    !item.dialog.text &&
+    !item.dialog.video;
+
   let content = smallScreen ? (
-    <Content className={styles.dialogContentWithNote}>
+    <Content className={styles.dialogContentWide}>
       <Title className={styles.dialogTitle}>{item.label}</Title>
       <DialogTabs
         item={item}
@@ -90,11 +98,13 @@ export const DialogWindow: FC<DialogWindowProps> = ({
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: item.label }}
       />
-      <DialogTabs
-        item={item}
-        userDataCopy={userDataCopy}
-        setUserDataCopy={setUserDataCopy}
-      />
+      {!noTabItems && (
+        <DialogTabs
+          item={item}
+          userDataCopy={userDataCopy}
+          setUserDataCopy={setUserDataCopy}
+        />
+      )}
       <Close className={styles.closeButton} aria-label={ariaLabel}>
         <Cross2Icon />
       </Close>
@@ -103,20 +113,28 @@ export const DialogWindow: FC<DialogWindowProps> = ({
 
   if (item.dialog.hasNote && !smallScreen) {
     content = (
-      <Content className={styles.dialogContentWithNote}>
+      <Content
+        className={noTabItems ? styles.dialogContent : styles.dialogContentWide}
+      >
         <Title
           className={styles.dialogTitle}
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: item.label }}
         />
-        <div className={styles.tabWrapper}>
-          <DialogTabs
-            item={item}
-            userDataCopy={userDataCopy}
-            setUserDataCopy={setUserDataCopy}
-          />
-        </div>
-        <div className={styles.noteWrapper}>
+        {!noTabItems && (
+          <div className={styles.tabWrapper}>
+            <DialogTabs
+              item={item}
+              userDataCopy={userDataCopy}
+              setUserDataCopy={setUserDataCopy}
+            />
+          </div>
+        )}
+        <div
+          className={`${styles.noteWrapper} ${
+            noTabItems ? styles.fullWidth : ""
+          }`}
+        >
           <DialogNote
             maxLength={item.dialog.maxWordCount ?? 160}
             id={item.id}
