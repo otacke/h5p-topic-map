@@ -21,7 +21,8 @@
 }
 
 .dialogContent,
-.dialogContentWide {
+.dialogContentWide,
+.dialogContentSmallScreen {
   background-color: white;
   border-radius: 6px;
   position: fixed;
@@ -41,6 +42,10 @@
 
 .dialogContentWide {
   width: 70vw;
+}
+
+.dialogContentSmallScreen {
+  width: 95vw;
 }
 
 .tabWrapper {

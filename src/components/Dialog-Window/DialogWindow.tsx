@@ -80,7 +80,7 @@ export const DialogWindow: FC<DialogWindowProps> = ({
     !item.dialog.video;
 
   let content = smallScreen ? (
-    <Content className={styles.dialogContentWide}>
+    <Content className={styles.dialogContentSmallScreen}>
       <Title className={styles.dialogTitle}>{item.label}</Title>
       <DialogTabs
         item={item}
