@@ -5,7 +5,8 @@ import { BreakpointSize } from "../types/BreakpointSize";
 const breakpointSize = {
   [BreakpointSize.Large]: 1440,
   [BreakpointSize.Medium]: 1024,
-  [BreakpointSize.Small]: 512,
+  [BreakpointSize.Small]: 768,
+  [BreakpointSize.XSmall]: 0,
 };
 
 export const useAppWidth = (): BreakpointSize => {
@@ -13,6 +14,7 @@ export const useAppWidth = (): BreakpointSize => {
 
   const isLarge = appWidth > breakpointSize[BreakpointSize.Large];
   const isMedium = appWidth > breakpointSize[BreakpointSize.Medium];
+  const isSmall = appWidth > breakpointSize[BreakpointSize.Small];
 
   if (isLarge) {
     return BreakpointSize.Large;
@@ -22,5 +24,9 @@ export const useAppWidth = (): BreakpointSize => {
     return BreakpointSize.Medium;
   }
 
-  return BreakpointSize.Small;
+  if (isSmall) {
+    return BreakpointSize.Small;
+  }
+
+  return BreakpointSize.XSmall;
 };
