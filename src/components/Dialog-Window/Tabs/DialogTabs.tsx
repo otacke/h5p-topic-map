@@ -144,21 +144,29 @@ export const DialogTabs: React.FC<TabProps> = ({
 
   const hasNote = item.dialog?.hasNote;
 
+  // Only show tabs if there is more than one item to choose from
+  const tabItemslength = tabItems(item).length;
+  const showTabs = tabItemslength + (hasNote && smallScreen ? 1 : 0) > 1;
+
   return (
     <Root
       className={styles.tabs}
       defaultValue={defaultTabValue(item)}
       orientation="vertical"
     >
-      <List className={styles.list} aria-label={listAriaLabel}>
-        {tabLabelItems(item, translation)}
+      <List className={showTabs ? styles.list : ""} aria-label={listAriaLabel}>
+        {showTabs && tabLabelItems(item, translation)}
         {smallScreen && hasNote ? (
           <Trigger key="notes" className={styles.trigger} value="notes">
             {noteLabel}
           </Trigger>
         ) : null}
       </List>
-      <div className={styles.tabItemWrapper}>
+      <div
+        className={`${styles.tabItemWrapper} ${
+          !showTabs ? styles.marginTop : ""
+        }`}
+      >
         {tabItems(item)}
         {smallScreen && hasNote ? (
           <Content key="notes" value="notes" className={styles.noteWrapper}>
