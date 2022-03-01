@@ -497,6 +497,7 @@
         "type": "text",
         "tags": [
           "p",
+          "br",
           "strong",
           "em",
           "a"
