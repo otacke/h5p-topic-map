@@ -266,9 +266,9 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         type: H5PFieldType.Text,
       },
       {
-        label: "Mark note as completed",
-        name: "dialogNoteMarkAsCompleted",
-        default: "Mark as completed",
+        label: "Mark note as done",
+        name: "dialogNoteMarkAsDone",
+        default: "Mark as done",
         type: H5PFieldType.Text,
       },
       {

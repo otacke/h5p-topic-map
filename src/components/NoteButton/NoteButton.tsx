@@ -1,11 +1,11 @@
 /* eslint-disable react/destructuring-assignment */
 import * as React from "react";
 import styles from "./NoteButton.module.scss";
-import { CompletedIcon, EditIcon, IconProps, NoteIcon } from "../Icons/Icons";
+import { DoneIcon, EditIcon, IconProps, NoteIcon } from "../Icons/Icons";
 import { NoteButtonIconState } from "../../types/NoteButtonIconState";
 
 const icons: Record<NoteButtonIconState, React.FC<IconProps>> = {
-  [NoteButtonIconState.Completed]: CompletedIcon,
+  [NoteButtonIconState.Done]: DoneIcon,
   [NoteButtonIconState.Notes]: NoteIcon,
   [NoteButtonIconState.Default]: EditIcon,
 };

@@ -1,5 +1,5 @@
 export enum NoteButtonIconState {
-  Completed,
+  Done,
   Notes,
   Default,
 }

@@ -32,7 +32,7 @@ export const NoteIcon: React.FC<IconProps> = ({ iconColor }) => (
   </svg>
 );
 
-export const CompletedIcon: React.FC<IconProps> = ({ iconColor }) => (
+export const DoneIcon: React.FC<IconProps> = ({ iconColor }) => (
   <svg
     width="12"
     height="12"

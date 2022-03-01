@@ -36,8 +36,8 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({
   let btnState: NoteButtonIconState = NoteButtonIconState.Default;
   if (item.dialog?.hasNote) {
     switch (true) {
-      case userDataCopy[item.id]?.noteCompleted:
-        btnState = NoteButtonIconState.Completed;
+      case userDataCopy[item.id]?.noteDone:
+        btnState = NoteButtonIconState.Done;
         break;
       case userDataCopy[item.id]?.note &&
         userDataCopy[item.id]?.note?.length !== 0:

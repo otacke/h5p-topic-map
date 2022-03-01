@@ -424,9 +424,9 @@
         "type": "text"
       },
       {
-        "label": "Mark note as completed",
-        "name": "dialogNoteMarkAsCompleted",
-        "default": "Mark as completed",
+        "label": "Mark note as done",
+        "name": "dialogNoteMarkAsDone",
+        "default": "Mark as done",
         "type": "text"
       },
       {
