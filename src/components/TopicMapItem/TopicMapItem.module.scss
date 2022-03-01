@@ -37,7 +37,8 @@ $note-btn-padding: 0.75rem;
     }
   }
 
-  &.small {
+  &.small,
+  &.xSmall {
     font-size: 0.813rem;
 
     .inner {

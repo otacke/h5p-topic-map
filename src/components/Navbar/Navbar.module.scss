@@ -109,7 +109,9 @@ $grid-z-index: 1;
   transform: scale(0.75);
 }
 
-@media (min-width: 768px) {
+.small,
+.medium,
+.large {
   .notesList {
     padding: 1rem 1rem;
   }
