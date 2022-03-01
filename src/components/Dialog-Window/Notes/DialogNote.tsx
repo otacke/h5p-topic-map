@@ -22,8 +22,8 @@ export const DialogNote: React.FC<NoteProps> = ({
   const [note, setNote] = React.useState(userDataCopy[id]?.note ?? "");
   const [dynamicSavingText, setDynamicSavingText] = React.useState("");
   const [savingTextTimeout, setSavingTextTimeout] = React.useState<number>();
-  const [noteCompleted, setMarkedAsCompleted] = React.useState<boolean>(
-    userDataCopy[id]?.noteCompleted ?? false,
+  const [noteDone, setMarkedAsDone] = React.useState<boolean>(
+    userDataCopy[id]?.noteDone ?? false,
   );
   const [wordCount, setWordCount] = React.useState(0);
   const [maxWordCount, setMaxWordCount] = React.useState<number | undefined>();
@@ -31,17 +31,17 @@ export const DialogNote: React.FC<NoteProps> = ({
   const savingTextLabel = useL10n("dialogNoteSaving");
   const savedTextLabel = useL10n("dialogNoteSaved");
   const wordLimitExceededTextLabel = useL10n("dialogNoteLimitExceeded");
-  const completedTextLabel = useL10n("dialogNoteMarkAsCompleted");
+  const doneTextLabel = useL10n("dialogNoteMarkAsDone");
   const placeholderText = useL10n("dialogNotePlaceholder");
   const wordTextLabel = useL10n("dialogWordsLabel");
   const wordNoteLabel = useL10n("dialogNoteLabel");
 
-  const handleNoteCompleted = (): void => {
+  const handleNoteDone = (): void => {
     if (userDataCopy[id] === undefined) {
       userDataCopy[id] = {};
     }
-    userDataCopy[id].noteCompleted = !noteCompleted;
-    setMarkedAsCompleted(!noteCompleted);
+    userDataCopy[id].noteDone = !noteDone;
+    setMarkedAsDone(!noteDone);
     setUserDataCopy(userDataCopy);
   };
 
@@ -118,15 +118,15 @@ export const DialogNote: React.FC<NoteProps> = ({
             defaultValue={note}
           />
           <div className={styles.bottomGroup}>
-            <div className={styles.markAsCompletedCheckbox}>
-              <label htmlFor="note-completed-checkbox">
+            <div className={styles.markAsDoneCheckbox}>
+              <label htmlFor="note-done-checkbox">
                 <input
-                  id="note-completed-checkbox"
+                  id="note-done-checkbox"
                   type="checkbox"
-                  checked={noteCompleted}
-                  onChange={handleNoteCompleted}
+                  checked={noteDone}
+                  onChange={handleNoteDone}
                 />
-                {completedTextLabel}
+                {doneTextLabel}
               </label>
             </div>
             <div

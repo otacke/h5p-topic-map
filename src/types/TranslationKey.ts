@@ -13,7 +13,7 @@ export type TranslationKey =
   | "dialogNoteSaved"
   | "dialogNoteLimitExceeded"
   | "dialogNotePlaceholder"
-  | "dialogNoteMarkAsCompleted"
+  | "dialogNoteMarkAsDone"
   | "dialogResourcesRelevantLinks"
   | "dialogResourcesCustomLinks"
   | "dialogResourcesAdd"

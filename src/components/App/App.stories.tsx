@@ -26,7 +26,7 @@ DenFranskeRevolusjon.args = {
       dialogNoteSaved: "Saved",
       dialogNoteLimitExceeded: "Too many words",
       dialogNotePlaceholder: "Write your notes here…",
-      dialogNoteMarkAsCompleted: "Mark as completed",
+      dialogNoteMarkAsDone: "Mark as done",
       dialogResourcesRelevantLinks: "Relevant links",
       dialogResourcesCustomLinks: "Your links",
       dialogResourcesAdd: "Add",

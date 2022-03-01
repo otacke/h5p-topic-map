@@ -21,7 +21,7 @@ export const NotesList: React.FC<NotesListProps> = ({
 
   const userDataEntries = topicMapItems.map(item => {
     const doesNoteExist = item.id in userData && userData[item.id].note;
-    const isNoteCompleted = doesNoteExist && userData[item.id].noteCompleted;
+    const isNoteDone = doesNoteExist && userData[item.id].noteDone;
 
     return (
       item.dialog &&
@@ -36,8 +36,8 @@ export const NotesList: React.FC<NotesListProps> = ({
                   borderColor="var(--theme-color-3)"
                   iconColor="var(--theme-color-4)"
                   buttonState={
-                    doesNoteExist && isNoteCompleted
-                      ? NoteButtonIconState.Completed
+                    doesNoteExist && isNoteDone
+                      ? NoteButtonIconState.Done
                       : NoteButtonIconState.Default
                   }
                 />

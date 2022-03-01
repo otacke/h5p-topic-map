@@ -79,7 +79,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         item =>
           item.dialog?.hasNote &&
           item.id in userDataCopy &&
-          userDataCopy[item.id].noteCompleted,
+          userDataCopy[item.id].noteDone,
       ).length,
     );
     setProgressPercentage(
@@ -112,7 +112,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     allItems.forEach(item => {
       if (item.id in userDataCopy) {
         userDataCopy[item.id].note = undefined;
-        userDataCopy[item.id].noteCompleted = undefined;
+        userDataCopy[item.id].noteDone = undefined;
       }
     });
     setUserDataCopy(userDataCopy);
