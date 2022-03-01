@@ -13,7 +13,7 @@ $note-btn-padding: 0.75rem;
   position: relative;
   width: 100%;
 
-  &.medium {
+  &.large {
     font-size: 1.125rem;
 
     .inner {
@@ -25,7 +25,7 @@ $note-btn-padding: 0.75rem;
     }
   }
 
-  &.small {
+  &.medium {
     font-size: 1rem;
 
     .inner {
@@ -37,6 +37,7 @@ $note-btn-padding: 0.75rem;
     }
   }
 
+  &.small,
   &.xSmall {
     font-size: 0.813rem;
 
