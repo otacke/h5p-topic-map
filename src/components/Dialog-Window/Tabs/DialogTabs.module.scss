@@ -45,6 +45,10 @@
   overflow-y: scroll;
   overflow: auto;
   height: 100%;
+
+  &.marginTop {
+    margin-top: 1.8rem;
+  }
 }
 
 .noteWrapper {

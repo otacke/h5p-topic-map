@@ -79,14 +79,28 @@ export const DialogWindow: FC<DialogWindowProps> = ({
     !item.dialog.text &&
     !item.dialog.video;
 
+  const hasNote = item.dialog?.hasNote;
+
   let content = smallScreen ? (
     <Content className={styles.dialogContentSmallScreen}>
       <Title className={styles.dialogTitle}>{item.label}</Title>
-      <DialogTabs
-        item={item}
-        userDataCopy={userDataCopy}
-        setUserDataCopy={setUserDataCopy}
-      />
+      {!noTabItems && (
+        <DialogTabs
+          item={item}
+          userDataCopy={userDataCopy}
+          setUserDataCopy={setUserDataCopy}
+        />
+      )}
+      {noTabItems && hasNote && (
+        <div className={styles.fullWidth}>
+          <DialogNote
+            maxLength={item.dialog.maxWordCount ?? 160}
+            id={item.id}
+            setUserDataCopy={setUserDataCopy}
+            userDataCopy={userDataCopy}
+          />
+        </div>
+      )}
       <Close className={styles.closeButton} aria-label={ariaLabel}>
         <Cross2Icon />
       </Close>
@@ -111,7 +125,7 @@ export const DialogWindow: FC<DialogWindowProps> = ({
     </Content>
   );
 
-  if (item.dialog.hasNote && !smallScreen) {
+  if (hasNote && !smallScreen) {
     content = (
       <Content
         className={noTabItems ? styles.dialogContent : styles.dialogContentWide}
