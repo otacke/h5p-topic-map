@@ -23,6 +23,7 @@ const item: TopicMapItemType = {
   topicImage: {
     path: "https://images.unsplash.com/photo-1569587112025-0d460e81a126?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2370&q=80",
     alt: "",
+    copyright: { license: "U" },
   },
   label: "Sheep in the distance",
   description: "Description for storybooks!",
@@ -77,9 +78,28 @@ DialogWindowWithNote.args = {
     ...item,
     dialog: {
       ...item.dialog,
-      links: ["www.google.com", "www.youtube.com"],
       hasNote: true,
     },
   },
+  userDataCopy: {},
+  setUserDataCopy: () => null,
+  open: true,
+};
+
+export const DialogWindowWithOnlyNote = Template.bind({});
+DialogWindowWithOnlyNote.args = {
+  item: {
+    ...item,
+    id: "2",
+    description: "",
+    topicImage: undefined,
+    dialog: {
+      ...item.dialog,
+      hasNote: true,
+      text: "",
+    },
+  },
+  userDataCopy: {},
+  setUserDataCopy: () => null,
   open: true,
 };
