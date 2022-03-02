@@ -19,9 +19,7 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
 
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [width, setWidth] = React.useState(0);
-  const [storageData, setStorageData] = React.useState<UserData>(
-    getUserData(),
-  );
+  const [storageData, setStorageData] = React.useState<UserData>(getUserData());
 
   React.useEffect(() => {
     setUserData(storageData);
