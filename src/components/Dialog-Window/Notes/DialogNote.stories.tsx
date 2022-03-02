@@ -18,6 +18,6 @@ export const DialogNoteSimple = Template.bind({});
 DialogNoteSimple.args = {
   maxLength: 150,
   id: "myId",
-  userDataCopy: {},
-  setUserDataCopy: () => null,
+  storageData: {},
+  setStorageData: () => null,
 };

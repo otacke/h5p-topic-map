@@ -15,8 +15,8 @@ import { UserData } from "../../../types/UserData";
 
 export type TabProps = {
   item: CommonItemType;
-  userDataCopy: UserData;
-  setUserDataCopy: React.Dispatch<React.SetStateAction<UserData>>;
+  storageData: UserData;
+  setStorageData: React.Dispatch<React.SetStateAction<UserData>>;
 };
 
 type Translation = {
@@ -128,8 +128,8 @@ const tabItems = (item: CommonItemType): JSX.Element[] => {
 
 export const DialogTabs: React.FC<TabProps> = ({
   item,
-  setUserDataCopy,
-  userDataCopy,
+  setStorageData,
+  storageData,
 }) => {
   const translation: Translation = {
     audio: useL10n("copyrightAudio"),
@@ -174,8 +174,8 @@ export const DialogTabs: React.FC<TabProps> = ({
               maxLength={item.dialog?.maxWordCount ?? 160}
               id={item.id}
               smallScreen
-              setUserDataCopy={setUserDataCopy}
-              userDataCopy={userDataCopy}
+              setStorageData={setStorageData}
+              storageData={storageData}
             />
           </Content>
         ) : null}

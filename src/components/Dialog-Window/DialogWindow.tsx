@@ -20,8 +20,8 @@ export type DialogWindowProps = {
     confirmText: string;
     denyText: string;
   };
-  setUserDataCopy: React.Dispatch<React.SetStateAction<UserData>>;
-  userDataCopy: UserData;
+  setStorageData: React.Dispatch<React.SetStateAction<UserData>>;
+  storageData: UserData;
 };
 
 export const DialogWindow: FC<DialogWindowProps> = ({
@@ -30,8 +30,8 @@ export const DialogWindow: FC<DialogWindowProps> = ({
   onOpenChange,
   confirmWindow,
   children,
-  setUserDataCopy,
-  userDataCopy,
+  setStorageData,
+  storageData,
 }) => {
   const ariaLabel = useL10n("closeDialog");
   const smallScreen = useMedia("(max-width: 768px)");
@@ -87,8 +87,8 @@ export const DialogWindow: FC<DialogWindowProps> = ({
       {!noTabItems && (
         <DialogTabs
           item={item}
-          userDataCopy={userDataCopy}
-          setUserDataCopy={setUserDataCopy}
+          storageData={storageData}
+          setStorageData={setStorageData}
         />
       )}
       {noTabItems && hasNote && (
@@ -96,8 +96,8 @@ export const DialogWindow: FC<DialogWindowProps> = ({
           <DialogNote
             maxLength={item.dialog.maxWordCount ?? 160}
             id={item.id}
-            setUserDataCopy={setUserDataCopy}
-            userDataCopy={userDataCopy}
+            setStorageData={setStorageData}
+            storageData={storageData}
           />
         </div>
       )}
@@ -115,8 +115,8 @@ export const DialogWindow: FC<DialogWindowProps> = ({
       {!noTabItems && (
         <DialogTabs
           item={item}
-          userDataCopy={userDataCopy}
-          setUserDataCopy={setUserDataCopy}
+          storageData={storageData}
+          setStorageData={setStorageData}
         />
       )}
       <Close className={styles.closeButton} aria-label={ariaLabel}>
@@ -139,8 +139,8 @@ export const DialogWindow: FC<DialogWindowProps> = ({
           <div className={styles.tabWrapper}>
             <DialogTabs
               item={item}
-              userDataCopy={userDataCopy}
-              setUserDataCopy={setUserDataCopy}
+              storageData={storageData}
+              setStorageData={setStorageData}
             />
           </div>
         )}
@@ -152,8 +152,8 @@ export const DialogWindow: FC<DialogWindowProps> = ({
           <DialogNote
             maxLength={item.dialog.maxWordCount ?? 160}
             id={item.id}
-            setUserDataCopy={setUserDataCopy}
-            userDataCopy={userDataCopy}
+            setStorageData={setStorageData}
+            storageData={storageData}
           />
         </div>
         <Close className={styles.closeButton} aria-label={ariaLabel}>

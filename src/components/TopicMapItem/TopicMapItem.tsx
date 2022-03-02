@@ -11,7 +11,7 @@ import { UserData } from "../../types/UserData";
 export type TopicMapItemProps = {
   item: TopicMapItemType;
   onClick: MouseEventHandler;
-  userDataCopy: UserData;
+  storageData: UserData;
 };
 
 const sizeClassname = {
@@ -24,7 +24,7 @@ const sizeClassname = {
 export const TopicMapItem: FC<TopicMapItemProps> = ({
   item,
   onClick,
-  userDataCopy,
+  storageData,
 }) => {
   const appWidth = useAppWidth();
 
@@ -36,11 +36,11 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({
   let btnState: NoteButtonIconState = NoteButtonIconState.Default;
   if (item.dialog?.hasNote) {
     switch (true) {
-      case userDataCopy[item.id]?.noteDone:
+      case storageData[item.id]?.noteDone:
         btnState = NoteButtonIconState.Done;
         break;
-      case userDataCopy[item.id]?.note &&
-        userDataCopy[item.id]?.note?.length !== 0:
+      case storageData[item.id]?.note &&
+        storageData[item.id]?.note?.length !== 0:
         btnState = NoteButtonIconState.Notes;
         break;
       default:

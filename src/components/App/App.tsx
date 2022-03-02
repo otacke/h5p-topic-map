@@ -19,13 +19,13 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
 
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [width, setWidth] = React.useState(0);
-  const [userDataCopy, setUserDataCopy] = React.useState<UserData>(
+  const [storageData, setStorageData] = React.useState<UserData>(
     getUserData(),
   );
 
   React.useEffect(() => {
-    setUserData(userDataCopy);
-  }, [userDataCopy]);
+    setUserData(storageData);
+  }, [storageData]);
 
   React.useLayoutEffect(() => {
     const initialWidth =
@@ -53,9 +53,9 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
             <Navbar
               navbarTitle={title ?? ""}
               params={params}
-              setUserDataCopy={setUserDataCopy}
+              setStorageData={setStorageData}
               fullscreenHandle={fullscreenHandle}
-              userDataCopy={{ ...userDataCopy }}
+              storageData={{ ...storageData }}
             />
           </div>
         </FullScreen>

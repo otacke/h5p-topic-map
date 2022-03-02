@@ -22,9 +22,9 @@ import styles from "./Navbar.module.scss";
 export type NavbarProps = {
   navbarTitle: string;
   params: Params;
-  setUserDataCopy: React.Dispatch<React.SetStateAction<UserData>>;
+  setStorageData: React.Dispatch<React.SetStateAction<UserData>>;
   fullscreenHandle: FullScreenHandle;
-  userDataCopy: UserData;
+  storageData: UserData;
 };
 
 const sizeClassname = {
@@ -37,8 +37,8 @@ const sizeClassname = {
 export const Navbar: React.FC<NavbarProps> = ({
   navbarTitle,
   params,
-  setUserDataCopy,
-  userDataCopy,
+  setStorageData,
+  storageData,
   fullscreenHandle,
 }) => {
   const navbarAriaLabel = useL10n("navbarTabsListAriaLabel");
@@ -78,14 +78,14 @@ export const Navbar: React.FC<NavbarProps> = ({
       allItems.filter(
         item =>
           item.dialog?.hasNote &&
-          item.id in userDataCopy &&
-          userDataCopy[item.id].noteDone,
+          item.id in storageData &&
+          storageData[item.id].noteDone,
       ).length,
     );
     setProgressPercentage(
       Math.round((progressBarValue / totalNotesToComplete) * 100),
     );
-  }, [progressBarValue, allItems, totalNotesToComplete, userDataCopy]);
+  }, [progressBarValue, allItems, totalNotesToComplete, storageData]);
 
   let navbarTitleForPrint = "";
   const updateNavbarTitleForPrint = (): void => {
@@ -110,12 +110,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const deleteAllNotes = (): void => {
     allItems.forEach(item => {
-      if (item.id in userDataCopy) {
-        userDataCopy[item.id].note = undefined;
-        userDataCopy[item.id].noteDone = undefined;
+      if (item.id in storageData) {
+        storageData[item.id].note = undefined;
+        storageData[item.id].noteDone = undefined;
       }
     });
-    setUserDataCopy(userDataCopy);
+    setStorageData(storageData);
     setIsDeleteConfirmationVisible(false);
   };
 
@@ -146,8 +146,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         confirmText: deleteAllNotesConfirmText,
         denyText: deleteAllNotesDenyText,
       }}
-      setUserDataCopy={setUserDataCopy}
-      userDataCopy={userDataCopy}
+      setStorageData={setStorageData}
+      storageData={storageData}
     />
   );
 
@@ -265,8 +265,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               items={params.topicMap?.topicMapItems ?? []}
               arrowItems={params.topicMap?.arrowItems ?? []}
               backgroundImage={params.topicMap?.gridBackgroundImage}
-              setUserDataCopy={setUserDataCopy}
-              userDataCopy={userDataCopy}
+              setStorageData={setStorageData}
+              storageData={storageData}
             />
           </Content>
           {hasNotes && (

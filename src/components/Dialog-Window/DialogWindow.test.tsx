@@ -41,8 +41,8 @@ describe(DialogWindow.name, () => {
         item={item}
         open={false}
         onOpenChange={onOpenChange}
-        setUserDataCopy={() => null}
-        userDataCopy={{}}
+        storageData={() => null}
+        storageData={{}}
       />,
     ).container;
 
@@ -76,8 +76,8 @@ describe(DialogWindow.name, () => {
         item={item}
         open={false}
         onOpenChange={onOpenChange}
-        setUserDataCopy={() => null}
-        userDataCopy={{}}
+        storageData={() => null}
+        storageData={{}}
       />,
     ).container;
 

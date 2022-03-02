@@ -8,8 +8,8 @@ describe(DialogNote.name, () => {
       <DialogNote
         maxLength={0}
         id="myID"
-        setUserDataCopy={() => null}
-        userDataCopy={{}}
+        setStorageData={() => null}
+        storageData={{}}
       />,
     ).container;
     expect(dialogNote.querySelector("form")).toBeTruthy();
@@ -20,8 +20,8 @@ describe(DialogNote.name, () => {
       <DialogNote
         maxLength={10}
         id="testId"
-        setUserDataCopy={() => null}
-        userDataCopy={{
+        setStorageData={() => null}
+        storageData={{
           wordCount: {
             note: "",
           },

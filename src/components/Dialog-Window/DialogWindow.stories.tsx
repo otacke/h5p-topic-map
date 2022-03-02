@@ -81,8 +81,8 @@ DialogWindowWithNote.args = {
       hasNote: true,
     },
   },
-  userDataCopy: {},
-  setUserDataCopy: () => null,
+  storageData: {},
+  setStorageData: () => null,
   open: true,
 };
 
@@ -99,7 +99,7 @@ DialogWindowWithOnlyNote.args = {
       text: "",
     },
   },
-  userDataCopy: {},
-  setUserDataCopy: () => null,
+  storageData: {},
+  setStorageData: () => null,
   open: true,
 };
