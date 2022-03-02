@@ -8,22 +8,22 @@ export type NoteProps = {
   maxLength: number;
   id: string;
   smallScreen?: boolean;
-  setUserDataCopy: React.Dispatch<React.SetStateAction<UserData>>;
-  userDataCopy: UserData;
+  setStorageData: React.Dispatch<React.SetStateAction<UserData>>;
+  storageData: UserData;
 };
 
 export const DialogNote: React.FC<NoteProps> = ({
   maxLength,
   id,
-  setUserDataCopy,
+  setStorageData,
   smallScreen,
-  userDataCopy,
+  storageData,
 }) => {
-  const [note, setNote] = React.useState(userDataCopy[id]?.note ?? "");
+  const [note, setNote] = React.useState(storageData[id]?.note ?? "");
   const [dynamicSavingText, setDynamicSavingText] = React.useState("");
   const [savingTextTimeout, setSavingTextTimeout] = React.useState<number>();
   const [noteDone, setMarkedAsDone] = React.useState<boolean>(
-    userDataCopy[id]?.noteDone ?? false,
+    storageData[id]?.noteDone ?? false,
   );
   const [wordCount, setWordCount] = React.useState(0);
   const [maxWordCount, setMaxWordCount] = React.useState<number | undefined>();
@@ -37,12 +37,12 @@ export const DialogNote: React.FC<NoteProps> = ({
   const wordNoteLabel = useL10n("dialogNoteLabel");
 
   const handleNoteDone = (): void => {
-    if (userDataCopy[id] === undefined) {
-      userDataCopy[id] = {};
+    if (storageData[id] === undefined) {
+      storageData[id] = {};
     }
-    userDataCopy[id].noteDone = !noteDone;
+    storageData[id].noteDone = !noteDone;
     setMarkedAsDone(!noteDone);
-    setUserDataCopy(userDataCopy);
+    setStorageData(storageData);
   };
 
   const setSavingText = (): void => {
@@ -83,19 +83,19 @@ export const DialogNote: React.FC<NoteProps> = ({
 
   React.useEffect(() => {
     // TODO: If this becomes laggy, add a debounce-timer to avoid saving more often than, say, every 100ms.
-    if (userDataCopy[id] === undefined) userDataCopy[id] = {};
-    userDataCopy[id].note = note;
+    if (storageData[id] === undefined) storageData[id] = {};
+    storageData[id].note = note;
     countWords();
     // ensure there's no memory leak on component unmount during timeout
     return () => {
       if (savingTextTimeout != null) clearTimeout(savingTextTimeout);
     };
-  }, [userDataCopy, id, note, setUserDataCopy, savingTextTimeout, countWords]);
+  }, [storageData, id, note, setStorageData, savingTextTimeout, countWords]);
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     setSavingText();
     setNote(e.target.value);
-    setUserDataCopy(userDataCopy);
+    setStorageData(storageData);
   };
 
   return (

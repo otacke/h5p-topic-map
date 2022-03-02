@@ -25,7 +25,7 @@ describe(DialogTabs.name, () => {
       },
     };
     const tabs = render(
-      <DialogTabs item={item} userDataCopy={{}} setUserDataCopy={() => null} />,
+      <DialogTabs item={item} storageData={{}} setStorageData={() => null} />,
     ).container;
 
     expect(tabs.querySelector("div")).toBeTruthy();

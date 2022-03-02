@@ -15,16 +15,16 @@ export type GridProps = {
   items: Array<TopicMapItemType>;
   arrowItems: Array<ArrowItemType>;
   backgroundImage: Image | undefined;
-  setUserDataCopy: React.Dispatch<React.SetStateAction<UserData>>;
-  userDataCopy: UserData;
+  setStorageData: React.Dispatch<React.SetStateAction<UserData>>;
+  storageData: UserData;
 };
 
 export const Grid: React.FC<GridProps> = ({
   items,
   arrowItems,
   backgroundImage,
-  setUserDataCopy,
-  userDataCopy,
+  setStorageData,
+  storageData,
 }) => {
   const [itemShowingDialog, setItemShowingDialog] =
     useState<CommonItemType | null>(null);
@@ -56,14 +56,14 @@ export const Grid: React.FC<GridProps> = ({
           <TopicMapItem
             item={item}
             onClick={() => setItemShowingDialog(item)}
-            userDataCopy={userDataCopy}
+            storageData={storageData}
           />
         </div>
       )),
 
     // We want to update re-render the elements whenever `itemShowingDialog` changes (i.e. the dialog window is closed).
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [items, userDataCopy, itemShowingDialog],
+    [items, storageData, itemShowingDialog],
   );
 
   const bgImageStyle: string | undefined = backgroundImage?.path
@@ -84,8 +84,8 @@ export const Grid: React.FC<GridProps> = ({
               item={itemShowingDialog}
               open={!!itemShowingDialog}
               onOpenChange={() => setItemShowingDialog(null)}
-              setUserDataCopy={setUserDataCopy}
-              userDataCopy={userDataCopy}
+              setStorageData={setStorageData}
+              storageData={storageData}
             />
           ) : null}
         </div>
