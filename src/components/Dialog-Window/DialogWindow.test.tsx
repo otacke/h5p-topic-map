@@ -41,7 +41,7 @@ describe(DialogWindow.name, () => {
         item={item}
         open={false}
         onOpenChange={onOpenChange}
-        storageData={() => null}
+        setStorageData={() => null}
         storageData={{}}
       />,
     ).container;
@@ -76,7 +76,7 @@ describe(DialogWindow.name, () => {
         item={item}
         open={false}
         onOpenChange={onOpenChange}
-        storageData={() => null}
+        setStorageData={() => null}
         storageData={{}}
       />,
     ).container;
