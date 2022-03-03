@@ -9,12 +9,14 @@ export type DialogTextProps = {
   topicImage: Image | undefined;
   introduction: string | undefined;
   bodyText: string | undefined;
+  topicImageAltText: string | undefined;
 };
 
 export const DialogText: React.FC<DialogTextProps> = ({
   topicImage,
   introduction,
   bodyText,
+  topicImageAltText,
 }) => {
   const copyrightTitle = useL10n("copyrightPhoto");
 
@@ -31,7 +33,7 @@ export const DialogText: React.FC<DialogTextProps> = ({
           <img
             className={styles.topicImage}
             src={topicImage.path}
-            alt={topicImage.alt ?? ""}
+            alt={topicImageAltText ?? ""}
             width={topicImage.width}
             height={topicImage.height}
           />

@@ -84,7 +84,7 @@ const tabLabelItems = (
 };
 
 const tabItems = (item: CommonItemType): JSX.Element[] => {
-  const { id, description, topicImage, dialog } = item;
+  const { id, description, topicImage, topicImageAltText, dialog } = item;
   const items: JSX.Element[] = [];
 
   const showTextTab = dialog?.text || topicImage || description;
@@ -93,6 +93,7 @@ const tabItems = (item: CommonItemType): JSX.Element[] => {
         <Content key="text" value="Text">
           <DialogText
             topicImage={topicImage}
+            topicImageAltText={topicImageAltText}
             introduction={description}
             bodyText={dialog?.text}
           />

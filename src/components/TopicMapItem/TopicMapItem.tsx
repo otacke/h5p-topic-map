@@ -54,7 +54,7 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({
         <img
           className={styles.image}
           src={item.topicImage.path}
-          alt={item.topicImage.alt ?? ""}
+          alt={item.topicImageAltText ?? ""}
           width={item.topicImage.width}
           height={item.topicImage.height}
         />
