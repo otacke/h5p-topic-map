@@ -76,6 +76,14 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               name: "topicImage",
               type: H5PFieldType.Image,
             },
+            {
+              label: "Topic image alt text",
+              description:
+                "Alternative text for the image that is used by screen readers",
+              name: "topicImageAltText",
+              type: H5PFieldType.Text,
+              optional: true,
+            },
 
             ...itemDialog,
 
@@ -140,6 +148,14 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               description: "Image above text in dialog",
               name: "topicImage",
               type: H5PFieldType.Image,
+            },
+            {
+              label: "Topic image alt text",
+              description:
+                "Alternative text for the image that is used by screen readers",
+              name: "topicImageAltText",
+              type: H5PFieldType.Text,
+              optional: true,
             },
             {
               label: "Arrow type",
