@@ -14,12 +14,14 @@ describe(DialogText.name, () => {
     You can spend all day playing with mountains. Follow the lay of the land. It's most important. Poor old tree. Little short strokes.
     
     In this world, everything can be happy. Have fun with it. Nothing's gonna make your husband or wife madder than coming home and having a snow-covered dinner. When things happen - enjoy them. They're little gifts.`;
+    const topicImageAltText = `Flying king eagle holding a fish in paws.`;
 
     const { container } = render(
       <DialogText
         topicImage={topicImage}
         introduction={introduction}
         bodyText={bodyText}
+        topicImageAltText={topicImageAltText}
       />,
     );
 
