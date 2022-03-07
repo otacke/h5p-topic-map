@@ -59,6 +59,8 @@ export const Grid: React.FC<GridProps> = ({
 
   const arrows = React.useMemo(() => {
     const onClick = (item: ArrowItemType): void => {
+      // eslint-disable-next-line no-console
+      console.log("onClick", item);
       setItemShowingDialog(item);
     };
 

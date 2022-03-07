@@ -8,6 +8,7 @@ import styles from "./Arrow.module.scss";
 import gridStyles from "../Grid/Grid.module.scss";
 import { GridDimensions } from "../Grid/Grid";
 import { Position } from "../../types/Position";
+import { EditIcon, NoteIcon } from "../Icons/Icons";
 
 export type ArrowProps = {
   item: ArrowItemType;
@@ -31,14 +32,12 @@ export const Arrow: FC<ArrowProps> = ({ item, grid, onClick }) => {
 
   const arrowContainerRef = React.createRef<HTMLDivElement>();
   React.useEffect(() => {
-    // const gridElement = document.querySelector(`.grid`) as HTMLElement;
-    // console.info("useEffect gridElement", gridElement);
+
     const isHorizontal = calculateIsHorizontal(
       item.startPosition,
       item.endPosition,
     );
 
-    console.info("useEffect arrowContainerRef", arrowContainerRef);
     if (arrowContainerRef.current) {
       const gridElement = arrowContainerRef.current;
 
@@ -51,11 +50,22 @@ export const Arrow: FC<ArrowProps> = ({ item, grid, onClick }) => {
         console.info("strokeWidth", strokeWidth);
       }
 
-      const path = `M ${
-        (item.startPosition.x / 100) * gridElement.clientWidth
-      } ${(item.startPosition.y / 100) * gridElement.clientHeight} L ${
-        (item.endPosition.x / 100) * gridElement.clientWidth
-      } ${(item.endPosition.y / 100) * gridElement.clientHeight}`;
+      // const path = `M ${
+      //   (item.startPosition.x / 100) * gridElement.clientWidth
+      // } ${(item.startPosition.y / 100) * gridElement.clientHeight} L ${
+      //   (item.endPosition.x / 100) * gridElement.clientWidth
+      // } ${(item.endPosition.y / 100) * gridElement.clientHeight}`;
+      
+      const startx = (item.startPosition.x / 100) * gridElement.clientWidth;
+      const starty = (item.startPosition.y / 100) * gridElement.clientHeight;
+      const endx = (item.endPosition.x / 100) * gridElement.clientWidth;
+      const endy = (item.endPosition.y / 100) * gridElement.clientHeight;
+
+      const midx = (startx + endx) / 2;
+      const midy = (starty + endy) / 2;
+
+      const path = `${startx},${starty} ${midx},${midy} ${endx},${endy}`;
+           
       setPathDef(path);
     }
   }, [arrowContainerRef, item, grid]);
@@ -77,6 +87,29 @@ export const Arrow: FC<ArrowProps> = ({ item, grid, onClick }) => {
     >
       <svg className={styles.arrowSvg}>
         <defs>
+          <marker
+            id="noteButton"
+            markerWidth="10"
+            markerHeight="10"
+            refX="0"
+            refY="0.5"
+            orient="0"
+          >
+            {/* <foreignObject>
+              <NoteButton
+                backgroundColor="var(--theme-color-2)"
+                buttonState={buttonState}
+                borderColor="var(--theme-color-3)"
+                iconColor="var(--theme-color-4)"
+              />
+             </foreignObject> */}
+            <path
+              onClick={onClick}
+              d="m 0.19232127,0.81738523 v 0.1371902 c 0,0.012637 0.0089,0.022562 0.02019,0.022562 h 0.122787 c 0.0053,0 0.0105,-0.00226 0.01414,-0.00677 l 0.441064,-0.49235261 -0.151462,-0.1692326 -0.44066,0.49235671 c -0.004,0.00451 -0.0061,0.00993 -0.0061,0.016247 z m 0.715314,-0.47024336 c 0.01575,-0.0176004 0.01575,-0.0460315 0,-0.0636318 l -0.09451,-0.10560124 c -0.01575,-0.0176 -0.0412,-0.0176 -0.05695,0 l -0.07392,0.0825858 0.151467,0.16923257 z"
+              fill="white"
+            />
+            {/* <EditIcon width={strokeWidth} height={strokeWidth} iconColor="white"/> */}
+          </marker>
           <marker
             id="arrowhead"
             markerWidth="10"
@@ -106,9 +139,9 @@ export const Arrow: FC<ArrowProps> = ({ item, grid, onClick }) => {
             />
           </marker>
         </defs>
-        <path
+        <polyline
           className={styles.path}
-          d={pathDef}
+          points={pathDef}
           fill="transparent"
           stroke="var(--theme-color-4)"
           strokeWidth={strokeWidth}
@@ -121,7 +154,8 @@ export const Arrow: FC<ArrowProps> = ({ item, grid, onClick }) => {
           markerStart={
             item.arrowType === ArrowType.BiDirectional ? "url(#arrowtail)" : ""
           }
-          onClick={() => ""}
+          onClick={onClick}
+          markerMid="url(#noteButton)"
         />
       </svg>
     </div>
