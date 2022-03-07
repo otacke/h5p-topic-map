@@ -58,19 +58,6 @@ DenFranskeRevolusjon.args = {
     topicMap: {
       topicMapItems: [
         {
-          id: "30088d75-76a2-4d41-bfa6-1e79356093e2",
-          xPercentagePosition: 0,
-          yPercentagePosition: 0,
-          widthPercentage: 13.333333333333336,
-          heightPercentage: 16.666666666666664,
-          label: "Opplysningstiden",
-          description: "",
-          dialog: {
-            hasNote: false,
-            text: `Opplysningstiden var en epoke i Europas intellektuelle historie der vitenskap, fornuft, frihet, toleranse og framskritt ble innsatt som nye idealer og autoriteter. Opplysningstenkerne argumenterte blant annet for ytringsfrihet, trykkefrihet, religionsfrihet, likhet for loven og demokrati. Det var også under opplysningstiden at begrepet om menneskerettigheter oppstod.`,
-          },
-        },
-        {
           id: "23bc191f-3b67-424b-aeee-b1706bd2b66f",
           xPercentagePosition: 0,
           yPercentagePosition: 22.37848644177941,
@@ -123,19 +110,7 @@ DenFranskeRevolusjon.args = {
             width: 592,
             height: 392,
           },
-        },
-        {
-          id: "2b72c161-313e-414c-8829-0c72d6d50b6a",
-          xPercentagePosition: 0,
-          yPercentagePosition: 61.70731707317073,
-          widthPercentage: 13.333333333333336,
-          heightPercentage: 16.666666666666657,
-          label: "Uår i jordbruket",
-          description: "",
-          dialog: {
-            hasNote: true,
-            audio: {},
-          },
+          index: 2,
         },
         {
           id: "39a9ffb3-e2a6-47c3-9686-b089c90b9aa2",
@@ -160,6 +135,20 @@ DenFranskeRevolusjon.args = {
             width: 596,
             height: 426,
           },
+        },
+        {
+          id: "30088d75-76a2-4d41-bfa6-1e79356093e2",
+          xPercentagePosition: 0,
+          yPercentagePosition: 0,
+          widthPercentage: 13.333333333333336,
+          heightPercentage: 16.666666666666664,
+          label: "Opplysningstiden",
+          description: "",
+          dialog: {
+            hasNote: false,
+            text: `Opplysningstiden var en epoke i Europas intellektuelle historie der vitenskap, fornuft, frihet, toleranse og framskritt ble innsatt som nye idealer og autoriteter. Opplysningstenkerne argumenterte blant annet for ytringsfrihet, trykkefrihet, religionsfrihet, likhet for loven og demokrati. Det var også under opplysningstiden at begrepet om menneskerettigheter oppstod.`,
+          },
+          index: 1,
         },
         {
           id: "8678616e-8293-4397-ad9a-a08e10019e1a",
@@ -241,27 +230,16 @@ DenFranskeRevolusjon.args = {
           },
         },
         {
-          id: "f90f4f67-08ac-4aab-a93b-12d7862a996b",
-          xPercentagePosition: 66.95429864253394,
-          yPercentagePosition: 11.189243220889704,
-          widthPercentage: 10.000000000000012,
-          heightPercentage: 16.666666666666664,
-          label: "Reformer",
+          id: "2b72c161-313e-414c-8829-0c72d6d50b6a",
+          xPercentagePosition: 0,
+          yPercentagePosition: 61.70731707317073,
+          widthPercentage: 13.333333333333336,
+          heightPercentage: 16.666666666666657,
+          label: "Uår i jordbruket",
           description: "",
           dialog: {
             hasNote: true,
             audio: {},
-          },
-          topicImage: {
-            path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/07_09_szbd4871.jpg",
-            mime: "image/jpeg",
-            copyright: {
-              license: "U",
-              title: "Code Civil des Francais",
-              author: "Akg-images, NTB Scanpix",
-            },
-            width: 512,
-            height: 368,
           },
         },
         {
@@ -311,6 +289,30 @@ DenFranskeRevolusjon.args = {
             },
             width: 1012,
             height: 434,
+          },
+        },
+        {
+          id: "f90f4f67-08ac-4aab-a93b-12d7862a996b",
+          xPercentagePosition: 66.95429864253394,
+          yPercentagePosition: 11.189243220889704,
+          widthPercentage: 10.000000000000012,
+          heightPercentage: 16.666666666666664,
+          label: "Reformer",
+          description: "",
+          dialog: {
+            hasNote: true,
+            audio: {},
+          },
+          topicImage: {
+            path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/07_09_szbd4871.jpg",
+            mime: "image/jpeg",
+            copyright: {
+              license: "U",
+              title: "Code Civil des Francais",
+              author: "Akg-images, NTB Scanpix",
+            },
+            width: 512,
+            height: 368,
           },
         },
         {
