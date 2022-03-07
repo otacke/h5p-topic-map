@@ -250,6 +250,25 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         options: [...colorThemes],
         widget: "none",
       },
+      {
+        label: "Grid",
+        name: "grid",
+        type: H5PFieldType.Group,
+        fields: [
+          {
+            name: "numberOfColumns",
+            label: "Number of columns",
+            type: H5PFieldType.Number,
+            widget: "none",
+          },
+          {
+            name: "numberOfRows",
+            label: "Number of rows",
+            type: H5PFieldType.Number,
+            widget: "none",
+          },
+        ],
+      },
     ],
   },
 

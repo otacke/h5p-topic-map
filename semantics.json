@@ -407,6 +407,25 @@
           }
         ],
         "widget": "none"
+      },
+      {
+        "label": "Grid",
+        "name": "grid",
+        "type": "group",
+        "fields": [
+          {
+            "name": "numberOfColumns",
+            "label": "Number of columns",
+            "type": "number",
+            "widget": "none"
+          },
+          {
+            "name": "numberOfRows",
+            "label": "Number of rows",
+            "type": "number",
+            "widget": "none"
+          }
+        ]
       }
     ]
   },

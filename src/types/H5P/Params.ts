@@ -1,3 +1,4 @@
+import { GridDimensions } from "../../components/Grid/Grid";
 import { ArrowItemType } from "../ArrowItemType";
 import { ColorTheme } from "../ColorTheme";
 import { TopicMapItemType } from "../TopicMapItemType";
@@ -13,6 +14,7 @@ export type Params = Readonly<{
 
     gridBackgroundImage?: Image;
     colorTheme?: ColorTheme;
+    grid?: GridDimensions;
   };
 
   l10n?: Translations;

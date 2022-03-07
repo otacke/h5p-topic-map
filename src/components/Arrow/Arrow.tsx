@@ -6,24 +6,51 @@ import { ArrowType } from "../../types/ArrowType";
 import { NoteButton } from "../NoteButton/NoteButton";
 import styles from "./Arrow.module.scss";
 import gridStyles from "../Grid/Grid.module.scss";
+import { GridDimensions } from "../Grid/Grid";
+import { Position } from "../../types/Position";
 
 export type ArrowProps = {
   item: ArrowItemType;
   onClick: MouseEventHandler;
+  grid?: GridDimensions;
 };
 
-export const Arrow: FC<ArrowProps> = ({ item, onClick }) => {
-  // const columns = 31;
-  // const rows = 19;
-  // const defaultGapSize = 4;
+const calculateIsHorizontal = (
+  startPosition: Position,
+  endPosition: Position,
+): boolean => {
+  return (
+    Math.abs(startPosition.x - endPosition.x) >
+    Math.abs(startPosition.y - endPosition.y)
+  );
+};
+
+export const Arrow: FC<ArrowProps> = ({ item, grid, onClick }) => {
   const [pathDef, setPathDef] = React.useState<string>("");
+  const [strokeWidth, setStrokeWidth] = React.useState<number>(4);
+
   const arrowContainerRef = React.createRef<HTMLDivElement>();
   React.useEffect(() => {
     // const gridElement = document.querySelector(`.grid`) as HTMLElement;
     // console.info("useEffect gridElement", gridElement);
+    const isHorizontal = calculateIsHorizontal(
+      item.startPosition,
+      item.endPosition,
+    );
+
     console.info("useEffect arrowContainerRef", arrowContainerRef);
     if (arrowContainerRef.current) {
       const gridElement = arrowContainerRef.current;
+
+      if (grid) {
+        if (isHorizontal) {
+          setStrokeWidth(gridElement.clientHeight / grid.numberOfRows);
+        } else {
+          setStrokeWidth(gridElement.clientWidth / grid.numberOfColumns);
+        }
+        console.info("strokeWidth", strokeWidth);
+      }
+
       const path = `M ${
         (item.startPosition.x / 100) * gridElement.clientWidth
       } ${(item.startPosition.y / 100) * gridElement.clientHeight} L ${
@@ -31,12 +58,12 @@ export const Arrow: FC<ArrowProps> = ({ item, onClick }) => {
       } ${(item.endPosition.y / 100) * gridElement.clientHeight}`;
       setPathDef(path);
     }
-  }, [arrowContainerRef, item]);
+  }, [arrowContainerRef, item, grid]);
 
   const buttonState = NoteButtonIconState.Default;
   // eslint-disable-next-line no-console
   console.log("ARROW", item);
-  const cellSize = 4;
+
   // const pathDef = `M ${item.startPosition.x} ${item.startPosition.y} L ${item.endPosition.x} ${item.endPosition.y}`;
   // const gridElement = document.querySelector(`.grid`) as HTMLElement;
   // console.info("gridElement", gridElement);
@@ -84,7 +111,7 @@ export const Arrow: FC<ArrowProps> = ({ item, onClick }) => {
           d={pathDef}
           fill="transparent"
           stroke="var(--theme-color-4)"
-          strokeWidth={cellSize}
+          strokeWidth={strokeWidth}
           markerEnd={
             item.arrowType === ArrowType.BiDirectional ||
             item.arrowType === ArrowType.Directional
