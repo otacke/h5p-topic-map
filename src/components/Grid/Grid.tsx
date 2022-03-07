@@ -40,13 +40,13 @@ export const Grid: React.FC<GridProps> = ({
 
   const sortItems = (a: TopicMapItemType, b: TopicMapItemType): number => {
     // Sort after index first
-    if (a.index && b.index) {
+    if (a.index != null && b.index != null) {
       return a.index < b.index ? -1 : 1;
     }
-    if (a.index && !b.index) {
+    if (a.index != null && b.index == null) {
       return -1;
     }
-    if (!a.index && b.index) {
+    if (a.index == null && b.index != null) {
       return 1;
     }
     // Then sort after position
