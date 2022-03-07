@@ -115,6 +115,44 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               widget: "none",
             },
             {
+              name: "startPosition",
+              label: "Percentage position of start element",
+              type: H5PFieldType.Group,
+              fields: [
+                {
+                  name: "x",
+                  label: "X-position as a percentage of the container width",
+                  type: H5PFieldType.Number,
+                  widget: "none",
+                },
+                {
+                  name: "y",
+                  label: "Y-position as a percentage of the container height",
+                  type: H5PFieldType.Number,
+                  widget: "none",
+                },
+              ]
+            },
+            {
+              name: "endPosition",
+              label: "Percentage position of start element",
+              type: H5PFieldType.Group,
+              fields: [
+                {
+                  name: "x",
+                  label: "X-position as a percentage of the container width",
+                  type: H5PFieldType.Number,
+                  widget: "none",
+                },
+                {
+                  name: "y",
+                  label: "Y-position as a percentage of the container height",
+                  type: H5PFieldType.Number,
+                  widget: "none",
+                },
+              ]
+            },
+            {
               name: "startElementId",
               label: "Id of start element",
               type: H5PFieldType.Text,

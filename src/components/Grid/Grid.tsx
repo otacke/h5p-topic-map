@@ -26,6 +26,8 @@ export const Grid: React.FC<GridProps> = ({
   setStorageData,
   storageData,
 }) => {
+  // eslint-disable-next-line no-console
+  console.log("Grid", items, arrowItems);
   const [itemShowingDialog, setItemShowingDialog] =
     useState<CommonItemType | null>(null);
 
@@ -33,7 +35,7 @@ export const Grid: React.FC<GridProps> = ({
     const onClick = (item: ArrowItemType): void => {
       setItemShowingDialog(item);
     };
-
+    
     return arrowItems.map(item => (
       <Arrow key={item.id} item={item} onClick={() => onClick(item)} />
     ));
