@@ -10,4 +10,6 @@ export type CommonItemType = {
   topicImageAltText?: string;
 
   dialog?: DialogContent;
+
+  index?: number;
 };

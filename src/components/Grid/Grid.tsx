@@ -38,6 +38,25 @@ export const Grid: React.FC<GridProps> = ({
   const [itemShowingDialog, setItemShowingDialog] =
     useState<CommonItemType | null>(null);
 
+  const sortItems = (a: TopicMapItemType, b: TopicMapItemType): number => {
+    // Sort after index first
+    if (a.index && b.index) {
+      return a.index < b.index ? -1 : 1;
+    }
+    if (a.index && !b.index) {
+      return -1;
+    }
+    if (!a.index && b.index) {
+      return 1;
+    }
+    // Then sort after position
+    if (a.xPercentagePosition === b.xPercentagePosition) {
+      return a.yPercentagePosition < b.yPercentagePosition ? -1 : 1;
+    }
+
+    return a.xPercentagePosition < b.xPercentagePosition ? -1 : 1;
+  };
+
   const arrows = React.useMemo(() => {
     const onClick = (item: ArrowItemType): void => {
       setItemShowingDialog(item);
@@ -55,25 +74,28 @@ export const Grid: React.FC<GridProps> = ({
 
   const children = React.useMemo(
     () =>
-      items.map(item => (
-        <div
-          key={item.id}
-          id={item.id}
-          className={styles.itemWrapper}
-          style={{
-            left: `${item.xPercentagePosition}%`,
-            top: `${item.yPercentagePosition}%`,
-            height: `${item.heightPercentage}%`,
-            width: `${item.widthPercentage}%`,
-          }}
-        >
-          <TopicMapItem
-            item={item}
-            onClick={() => setItemShowingDialog(item)}
-            storageData={storageData}
-          />
-        </div>
-      )),
+      items
+        .concat()
+        .sort((a, b) => sortItems(a, b))
+        .map(item => (
+          <div
+            key={item.id}
+            id={item.id}
+            className={styles.itemWrapper}
+            style={{
+              left: `${item.xPercentagePosition}%`,
+              top: `${item.yPercentagePosition}%`,
+              height: `${item.heightPercentage}%`,
+              width: `${item.widthPercentage}%`,
+            }}
+          >
+            <TopicMapItem
+              item={item}
+              onClick={() => setItemShowingDialog(item)}
+              storageData={storageData}
+            />
+          </div>
+        )),
 
     // We want to update re-render the elements whenever `itemShowingDialog` changes (i.e. the dialog window is closed).
     // eslint-disable-next-line react-hooks/exhaustive-deps
