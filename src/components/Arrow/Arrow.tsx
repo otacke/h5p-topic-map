@@ -32,7 +32,6 @@ export const Arrow: FC<ArrowProps> = ({ item, grid, onClick }) => {
 
   const arrowContainerRef = React.createRef<HTMLDivElement>();
   React.useEffect(() => {
-
     const isHorizontal = calculateIsHorizontal(
       item.startPosition,
       item.endPosition,
@@ -55,7 +54,7 @@ export const Arrow: FC<ArrowProps> = ({ item, grid, onClick }) => {
       // } ${(item.startPosition.y / 100) * gridElement.clientHeight} L ${
       //   (item.endPosition.x / 100) * gridElement.clientWidth
       // } ${(item.endPosition.y / 100) * gridElement.clientHeight}`;
-      
+
       const startx = (item.startPosition.x / 100) * gridElement.clientWidth;
       const starty = (item.startPosition.y / 100) * gridElement.clientHeight;
       const endx = (item.endPosition.x / 100) * gridElement.clientWidth;
@@ -65,7 +64,7 @@ export const Arrow: FC<ArrowProps> = ({ item, grid, onClick }) => {
       const midy = (starty + endy) / 2;
 
       const path = `${startx},${starty} ${midx},${midy} ${endx},${endy}`;
-           
+
       setPathDef(path);
     }
   }, [arrowContainerRef, item, grid]);
