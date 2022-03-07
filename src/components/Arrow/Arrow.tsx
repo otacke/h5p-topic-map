@@ -22,14 +22,17 @@ export const Arrow: FC<ArrowProps> = ({ item, onClick }) => {
     // const gridElement = document.querySelector(`.grid`) as HTMLElement;
     // console.info("useEffect gridElement", gridElement);
     console.info("useEffect arrowContainerRef", arrowContainerRef);
-    if(arrowContainerRef.current) {
+    if (arrowContainerRef.current) {
       const gridElement = arrowContainerRef.current;
-      const path = `M ${(item.startPosition.x / 100)*gridElement.clientWidth} ${(item.startPosition.y/100)*gridElement.clientHeight} L ${(item.endPosition.x/100)*gridElement.clientWidth} ${(item.endPosition.y/100)*gridElement.clientHeight}`;
+      const path = `M ${
+        (item.startPosition.x / 100) * gridElement.clientWidth
+      } ${(item.startPosition.y / 100) * gridElement.clientHeight} L ${
+        (item.endPosition.x / 100) * gridElement.clientWidth
+      } ${(item.endPosition.y / 100) * gridElement.clientHeight}`;
       setPathDef(path);
-    };
+    }
   }, [arrowContainerRef, item]);
 
-  
   const buttonState = NoteButtonIconState.Default;
   // eslint-disable-next-line no-console
   console.log("ARROW", item);
@@ -38,9 +41,13 @@ export const Arrow: FC<ArrowProps> = ({ item, onClick }) => {
   // const gridElement = document.querySelector(`.grid`) as HTMLElement;
   // console.info("gridElement", gridElement);
   // const pathDef = `M ${(item.startPosition.x / 100)*gridElement.clientWidth} ${(item.startPosition.y/100)*gridElement.clientHeight} L ${(item.endPosition.x/100)*gridElement.clientWidth} ${(item.endPosition.y/100)*gridElement.clientHeight}`;
-  
+
   return (
-    <div ref={arrowContainerRef} aria-label={item.label} className={`arrow-item ${styles.arrow}`}>
+    <div
+      ref={arrowContainerRef}
+      aria-label={item.label}
+      className={`arrow-item ${styles.arrow}`}
+    >
       <svg className={styles.arrowSvg}>
         <defs>
           <marker
@@ -73,9 +80,7 @@ export const Arrow: FC<ArrowProps> = ({ item, onClick }) => {
           </marker>
         </defs>
         <path
-          className={
-            styles.path
-          }
+          className={styles.path}
           d={pathDef}
           fill="transparent"
           stroke="var(--theme-color-4)"
@@ -94,7 +99,7 @@ export const Arrow: FC<ArrowProps> = ({ item, onClick }) => {
       </svg>
     </div>
   );
-  
+
   // return (
   //   <div aria-label={item.label} className={`arrow-item ${styles.arrow}`}>
   //     <Xarrow

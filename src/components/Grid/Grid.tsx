@@ -35,7 +35,7 @@ export const Grid: React.FC<GridProps> = ({
     const onClick = (item: ArrowItemType): void => {
       setItemShowingDialog(item);
     };
-    
+
     return arrowItems.map(item => (
       <Arrow key={item.id} item={item} onClick={() => onClick(item)} />
     ));

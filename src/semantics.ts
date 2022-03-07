@@ -131,7 +131,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
                   type: H5PFieldType.Number,
                   widget: "none",
                 },
-              ]
+              ],
             },
             {
               name: "endPosition",
@@ -150,7 +150,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
                   type: H5PFieldType.Number,
                   widget: "none",
                 },
-              ]
+              ],
             },
             {
               name: "startElementId",
