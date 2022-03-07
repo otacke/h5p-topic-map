@@ -85,8 +85,8 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
           text: "Dialog text",
           hasNote: true,
         },
-        startPosition: {x:0,y:0},
-        endPosition: {x:0,y:0},
+        startPosition: { x: 0, y: 0 },
+        endPosition: { x: 0, y: 0 },
       },
       {
         arrowType: ArrowType.Directional,
@@ -98,8 +98,8 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
           text: "Dialog text",
           hasNote: false,
         },
-        startPosition: {x:0,y:0},
-        endPosition: {x:0,y:0},
+        startPosition: { x: 0, y: 0 },
+        endPosition: { x: 0, y: 0 },
       },
     ],
   };
@@ -173,8 +173,8 @@ export const WithBackgroundImage: ComponentStory<typeof Grid> = () => {
           text: "Dialog text",
           hasNote: true,
         },
-        startPosition: {x:0,y:0},
-        endPosition: {x:0,y:0},
+        startPosition: { x: 0, y: 0 },
+        endPosition: { x: 0, y: 0 },
       },
       {
         arrowType: ArrowType.Directional,
@@ -186,8 +186,8 @@ export const WithBackgroundImage: ComponentStory<typeof Grid> = () => {
           text: "Dialog text",
           hasNote: false,
         },
-        startPosition: {x:0,y:0},
-        endPosition: {x:0,y:0},
+        startPosition: { x: 0, y: 0 },
+        endPosition: { x: 0, y: 0 },
       },
     ],
     backgroundImage: {
