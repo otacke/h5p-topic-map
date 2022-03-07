@@ -17,6 +17,12 @@ export type GridProps = {
   backgroundImage: Image | undefined;
   setStorageData: React.Dispatch<React.SetStateAction<UserData>>;
   storageData: UserData;
+  grid?: GridDimensions;
+};
+
+export type GridDimensions = {
+  numberOfColumns: number;
+  numberOfRows: number;
 };
 
 export const Grid: React.FC<GridProps> = ({
@@ -25,7 +31,10 @@ export const Grid: React.FC<GridProps> = ({
   backgroundImage,
   setStorageData,
   storageData,
+  grid,
 }) => {
+  // eslint-disable-next-line no-console
+  console.log("Grid", items, arrowItems, grid);
   const [itemShowingDialog, setItemShowingDialog] =
     useState<CommonItemType | null>(null);
 
@@ -35,9 +44,14 @@ export const Grid: React.FC<GridProps> = ({
     };
 
     return arrowItems.map(item => (
-      <Arrow key={item.id} item={item} onClick={() => onClick(item)} />
+      <Arrow
+        key={item.id}
+        item={item}
+        grid={grid}
+        onClick={() => onClick(item)}
+      />
     ));
-  }, [arrowItems]);
+  }, [arrowItems, grid]);
 
   const children = React.useMemo(
     () =>

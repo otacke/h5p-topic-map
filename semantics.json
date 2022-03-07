@@ -182,6 +182,44 @@
               "widget": "none"
             },
             {
+              "name": "startPosition",
+              "label": "Percentage position of start element",
+              "type": "group",
+              "fields": [
+                {
+                  "name": "x",
+                  "label": "X-position as a percentage of the container width",
+                  "type": "number",
+                  "widget": "none"
+                },
+                {
+                  "name": "y",
+                  "label": "Y-position as a percentage of the container height",
+                  "type": "number",
+                  "widget": "none"
+                }
+              ]
+            },
+            {
+              "name": "endPosition",
+              "label": "Percentage position of start element",
+              "type": "group",
+              "fields": [
+                {
+                  "name": "x",
+                  "label": "X-position as a percentage of the container width",
+                  "type": "number",
+                  "widget": "none"
+                },
+                {
+                  "name": "y",
+                  "label": "Y-position as a percentage of the container height",
+                  "type": "number",
+                  "widget": "none"
+                }
+              ]
+            },
+            {
               "name": "startElementId",
               "label": "Id of start element",
               "type": "text",
@@ -369,6 +407,25 @@
           }
         ],
         "widget": "none"
+      },
+      {
+        "label": "Grid",
+        "name": "grid",
+        "type": "group",
+        "fields": [
+          {
+            "name": "numberOfColumns",
+            "label": "Number of columns",
+            "type": "number",
+            "widget": "none"
+          },
+          {
+            "name": "numberOfRows",
+            "label": "Number of rows",
+            "type": "number",
+            "widget": "none"
+          }
+        ]
       }
     ]
   },

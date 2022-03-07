@@ -267,6 +267,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               backgroundImage={params.topicMap?.gridBackgroundImage}
               setStorageData={setStorageData}
               storageData={storageData}
+              grid={params.topicMap?.grid}
             />
           </Content>
           {hasNotes && (
