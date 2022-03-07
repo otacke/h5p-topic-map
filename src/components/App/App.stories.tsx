@@ -60,9 +60,9 @@ DenFranskeRevolusjon.args = {
         {
           id: "23bc191f-3b67-424b-aeee-b1706bd2b66f",
           xPercentagePosition: 0,
-          yPercentagePosition: 22.37848644177941,
-          widthPercentage: 13.333333333333336,
-          heightPercentage: 11.273712737127372,
+          yPercentagePosition: 21.202682436633363,
+          widthPercentage: 12.903225806451612,
+          heightPercentage: 15.78947368421052,
           label: "Den amerikanske revolusjonen",
           description: "",
           dialog: {
@@ -85,9 +85,9 @@ DenFranskeRevolusjon.args = {
         {
           id: "aa0ca5fc-237a-4237-9fd1-e8e8d4111254",
           xPercentagePosition: 0,
-          yPercentagePosition: 39.16235127311396,
-          widthPercentage: 13.333333333333336,
-          heightPercentage: 16.666666666666668,
+          yPercentagePosition: 42.40536487326673,
+          widthPercentage: 12.903225806451612,
+          heightPercentage: 15.789473684210527,
           label: "Stendersamfunnet",
           description: "",
           dialog: {
@@ -115,9 +115,9 @@ DenFranskeRevolusjon.args = {
         {
           id: "39a9ffb3-e2a6-47c3-9686-b089c90b9aa2",
           xPercentagePosition: 0,
-          yPercentagePosition: 83.91932415667279,
-          widthPercentage: 13.333333333333336,
-          heightPercentage: 16.666666666666657,
+          yPercentagePosition: 84.81072974653345,
+          widthPercentage: 12.903225806451612,
+          heightPercentage: 15.189270253466546,
           label: "Borgerskapets fremvekst",
           description: "",
           dialog: {
@@ -140,8 +140,8 @@ DenFranskeRevolusjon.args = {
           id: "30088d75-76a2-4d41-bfa6-1e79356093e2",
           xPercentagePosition: 0,
           yPercentagePosition: 0,
-          widthPercentage: 13.333333333333336,
-          heightPercentage: 16.666666666666664,
+          widthPercentage: 12.903225806451612,
+          heightPercentage: 15.789473684210527,
           label: "Opplysningstiden",
           description: "",
           dialog: {
@@ -152,10 +152,10 @@ DenFranskeRevolusjon.args = {
         },
         {
           id: "8678616e-8293-4397-ad9a-a08e10019e1a",
-          xPercentagePosition: 20.08628959276018,
-          yPercentagePosition: 22.37848644177941,
-          widthPercentage: 13.33333333333333,
-          heightPercentage: 50.00000000000002,
+          xPercentagePosition: 19.439321266968324,
+          yPercentagePosition: 26.503353045791705,
+          widthPercentage: 12.903225806451612,
+          heightPercentage: 47.36842105263159,
           label: "Stenderforsamlingen",
           description: "",
           dialog: {
@@ -177,9 +177,9 @@ DenFranskeRevolusjon.args = {
         },
         {
           id: "3548e78c-fc46-4226-9817-a61865b3baa8",
-          xPercentagePosition: 40.17257918552036,
+          xPercentagePosition: 38.87864253393665,
           yPercentagePosition: 0,
-          widthPercentage: 20,
+          widthPercentage: 19.537884250474388,
           heightPercentage: 100,
           label: "Den franske revolusjon",
           description:
@@ -232,9 +232,9 @@ DenFranskeRevolusjon.args = {
         {
           id: "2b72c161-313e-414c-8829-0c72d6d50b6a",
           xPercentagePosition: 0,
-          yPercentagePosition: 61.70731707317073,
-          widthPercentage: 13.333333333333336,
-          heightPercentage: 16.666666666666657,
+          yPercentagePosition: 63.60804730990009,
+          widthPercentage: 12.903225806451612,
+          heightPercentage: 15.789473684210527,
           label: "Uår i jordbruket",
           description: "",
           dialog: {
@@ -244,10 +244,10 @@ DenFranskeRevolusjon.args = {
         },
         {
           id: "55881391-71bf-4c04-90d9-664f8e6bc4b8",
-          xPercentagePosition: 83.69287330316743,
-          yPercentagePosition: 11.189243220889704,
-          widthPercentage: 9.999999999999986,
-          heightPercentage: 16.666666666666664,
+          xPercentagePosition: 84.23705882352941,
+          yPercentagePosition: 15.902011827475022,
+          widthPercentage: 9.677419354838719,
+          heightPercentage: 15.789473684210527,
           label: "Krig",
           description: "",
           dialog: {
@@ -268,10 +268,10 @@ DenFranskeRevolusjon.args = {
         },
         {
           id: "70badd4b-72e0-4f21-b07e-1b5d9ebfba78",
-          xPercentagePosition: 66.95429864253394,
-          yPercentagePosition: 39.16235127311396,
-          widthPercentage: 26.66666666666667,
-          heightPercentage: 22.222222222222214,
+          xPercentagePosition: 68.03762443438913,
+          yPercentagePosition: 42.40536487326673,
+          widthPercentage: 25.80645161290323,
+          heightPercentage: 21.052631578947377,
           label: "Napoleon",
           description: "",
           dialog: {
@@ -293,10 +293,10 @@ DenFranskeRevolusjon.args = {
         },
         {
           id: "f90f4f67-08ac-4aab-a93b-12d7862a996b",
-          xPercentagePosition: 66.95429864253394,
-          yPercentagePosition: 11.189243220889704,
-          widthPercentage: 10.000000000000012,
-          heightPercentage: 16.666666666666664,
+          xPercentagePosition: 68.03762443438913,
+          yPercentagePosition: 15.902011827475022,
+          widthPercentage: 9.677419354838705,
+          heightPercentage: 15.902011827475024,
           label: "Reformer",
           description: "",
           dialog: {
@@ -317,10 +317,10 @@ DenFranskeRevolusjon.args = {
         },
         {
           id: "f0e3e60c-8f60-4558-b474-1a2f682474d5",
-          xPercentagePosition: 66.95429864253394,
-          yPercentagePosition: 72.73008093578306,
-          widthPercentage: 10.000000000000012,
-          heightPercentage: 17.17452538022754,
+          xPercentagePosition: 68.03762443438913,
+          yPercentagePosition: 74.20938852821676,
+          widthPercentage: 9.677419354838705,
+          heightPercentage: 15.78947368421052,
           label: "Terror og kaos",
           description: "",
           dialog: {
