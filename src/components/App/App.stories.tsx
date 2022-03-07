@@ -52,7 +52,6 @@ DenFranskeRevolusjon.args = {
       navbarNotesSectionDeleteLabel: "Delete",
       navbarNotesSectionPrintLabel: "Print",
       navbarNotesSectionTitle: "Title",
-      progressBarLabel: "Progress",
       progressPercentageLabel: "Progress percentage",
     },
     topicMap: {
@@ -458,5 +457,5 @@ DenFranskeRevolusjon.args = {
       colorTheme: ColorTheme.Blue,
     },
   },
-  title: "Den franske revolusjon",
+  title: "Den franske revolusjon Den franske revolusjon Den franske revolusjon",
 };

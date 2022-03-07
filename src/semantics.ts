@@ -493,15 +493,9 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         type: H5PFieldType.Text,
       },
       {
-        label: "Navbar progress bar label",
-        name: "progressBarLabel",
-        default: "Progress",
-        type: H5PFieldType.Text,
-      },
-      {
         label: "Navbar progress percentage label",
         name: "progressPercentageLabel",
-        default: "Progress in percent",
+        default: "Current progress",
         type: H5PFieldType.Text,
       },
     ],

@@ -38,5 +38,4 @@ export type TranslationKey =
   | "deleteNotesConfirmationWindowLabel"
   | "deleteNotesConfirmLabel"
   | "deleteNotesDenyLabel"
-  | "progressBarLabel"
   | "progressPercentageLabel";

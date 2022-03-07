@@ -5,7 +5,6 @@ import { BreakpointSize } from "../../../types/BreakpointSize";
 import styles from "./NotesSection.module.scss";
 
 export type NotesSectionProps = {
-  setVisibility: React.Dispatch<React.SetStateAction<boolean>>;
   setDeleteConfirmationVisibility: React.Dispatch<
     React.SetStateAction<boolean>
   >;
@@ -20,7 +19,6 @@ const sizeClassname = {
 };
 
 export const NotesSection: React.FC<NotesSectionProps> = ({
-  setVisibility,
   setDeleteConfirmationVisibility,
   handlePrint,
 }) => {
@@ -35,11 +33,6 @@ export const NotesSection: React.FC<NotesSectionProps> = ({
     () => sizeClassname[appWidth],
     [appWidth],
   );
-
-  React.useEffect(() => {
-    setVisibility(true);
-    return () => setVisibility(false);
-  });
 
   return (
     <div className={`${styles.mainBody} ${sizeClassName}`}>

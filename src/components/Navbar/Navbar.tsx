@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 import * as React from "react";
-import { Content, Tabs, TabsList, Trigger } from "@radix-ui/react-tabs";
 import ProgressBar from "@ramonak/react-progress-bar";
 import type { FullScreenHandle } from "react-full-screen";
 import { useReactToPrint } from "react-to-print";
@@ -17,6 +16,7 @@ import { HamburgerCloseIcon, HamburgerIcon } from "../Icons/Icons";
 import { HelpSection } from "./HelpSection/HelpSection";
 import { NotesList } from "./NotesSection/NotesList/NotesList";
 import { NotesSection } from "./NotesSection/NotesSection";
+import { NavbarSections } from "../../types/NavbarSections";
 import styles from "./Navbar.module.scss";
 
 export type NavbarProps = {
@@ -45,12 +45,19 @@ export const Navbar: React.FC<NavbarProps> = ({
   const topicMapSectionLabel = useL10n("navbarTopicMapSectionLabel");
   const notesSectionLabel = useL10n("navbarNotesSectionLabel");
   const helpSectionLabel = useL10n("navbarHelpSectionLabel");
-  const progressBarLabel = useL10n("progressBarLabel");
   const progressPercentageLabel = useL10n("progressPercentageLabel");
   const deleteAllNotesText = useL10n("deleteNotesConfirmationWindowLabel");
   const deleteAllNotesConfirmText = useL10n("deleteNotesConfirmLabel");
   const deleteAllNotesDenyText = useL10n("deleteNotesDenyLabel");
+
+  const [currentSection, setCurrentSection] = React.useState(
+    NavbarSections.TopicMap,
+  );
+
   const [progressBarValue, setProgressBarValue] = React.useState<number>(0);
+  const [progressPercentage, setProgressPercentage] =
+    React.useState<number>(progressBarValue);
+
   const allItems = React.useMemo(
     () =>
       ((params.topicMap?.topicMapItems ?? []) as CommonItemType[]).concat(
@@ -58,20 +65,17 @@ export const Navbar: React.FC<NavbarProps> = ({
       ),
     [params.topicMap?.arrowItems, params.topicMap?.topicMapItems],
   );
-
-  const appWidth = useAppWidth();
-
-  const sizeClassName = React.useMemo(
-    () => sizeClassname[appWidth],
-    [appWidth],
-  );
-
   const totalNotesToComplete = React.useMemo(
     () => allItems.filter(item => item.dialog?.hasNote).length,
     [allItems],
   );
-  const [progressPercentage, setProgressPercentage] =
-    React.useState<number>(progressBarValue);
+  const hasNotes = totalNotesToComplete > 0;
+
+  const appWidth = useAppWidth();
+  const sizeClassName = React.useMemo(
+    () => sizeClassname[appWidth],
+    [appWidth],
+  );
 
   React.useEffect(() => {
     setProgressBarValue(
@@ -91,7 +95,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   const updateNavbarTitleForPrint = (): void => {
     navbarTitleForPrint = navbarTitleForPrint ? "" : navbarTitle;
   };
-
   const componentRef = React.useRef(null);
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -100,14 +103,10 @@ export const Navbar: React.FC<NavbarProps> = ({
     onAfterPrint: updateNavbarTitleForPrint,
   });
 
-  const [isNotesSectionShown, setIsNotesSectionIsShown] =
-    React.useState<boolean>(false);
+  const [isHamburgerOpen, setIsHamburgerOpen] = React.useState<boolean>(false);
 
   const [isDeleteConfirmationVisible, setIsDeleteConfirmationVisible] =
     React.useState<boolean>(false);
-
-  const [isHamburgerOpen, setIsHamburgerOpen] = React.useState<boolean>(false);
-
   const deleteAllNotes = (): void => {
     allItems.forEach(item => {
       if (item.id in storageData) {
@@ -152,17 +151,19 @@ export const Navbar: React.FC<NavbarProps> = ({
   );
 
   const notesSection = (
-    <div
-      className={styles.notesList}
-      ref={componentRef}
-      title={navbarTitleForPrint}
-    >
-      {isNotesSectionShown && (
-        <div>
-          <NotesList topicMapItems={allItems} navbarTitle={navbarTitle} />
-        </div>
-      )}
-    </div>
+    <>
+      <NotesSection
+        setDeleteConfirmationVisibility={setIsDeleteConfirmationVisible}
+        handlePrint={handlePrint}
+      />
+      <div
+        className={styles.notesList}
+        ref={componentRef}
+        title={navbarTitleForPrint}
+      >
+        <NotesList topicMapItems={allItems} navbarTitle={navbarTitle} />
+      </div>
+    </>
   );
 
   const progressBar = (
@@ -181,119 +182,97 @@ export const Navbar: React.FC<NavbarProps> = ({
     </>
   );
 
-  const hasNotes = totalNotesToComplete > 0;
+  const sectionsMenu = (
+    <>
+      <button
+        className={`${styles.sectionTitle} ${
+          currentSection === NavbarSections.TopicMap && styles.active
+        }`}
+        type="button"
+        onClick={() => setCurrentSection(NavbarSections.TopicMap)}
+      >
+        {topicMapSectionLabel}
+      </button>
+
+      {hasNotes && (
+        <button
+          className={`${styles.sectionTitle} ${
+            currentSection === NavbarSections.Notes && styles.active
+          }`}
+          type="button"
+          onClick={() => setCurrentSection(NavbarSections.Notes)}
+        >
+          {notesSectionLabel}
+        </button>
+      )}
+
+      <button
+        className={`${styles.sectionTitle} ${
+          currentSection === NavbarSections.Help && styles.active
+        }`}
+        type="button"
+        onClick={() => setCurrentSection(NavbarSections.Help)}
+      >
+        {helpSectionLabel}
+      </button>
+
+      {hasNotes && (
+        <div className={styles.progressBarWrapper}>{progressBar}</div>
+      )}
+
+      <div className={styles.fullscreenButtonNotMobile}>
+        <FullscreenButton fullscreenHandle={fullscreenHandle} />
+      </div>
+    </>
+  );
+
+  const navButtonsMobile = (
+    <div className={styles.navButtonsMobile}>
+      <button
+        type="button"
+        className={styles.hamburgerButton}
+        onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}
+      >
+        {isHamburgerOpen ? (
+          <HamburgerCloseIcon iconColor="#fff" />
+        ) : (
+          <HamburgerIcon iconColor="#fff" />
+        )}
+      </button>
+      <div className={styles.fullscreenButtonMobile}>
+        <FullscreenButton fullscreenHandle={fullscreenHandle} />
+      </div>
+    </div>
+  );
 
   return (
-    <div className={`${styles.contentWrapper} ${sizeClassName}`}>
-      <div className={styles.mainBody}>
-        <button className={styles.navbarTitle} type="button">
-          {navbarTitle}
-        </button>
-        <div className={styles.progressBarMobileWrapper}>{progressBar}</div>
-        <div className={styles.navButtonsMobileWrapper}>
-          <div className={styles.navButtonsMobile}>
-            <button
-              type="button"
-              className={styles.hamburgerButton}
-              onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}
-            >
-              {isHamburgerOpen ? (
-                <HamburgerCloseIcon iconColor="#fff" />
-              ) : (
-                <HamburgerIcon iconColor="#fff" />
-              )}
-            </button>
-            <div className={styles.fullscreenButtonMobile}>
-              <FullscreenButton fullscreenHandle={fullscreenHandle} />
-            </div>
+    <>
+      <div aria-label={navbarAriaLabel} className={sizeClassName}>
+        <div className={styles.navbarWrapper}>
+          <div className={styles.navbarTitle}>{navbarTitle}</div>
+          <div className={styles.sectionsMenuNotMobile}>{sectionsMenu}</div>
+          {navButtonsMobile}
+        </div>
+
+        <div className={styles.sectionsWrapper}>
+          <Grid
+            items={params.topicMap?.topicMapItems ?? []}
+            arrowItems={params.topicMap?.arrowItems ?? []}
+            backgroundImage={params.topicMap?.gridBackgroundImage}
+            setStorageData={setStorageData}
+            storageData={storageData}
+            grid={params.topicMap?.grid}
+          />
+          <div className={styles.sectionContentWrapper}>
+            {isHamburgerOpen && (
+              <div className={styles.sectionsMenuMobile}>{sectionsMenu}</div>
+            )}
+            {currentSection === NavbarSections.Notes && notesSection}
+            {currentSection === NavbarSections.Help && <HelpSection />}
           </div>
         </div>
-        <Tabs defaultValue={topicMapSectionLabel}>
-          <TabsList
-            className={`${styles.sectionsMenu} ${
-              !isHamburgerOpen && styles.hidden
-            }`}
-            aria-label={navbarAriaLabel}
-          >
-            <Trigger
-              className={styles.sectionTitle}
-              key={topicMapSectionLabel}
-              value={topicMapSectionLabel}
-              aria-label={topicMapSectionLabel}
-            >
-              {topicMapSectionLabel}
-            </Trigger>
-            {hasNotes && (
-              <Trigger
-                className={styles.sectionTitle}
-                key={notesSectionLabel}
-                value={notesSectionLabel}
-                aria-label={notesSectionLabel}
-              >
-                {notesSectionLabel}
-              </Trigger>
-            )}
-            <Trigger
-              className={styles.sectionTitle}
-              key={helpSectionLabel}
-              value={helpSectionLabel}
-              aria-label={helpSectionLabel}
-            >
-              {helpSectionLabel}
-            </Trigger>
-            {hasNotes && (
-              <Trigger
-                className={styles.progressBarTitle}
-                key={progressBarLabel}
-                value={`${progressBarValue}`}
-                aria-label={progressBarLabel}
-                disabled
-              >
-                <div className={styles.progressBarWrapper}>{progressBar}</div>
-              </Trigger>
-            )}
-            <div className={styles.fullscreenButton}>
-              <FullscreenButton fullscreenHandle={fullscreenHandle} />
-            </div>
-          </TabsList>
-          <Content
-            className={styles.sectionContent}
-            key={topicMapSectionLabel}
-            value={topicMapSectionLabel}
-          >
-            <Grid
-              items={params.topicMap?.topicMapItems ?? []}
-              arrowItems={params.topicMap?.arrowItems ?? []}
-              backgroundImage={params.topicMap?.gridBackgroundImage}
-              setStorageData={setStorageData}
-              storageData={storageData}
-              grid={params.topicMap?.grid}
-            />
-          </Content>
-          {hasNotes && (
-            <Content
-              className={styles.sectionContent}
-              key={notesSectionLabel}
-              value={notesSectionLabel}
-            >
-              <NotesSection
-                setVisibility={setIsNotesSectionIsShown}
-                setDeleteConfirmationVisibility={setIsDeleteConfirmationVisible}
-                handlePrint={handlePrint}
-              />
-            </Content>
-          )}
-          <Content
-            className={styles.sectionContent}
-            key={helpSectionLabel}
-            value={helpSectionLabel}
-          >
-            <HelpSection />
-          </Content>
-        </Tabs>
       </div>
-      {isNotesSectionShown && notesSection}
       {deleteConfirmation}
-    </div>
+    </>
   );
 };

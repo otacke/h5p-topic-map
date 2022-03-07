@@ -14,6 +14,5 @@ const Template: ComponentStory<typeof NotesSection> = args => (
 
 export const Notes = Template.bind({});
 Notes.args = {
-  setVisibility: () => null,
   setDeleteConfirmationVisibility: () => null,
 };
