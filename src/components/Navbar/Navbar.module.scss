@@ -1,68 +1,57 @@
-$navbar-height: 2.52rem;
 $grid-z-index: 1;
 
-.contentWrapper {
-  width: 100%;
-}
-
-.mainBody {
+.navbarWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem;
   background-color: var(--theme-color-2);
 }
 
 .navbarTitle {
-  font-size: 11px;
-  background-color: transparent;
   color: #ffffff;
-  border: none;
-  position: absolute;
-  padding: 0;
-  top: 0.5rem;
-  left: 1rem;
+  padding-left: 0.25rem;
 }
 
-.sectionTitle,
-.progressBarTitle,
-.progressPercentage {
+.sectionsWrapper {
+  position: relative;
+}
+
+.sectionContentWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: $grid-z-index + 1;
+}
+
+.sectionTitle {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  padding-right: 0.3rem;
-  padding-top: 0;
   color: #ffffff;
+  white-space: nowrap;
 
-  &[data-state="active"] {
+  &.active {
     text-decoration: underline;
   }
-
-  &:disabled {
-    cursor: default;
-  }
 }
 
-.sectionContent {
-  width: 100%;
-  padding-top: 2.5rem;
-}
-
-.sectionsMenu,
-.sectionsMenu.hidden {
-  position: absolute;
-  font-size: 16px;
+.sectionsMenuMobile {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  overflow: visible;
-  background-color: var(--theme-color-2);
-  padding: 0.5rem 0.5rem 0;
+  gap: 0.75rem;
+  padding: 0.25rem 0.25rem 0.5rem;
+  position: absolute;
+  top: 0;
   right: 0;
-  top: $navbar-height;
-  gap: 0.5rem;
-  z-index: $grid-z-index + 2;
+  z-index: $grid-z-index + 1;
+  background-color: var(--theme-color-2);
 }
 
-.sectionsMenu.hidden,
+.sectionsMenuNotMobile,
 .progressBarWrapper,
-.progressBarMobileWrapper {
+.fullscreenButtonNotMobile {
   display: none;
 }
 
@@ -71,32 +60,9 @@ $grid-z-index: 1;
 }
 
 .hamburgerButton {
-  padding: 0;
   background-color: transparent;
   border: none;
   cursor: pointer;
-  width: 18px;
-}
-
-.progressPercentage {
-  padding-right: 0;
-  color: var(--theme-color-4);
-  cursor: default;
-}
-
-.progressBar {
-  width: 5rem;
-  height: 1.1rem;
-}
-
-.fullscreenButton {
-  display: none;
-}
-
-.navButtonsMobileWrapper {
-  position: absolute;
-  right: 0.35rem;
-  top: 0.35rem;
 }
 
 .navButtonsMobile {
@@ -112,44 +78,29 @@ $grid-z-index: 1;
 .small,
 .medium,
 .large {
-  .notesList {
-    padding: 1rem 1rem;
-  }
-
-  .sectionContent {
-    width: 100%;
-    padding-top: 3.5rem;
-  }
-
-  .sectionTitle {
-    padding-right: 1rem;
-    font-size: inherit;
-  }
-
-  .sectionsMenu,
-  .sectionsMenu.hidden {
-    font-size: inherit;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    top: 0.8rem;
-    right: 0.4rem;
-    padding-top: 0;
-  }
-
-  .navbarTitle {
-    font-size: inherit;
-    top: 1rem;
-  }
-
-  .navButtonsMobileWrapper,
+  .hamburgerMenu,
+  .sectionsMenuMobile,
+  .navButtonsMobile,
   .progressBarMobileWrapper {
     display: none;
   }
 
+  .navbarWrapper {
+    padding: 0.5rem;
+  }
+
+  .fullscreenButtonNotMobile {
+    transform: scale(1);
+    display: block;
+  }
+
+  .sectionsMenuNotMobile {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
   .progressBarWrapper {
-    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -157,18 +108,12 @@ $grid-z-index: 1;
     gap: 0.3rem;
   }
 
+  .progressPercentage {
+    color: var(--theme-color-4);
+    cursor: default;
+  }
+
   .progressBar {
     width: 10rem;
-  }
-
-  .progressBarTitle {
-    padding-right: 0;
-  }
-
-  .fullscreenButton {
-    background-color: transparent;
-    border: none;
-    display: block;
-    padding-right: 0;
   }
 }
