@@ -157,6 +157,8 @@ export const Arrow: FC<ArrowProps> = ({ item, grid, onClick }) => {
           }
           onClick={onClick}
           markerMid="url(#noteButton)"
+          role="button"
+          tabindex="0"
         />
       </svg>
     </div>
