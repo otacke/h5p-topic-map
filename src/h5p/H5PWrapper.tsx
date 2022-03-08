@@ -15,6 +15,7 @@ import {
   normalizeTopicMapItemPaths,
   normalizeArrowItemPaths,
   normalizeDialogAudioPaths,
+  normalizeArrowDialogAudioPaths,
 } from "./H5P.util";
 
 export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
@@ -46,6 +47,11 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
     );
 
     paramsWithFallbacks = normalizeDialogAudioPaths(
+      paramsWithFallbacks,
+      contentId,
+    );
+
+    paramsWithFallbacks = normalizeArrowDialogAudioPaths(
       paramsWithFallbacks,
       contentId,
     );
