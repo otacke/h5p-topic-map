@@ -46,7 +46,6 @@ export const Arrow: FC<ArrowProps> = ({ item, grid, onClick }) => {
         } else {
           setStrokeWidth(gridElement.clientWidth / grid.numberOfColumns);
         }
-        console.info("strokeWidth", strokeWidth);
       }
 
       // const path = `M ${
@@ -70,13 +69,6 @@ export const Arrow: FC<ArrowProps> = ({ item, grid, onClick }) => {
   }, [arrowContainerRef, item, grid]);
 
   const buttonState = NoteButtonIconState.Default;
-  // eslint-disable-next-line no-console
-  console.log("ARROW", item);
-
-  // const pathDef = `M ${item.startPosition.x} ${item.startPosition.y} L ${item.endPosition.x} ${item.endPosition.y}`;
-  // const gridElement = document.querySelector(`.grid`) as HTMLElement;
-  // console.info("gridElement", gridElement);
-  // const pathDef = `M ${(item.startPosition.x / 100)*gridElement.clientWidth} ${(item.startPosition.y/100)*gridElement.clientHeight} L ${(item.endPosition.x/100)*gridElement.clientWidth} ${(item.endPosition.y/100)*gridElement.clientHeight}`;
 
   return (
     <div
