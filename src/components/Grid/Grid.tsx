@@ -38,6 +38,21 @@ export const Grid: React.FC<GridProps> = ({
   const [itemShowingDialog, setItemShowingDialog] =
     useState<CommonItemType | null>(null);
 
+  const isArrow = (
+    item: ArrowItemType | TopicMapItemType,
+  ): item is ArrowItemType => {
+    return (item as ArrowItemType).arrowType != null;
+  };
+
+  const getFirstArrowPosition = (
+    arrow: ArrowItemType,
+    xORy: "x" | "y",
+  ): number => {
+    return arrow.startPosition?.[xORy] < arrow.endPosition?.[xORy]
+      ? arrow.startPosition?.[xORy]
+      : arrow.endPosition?.[xORy];
+  };
+
   const sortItems = (a: TopicMapItemType, b: TopicMapItemType): number => {
     // Sort after index first
     if (a.index != null && b.index != null) {
@@ -57,52 +72,87 @@ export const Grid: React.FC<GridProps> = ({
     return a.xPercentagePosition < b.xPercentagePosition ? -1 : 1;
   };
 
-  const arrows = React.useMemo(() => {
+  const sortArrowItems = React.useCallback(
+    (a: ArrowItemType, b: ArrowItemType): number => {
+      const arrowAx = getFirstArrowPosition(a, "x");
+      const arrowBx = getFirstArrowPosition(b, "x");
+      const arrowAy = getFirstArrowPosition(a, "y");
+      const arrowBy = getFirstArrowPosition(b, "y");
+
+      if (arrowAx === arrowBx) {
+        return arrowAy < arrowBy ? 1 : -1;
+      }
+
+      return arrowAx < arrowBx ? 1 : -1;
+    },
+    [],
+  );
+
+  const addArrow = (
+    array: Array<ArrowItemType | TopicMapItemType>,
+    index: number,
+    newItem: ArrowItemType,
+  ): Array<ArrowItemType | TopicMapItemType> => {
+    return [...array.slice(0, index), newItem, ...array.slice(index)];
+  };
+
+  const allMapItems = React.useMemo(() => {
     const onClick = (item: ArrowItemType): void => {
       // eslint-disable-next-line no-console
       console.log("onClick", item);
       setItemShowingDialog(item);
     };
 
-    return arrowItems.map(item => (
-      <Arrow
-        key={item.id}
-        item={item}
-        grid={grid}
-        onClick={() => onClick(item)}
-      />
-    ));
-  }, [arrowItems, grid]);
+    const sortedItems = items.concat().sort((a, b) => sortItems(a, b));
+    let allItems: Array<TopicMapItemType | ArrowItemType> = sortedItems;
 
-  const children = React.useMemo(
-    () =>
-      items
-        .concat()
-        .sort((a, b) => sortItems(a, b))
-        .map(item => (
-          <div
+    arrowItems
+      .concat()
+      .sort((a, b) => sortArrowItems(a, b))
+      .forEach(arrowItem => {
+        allItems.forEach((mapItem, index) => {
+          if (mapItem.id === arrowItem.startElementId) {
+            allItems = addArrow(allItems, index + 1, arrowItem);
+          }
+        });
+      });
+
+    return allItems.map(item => {
+      if (isArrow(item)) {
+        return (
+          <Arrow
             key={item.id}
-            id={item.id}
-            className={styles.itemWrapper}
-            style={{
-              left: `${item.xPercentagePosition}%`,
-              top: `${item.yPercentagePosition}%`,
-              height: `${item.heightPercentage}%`,
-              width: `${item.widthPercentage}%`,
-            }}
-          >
-            <TopicMapItem
-              item={item}
-              onClick={() => setItemShowingDialog(item)}
-              storageData={storageData}
-            />
-          </div>
-        )),
+            item={item}
+            grid={grid}
+            onClick={() => onClick(item)}
+          />
+        );
+      }
+
+      return (
+        <div
+          key={item.id}
+          id={item.id}
+          className={styles.itemWrapper}
+          style={{
+            left: `${item.xPercentagePosition}%`,
+            top: `${item.yPercentagePosition}%`,
+            height: `${item.heightPercentage}%`,
+            width: `${item.widthPercentage}%`,
+          }}
+        >
+          <TopicMapItem
+            item={item}
+            onClick={() => setItemShowingDialog(item)}
+            storageData={storageData}
+          />
+        </div>
+      );
+    });
 
     // We want to update re-render the elements whenever `itemShowingDialog` changes (i.e. the dialog window is closed).
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [items, storageData, itemShowingDialog],
-  );
+  }, [arrowItems, grid, items, sortArrowItems, storageData, itemShowingDialog]);
 
   const bgImageStyle: string | undefined = backgroundImage?.path
     ? `url(${backgroundImage.path})`
@@ -115,8 +165,7 @@ export const Grid: React.FC<GridProps> = ({
         style={{ backgroundImage: bgImageStyle }}
       >
         <div className={styles.grid}>
-          {arrows}
-          {children}
+          {allMapItems}
           {itemShowingDialog?.dialog ? (
             <DialogWindow
               item={itemShowingDialog}
