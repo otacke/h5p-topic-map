@@ -18,6 +18,7 @@ export const DenFranskeRevolusjon = Template.bind({});
 DenFranskeRevolusjon.args = {
   params: {
     l10n: {
+      progressBarLabel: "Progress",
       closeDialog: "Close dialog",
       copyrightAudio: "Audio",
       copyrightPhoto: "Photo",
@@ -55,6 +56,10 @@ DenFranskeRevolusjon.args = {
       progressPercentageLabel: "Progress percentage",
     },
     topicMap: {
+      grid: {
+        numberOfColumns: 31,
+        numberOfRows: 19,
+      },
       topicMapItems: [
         {
           id: "23bc191f-3b67-424b-aeee-b1706bd2b66f",
@@ -455,6 +460,7 @@ DenFranskeRevolusjon.args = {
         },
       ],
       colorTheme: ColorTheme.Blue,
+      
     },
   },
   title: "Den franske revolusjon Den franske revolusjon Den franske revolusjon",
