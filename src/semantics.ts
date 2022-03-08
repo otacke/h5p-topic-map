@@ -118,6 +118,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               name: "startPosition",
               label: "Percentage position of start element",
               type: H5PFieldType.Group,
+              widget: "none",
               fields: [
                 {
                   name: "x",
@@ -137,6 +138,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               name: "endPosition",
               label: "Percentage position of start element",
               type: H5PFieldType.Group,
+              widget: "none",
               fields: [
                 {
                   name: "x",
@@ -156,6 +158,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               name: "startGridPosition",
               label: "Grid position of start element",
               type: H5PFieldType.Group,
+              widget: "none",
               fields: [
                 {
                   name: "x",
@@ -175,6 +178,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               name: "endGridPosition",
               label: "Grid position of start element",
               type: H5PFieldType.Group,
+              widget: "none",
               fields: [
                 {
                   name: "x",
