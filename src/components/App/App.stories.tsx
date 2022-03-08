@@ -460,7 +460,6 @@ DenFranskeRevolusjon.args = {
         },
       ],
       colorTheme: ColorTheme.Blue,
-      
     },
   },
   title: "Den franske revolusjon Den franske revolusjon Den franske revolusjon",
