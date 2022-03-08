@@ -38,6 +38,12 @@ export const Grid: React.FC<GridProps> = ({
   const [itemShowingDialog, setItemShowingDialog] =
     useState<CommonItemType | null>(null);
 
+  const isArrow = (
+    item: ArrowItemType | TopicMapItemType,
+  ): item is ArrowItemType => {
+    return (item as ArrowItemType).arrowType != null;
+  };
+
   const getFirstArrowPosition = (
     arrow: ArrowItemType,
     xORy: "x" | "y",
@@ -112,35 +118,32 @@ export const Grid: React.FC<GridProps> = ({
       });
 
     return allItems.map(item => {
-      const arrowItem = item as ArrowItemType;
-      const mapItem = item as TopicMapItemType;
-
-      if (arrowItem.arrowType) {
+      if (isArrow(item)) {
         return (
           <Arrow
-            key={arrowItem.id}
-            item={arrowItem}
+            key={item.id}
+            item={item}
             grid={grid}
-            onClick={() => onClick(arrowItem)}
+            onClick={() => onClick(item)}
           />
         );
       }
 
       return (
         <div
-          key={mapItem.id}
-          id={mapItem.id}
+          key={item.id}
+          id={item.id}
           className={styles.itemWrapper}
           style={{
-            left: `${mapItem.xPercentagePosition}%`,
-            top: `${mapItem.yPercentagePosition}%`,
-            height: `${mapItem.heightPercentage}%`,
-            width: `${mapItem.widthPercentage}%`,
+            left: `${item.xPercentagePosition}%`,
+            top: `${item.yPercentagePosition}%`,
+            height: `${item.heightPercentage}%`,
+            width: `${item.widthPercentage}%`,
           }}
         >
           <TopicMapItem
-            item={mapItem}
-            onClick={() => setItemShowingDialog(mapItem)}
+            item={item}
+            onClick={() => setItemShowingDialog(item)}
             storageData={storageData}
           />
         </div>
