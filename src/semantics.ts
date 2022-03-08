@@ -203,7 +203,6 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
             {
               name: "endElementId",
               label: "Id of end element",
-
               type: H5PFieldType.Text,
               widget: "none",
             },
