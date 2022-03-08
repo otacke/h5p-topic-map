@@ -90,7 +90,7 @@ export const Arrow: FC<ArrowProps> = ({ item, grid, onClick }) => {
             id="noteButton"
             markerWidth="10"
             markerHeight="10"
-            refX="0"
+            refX="0.5"
             refY="0.5"
             orient="0"
           >
