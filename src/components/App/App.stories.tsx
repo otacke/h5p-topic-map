@@ -421,7 +421,7 @@ DenFranskeRevolusjon.args = {
           endElementId: "f90f4f67-08ac-4aab-a93b-12d7862a996b",
           arrowType: ArrowType.Directional,
           startPosition: { x: 72.58064516129032, y: 44.73684210526316 },
-          endPosition: { x: 72.58064516129032, y: 34.21052631578947 },
+          endPosition: { x: 72.58064516129032, y: 36.41052631578947 },
         },
         {
           id: "1bb64312-521c-4ba3-a65e-a6a1d7a346c6",
@@ -431,7 +431,7 @@ DenFranskeRevolusjon.args = {
           endElementId: "55881391-71bf-4c04-90d9-664f8e6bc4b8",
           arrowType: ArrowType.Directional,
           startPosition: { x: 88.70967741935483, y: 44.73684210526316 },
-          endPosition: { x: 88.70967741935483, y: 34.21052631578947 },
+          endPosition: { x: 88.70967741935483, y: 36.41052631578947 },
         },
         {
           id: "cf7d7b58-392d-4f7c-8d2d-718621f3b4f3",
@@ -441,7 +441,7 @@ DenFranskeRevolusjon.args = {
           endElementId: "70badd4b-72e0-4f21-b07e-1b5d9ebfba78",
           arrowType: ArrowType.Directional,
           startPosition: { x: 72.58064516129032, y: 76.31578947368422 },
-          endPosition: { x: 72.58064516129032, y: 65.78947368421053 },
+          endPosition: { x: 72.58064516129032, y: 68.08947368421053 },
         },
         {
           id: "9f694d81-7f0a-48a1-884b-e9cee9999879",
@@ -454,6 +454,7 @@ DenFranskeRevolusjon.args = {
           endPosition: { x: 16.93548387096774, y: 34.21052631578947 },
         },
       ],
+      grid: { numberOfColumns: 31, numberOfRows: 19 },
       colorTheme: ColorTheme.Blue,
     },
   },
