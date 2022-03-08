@@ -24,7 +24,6 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
 
     this.wrapper = H5PWrapper.createWrapperElement();
 
-    console.info({ params, contentId, extras });
 
     let paramsWithFallbacks: Required<Params> = {
       ...getEmptyParams(),
