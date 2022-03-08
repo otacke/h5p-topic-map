@@ -55,6 +55,10 @@ DenFranskeRevolusjon.args = {
       progressPercentageLabel: "Progress percentage",
     },
     topicMap: {
+      grid: {
+        numberOfColumns: 31,
+        numberOfRows: 19,
+      },
       topicMapItems: [
         {
           id: "23bc191f-3b67-424b-aeee-b1706bd2b66f",
