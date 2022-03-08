@@ -153,6 +153,44 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               ],
             },
             {
+              name: "startGridPosition",
+              label: "Grid position of start element",
+              type: H5PFieldType.Group,
+              fields: [
+                {
+                  name: "x",
+                  label: "X-position as a grid coordinate",
+                  type: H5PFieldType.Number,
+                  widget: "none",
+                },
+                {
+                  name: "y",
+                  label: "Y-position as a grid coordinate",
+                  type: H5PFieldType.Number,
+                  widget: "none",
+                },
+              ],
+            },
+            {
+              name: "endGridPosition",
+              label: "Grid position of start element",
+              type: H5PFieldType.Group,
+              fields: [
+                {
+                  name: "x",
+                  label: "X-position as a grid coordinate",
+                  type: H5PFieldType.Number,
+                  widget: "none",
+                },
+                {
+                  name: "y",
+                  label: "Y-position as a grid coordinate",
+                  type: H5PFieldType.Number,
+                  widget: "none",
+                },
+              ],
+            },
+            {
               name: "startElementId",
               label: "Id of start element",
               type: H5PFieldType.Text,
