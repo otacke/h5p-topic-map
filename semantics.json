@@ -220,6 +220,44 @@
               ]
             },
             {
+              "name": "startGridPosition",
+              "label": "Grid position of start element",
+              "type": "group",
+              "fields": [
+                {
+                  "name": "x",
+                  "label": "X-position as a grid coordinate",
+                  "type": "number",
+                  "widget": "none"
+                },
+                {
+                  "name": "y",
+                  "label": "Y-position as a grid coordinate",
+                  "type": "number",
+                  "widget": "none"
+                }
+              ]
+            },
+            {
+              "name": "endGridPosition",
+              "label": "Grid position of start element",
+              "type": "group",
+              "fields": [
+                {
+                  "name": "x",
+                  "label": "X-position as a grid coordinate",
+                  "type": "number",
+                  "widget": "none"
+                },
+                {
+                  "name": "y",
+                  "label": "Y-position as a grid coordinate",
+                  "type": "number",
+                  "widget": "none"
+                }
+              ]
+            },
+            {
               "name": "startElementId",
               "label": "Id of start element",
               "type": "text",
