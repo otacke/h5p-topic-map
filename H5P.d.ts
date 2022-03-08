@@ -16,6 +16,13 @@ export interface H5PObject {
   ) => void;
 }
 
+export interface XApiExtraObject {
+  markedAsCompleted?: boolean;
+  note?: string;
+  itemId: string;
+  topicMapId: string;
+}
+
 declare class EventDispatcher {
   /**
    * Add new event listener.
@@ -78,6 +85,19 @@ declare class EventDispatcher {
       external?: boolean;
     },
   ) => void;
+
+  /**
+   * Dispatch event for Xapi
+   *
+   * @param {"completed"|"answered"} verb
+   *   "completed": when user have marked/unmarked a note as completed.
+   *   "answered": when user are typing in a note and it has been saved in user's local storage.
+   * @param {XApiExtraObject} extra
+   * Following information must be provided:
+   *   - When verb "completed" is used: topicMapId, itemId, completed, note.
+   *   - When verb "answered" is used: topicMapId, itemId, note.
+   */
+  triggerXAPI: (verb: "completed" | "answered", extra: XApiExtraObject) => void;
 }
 
 declare interface IH5PWrapper {
