@@ -1,4 +1,5 @@
 import { H5PObject } from "../../H5P";
+import { ArrowItemType } from "../types/ArrowItemType";
 import { Audio } from "../types/H5P/Audio";
 import { Params } from "../types/H5P/Params";
 import { TopicMapItemType } from "../types/TopicMapItemType";
@@ -39,6 +40,52 @@ export const makeBackgroundImagePathsAbsolute = (
       },
     };
   });
+};
+
+/**
+ * Replace relative paths to image(s) in Arrow Item(s) with absolute paths
+ *
+ * @param items An array with Arrow Items being used in the current H5P
+ * @param contentId Content id of the H5P being shown
+ */
+export const makeArrowImagePathsAbsolute = (
+  items: Array<ArrowItemType> | undefined,
+  contentId: string,
+): Array<ArrowItemType> | undefined => {
+  if (!items) return undefined;
+
+  return items.map(item => {
+    if (!item.topicImage) return item;
+
+    return {
+      ...item,
+      topicImage: {
+        ...item.topicImage,
+        path: normalizeAssetPath(item.topicImage.path, contentId),
+      },
+    };
+  });
+};
+
+export const normalizeArrowItemPaths = <Type extends Params>(
+  params: Type,
+  contentId: string,
+): Type => {
+  let arrowItems: ArrowItemType[] | undefined;
+  if (params.topicMap) {
+    arrowItems = makeArrowImagePathsAbsolute(
+      params.topicMap.arrowItems,
+      contentId,
+    );
+  }
+
+  return {
+    ...params,
+    topicMap: {
+      ...(params.topicMap ?? {}),
+      arrowItems,
+    },
+  };
 };
 
 export const normalizeTopicMapItemPaths = <Type extends Params>(

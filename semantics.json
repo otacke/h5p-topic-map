@@ -185,6 +185,7 @@
               "name": "startPosition",
               "label": "Percentage position of start element",
               "type": "group",
+              "widget": "none",
               "fields": [
                 {
                   "name": "x",
@@ -204,6 +205,7 @@
               "name": "endPosition",
               "label": "Percentage position of start element",
               "type": "group",
+              "widget": "none",
               "fields": [
                 {
                   "name": "x",
@@ -223,6 +225,7 @@
               "name": "startGridPosition",
               "label": "Grid position of start element",
               "type": "group",
+              "widget": "none",
               "fields": [
                 {
                   "name": "x",
@@ -242,6 +245,7 @@
               "name": "endGridPosition",
               "label": "Grid position of start element",
               "type": "group",
+              "widget": "none",
               "fields": [
                 {
                   "name": "x",
