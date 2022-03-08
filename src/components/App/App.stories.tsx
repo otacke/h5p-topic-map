@@ -18,7 +18,6 @@ export const DenFranskeRevolusjon = Template.bind({});
 DenFranskeRevolusjon.args = {
   params: {
     l10n: {
-      progressBarLabel: "Progress",
       closeDialog: "Close dialog",
       copyrightAudio: "Audio",
       copyrightPhoto: "Photo",
