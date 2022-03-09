@@ -121,6 +121,7 @@ export const Grid: React.FC<GridProps> = ({
             item={item}
             grid={grid}
             onClick={() => onClick(item)}
+            storageData={storageData}
           />
         );
       }

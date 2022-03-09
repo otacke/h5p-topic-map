@@ -8,12 +8,14 @@ import styles from "./Arrow.module.scss";
 import gridStyles from "../Grid/Grid.module.scss";
 import { GridDimensions } from "../Grid/Grid";
 import { Position } from "../../types/Position";
-import { EditIcon, NoteIcon } from "../Icons/Icons";
+import { DoneIcon, EditIcon, NoteIcon } from "../Icons/Icons";
+import { UserData } from "../../types/UserData";
 
 export type ArrowProps = {
   item: ArrowItemType;
   onClick: MouseEventHandler;
   grid?: GridDimensions;
+  storageData: UserData;
 };
 
 const calculateIsHorizontal = (
@@ -26,11 +28,46 @@ const calculateIsHorizontal = (
   );
 };
 
-export const Arrow: FC<ArrowProps> = ({ item, grid, onClick }) => {
+const buttonForState = (buttonState: NoteButtonIconState): string => {
+  switch (buttonState) {
+    case NoteButtonIconState.Default:
+      return "default";
+    case NoteButtonIconState.Notes:
+      return "notes";
+    case NoteButtonIconState.Text:
+      return "text";
+    case NoteButtonIconState.Done:
+      return "done";
+  }
+  return "default";
+};
+
+export const Arrow: FC<ArrowProps> = ({ item, grid, onClick, storageData }) => {
   const [pathDef, setPathDef] = React.useState<string>("");
   const [strokeWidth, setStrokeWidth] = React.useState<number>(4);
+  const [buttonState, setButtonState] = React.useState<NoteButtonIconState>(
+    NoteButtonIconState.Default,
+  );
 
   const arrowContainerRef = React.createRef<HTMLDivElement>();
+
+  React.useEffect(() => {
+    switch (true) {
+      case storageData[item.id]?.noteDone:
+        setButtonState(NoteButtonIconState.Done);
+        break;
+      case storageData[item.id]?.note &&
+        storageData[item.id]?.note?.trim().length !== 0:
+        setButtonState(NoteButtonIconState.Text);
+        break;
+      case item.dialog?.hasNote:
+        setButtonState(NoteButtonIconState.Notes);
+        break;
+      default:
+        setButtonState(NoteButtonIconState.Default);
+    }
+  }, [item, buttonState, setButtonState, storageData]);
+
   React.useEffect(() => {
     const isHorizontal = calculateIsHorizontal(
       item.startPosition,
@@ -68,8 +105,6 @@ export const Arrow: FC<ArrowProps> = ({ item, grid, onClick }) => {
     }
   }, [arrowContainerRef, item, grid]);
 
-  const buttonState = NoteButtonIconState.Default;
-
   return (
     <div
       ref={arrowContainerRef}
@@ -79,7 +114,35 @@ export const Arrow: FC<ArrowProps> = ({ item, grid, onClick }) => {
       <svg className={styles.arrowSvg}>
         <defs>
           <marker
-            id="noteButton"
+            id="marker_text"
+            markerWidth="1.25"
+            markerHeight="1.25"
+            refX="6"
+            refY="6"
+            orient="0"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M0 0.75H12V2.25H0V0.75ZM0 3.75H12V5.25H0V3.75ZM0 6.75H12V8.25H0V6.75ZM0 9.75H7.5V11.25H0V9.75Z"
+              fill="white"
+            />
+          </marker>
+          <marker
+            id="marker_done"
+            markerWidth="1.25"
+            markerHeight="1.25"
+            refX="6"
+            refY="6"
+            orient="0"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M5.9999 11.2L1.7999 6.99998L0.399902 8.39998L5.9999 14L17.9999 1.99998L16.5999 0.599976L5.9999 11.2Z"
+              fill="white"
+            />
+          </marker>
+          <marker
+            id="marker_notes"
             markerWidth="10"
             markerHeight="10"
             refX="0.5"
@@ -148,7 +211,11 @@ export const Arrow: FC<ArrowProps> = ({ item, grid, onClick }) => {
             item.arrowType === ArrowType.BiDirectional ? "url(#arrowtail)" : ""
           }
           onClick={onClick}
-          markerMid="url(#noteButton)"
+          markerMid={
+            buttonState !== NoteButtonIconState.Default
+              ? `url(#marker_${buttonForState(buttonState)})`
+              : ""
+          }
           role="button"
           tabIndex={0}
         />
