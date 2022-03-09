@@ -5,7 +5,7 @@ import { DialogResources } from "./DialogResources";
 describe("", () => {
   it("Should have rendered.", () => {
     const tab = render(
-      <DialogResources relevantLinks={[]} showAddLinks={false} id="" />,
+      <DialogResources relevantLinks={[]} showAddLinks id="" />,
     ).container;
 
     expect(tab.querySelector("div")).toBeTruthy();
