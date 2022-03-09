@@ -356,6 +356,10 @@ DenFranskeRevolusjon.args = {
           arrowType: ArrowType.Directional,
           startPosition: { x: 11.29032258064516, y: 7.894736842105263 },
           endPosition: { x: 36.29032258064516, y: 7.894736842105263 },
+          dialog: {
+            hasNote: true,
+            maxWordCount: 300,
+          },
         },
         {
           id: "cf1e08d7-5e29-46a9-a177-d96e5c23ee24",
@@ -446,6 +450,10 @@ DenFranskeRevolusjon.args = {
           arrowType: ArrowType.Directional,
           startPosition: { x: 72.58064516129032, y: 76.31578947368422 },
           endPosition: { x: 72.58064516129032, y: 65.78947368421053 },
+          dialog: {
+            hasNote: true,
+            maxWordCount: 300,
+          },
         },
         {
           id: "9f694d81-7f0a-48a1-884b-e9cee9999879",
