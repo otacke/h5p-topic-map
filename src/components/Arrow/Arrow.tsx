@@ -218,7 +218,7 @@ export const Arrow: FC<ArrowProps> = ({
           markerStart={
             item.arrowType === ArrowType.BiDirectional ? "url(#arrowtail)" : ""
           }
-          onClick={onClick}
+          onDoubleClick={onClick}
           markerMid={
             buttonState !== NoteButtonIconState.Default
               ? `url(#marker_${buttonForState(buttonState)})`
