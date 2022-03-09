@@ -194,7 +194,7 @@ export const makeAudioPathsAbsolute = (
 };
 
 /**
- * Replace relative paths to image(s) in Topic Map Item(s) with absolute paths
+ * Replace relative paths to audio(s) in Topic Map Item(s) with absolute paths
  *
  * @param items An array with Topic Map Items being used in the current H5P
  * @param contentId Content id of the H5P being shown
@@ -243,6 +243,60 @@ export const normalizeDialogAudioPaths = <Type extends Params>(
     topicMap: {
       ...(params.topicMap ?? {}),
       topicMapItems,
+    },
+  };
+};
+
+/**
+ * Replace relative paths to audio(s) in Arrow Item(s) with absolute paths
+ *
+ * @param items An array with Arrow Items being used in the current H5P
+ * @param contentId Content id of the H5P being shown
+ */
+export const makeArrowDialogAudioPathsAbsolute = (
+  items: Array<ArrowItemType> | undefined,
+  contentId: string,
+): Array<ArrowItemType> | undefined => {
+  if (!items) return undefined;
+
+  return items.map(item => {
+    if (!item.dialog?.audio?.audioFile) return item;
+
+    const audioFile = makeAudioPathsAbsolute(
+      item.dialog?.audio.audioFile,
+      contentId,
+    );
+
+    return {
+      ...item,
+      dialog: {
+        ...item.dialog,
+        audio: {
+          ...item.dialog.audio,
+          audioFile,
+        },
+      },
+    };
+  });
+};
+
+export const normalizeArrowDialogAudioPaths = <Type extends Params>(
+  params: Type,
+  contentId: string,
+): Type => {
+  let arrowItems: ArrowItemType[] | undefined;
+  if (params.topicMap) {
+    arrowItems = makeArrowDialogAudioPathsAbsolute(
+      params.topicMap.arrowItems,
+      contentId,
+    );
+  }
+
+  return {
+    ...params,
+    topicMap: {
+      ...(params.topicMap ?? {}),
+      arrowItems,
     },
   };
 };
