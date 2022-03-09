@@ -3,14 +3,10 @@ import { FC, MouseEventHandler } from "react";
 import { NoteButtonIconState } from "../../types/NoteButtonIconState";
 import { ArrowItemType } from "../../types/ArrowItemType";
 import { ArrowType } from "../../types/ArrowType";
-import { NoteButton } from "../NoteButton/NoteButton";
 import styles from "./Arrow.module.scss";
-import gridStyles from "../Grid/Grid.module.scss";
 import { GridDimensions } from "../Grid/Grid";
 import { Position } from "../../types/Position";
-import { DoneIcon, EditIcon, NoteIcon } from "../Icons/Icons";
 import { UserData } from "../../types/UserData";
-import { CommonItemType } from "../../types/CommonItemType";
 
 export type ArrowProps = {
   item: ArrowItemType;
@@ -112,14 +108,6 @@ export const Arrow: FC<ArrowProps> = ({
       setPathDef(path);
     }
   }, [arrowContainerRef, item, grid]);
-
-  const buttonState = NoteButtonIconState.Default;
-  // eslint-disable-next-line no-console
-
-  // const pathDef = `M ${item.startPosition.x} ${item.startPosition.y} L ${item.endPosition.x} ${item.endPosition.y}`;
-  // const gridElement = document.querySelector(`.grid`) as HTMLElement;
-  // console.info("gridElement", gridElement);
-  // const pathDef = `M ${(item.startPosition.x / 100)*gridElement.clientWidth} ${(item.startPosition.y/100)*gridElement.clientHeight} L ${(item.endPosition.x/100)*gridElement.clientWidth} ${(item.endPosition.y/100)*gridElement.clientHeight}`;
 
   return (
     <div

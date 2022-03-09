@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable no-param-reassign */
 import * as React from "react";
 import { XApiExtraObject } from "../../../../H5P";
@@ -49,6 +50,23 @@ export const DialogNote: React.FC<NoteProps> = ({
     storageData[id].noteDone = !noteDone;
     setMarkedAsDone(!noteDone);
     setStorageData(storageData);
+
+    const extra: XApiExtraObject = {
+      itemId: id,
+      contentId,
+      note,
+      markedAsCompleted: storageData[id].noteDone,
+    };
+
+    const xapiEvent =
+      // @ts-ignore typeof This was not valid in context
+      h5pWrapper.EventDispatcher.prototype.createXAPIEventTemplate(
+        "completed",
+        extra,
+      );
+    xapiEvent.setActor();
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    sendXAPIEvent(xapiEvent);
   };
 
   const setSavingText = (): void => {
@@ -71,6 +89,7 @@ export const DialogNote: React.FC<NoteProps> = ({
         const extra: XApiExtraObject = {
           itemId: id,
           contentId,
+          note,
         };
 
         const xapiEvent =
@@ -118,7 +137,7 @@ export const DialogNote: React.FC<NoteProps> = ({
     setStorageData(storageData);
   };
 
-  const sendXAPIEvent = (event: any): void => {
+  const sendXAPIEvent = (event: unknown): void => {
     // @ts-ignore typeof This was not valid in context
     h5pWrapper.trigger(event);
   };

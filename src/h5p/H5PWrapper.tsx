@@ -6,7 +6,6 @@ import { ContentIdContext } from "../contexts/ContentIdContext";
 import { H5PContext } from "../contexts/H5PContext";
 import { LocalizationContext } from "../contexts/LocalizationContext";
 import { H5PExtras } from "../types/H5P/H5PExtras";
-import { H5PFieldType } from "../types/H5P/H5PFieldType";
 import { Params } from "../types/H5P/Params";
 import { Translations } from "../types/Translations";
 import { getEmptyParams } from "../utils/semantics.utils";
