@@ -37,6 +37,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
             dialog: {
               text: "Dialog text",
               hasNote: true,
+              showAddLinks: false,
             },
           },
           {
@@ -54,6 +55,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
             dialog: {
               text: "Dialog text",
               hasNote: true,
+              showAddLinks: false,
             },
           },
           {
@@ -71,6 +73,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
             dialog: {
               text: "Dialog text",
               hasNote: true,
+              showAddLinks: false,
             },
           },
           {
@@ -88,6 +91,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
             dialog: {
               text: "Dialog text",
               hasNote: true,
+              showAddLinks: false,
             },
           },
           {
@@ -105,6 +109,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
             dialog: {
               text: "Dialog text",
               hasNote: true,
+              showAddLinks: false,
             },
           },
           {
@@ -122,6 +127,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
             dialog: {
               text: "Dialog text",
               hasNote: true,
+              showAddLinks: false,
             },
           },
           {
@@ -139,6 +145,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
             dialog: {
               text: "Dialog text",
               hasNote: true,
+              showAddLinks: false,
             },
           },
           {
@@ -156,6 +163,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
             dialog: {
               text: "Dialog text",
               hasNote: true,
+              showAddLinks: false,
             },
           },
           {
@@ -173,6 +181,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
             dialog: {
               text: "Dialog text",
               hasNote: true,
+              showAddLinks: false,
             },
           },
           {
@@ -190,6 +199,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
             dialog: {
               text: "Dialog text",
               hasNote: true,
+              showAddLinks: false,
             },
           },
           {
@@ -207,6 +217,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
             dialog: {
               text: "Dialog text",
               hasNote: true,
+              showAddLinks: false,
             },
           },
           {
@@ -224,6 +235,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
             dialog: {
               text: "Dialog text",
               hasNote: true,
+              showAddLinks: false,
             },
           },
           {
@@ -241,6 +253,7 @@ export const NavBar: ComponentStory<typeof Navbar> = () => {
             dialog: {
               text: "Dialog text",
               hasNote: false,
+              showAddLinks: false,
             },
           },
         ],

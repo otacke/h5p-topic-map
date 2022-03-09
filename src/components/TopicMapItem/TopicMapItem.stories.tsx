@@ -25,6 +25,7 @@ const item: TopicMapItemType = {
   dialog: {
     text: "Dialog text",
     hasNote: true,
+    showAddLinks: false,
   },
 };
 

@@ -314,7 +314,7 @@ DenFranskeRevolusjon.args = {
           dialog: {
             hasNote: true,
             audio: {},
-            showAddLinks: false,
+            showAddLinks: true,
           },
           topicImage: {
             path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/07_09_szbd4871.jpg",
