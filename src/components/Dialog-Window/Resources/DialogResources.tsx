@@ -8,12 +8,14 @@ import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { useL10n } from "../../../hooks/useLocalization";
 
 export type DialogResourceProps = {
-  relevantLinks: string[];
+  relevantLinks: string[] | undefined;
+  showAddLinks: boolean;
   id: string;
 };
 
 export const DialogResources: React.FC<DialogResourceProps> = ({
   relevantLinks,
+  showAddLinks,
   id,
 }) => {
   const [userData, setUserData] = useLocalStorage(id);
@@ -47,17 +49,20 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
     return `https://${linkPath}`;
   };
 
-  const relevantItems = relevantLinks.map((item: string) => (
-    <li key={item} className={styles.li}>
-      <a
-        href={normalizeLinkPath(item)}
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        {item}
-      </a>
-    </li>
-  ));
+  const relevantItems =
+    relevantLinks != null
+      ? relevantLinks.map((item: string) => (
+          <li key={item} className={styles.li}>
+            <a
+              href={normalizeLinkPath(item)}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              {item}
+            </a>
+          </li>
+        ))
+      : null;
 
   // extract the generation of custom links list to separate function
   const populateCustomLinks = (): void => {
@@ -127,26 +132,34 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
         event.preventDefault();
       }}
     >
-      <p> {relevantLinkLabel}: </p>
-      <ul>{relevantItems}</ul>
-      <p> {customLinkLabel}: </p>
-      <ul>{customLinks}</ul>
-      <div className={styles.inputContainer}>
-        <input
-          className={styles.input}
-          type="text"
-          placeholder="www.example.com"
-          onChange={e => setLink(e.target.value)}
-          ref={inputFieldRef}
-        />
-        <button
-          className={styles.inputButton}
-          type="button"
-          onClick={() => updateCustomList()}
-        >
-          {addLinkLabel}
-        </button>
-      </div>
+      {relevantItems ? (
+        <>
+          <p>{relevantLinkLabel}:</p>
+          <ul>{relevantItems}</ul>
+        </>
+      ) : null}
+      {showAddLinks ? (
+        <>
+          <p>{customLinkLabel}:</p>
+          <ul>{customLinks}</ul>
+          <div className={styles.inputContainer}>
+            <input
+              className={styles.input}
+              type="text"
+              placeholder="www.example.com"
+              onChange={e => setLink(e.target.value)}
+              ref={inputFieldRef}
+            />
+            <button
+              className={styles.inputButton}
+              type="button"
+              onClick={() => updateCustomList()}
+            >
+              {addLinkLabel}
+            </button>
+          </div>
+        </>
+      ) : null}
     </form>
   );
 };

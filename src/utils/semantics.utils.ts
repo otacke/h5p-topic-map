@@ -75,6 +75,12 @@ export const itemDialog: Array<H5PField> = [
           type: H5PFieldType.Text,
         },
       },
+      {
+        label: "Show add links option",
+        name: "showAddLinks",
+        type: H5PFieldType.Boolean,
+        default: false,
+      },
     ],
   },
 ];

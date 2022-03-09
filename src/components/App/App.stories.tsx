@@ -71,6 +71,7 @@ DenFranskeRevolusjon.args = {
           dialog: {
             hasNote: true,
             text: "",
+            showAddLinks: false,
           },
           topicImage: {
             path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/07_02_bunkerhill.jpg",
@@ -99,6 +100,7 @@ DenFranskeRevolusjon.args = {
               subtext: "",
             },
             text: "",
+            showAddLinks: false,
           },
           topicImage: {
             path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/07_03_3g05913v_copy.jpg",
@@ -126,6 +128,7 @@ DenFranskeRevolusjon.args = {
           dialog: {
             hasNote: true,
             audio: {},
+            showAddLinks: false,
           },
           topicImage: {
             path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/07_05_szbadbb5.jpg",
@@ -148,6 +151,7 @@ DenFranskeRevolusjon.args = {
           label: "Opplysningstiden",
           description: "",
           dialog: {
+            showAddLinks: false,
             hasNote: false,
             text: `Opplysningstiden var en epoke i Europas intellektuelle historie der vitenskap, fornuft, frihet, toleranse og framskritt ble innsatt som nye idealer og autoriteter. Opplysningstenkerne argumenterte blant annet for ytringsfrihet, trykkefrihet, religionsfrihet, likhet for loven og demokrati. Det var også under opplysningstiden at begrepet om menneskerettigheter oppstod.`,
           },
@@ -162,6 +166,7 @@ DenFranskeRevolusjon.args = {
           label: "Stenderforsamlingen",
           description: "",
           dialog: {
+            showAddLinks: false,
             hasNote: true,
             audio: {},
           },
@@ -211,6 +216,7 @@ DenFranskeRevolusjon.args = {
             `,
             },
             links: ["wwww.ndla.no"],
+            showAddLinks: true,
             video: [
               {
                 path: "https://www.youtube.com/watch?v=zHvBPwNUBS8",
@@ -243,6 +249,7 @@ DenFranskeRevolusjon.args = {
           dialog: {
             hasNote: true,
             audio: {},
+            showAddLinks: false,
           },
         },
         {
@@ -256,6 +263,7 @@ DenFranskeRevolusjon.args = {
           dialog: {
             hasNote: true,
             audio: {},
+            showAddLinks: false,
           },
           topicImage: {
             path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/07_11_Battle_of_Borodino.jpg",
@@ -281,6 +289,7 @@ DenFranskeRevolusjon.args = {
             hasNote: true,
             maxWordCount: 260,
             audio: {},
+            showAddLinks: false,
           },
           topicImage: {
             path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/07_08_Napoleon_kopi.jpg",
@@ -305,6 +314,7 @@ DenFranskeRevolusjon.args = {
           dialog: {
             hasNote: true,
             audio: {},
+            showAddLinks: false,
           },
           topicImage: {
             path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/07_09_szbd4871.jpg",
@@ -332,6 +342,7 @@ DenFranskeRevolusjon.args = {
               subtext: "",
             },
             text: "",
+            showAddLinks: false,
           },
           topicImage: {
             path: "https://statisk.ndla.no/historie/tankekart/den_franske_revolusjon/img/07_10_skisse_szbadf10.jpg",
@@ -359,6 +370,7 @@ DenFranskeRevolusjon.args = {
           dialog: {
             hasNote: true,
             maxWordCount: 300,
+            showAddLinks: true,
           },
         },
         {
@@ -453,6 +465,7 @@ DenFranskeRevolusjon.args = {
           dialog: {
             hasNote: true,
             maxWordCount: 300,
+            showAddLinks: false,
           },
         },
         {

@@ -29,15 +29,13 @@ type Translation = {
 const defaultTabValue = (item: CommonItemType): string => {
   const { description, topicImage, dialog } = item;
   switch (true) {
-    case dialog?.text !== undefined ||
-      topicImage !== undefined ||
-      description !== undefined:
+    case dialog?.text !== "" || topicImage !== undefined || description !== "":
       return "Text";
-    case dialog?.links !== undefined:
+    case dialog?.links !== undefined || dialog?.showAddLinks:
       return "Resources";
     case dialog?.video !== undefined:
       return "Video";
-    case dialog?.audio !== undefined:
+    case dialog?.audio?.audioFile !== undefined:
       return "Audio";
     default:
       return "";
@@ -52,6 +50,8 @@ const tabLabelItems = (
   const items = [];
 
   const showTextTab = dialog?.text || topicImage || description;
+  const showLinksTab = dialog?.links != null || dialog?.showAddLinks;
+
   showTextTab
     ? items.push(
         <Trigger key="Text" value="Text" className={styles.trigger}>
@@ -59,7 +59,7 @@ const tabLabelItems = (
         </Trigger>,
       )
     : null;
-  dialog?.links
+  showLinksTab
     ? items.push(
         <Trigger key="links" className={styles.trigger} value="Resources">
           {translation.links}
@@ -88,6 +88,8 @@ const tabItems = (item: CommonItemType): JSX.Element[] => {
   const items: JSX.Element[] = [];
 
   const showTextTab = dialog?.text || topicImage || description;
+  const showLinksTab = dialog?.links != null || dialog?.showAddLinks;
+
   showTextTab
     ? items.push(
         <Content key="text" value="Text">
@@ -100,10 +102,14 @@ const tabItems = (item: CommonItemType): JSX.Element[] => {
         </Content>,
       )
     : null;
-  dialog?.links
+  showLinksTab
     ? items.push(
         <Content key="links" value="Resources">
-          <DialogResources relevantLinks={dialog.links} id={id} />
+          <DialogResources
+            relevantLinks={dialog.links}
+            showAddLinks={dialog.showAddLinks}
+            id={id}
+          />
         </Content>,
       )
     : null;

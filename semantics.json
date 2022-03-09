@@ -152,6 +152,12 @@
                     "name": "link",
                     "type": "text"
                   }
+                },
+                {
+                  "label": "Show add links option",
+                  "name": "showAddLinks",
+                  "type": "boolean",
+                  "default": false
                 }
               ]
             },
@@ -406,6 +412,12 @@
                     "name": "link",
                     "type": "text"
                   }
+                },
+                {
+                  "label": "Show add links option",
+                  "name": "showAddLinks",
+                  "type": "boolean",
+                  "default": false
                 }
               ]
             },

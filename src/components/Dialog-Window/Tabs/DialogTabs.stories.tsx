@@ -36,6 +36,7 @@ const item = {
     hasNote: true,
     text: "<p>Text text for testing Text text test. This is a body<p>",
     links: ["www.youtube.com", "www.ndla.com"],
+    showAddLinks: true,
     video: [
       {
         path: "https://player.vimeo.com/video/224857514?title=0&portrait=0&byline=0&autoplay=1&loop=1&transparent=1",
@@ -82,6 +83,7 @@ const itemWithOnlyImage = {
   dialog: {
     hasNote: true,
     links: ["www.youtube.com", "www.ndla.com"],
+    showAddLinks: true,
     video: [
       {
         path: "https://player.vimeo.com/video/224857514?title=0&portrait=0&byline=0&autoplay=1&loop=1&transparent=1",
@@ -125,6 +127,7 @@ const itemWithoutImage = {
   dialog: {
     hasNote: true,
     links: ["www.youtube.com", "www.ndla.com"],
+    showAddLinks: false,
     text: "<p>Body text from storybook.<p>",
     video: [
       {
