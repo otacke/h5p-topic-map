@@ -2,6 +2,7 @@
 import * as React from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import type { FullScreenHandle } from "react-full-screen";
+import useResizeObserver from "@react-hook/resize-observer";
 import { useReactToPrint } from "react-to-print";
 import { useAppWidth } from "../../hooks/useAppWidth";
 import { useL10n } from "../../hooks/useLocalization";
@@ -76,6 +77,22 @@ export const Navbar: React.FC<NavbarProps> = ({
     () => sizeClassname[appWidth],
     [appWidth],
   );
+
+  const [maxHeight, setMaxHeight] = React.useState(0);
+  const gridRef = React.useRef<HTMLDivElement>(null);
+
+  useResizeObserver(gridRef, ({ contentRect }) => {
+    if (contentRect.height > 0) {
+      setMaxHeight(contentRect.height);
+    }
+  });
+
+  React.useLayoutEffect(() => {
+    const initialHeight = gridRef.current?.getBoundingClientRect().height ?? 0;
+    if (initialHeight > 0) {
+      setMaxHeight(initialHeight);
+    }
+  }, []);
 
   React.useEffect(() => {
     setProgressBarValue(
@@ -255,18 +272,23 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         <div className={styles.sectionsWrapper}>
-          <Grid
-            items={params.topicMap?.topicMapItems ?? []}
-            arrowItems={params.topicMap?.arrowItems ?? []}
-            backgroundImage={params.topicMap?.gridBackgroundImage}
-            setStorageData={setStorageData}
-            storageData={storageData}
-            grid={params.topicMap?.grid}
-          />
-          <div className={styles.sectionContentWrapper}>
-            {isHamburgerOpen && (
-              <div className={styles.sectionsMenuMobile}>{sectionsMenu}</div>
-            )}
+          <div ref={gridRef}>
+            <Grid
+              items={params.topicMap?.topicMapItems ?? []}
+              arrowItems={params.topicMap?.arrowItems ?? []}
+              backgroundImage={params.topicMap?.gridBackgroundImage}
+              setStorageData={setStorageData}
+              storageData={storageData}
+              grid={params.topicMap?.grid}
+            />
+          </div>
+          {isHamburgerOpen && (
+            <div className={styles.sectionsMenuMobile}>{sectionsMenu}</div>
+          )}
+          <div
+            className={styles.sectionContentWrapper}
+            style={{ maxHeight, minHeight: maxHeight }}
+          >
             {currentSection === NavbarSections.Notes && notesSection}
             {currentSection === NavbarSections.Help && <HelpSection />}
           </div>
