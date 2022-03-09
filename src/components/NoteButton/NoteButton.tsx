@@ -7,6 +7,7 @@ import { NoteButtonIconState } from "../../types/NoteButtonIconState";
 const icons: Record<NoteButtonIconState, React.FC<IconProps>> = {
   [NoteButtonIconState.Done]: DoneIcon,
   [NoteButtonIconState.Notes]: NoteIcon,
+  [NoteButtonIconState.Text]: NoteIcon,
   [NoteButtonIconState.Default]: EditIcon,
 };
 
