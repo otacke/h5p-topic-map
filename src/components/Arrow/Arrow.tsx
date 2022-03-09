@@ -44,7 +44,13 @@ const buttonForState = (buttonState: NoteButtonIconState): string => {
   return "default";
 };
 
-export const Arrow: FC<ArrowProps> = ({ item, grid, onClick, storageData, dialogeIsOpen }) => {
+export const Arrow: FC<ArrowProps> = ({
+  item,
+  grid,
+  onClick,
+  storageData,
+  dialogeIsOpen,
+}) => {
   const [pathDef, setPathDef] = React.useState<string>("");
   const [strokeWidth, setStrokeWidth] = React.useState<number>(4);
   const [buttonState, setButtonState] = React.useState<NoteButtonIconState>(
