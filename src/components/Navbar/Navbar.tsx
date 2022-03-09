@@ -80,19 +80,34 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const [maxHeight, setMaxHeight] = React.useState(0);
   const gridRef = React.useRef<HTMLDivElement>(null);
+  const navbarRef = React.useRef<HTMLDivElement>(null);
 
   useResizeObserver(gridRef, ({ contentRect }) => {
     if (contentRect.height > 0) {
-      setMaxHeight(contentRect.height);
+      if (fullscreenHandle.active && contentRect.height <= window.innerHeight) {
+        setMaxHeight(
+          window.innerHeight -
+            (navbarRef.current?.getBoundingClientRect().height ?? 0),
+        );
+      } else {
+        setMaxHeight(contentRect.height);
+      }
     }
   });
 
   React.useLayoutEffect(() => {
     const initialHeight = gridRef.current?.getBoundingClientRect().height ?? 0;
     if (initialHeight > 0) {
-      setMaxHeight(initialHeight);
+      if (fullscreenHandle.active && initialHeight <= window.innerHeight) {
+        setMaxHeight(
+          window.innerHeight -
+            (navbarRef.current?.getBoundingClientRect().height ?? 0),
+        );
+      } else {
+        setMaxHeight(initialHeight);
+      }
     }
-  }, []);
+  }, [fullscreenHandle.active]);
 
   React.useEffect(() => {
     setProgressBarValue(
@@ -265,10 +280,12 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <>
       <div aria-label={navbarAriaLabel} className={sizeClassName}>
-        <div className={styles.navbarWrapper}>
-          <div className={styles.navbarTitle}>{navbarTitle}</div>
-          <div className={styles.sectionsMenuNotMobile}>{sectionsMenu}</div>
-          {navButtonsMobile}
+        <div ref={navbarRef}>
+          <div className={styles.navbarWrapper}>
+            <div className={styles.navbarTitle}>{navbarTitle}</div>
+            <div className={styles.sectionsMenuNotMobile}>{sectionsMenu}</div>
+            {navButtonsMobile}
+          </div>
         </div>
 
         <div className={styles.sectionsWrapper}>
