@@ -1,5 +1,8 @@
 /* eslint-disable no-param-reassign */
 import * as React from "react";
+import { XApiExtraObject } from "../../../../H5P";
+import { ContentIdContext } from "../../../contexts/ContentIdContext";
+import { H5PContext } from "../../../contexts/H5PContext";
 import { useL10n } from "../../../hooks/useLocalization";
 import { UserData } from "../../../types/UserData";
 import styles from "./DialogNote.module.scss";
@@ -36,6 +39,9 @@ export const DialogNote: React.FC<NoteProps> = ({
   const wordTextLabel = useL10n("dialogWordsLabel");
   const wordNoteLabel = useL10n("dialogNoteLabel");
 
+  const h5pWrapper = React.useContext(H5PContext);
+  const contentId = React.useContext(ContentIdContext);
+
   const handleNoteDone = (): void => {
     if (storageData[id] === undefined) {
       storageData[id] = {};
@@ -62,6 +68,20 @@ export const DialogNote: React.FC<NoteProps> = ({
             maxWordCount ? `${wordLimitExceededTextLabel} - ` : ""
           } ${savedTextLabel} ${localTime}`,
         );
+        const extra: XApiExtraObject = {
+          itemId: id,
+          contentId,
+        };
+
+        const xapiEvent =
+          // @ts-ignore typeof This was not valid in context
+          h5pWrapper.EventDispatcher.prototype.createXAPIEventTemplate(
+            "answered",
+            extra,
+          );
+        xapiEvent.setActor();
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        sendXAPIEvent(xapiEvent);
       }, 650),
     );
   };
@@ -96,6 +116,11 @@ export const DialogNote: React.FC<NoteProps> = ({
     setSavingText();
     setNote(e.target.value);
     setStorageData(storageData);
+  };
+
+  const sendXAPIEvent = (event: any): void => {
+    // @ts-ignore typeof This was not valid in context
+    h5pWrapper.trigger(event);
   };
 
   return (
