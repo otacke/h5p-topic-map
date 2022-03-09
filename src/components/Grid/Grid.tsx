@@ -122,6 +122,7 @@ export const Grid: React.FC<GridProps> = ({
             grid={grid}
             onClick={() => onClick(item)}
             storageData={storageData}
+            dialogeIsOpen={itemShowingDialog === item}
           />
         );
       }

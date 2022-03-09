@@ -359,7 +359,7 @@ DenFranskeRevolusjon.args = {
           dialog: {
             hasNote: true,
             maxWordCount: 300,
-          }
+          },
         },
         {
           id: "cf1e08d7-5e29-46a9-a177-d96e5c23ee24",
@@ -453,7 +453,7 @@ DenFranskeRevolusjon.args = {
           dialog: {
             hasNote: true,
             maxWordCount: 300,
-          }
+          },
         },
         {
           id: "9f694d81-7f0a-48a1-884b-e9cee9999879",

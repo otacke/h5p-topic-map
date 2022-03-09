@@ -10,12 +10,14 @@ import { GridDimensions } from "../Grid/Grid";
 import { Position } from "../../types/Position";
 import { DoneIcon, EditIcon, NoteIcon } from "../Icons/Icons";
 import { UserData } from "../../types/UserData";
+import { CommonItemType } from "../../types/CommonItemType";
 
 export type ArrowProps = {
   item: ArrowItemType;
   onClick: MouseEventHandler;
   grid?: GridDimensions;
   storageData: UserData;
+  dialogeIsOpen: boolean;
 };
 
 const calculateIsHorizontal = (
@@ -42,7 +44,7 @@ const buttonForState = (buttonState: NoteButtonIconState): string => {
   return "default";
 };
 
-export const Arrow: FC<ArrowProps> = ({ item, grid, onClick, storageData }) => {
+export const Arrow: FC<ArrowProps> = ({ item, grid, onClick, storageData, dialogeIsOpen }) => {
   const [pathDef, setPathDef] = React.useState<string>("");
   const [strokeWidth, setStrokeWidth] = React.useState<number>(4);
   const [buttonState, setButtonState] = React.useState<NoteButtonIconState>(
@@ -66,7 +68,7 @@ export const Arrow: FC<ArrowProps> = ({ item, grid, onClick, storageData }) => {
       default:
         setButtonState(NoteButtonIconState.Default);
     }
-  }, [item, buttonState, setButtonState, storageData]);
+  }, [item, buttonState, setButtonState, storageData, dialogeIsOpen]);
 
   React.useEffect(() => {
     const isHorizontal = calculateIsHorizontal(
