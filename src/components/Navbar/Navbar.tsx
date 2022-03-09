@@ -83,7 +83,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navbarRef = React.useRef<HTMLDivElement>(null);
 
   useResizeObserver(gridRef, ({ contentRect }) => {
-    if (contentRect.height > 0) {
+    if (currentSection === NavbarSections.TopicMap) {
+      setMaxHeight(0);
+    } else if (contentRect.height > 0) {
       if (fullscreenHandle.active && contentRect.height <= window.innerHeight) {
         setMaxHeight(
           window.innerHeight -
@@ -96,18 +98,23 @@ export const Navbar: React.FC<NavbarProps> = ({
   });
 
   React.useLayoutEffect(() => {
-    const initialHeight = gridRef.current?.getBoundingClientRect().height ?? 0;
-    if (initialHeight > 0) {
-      if (fullscreenHandle.active && initialHeight <= window.innerHeight) {
-        setMaxHeight(
-          window.innerHeight -
-            (navbarRef.current?.getBoundingClientRect().height ?? 0),
-        );
-      } else {
-        setMaxHeight(initialHeight);
+    if (currentSection === NavbarSections.TopicMap) {
+      setMaxHeight(0);
+    } else {
+      const initialHeight =
+        gridRef.current?.getBoundingClientRect().height ?? 0;
+      if (initialHeight > 0) {
+        if (fullscreenHandle.active && initialHeight <= window.innerHeight) {
+          setMaxHeight(
+            window.innerHeight -
+              (navbarRef.current?.getBoundingClientRect().height ?? 0),
+          );
+        } else {
+          setMaxHeight(initialHeight);
+        }
       }
     }
-  }, [fullscreenHandle.active]);
+  }, [currentSection, fullscreenHandle.active]);
 
   React.useEffect(() => {
     setProgressBarValue(
