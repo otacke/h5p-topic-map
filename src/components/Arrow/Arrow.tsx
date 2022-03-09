@@ -3,10 +3,14 @@ import { FC, MouseEventHandler } from "react";
 import { NoteButtonIconState } from "../../types/NoteButtonIconState";
 import { ArrowItemType } from "../../types/ArrowItemType";
 import { ArrowType } from "../../types/ArrowType";
+import { NoteButton } from "../NoteButton/NoteButton";
 import styles from "./Arrow.module.scss";
+import gridStyles from "../Grid/Grid.module.scss";
 import { GridDimensions } from "../Grid/Grid";
 import { Position } from "../../types/Position";
+import { DoneIcon, EditIcon, NoteIcon } from "../Icons/Icons";
 import { UserData } from "../../types/UserData";
+import { CommonItemType } from "../../types/CommonItemType";
 
 export type ArrowProps = {
   item: ArrowItemType;
