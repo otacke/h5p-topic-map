@@ -61,7 +61,6 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
 
     // eslint-disable-next-line react/jsx-no-constructed-context-values
     const l10n = params.l10n ?? ({} as Translations);
-    // eslint-disable-next-line no-unsafe-optional-chaining
     const title = extras?.metadata.title;
 
     ReactDOM.render(
