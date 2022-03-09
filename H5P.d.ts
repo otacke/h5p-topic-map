@@ -20,7 +20,7 @@ export interface XApiExtraObject {
   markedAsCompleted?: boolean;
   note?: string;
   itemId: string;
-  topicMapId: string;
+  contentId: string;
 }
 
 declare class EventDispatcher {

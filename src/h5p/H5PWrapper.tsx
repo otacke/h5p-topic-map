@@ -3,8 +3,10 @@ import * as ReactDOM from "react-dom";
 import { IH5PWrapper } from "../../H5P";
 import { App } from "../components/App/App";
 import { ContentIdContext } from "../contexts/ContentIdContext";
+import { H5PContext } from "../contexts/H5PContext";
 import { LocalizationContext } from "../contexts/LocalizationContext";
 import { H5PExtras } from "../types/H5P/H5PExtras";
+import { H5PFieldType } from "../types/H5P/H5PFieldType";
 import { Params } from "../types/H5P/Params";
 import { Translations } from "../types/Translations";
 import { getEmptyParams } from "../utils/semantics.utils";
@@ -66,7 +68,9 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
     ReactDOM.render(
       <ContentIdContext.Provider value={contentId}>
         <LocalizationContext.Provider value={l10n}>
-          <App params={paramsWithFallbacks} title={title} />
+          <H5PContext.Provider value={this}>
+            <App params={paramsWithFallbacks} title={title} />
+          </H5PContext.Provider>
         </LocalizationContext.Provider>
       </ContentIdContext.Provider>,
       this.wrapper,
