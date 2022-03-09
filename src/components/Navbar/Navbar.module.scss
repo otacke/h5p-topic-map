@@ -23,7 +23,6 @@ $grid-z-index: 1;
   top: 0;
   right: 0;
   z-index: $grid-z-index + 1;
-  overflow-y: auto;
   width: 100%;
   background-color: var(--theme-color-2);
 }
@@ -60,6 +59,7 @@ $grid-z-index: 1;
 
 .notesList {
   background-color: #ffffff;
+  overflow-y: auto;
 }
 
 .hamburgerButton {
