@@ -16,10 +16,27 @@ export type AppProps = {
 
 export const App: React.FC<AppProps> = ({ params, title }) => {
   const fullscreenHandle = useFullScreenHandle();
+  const [isIPhoneFullscreenActive, setIsIPhoneFullscreenActive] =
+    React.useState(false);
+  const isIPhone = window.navigator.userAgent.includes("iPhone");
 
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [width, setWidth] = React.useState(0);
   const [storageData, setStorageData] = React.useState<UserData>(getUserData());
+
+  // if (isIPhone && isIPhoneFullscreenActive) {
+  // }
+
+  // if (isIPhoneFullscreenActive) {
+  //   document.documentElement.style.setProperty(
+  //     "--screen-width",
+  //     `${window.screen.availWidth}px`,
+  //   );
+  //   document.documentElement.style.setProperty(
+  //     "--screen-height",
+  //     `${window.screen.availHeight}px`,
+  //   );
+  // }
 
   React.useEffect(() => {
     setUserData(storageData);
@@ -42,7 +59,11 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
 
   return (
     <AppWidthContext.Provider value={width}>
-      <div className={themeClassName}>
+      <div
+        className={`${themeClassName} ${
+          isIPhoneFullscreenActive && styles.iPhoneFullscreenStyle
+        }`}
+      >
         <FullScreen
           className={styles.fullscreenStyle}
           handle={fullscreenHandle}
@@ -53,6 +74,8 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
               params={params}
               setStorageData={setStorageData}
               fullscreenHandle={fullscreenHandle}
+              setIsIPhoneFullscreenActive={setIsIPhoneFullscreenActive}
+              isIPhoneFullscreenActive={isIPhoneFullscreenActive}
               storageData={{ ...storageData }}
             />
           </div>

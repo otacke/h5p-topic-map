@@ -14,6 +14,8 @@ const defaultArgs: NavbarProps = {
   setStorageData: () => null,
   storageData: {},
   fullscreenHandle: {} as FullScreenHandle,
+  setIsIPhoneFullscreenActive: () => null,
+  isIPhoneFullscreenActive: false,
 };
 
 export const NavBar: ComponentStory<typeof Navbar> = () => {
