@@ -1,5 +1,10 @@
 /* eslint-disable no-param-reassign */
 import * as React from "react";
+import type { XAPIEvent } from "../../../../H5P";
+import { ContentIdContext } from "../../../contexts/ContentIdContext";
+import { H5PContext } from "../../../contexts/H5PContext";
+import { useContentId } from "../../../hooks/useContentId";
+import { useH5PInstance } from "../../../hooks/useH5PInstance";
 import { useL10n } from "../../../hooks/useLocalization";
 import { UserData } from "../../../types/UserData";
 import styles from "./DialogNote.module.scss";
@@ -36,6 +41,13 @@ export const DialogNote: React.FC<NoteProps> = ({
   const wordTextLabel = useL10n("dialogWordsLabel");
   const wordNoteLabel = useL10n("dialogNoteLabel");
 
+  const h5pWrapper = useH5PInstance();
+  const contentId = useContentId();
+
+  const sendXAPIEvent = (event: XAPIEvent): void => {
+    h5pWrapper?.trigger(event);
+  };
+
   const handleNoteDone = (): void => {
     if (storageData[id] === undefined) {
       storageData[id] = {};
@@ -43,6 +55,20 @@ export const DialogNote: React.FC<NoteProps> = ({
     storageData[id].noteDone = !noteDone;
     setMarkedAsDone(!noteDone);
     setStorageData(storageData);
+
+    if (!h5pWrapper) {
+      return;
+    }
+
+    const xAPIEvent = h5pWrapper.createXAPIEventTemplate("completed", {
+      itemId: id,
+      contentId,
+      note,
+      completed: storageData[id].noteDone ?? false,
+    });
+
+    xAPIEvent.setActor();
+    sendXAPIEvent(xAPIEvent);
   };
 
   const setSavingText = (): void => {
@@ -62,6 +88,18 @@ export const DialogNote: React.FC<NoteProps> = ({
             maxWordCount ? `${wordLimitExceededTextLabel} - ` : ""
           } ${savedTextLabel} ${localTime}`,
         );
+
+        if (!h5pWrapper) {
+          return;
+        }
+
+        const xAPIEvent = h5pWrapper.createXAPIEventTemplate("answered", {
+          itemId: id,
+          contentId,
+          note,
+        });
+        xAPIEvent.setActor();
+        sendXAPIEvent(xAPIEvent);
       }, 650),
     );
   };

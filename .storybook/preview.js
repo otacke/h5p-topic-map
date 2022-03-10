@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ContentIdContext } from "../src/contexts/ContentIdContext";
 import { LocalizationContext } from "../src/contexts/LocalizationContext";
+import { H5PContext } from "../src/contexts/H5PContext";
 import { semantics } from "../src/semantics";
 import "!style-loader!css-loader!sass-loader!../src/styles.scss";
 
@@ -41,7 +42,9 @@ export const decorators = [
   Story => (
     <ContentIdContext.Provider value="1">
       <LocalizationContext.Provider value={translations}>
-        <Story />
+        <H5PContext.Provider value={H5P}>
+          <Story />
+        </H5PContext.Provider>
       </LocalizationContext.Provider>
     </ContentIdContext.Provider>
   ),
