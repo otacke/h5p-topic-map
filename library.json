@@ -3,7 +3,11 @@
   "machineName": "H5P.TopicMap",
   "majorVersion": 0,
   "minorVersion": 1,
+<<<<<<< HEAD
   "patchVersion": 87,
+=======
+  "patchVersion": 88,
+>>>>>>> Pump patch to 88
   "runnable": 1,
   "preloadedJs": [
     {
