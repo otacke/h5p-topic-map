@@ -20,7 +20,9 @@ export interface H5PObject {
 declare class H5PEvent {
   type: string;
 
-  data: unknown;
+  data: {
+    statement: any;
+  };
 
   extras?: {
     bubbles?: boolean;
@@ -109,7 +111,7 @@ declare class XAPIEvent extends H5PEvent {
    * @param instance
    *   The H5P instance
    */
-  setObject(instance: H5PObject): void;
+  setObject(instance: H5PWrapper): void;
 
   /**
    * Set the context part of the statement.
@@ -117,12 +119,23 @@ declare class XAPIEvent extends H5PEvent {
    * @param instance
    *   The H5P instance
    */
-  setContext(instance: H5PObject): void;
+  setContext(instance: H5PWrapper): void;
 
   /**
    * Set the actor. Email and name will be added automatically.
    */
   setActor(): void;
+
+  /**
+   * Figure out if a property exists in the statement and return it
+   *
+   * @param keys
+   *   List describing the property we're looking for. For instance
+   *   ['result', 'score', 'raw'] for result.score.raw
+   * @returns
+   *   The value of the property if it is set, null otherwise.
+   */
+  getVerifiedStatementValue(keys: Array<string>): unknown | T;
 }
 
 declare class EventDispatcher {

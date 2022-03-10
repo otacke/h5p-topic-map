@@ -71,6 +71,33 @@ export const DialogNote: React.FC<NoteProps> = ({
     sendXAPIEvent(xAPIEvent);
   };
 
+  /**
+   * Get the xAPI definition for the xAPI object.
+   *
+   * @return XAPI definition.
+   */
+  const getxAPIDefinition = (): object => {
+    const definition: {
+      name: Record<string, string>;
+      description: Record<string, string>;
+      type: string;
+      interactionType: string;
+      correctResponsesPattern: string;
+    } = {
+      name: {
+        "en-US": "POTET",
+      },
+      description: {
+        "en-US": "BESKRIVELSEN VÅR",
+      },
+      type: "http://adlnet.gov/expapi/activities/cmi.interaction",
+      interactionType: "fill-in",
+      correctResponsesPattern: ".*",
+    };
+
+    return definition;
+  };
+
   const setSavingText = (): void => {
     setDynamicSavingText(savingTextLabel);
     setSavingTextTimeout(
@@ -98,7 +125,14 @@ export const DialogNote: React.FC<NoteProps> = ({
           contentId,
           note,
         });
-        xAPIEvent.setActor();
+        xAPIEvent.getVerifiedStatementValue(["object", "definition"]);
+        if (xAPIEvent.data) {
+          xAPIEvent.data.statement.object.definition = {
+            ...xAPIEvent.data.statement.object.definition,
+            ...getxAPIDefinition(),
+          };
+        }
+
         sendXAPIEvent(xAPIEvent);
       }, 650),
     );
