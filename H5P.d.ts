@@ -99,7 +99,7 @@ declare class XAPIEvent extends H5PEvent {
    * @returns
    *   Verb or null if no verb with an id has been defined
    */
-  getVerb(full: boolean): string;
+  getVerb(full: boolean): string | null;
 
   /**
    * Set the object part of the statement.
