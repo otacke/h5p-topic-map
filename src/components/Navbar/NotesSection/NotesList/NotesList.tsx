@@ -24,8 +24,7 @@ export const NotesList: React.FC<NotesListProps> = ({
     const isNoteDone = doesNoteExist && userData[item.id].noteDone;
 
     return (
-      item.dialog &&
-      item.dialog.hasNote && (
+      item.dialog?.hasNote && (
         <React.Fragment key={item.id}>
           <div className={styles.mainBodyListElementWrapper}>
             <div className={styles.pageBreak} />

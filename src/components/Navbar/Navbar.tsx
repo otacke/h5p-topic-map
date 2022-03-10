@@ -2,6 +2,7 @@
 import * as React from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import type { FullScreenHandle } from "react-full-screen";
+import useResizeObserver from "@react-hook/resize-observer";
 import { useReactToPrint } from "react-to-print";
 import { useAppWidth } from "../../hooks/useAppWidth";
 import { useL10n } from "../../hooks/useLocalization";
@@ -77,6 +78,47 @@ export const Navbar: React.FC<NavbarProps> = ({
     [appWidth],
   );
 
+  const [sectionMaxHeight, setSectionMaxHeight] = React.useState(0);
+  const [notesListMaxHeight, setNotesListMaxHeight] = React.useState(0);
+  const gridRef = React.useRef<HTMLDivElement>(null);
+  const navbarRef = React.useRef<HTMLDivElement>(null);
+  const notesSectionRef = React.useRef<HTMLDivElement>(null);
+  const navbarHeight = navbarRef.current?.getBoundingClientRect().height ?? 0;
+  const notesSectionHeight =
+    notesSectionRef.current?.getBoundingClientRect().height ?? 0;
+
+  useResizeObserver(gridRef, ({ contentRect }) => {
+    if (currentSection === NavbarSections.TopicMap) {
+      setSectionMaxHeight(0);
+    } else if (contentRect.height > 0) {
+      if (fullscreenHandle.active && contentRect.height <= window.innerHeight) {
+        setSectionMaxHeight(window.innerHeight - navbarHeight);
+      } else {
+        setSectionMaxHeight(contentRect.height);
+      }
+    }
+  });
+
+  React.useLayoutEffect(() => {
+    if (currentSection === NavbarSections.TopicMap) {
+      setSectionMaxHeight(0);
+    } else {
+      const initialHeight =
+        gridRef.current?.getBoundingClientRect().height ?? 0;
+      if (initialHeight > 0) {
+        if (fullscreenHandle.active && initialHeight <= window.innerHeight) {
+          setSectionMaxHeight(window.innerHeight - navbarHeight);
+        } else {
+          setSectionMaxHeight(initialHeight);
+        }
+      }
+    }
+  }, [currentSection, fullscreenHandle.active, navbarHeight]);
+
+  React.useLayoutEffect(() => {
+    setNotesListMaxHeight(sectionMaxHeight - notesSectionHeight);
+  }, [notesSectionHeight, sectionMaxHeight]);
+
   React.useEffect(() => {
     setProgressBarValue(
       allItems.filter(
@@ -95,9 +137,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   const updateNavbarTitleForPrint = (): void => {
     navbarTitleForPrint = navbarTitleForPrint ? "" : navbarTitle;
   };
-  const componentRef = React.useRef(null);
+  const notesListRef = React.useRef(null);
   const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
+    content: () => notesListRef.current,
     documentTitle: navbarTitle,
     onBeforeGetContent: updateNavbarTitleForPrint,
     onAfterPrint: updateNavbarTitleForPrint,
@@ -152,14 +194,20 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const notesSection = (
     <>
-      <NotesSection
-        setDeleteConfirmationVisibility={setIsDeleteConfirmationVisible}
-        handlePrint={handlePrint}
-      />
+      <div ref={notesSectionRef}>
+        <NotesSection
+          setDeleteConfirmationVisibility={setIsDeleteConfirmationVisible}
+          handlePrint={handlePrint}
+        />
+      </div>
       <div
         className={styles.notesList}
-        ref={componentRef}
+        ref={notesListRef}
         title={navbarTitleForPrint}
+        style={{
+          minHeight: notesListMaxHeight,
+          maxHeight: notesListMaxHeight,
+        }}
       >
         <NotesList topicMapItems={allItems} navbarTitle={navbarTitle} />
       </div>
@@ -248,27 +296,41 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <>
       <div aria-label={navbarAriaLabel} className={sizeClassName}>
-        <div className={styles.navbarWrapper}>
-          <div className={styles.navbarTitle}>{navbarTitle}</div>
-          <div className={styles.sectionsMenuNotMobile}>{sectionsMenu}</div>
-          {navButtonsMobile}
+        <div ref={navbarRef}>
+          <div className={styles.navbarWrapper}>
+            <div className={styles.navbarTitle}>{navbarTitle}</div>
+            <div className={styles.sectionsMenuNotMobile}>{sectionsMenu}</div>
+            {navButtonsMobile}
+          </div>
         </div>
 
         <div className={styles.sectionsWrapper}>
-          <Grid
-            items={params.topicMap?.topicMapItems ?? []}
-            arrowItems={params.topicMap?.arrowItems ?? []}
-            backgroundImage={params.topicMap?.gridBackgroundImage}
-            setStorageData={setStorageData}
-            storageData={storageData}
-            grid={params.topicMap?.grid}
-          />
+          <div ref={gridRef}>
+            <Grid
+              items={params.topicMap?.topicMapItems ?? []}
+              arrowItems={params.topicMap?.arrowItems ?? []}
+              backgroundImage={params.topicMap?.gridBackgroundImage}
+              setStorageData={setStorageData}
+              storageData={storageData}
+              grid={params.topicMap?.grid}
+            />
+          </div>
+          {isHamburgerOpen && (
+            <div className={styles.sectionsMenuMobile}>{sectionsMenu}</div>
+          )}
           <div className={styles.sectionContentWrapper}>
-            {isHamburgerOpen && (
-              <div className={styles.sectionsMenuMobile}>{sectionsMenu}</div>
-            )}
             {currentSection === NavbarSections.Notes && notesSection}
-            {currentSection === NavbarSections.Help && <HelpSection />}
+            {currentSection === NavbarSections.Help && (
+              <div
+                style={{
+                  maxHeight: sectionMaxHeight,
+                  minHeight: sectionMaxHeight,
+                  overflowY: "auto",
+                }}
+              >
+                <HelpSection />
+              </div>
+            )}
           </div>
         </div>
       </div>
