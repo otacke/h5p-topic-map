@@ -19,6 +19,7 @@ describe(TopicMapItem.name, () => {
       dialog: {
         text: "Dialog text",
         hasNote: true,
+        showAddLinks: false,
       },
     };
 

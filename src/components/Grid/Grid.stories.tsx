@@ -37,6 +37,7 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         dialog: {
           text: "Dialog text",
           hasNote: true,
+          showAddLinks: false,
         },
       },
       {
@@ -54,6 +55,7 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         dialog: {
           text: "Dialog text",
           hasNote: false,
+          showAddLinks: false,
         },
       },
       {
@@ -71,6 +73,7 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         dialog: {
           text: "Dialog text",
           hasNote: true,
+          showAddLinks: false,
         },
       },
     ],
@@ -84,6 +87,7 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         dialog: {
           text: "Dialog text",
           hasNote: true,
+          showAddLinks: false,
         },
         startPosition: { x: 0, y: 0 },
         endPosition: { x: 0, y: 0 },
@@ -97,6 +101,7 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         dialog: {
           text: "Dialog text",
           hasNote: false,
+          showAddLinks: false,
         },
         startPosition: { x: 0, y: 0 },
         endPosition: { x: 0, y: 0 },
@@ -125,6 +130,7 @@ export const WithBackgroundImage: ComponentStory<typeof Grid> = () => {
         dialog: {
           text: "Dialog text",
           hasNote: true,
+          showAddLinks: false,
         },
       },
       {
@@ -142,6 +148,7 @@ export const WithBackgroundImage: ComponentStory<typeof Grid> = () => {
         dialog: {
           text: "Dialog text",
           hasNote: false,
+          showAddLinks: false,
         },
       },
       {
@@ -159,6 +166,7 @@ export const WithBackgroundImage: ComponentStory<typeof Grid> = () => {
         dialog: {
           text: "Dialog text",
           hasNote: true,
+          showAddLinks: false,
         },
       },
     ],
@@ -172,6 +180,7 @@ export const WithBackgroundImage: ComponentStory<typeof Grid> = () => {
         dialog: {
           text: "Dialog text",
           hasNote: true,
+          showAddLinks: false,
         },
         startPosition: { x: 0, y: 0 },
         endPosition: { x: 0, y: 0 },
@@ -185,6 +194,7 @@ export const WithBackgroundImage: ComponentStory<typeof Grid> = () => {
         dialog: {
           text: "Dialog text",
           hasNote: false,
+          showAddLinks: false,
         },
         startPosition: { x: 0, y: 0 },
         endPosition: { x: 0, y: 0 },

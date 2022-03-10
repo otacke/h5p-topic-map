@@ -22,6 +22,7 @@ describe(DialogTabs.name, () => {
       dialog: {
         hasNote: true,
         text: "Dialog test",
+        showAddLinks: false,
       },
     };
     const tabs = render(

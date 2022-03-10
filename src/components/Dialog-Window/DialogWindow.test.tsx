@@ -33,6 +33,7 @@ describe(DialogWindow.name, () => {
       dialog: {
         text: "Dialog text",
         hasNote: true,
+        showAddLinks: false,
       },
     };
 
@@ -68,6 +69,7 @@ describe(DialogWindow.name, () => {
       dialog: {
         text: "Dialog text",
         hasNote: true,
+        showAddLinks: false,
       },
     };
 
