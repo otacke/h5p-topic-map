@@ -4,6 +4,7 @@ import { LocalizationContext } from "../src/contexts/LocalizationContext";
 import { H5PContext } from "../src/contexts/H5PContext";
 import { semantics } from "../src/semantics";
 import "!style-loader!css-loader!sass-loader!../src/styles.scss";
+import { H5PWrapper } from "../src/h5p/H5PWrapper";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -38,11 +39,26 @@ const translations = Object.fromEntries(
   }),
 );
 
+const h5pInstance = new H5PWrapper(
+  {
+    behaviour: {},
+    l10n: {},
+    topicMap: {},
+  },
+  "1",
+  {
+    metadata: {
+      title: "",
+    },
+    standalone: false,
+  },
+);
+
 export const decorators = [
   Story => (
     <ContentIdContext.Provider value="1">
       <LocalizationContext.Provider value={translations}>
-        <H5PContext.Provider value={H5P}>
+        <H5PContext.Provider value={h5pInstance}>
           <Story />
         </H5PContext.Provider>
       </LocalizationContext.Provider>
