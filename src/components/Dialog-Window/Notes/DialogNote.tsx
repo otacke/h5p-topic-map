@@ -3,6 +3,8 @@ import * as React from "react";
 import type { XAPIEvent } from "../../../../H5P";
 import { ContentIdContext } from "../../../contexts/ContentIdContext";
 import { H5PContext } from "../../../contexts/H5PContext";
+import { useContentId } from "../../../hooks/useContentId";
+import { useH5PInstance } from "../../../hooks/useH5PInstance";
 import { useL10n } from "../../../hooks/useLocalization";
 import { UserData } from "../../../types/UserData";
 import styles from "./DialogNote.module.scss";
@@ -39,8 +41,8 @@ export const DialogNote: React.FC<NoteProps> = ({
   const wordTextLabel = useL10n("dialogWordsLabel");
   const wordNoteLabel = useL10n("dialogNoteLabel");
 
-  const h5pWrapper = React.useContext(H5PContext);
-  const contentId = React.useContext(ContentIdContext);
+  const h5pWrapper = useH5PInstance();
+  const contentId = useContentId();
 
   const sendXAPIEvent = (event: XAPIEvent): void => {
     h5pWrapper?.trigger(event);
