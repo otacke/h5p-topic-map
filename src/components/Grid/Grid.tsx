@@ -121,7 +121,9 @@ export const Grid: React.FC<GridProps> = ({
             item={item}
             grid={grid}
             onClick={() => onClick(item)}
-            onKeyUp={(event) => {if(event.key === "Enter") onClick(item)}}
+            onKeyUp={event => {
+              if (event.key === "Enter") onClick(item);
+            }}
             storageData={storageData}
             dialogeIsOpen={itemShowingDialog === item}
           />

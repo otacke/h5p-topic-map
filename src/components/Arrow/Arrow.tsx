@@ -12,7 +12,6 @@ import { DoneIcon, EditIcon, NoteIcon } from "../Icons/Icons";
 import { UserData } from "../../types/UserData";
 import { CommonItemType } from "../../types/CommonItemType";
 
-
 export type ArrowProps = {
   item: ArrowItemType;
   onClick: MouseEventHandler;
@@ -59,8 +58,6 @@ export const Arrow: FC<ArrowProps> = ({
   const [buttonState, setButtonState] = React.useState<NoteButtonIconState>(
     NoteButtonIconState.Default,
   );
-
-  
 
   const arrowContainerRef = React.createRef<HTMLDivElement>();
 
@@ -184,10 +181,7 @@ export const Arrow: FC<ArrowProps> = ({
             refY="1"
             orient="auto"
           >
-            <path
-              d="M0,0 L0,2 L1.5,1 z"
-              fill="var(--theme-color-4)"
-            />
+            <path d="M0,0 L0,2 L1.5,1 z" fill="var(--theme-color-4)" />
           </marker>
           <marker
             id="arrowtail"
@@ -197,10 +191,7 @@ export const Arrow: FC<ArrowProps> = ({
             refY="1"
             orient="auto-start-reverse"
           >
-            <path
-              d="M0,0 L0,2 L1.5,1 z"
-              fill="var(--theme-color-4)"
-            />
+            <path d="M0,0 L0,2 L1.5,1 z" fill="var(--theme-color-4)" />
           </marker>
         </defs>
         <polyline
