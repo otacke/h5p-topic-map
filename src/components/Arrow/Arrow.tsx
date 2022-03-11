@@ -225,44 +225,4 @@ export const Arrow: FC<ArrowProps> = ({
       </svg>
     </div>
   );
-
-  // return (
-  //   <div aria-label={item.label} className={`arrow-item ${styles.arrow}`}>
-  //     <Xarrow
-  //       labels={{
-  //         middle: (
-  //           <NoteButton
-  //             backgroundColor="var(--theme-color-2)"
-  //             buttonState={buttonState}
-  //             borderColor="var(--theme-color-3)"
-  //             iconColor="var(--theme-color-4)"
-  //           />
-  //         ),
-  //       }}
-  //       start={item.startElementId}
-  //       end={item.endElementId}
-  //       path="grid"
-  //       gridBreak={item.arrowType === ArrowType.Directional ? "0%" : undefined}
-  //       showHead={[ArrowType.BiDirectional, ArrowType.Directional].includes(
-  //         item.arrowType,
-  //       )}
-  //       showTail={[ArrowType.BiDirectional].includes(item.arrowType)}
-  //       lineColor="var(--theme-color-2)"
-  //       headColor="var(--theme-color-2)"
-  //       tailColor="var(--theme-color-2)"
-  //       strokeWidth={4}
-  //       headSize={2}
-  //       tailSize={2}
-  //       zIndex={1}
-  //       divContainerStyle={{
-  //         pointerEvents: "auto",
-  //       }}
-  //       arrowBodyProps={{
-  //         tabIndex: -1,
-  //         onClick,
-  //         role: "button",
-  //       }}
-  //     />
-  //   </div>
-  // );
 };
