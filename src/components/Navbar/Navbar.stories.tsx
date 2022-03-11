@@ -14,7 +14,7 @@ const defaultArgs: NavbarProps = {
   setStorageData: () => null,
   storageData: {},
   fullscreenHandle: {} as FullScreenHandle,
-  setIsIPhoneFullscreenActive: () => null,
+  toggleIPhoneFullscreen: () => null,
   isIPhoneFullscreenActive: false,
 };
 

@@ -1,8 +1,3 @@
-:root {
-  --screen-width: 0px;
-  --screen-height: 0px;
-}
-
 .navbarWrapper {
   position: relative;
   width: 100%;
@@ -16,9 +11,12 @@
 .iPhoneFullscreenStyle {
   position: fixed;
   width: 100vw;
+  left: 0;
+  top: 0;
+}
+
+.iPhoneFullscreenThemeStyle {
   height: 100vh;
-  // width: var(--screen-width);
-  // height: var(--screen-height);
-  // overflow: auto;
+  overflow: auto;
   background-color: var(--theme-color-1);
 }

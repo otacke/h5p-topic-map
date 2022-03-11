@@ -5,13 +5,13 @@ import styles from "./FullscreenButton.module.scss";
 
 export type FullscreenButtonProps = {
   fullscreenHandle: FullScreenHandle;
-  setIsIPhoneFullscreenActive: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleIPhoneFullscreen: () => void;
   isIPhoneFullscreenActive: boolean;
 };
 
 export const FullscreenButton: React.FC<FullscreenButtonProps> = ({
   fullscreenHandle,
-  setIsIPhoneFullscreenActive,
+  toggleIPhoneFullscreen,
   isIPhoneFullscreenActive,
 }) => {
   const fullscreenButtonLabel = useL10n("fullscreenButtonLabel");
@@ -24,7 +24,7 @@ export const FullscreenButton: React.FC<FullscreenButtonProps> = ({
       document.body.style.overflow = isIPhoneFullscreenActive
         ? "auto"
         : "hidden";
-      setIsIPhoneFullscreenActive(!isIPhoneFullscreenActive);
+      toggleIPhoneFullscreen();
     } else if (fullscreenHandle.active) {
       fullscreenHandle.exit();
     } else {

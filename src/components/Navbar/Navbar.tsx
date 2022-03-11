@@ -26,7 +26,7 @@ export type NavbarProps = {
   setStorageData: React.Dispatch<React.SetStateAction<UserData>>;
   fullscreenHandle: FullScreenHandle;
   storageData: UserData;
-  setIsIPhoneFullscreenActive: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleIPhoneFullscreen: () => void;
   isIPhoneFullscreenActive: boolean;
 };
 
@@ -43,7 +43,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   setStorageData,
   storageData,
   fullscreenHandle,
-  setIsIPhoneFullscreenActive,
+  toggleIPhoneFullscreen,
   isIPhoneFullscreenActive,
 }) => {
   const navbarAriaLabel = useL10n("navbarTabsListAriaLabel");
@@ -275,7 +275,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className={styles.fullscreenButtonNotMobile}>
         <FullscreenButton
           fullscreenHandle={fullscreenHandle}
-          setIsIPhoneFullscreenActive={setIsIPhoneFullscreenActive}
+          toggleIPhoneFullscreen={toggleIPhoneFullscreen}
           isIPhoneFullscreenActive={isIPhoneFullscreenActive}
         />
       </div>
@@ -298,7 +298,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className={styles.fullscreenButtonMobile}>
         <FullscreenButton
           fullscreenHandle={fullscreenHandle}
-          setIsIPhoneFullscreenActive={setIsIPhoneFullscreenActive}
+          toggleIPhoneFullscreen={toggleIPhoneFullscreen}
           isIPhoneFullscreenActive={isIPhoneFullscreenActive}
         />
       </div>
