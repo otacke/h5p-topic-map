@@ -18,6 +18,7 @@ export type ArrowProps = {
   grid?: GridDimensions;
   storageData: UserData;
   dialogeIsOpen: boolean;
+  onTouchStart: React.TouchEventHandler;
   onKeyUp: React.KeyboardEventHandler;
 };
 
@@ -48,6 +49,7 @@ const buttonForState = (buttonState: NoteButtonIconState): string => {
 export const Arrow: FC<ArrowProps> = ({
   item,
   grid,
+  onTouchStart,
   onClick,
   onKeyUp,
   storageData,
@@ -217,6 +219,7 @@ export const Arrow: FC<ArrowProps> = ({
           }
           role="button"
           tabIndex={0}
+          onTouchStart={onTouchStart}
           onKeyUp={onKeyUp}
         />
       </svg>
