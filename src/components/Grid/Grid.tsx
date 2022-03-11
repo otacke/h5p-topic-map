@@ -121,6 +121,11 @@ export const Grid: React.FC<GridProps> = ({
             item={item}
             grid={grid}
             onClick={() => onClick(item)}
+            onTouchStart={() => onClick(item)}
+            onKeyUp={event => {
+              if (event.key === "Enter" || event.code === "Space")
+                onClick(item);
+            }}
             storageData={storageData}
             dialogeIsOpen={itemShowingDialog === item}
           />

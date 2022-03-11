@@ -18,6 +18,8 @@ export type ArrowProps = {
   grid?: GridDimensions;
   storageData: UserData;
   dialogeIsOpen: boolean;
+  onTouchStart: React.TouchEventHandler;
+  onKeyUp: React.KeyboardEventHandler;
 };
 
 const calculateIsHorizontal = (
@@ -47,7 +49,9 @@ const buttonForState = (buttonState: NoteButtonIconState): string => {
 export const Arrow: FC<ArrowProps> = ({
   item,
   grid,
+  onTouchStart,
   onClick,
+  onKeyUp,
   storageData,
   dialogeIsOpen,
 }) => {
@@ -166,9 +170,6 @@ export const Arrow: FC<ArrowProps> = ({
               />
              </foreignObject> */}
             <path
-              onClick={onClick}
-              role="button"
-              tabIndex={0}
               d="m 0.19232127,0.81738523 v 0.1371902 c 0,0.012637 0.0089,0.022562 0.02019,0.022562 h 0.122787 c 0.0053,0 0.0105,-0.00226 0.01414,-0.00677 l 0.441064,-0.49235261 -0.151462,-0.1692326 -0.44066,0.49235671 c -0.004,0.00451 -0.0061,0.00993 -0.0061,0.016247 z m 0.715314,-0.47024336 c 0.01575,-0.0176004 0.01575,-0.0460315 0,-0.0636318 l -0.09451,-0.10560124 c -0.01575,-0.0176 -0.0412,-0.0176 -0.05695,0 l -0.07392,0.0825858 0.151467,0.16923257 z"
               fill="white"
             />
@@ -182,11 +183,7 @@ export const Arrow: FC<ArrowProps> = ({
             refY="1"
             orient="auto"
           >
-            <path
-              d="M0,0 L0,2 L1.5,1 z"
-              fill="var(--theme-color-4)"
-              onClick={() => ""}
-            />
+            <path d="M0,0 L0,2 L1.5,1 z" fill="var(--theme-color-4)" />
           </marker>
           <marker
             id="arrowtail"
@@ -196,11 +193,7 @@ export const Arrow: FC<ArrowProps> = ({
             refY="1"
             orient="auto-start-reverse"
           >
-            <path
-              d="M0,0 L0,2 L1.5,1 z"
-              fill="var(--theme-color-4)"
-              onClick={() => ""}
-            />
+            <path d="M0,0 L0,2 L1.5,1 z" fill="var(--theme-color-4)" />
           </marker>
         </defs>
         <polyline
@@ -226,6 +219,8 @@ export const Arrow: FC<ArrowProps> = ({
           }
           role="button"
           tabIndex={0}
+          onTouchStart={onTouchStart}
+          onKeyUp={onKeyUp}
         />
       </svg>
     </div>
