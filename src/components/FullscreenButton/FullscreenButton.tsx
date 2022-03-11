@@ -16,8 +16,7 @@ export const FullscreenButton: React.FC<FullscreenButtonProps> = ({
 }) => {
   const fullscreenButtonLabel = useL10n("fullscreenButtonLabel");
 
-  // const isIPhone = window.navigator.userAgent.includes("iPhone");
-  const isIPhone = true;
+  const isIPhone = window.navigator.userAgent.includes("iPhone");
 
   const handleFullscreen = (): void => {
     if (isIPhone) {
