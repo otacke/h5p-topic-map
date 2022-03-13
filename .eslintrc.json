@@ -20,6 +20,7 @@
   },
   "plugins": ["react", "@typescript-eslint", "react-hooks"],
   "rules": {
+    "consistent-return": "off",
     "no-use-before-define": "off",
     "no-shadow": "off",
     "no-console": ["error", { "allow": ["warn", "error", "info"] }],

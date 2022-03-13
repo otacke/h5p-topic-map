@@ -1,16 +1,12 @@
 import * as React from "react";
 import { FC, MouseEventHandler } from "react";
-import { NoteButtonIconState } from "../../types/NoteButtonIconState";
 import { ArrowItemType } from "../../types/ArrowItemType";
 import { ArrowType } from "../../types/ArrowType";
-import { NoteButton } from "../NoteButton/NoteButton";
-import styles from "./Arrow.module.scss";
-import gridStyles from "../Grid/Grid.module.scss";
-import { GridDimensions } from "../Grid/Grid";
+import { NoteButtonIconState } from "../../types/NoteButtonIconState";
 import { Position } from "../../types/Position";
-import { DoneIcon, EditIcon, NoteIcon } from "../Icons/Icons";
 import { UserData } from "../../types/UserData";
-import { CommonItemType } from "../../types/CommonItemType";
+import { GridDimensions } from "../Grid/Grid";
+import styles from "./Arrow.module.scss";
 
 export type ArrowProps = {
   item: ArrowItemType;
@@ -43,7 +39,6 @@ const buttonForState = (buttonState: NoteButtonIconState): string => {
     case NoteButtonIconState.Done:
       return "done";
   }
-  return "default";
 };
 
 export const Arrow: FC<ArrowProps> = ({
@@ -96,12 +91,6 @@ export const Arrow: FC<ArrowProps> = ({
           setStrokeWidth(gridElement.clientWidth / grid.numberOfColumns);
         }
       }
-
-      // const path = `M ${
-      //   (item.startPosition.x / 100) * gridElement.clientWidth
-      // } ${(item.startPosition.y / 100) * gridElement.clientHeight} L ${
-      //   (item.endPosition.x / 100) * gridElement.clientWidth
-      // } ${(item.endPosition.y / 100) * gridElement.clientHeight}`;
 
       const startx = (item.startPosition.x / 100) * gridElement.clientWidth;
       const starty = (item.startPosition.y / 100) * gridElement.clientHeight;
@@ -161,19 +150,10 @@ export const Arrow: FC<ArrowProps> = ({
             refY="0.5"
             orient="0"
           >
-            {/* <foreignObject>
-              <NoteButton
-                backgroundColor="var(--theme-color-2)"
-                buttonState={buttonState}
-                borderColor="var(--theme-color-3)"
-                iconColor="var(--theme-color-4)"
-              />
-             </foreignObject> */}
             <path
               d="m 0.19232127,0.81738523 v 0.1371902 c 0,0.012637 0.0089,0.022562 0.02019,0.022562 h 0.122787 c 0.0053,0 0.0105,-0.00226 0.01414,-0.00677 l 0.441064,-0.49235261 -0.151462,-0.1692326 -0.44066,0.49235671 c -0.004,0.00451 -0.0061,0.00993 -0.0061,0.016247 z m 0.715314,-0.47024336 c 0.01575,-0.0176004 0.01575,-0.0460315 0,-0.0636318 l -0.09451,-0.10560124 c -0.01575,-0.0176 -0.0412,-0.0176 -0.05695,0 l -0.07392,0.0825858 0.151467,0.16923257 z"
               fill="white"
             />
-            {/* <EditIcon width={strokeWidth} height={strokeWidth} iconColor="white"/> */}
           </marker>
           <marker
             id="arrowhead"
