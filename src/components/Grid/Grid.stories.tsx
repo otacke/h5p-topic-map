@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import * as React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { FullScreenHandle } from "react-full-screen";
 
 import { Grid, GridProps } from "./Grid";
 import { ArrowType } from "../../types/ArrowType";
@@ -16,6 +17,8 @@ const defaultArgs: GridProps = {
   backgroundImage: undefined,
   setStorageData: () => null,
   storageData: {},
+  navbarHeight: 0,
+  fullscreenHandle: {} as FullScreenHandle,
 };
 
 export const WithItems: ComponentStory<typeof Grid> = () => {
