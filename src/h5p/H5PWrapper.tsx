@@ -33,6 +33,9 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
 
     this.toggleIPhoneFullscreen = () => {
       this.isIPhoneFullscreenActive = !this.isIPhoneFullscreenActive;
+      document.body.style.overflow = this.isIPhoneFullscreenActive
+        ? "hidden"
+        : "auto";
       const topicMapContainer = document.querySelector(".h5p-topic-map");
       if (this.isIPhoneFullscreenActive) {
         topicMapContainer?.classList.add("iPhoneFullscreenStyle");

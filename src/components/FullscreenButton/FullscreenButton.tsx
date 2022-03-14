@@ -20,9 +20,6 @@ export const FullscreenButton: React.FC<FullscreenButtonProps> = ({
 
   const handleFullscreen = (): void => {
     if (isIPhone) {
-      document.body.style.overflow = isIPhoneFullscreenActive
-        ? "auto"
-        : "hidden";
       toggleIPhoneFullscreen();
     } else if (fullscreenHandle.active) {
       fullscreenHandle.exit();
