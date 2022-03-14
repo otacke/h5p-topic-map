@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useState } from "react";
-import { Xwrapper } from "react-xarrows";
 import { ArrowItemType } from "../../types/ArrowItemType";
 import { CommonItemType } from "../../types/CommonItemType";
 import { Image } from "../../types/H5P/Image";
@@ -162,24 +161,22 @@ export const Grid: React.FC<GridProps> = ({
     : undefined;
 
   return (
-    <Xwrapper>
-      <div
-        className={styles.gridWrapper}
-        style={{ backgroundImage: bgImageStyle }}
-      >
-        <div className={styles.grid}>
-          {allMapItems}
-          {itemShowingDialog?.dialog ? (
-            <DialogWindow
-              item={itemShowingDialog}
-              open={!!itemShowingDialog}
-              onOpenChange={() => setItemShowingDialog(null)}
-              setStorageData={setStorageData}
-              storageData={storageData}
-            />
-          ) : null}
-        </div>
+    <div
+      className={styles.gridWrapper}
+      style={{ backgroundImage: bgImageStyle }}
+    >
+      <div className={styles.grid}>
+        {allMapItems}
+        {itemShowingDialog?.dialog ? (
+          <DialogWindow
+            item={itemShowingDialog}
+            open={!!itemShowingDialog}
+            onOpenChange={() => setItemShowingDialog(null)}
+            setStorageData={setStorageData}
+            storageData={storageData}
+          />
+        ) : null}
       </div>
-    </Xwrapper>
+    </div>
   );
 };
