@@ -512,7 +512,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
       {
         label: "Navbar notes missing note label",
         name: "navbarNotesMissingNoteLabel",
-        default: "━ Notes are missing for this card!",
+        default: "━ No notes have been added yet",
         type: H5PFieldType.Text,
       },
       {
