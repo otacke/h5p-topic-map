@@ -12,10 +12,22 @@ import styles from "./App.module.scss";
 export type AppProps = {
   params: Params;
   title: string | undefined;
+  toggleIPhoneFullscreen: () => void;
 };
 
-export const App: React.FC<AppProps> = ({ params, title }) => {
+export const App: React.FC<AppProps> = ({
+  params,
+  title,
+  toggleIPhoneFullscreen,
+}) => {
   const fullscreenHandle = useFullScreenHandle();
+  const [isIPhoneFullscreenActive, setIsIPhoneFullscreenActive] =
+    React.useState<boolean>(false);
+
+  const handleToggleIPhoneFullscreen = (): void => {
+    setIsIPhoneFullscreenActive(!isIPhoneFullscreenActive);
+    toggleIPhoneFullscreen();
+  };
 
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [width, setWidth] = React.useState(0);
@@ -41,23 +53,31 @@ export const App: React.FC<AppProps> = ({ params, title }) => {
   );
 
   return (
-    <AppWidthContext.Provider value={width}>
-      <div className={themeClassName}>
-        <FullScreen
-          className={styles.fullscreenStyle}
-          handle={fullscreenHandle}
+    <div className={isIPhoneFullscreenActive && styles.iPhoneFullscreenStyle}>
+      <AppWidthContext.Provider value={width}>
+        <div
+          className={`${themeClassName} ${
+            isIPhoneFullscreenActive && styles.iPhoneFullscreenThemeStyle
+          }`}
         >
-          <div className={styles.navbarWrapper} ref={containerRef}>
-            <Navbar
-              navbarTitle={title ?? ""}
-              params={params}
-              setStorageData={setStorageData}
-              fullscreenHandle={fullscreenHandle}
-              storageData={{ ...storageData }}
-            />
-          </div>
-        </FullScreen>
-      </div>
-    </AppWidthContext.Provider>
+          <FullScreen
+            className={styles.fullscreenStyle}
+            handle={fullscreenHandle}
+          >
+            <div className={styles.navbarWrapper} ref={containerRef}>
+              <Navbar
+                navbarTitle={title ?? ""}
+                params={params}
+                setStorageData={setStorageData}
+                fullscreenHandle={fullscreenHandle}
+                toggleIPhoneFullscreen={handleToggleIPhoneFullscreen}
+                isIPhoneFullscreenActive={isIPhoneFullscreenActive}
+                storageData={{ ...storageData }}
+              />
+            </div>
+          </FullScreen>
+        </div>
+      </AppWidthContext.Provider>
+    </div>
   );
 };

@@ -22,8 +22,27 @@ import {
 export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
   private wrapper: HTMLElement;
 
+  private isIPhoneFullscreenActive: boolean;
+
+  private toggleIPhoneFullscreen: () => void;
+
   constructor(params: Params, contentId: string, extras?: H5PExtras) {
     super();
+
+    this.isIPhoneFullscreenActive = false;
+
+    this.toggleIPhoneFullscreen = () => {
+      this.isIPhoneFullscreenActive = !this.isIPhoneFullscreenActive;
+      document.body.style.overflow = this.isIPhoneFullscreenActive
+        ? "hidden"
+        : "auto";
+      const topicMapContainer = document.querySelector(".h5p-topic-map");
+      if (this.isIPhoneFullscreenActive) {
+        topicMapContainer?.classList.add("iPhoneFullscreenStyle");
+      } else {
+        topicMapContainer?.classList.remove("iPhoneFullscreenStyle");
+      }
+    };
 
     this.wrapper = H5PWrapper.createWrapperElement();
 
@@ -67,7 +86,11 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
       <ContentIdContext.Provider value={contentId}>
         <LocalizationContext.Provider value={l10n}>
           <H5PContext.Provider value={this}>
-            <App params={paramsWithFallbacks} title={title} />
+            <App
+              params={paramsWithFallbacks}
+              title={title}
+              toggleIPhoneFullscreen={this.toggleIPhoneFullscreen}
+            />
           </H5PContext.Provider>
         </LocalizationContext.Provider>
       </ContentIdContext.Provider>,
