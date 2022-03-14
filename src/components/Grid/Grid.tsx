@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
+import { FullScreenHandle } from "react-full-screen";
 import { ArrowItemType } from "../../types/ArrowItemType";
 import { CommonItemType } from "../../types/CommonItemType";
 import { Image } from "../../types/H5P/Image";
@@ -17,6 +18,8 @@ export type GridProps = {
   setStorageData: React.Dispatch<React.SetStateAction<UserData>>;
   storageData: UserData;
   grid?: GridDimensions;
+  navbarHeight: number;
+  fullscreenHandle: FullScreenHandle;
 };
 
 export type GridDimensions = {
@@ -31,6 +34,8 @@ export const Grid: React.FC<GridProps> = ({
   setStorageData,
   storageData,
   grid,
+  navbarHeight,
+  fullscreenHandle,
 }) => {
   const [itemShowingDialog, setItemShowingDialog] =
     useState<CommonItemType | null>(null);
@@ -160,12 +165,28 @@ export const Grid: React.FC<GridProps> = ({
     ? `url(${backgroundImage.path})`
     : undefined;
 
+  const maxHeight = window.innerHeight - navbarHeight;
+
   return (
     <div
       className={styles.gridWrapper}
-      style={{ backgroundImage: bgImageStyle }}
+      style={{
+        backgroundImage: bgImageStyle,
+        maxHeight: fullscreenHandle.active ? maxHeight : "unset",
+        minHeight: fullscreenHandle.active ? maxHeight : "unset",
+      }}
     >
-      <div className={styles.grid}>
+      <div
+        className={styles.grid}
+        style={{
+          maxHeight: fullscreenHandle.active
+            ? `calc(${maxHeight}px - 2rem)` // 2rem is grid's padding (1rem top + bottom)
+            : "unset",
+          minHeight: fullscreenHandle.active
+            ? `calc(${maxHeight}px - 2rem)`
+            : "unset",
+        }}
+      >
         {allMapItems}
         {itemShowingDialog?.dialog ? (
           <DialogWindow

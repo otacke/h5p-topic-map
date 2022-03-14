@@ -120,8 +120,22 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, [currentSection, fullscreenHandle.active, navbarHeight]);
 
   React.useLayoutEffect(() => {
-    setNotesListMaxHeight(sectionMaxHeight - notesSectionHeight);
-  }, [notesSectionHeight, sectionMaxHeight]);
+    if (currentSection === NavbarSections.Notes) {
+      if (fullscreenHandle.active) {
+        setNotesListMaxHeight(
+          window.innerHeight - navbarHeight - notesSectionHeight,
+        );
+      } else {
+        setNotesListMaxHeight(sectionMaxHeight - notesSectionHeight);
+      }
+    }
+  }, [
+    currentSection,
+    fullscreenHandle.active,
+    navbarHeight,
+    notesSectionHeight,
+    sectionMaxHeight,
+  ]);
 
   React.useEffect(() => {
     setProgressBarValue(
@@ -325,6 +339,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               setStorageData={setStorageData}
               storageData={storageData}
               grid={params.topicMap?.grid}
+              navbarHeight={navbarHeight}
+              fullscreenHandle={fullscreenHandle}
             />
           </div>
           {isHamburgerOpen && (
