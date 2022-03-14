@@ -15,10 +15,5 @@
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true
   },
-  "include": ["./src/**/*", "H5P.d.ts", "typings.d.ts"],
-  "ts-node": {
-    "compilerOptions": {
-      "module": "NodeNext"
-    }
-  }
+  "include": ["./src/**/*", "H5P.d.ts", "typings.d.ts"]
 }
