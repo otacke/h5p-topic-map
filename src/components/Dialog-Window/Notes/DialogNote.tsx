@@ -1,8 +1,6 @@
 /* eslint-disable no-param-reassign */
 import * as React from "react";
 import type { XAPIEvent } from "../../../../H5P";
-import { ContentIdContext } from "../../../contexts/ContentIdContext";
-import { H5PContext } from "../../../contexts/H5PContext";
 import { useContentId } from "../../../hooks/useContentId";
 import { useH5PInstance } from "../../../hooks/useH5PInstance";
 import { useL10n } from "../../../hooks/useLocalization";
