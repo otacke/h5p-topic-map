@@ -3,6 +3,38 @@
 
 import { H5PWrapper } from "./src/h5p/H5PWrapper";
 
+export type XAPIVerb =
+  | "answered"
+  | "asked"
+  | "attempted"
+  | "attended"
+  | "commented"
+  | "completed"
+  | "exited"
+  | "experienced"
+  | "failed"
+  | "imported"
+  | "initialized"
+  | "interacted"
+  | "launched"
+  | "mastered"
+  | "passed"
+  | "preferred"
+  | "progressed"
+  | "registered"
+  | "responded"
+  | "resumed"
+  | "scored"
+  | "shared"
+  | "suspended"
+  | "terminated"
+  | "voided"
+  | "downloaded"
+  | "copied"
+  | "accessed-reuse"
+  | "accessed-embed"
+  | "accessed-copyright";
+
 export interface H5PObject {
   jQuery: typeof JQuery;
   EventDispatcher: typeof EventDispatcher;
@@ -90,7 +122,7 @@ declare class XAPIEvent extends H5PEvent {
    *   {@link https://help.csod.com/help/csod_0/Content/Catalog/xAPI_Package_Support/xAPI_Appendix.htm?TocPath=Learning%7CContent%7CxAPI%7C_____6}
    *
    */
-  setVerb(verb: string): void;
+  setVerb(verb: XAPIVerb): void;
 
   /**
    * Get the statements verb id.
@@ -101,7 +133,7 @@ declare class XAPIEvent extends H5PEvent {
    * @returns
    *   Verb or null if no verb with an id has been defined
    */
-  getVerb(full: boolean): string | null;
+  getVerb(full: boolean): `http://adlnet.gov/expapi/verbs/${XAPIVerb}` | null;
 
   /**
    * Set the object part of the statement.
