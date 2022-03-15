@@ -19,8 +19,8 @@
     "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "generate-semantics": "ts-node generate-semantics.ts",
-    "watch-semantics": "nodemon generate-semantics.ts"
+    "generate-semantics": "esr generate-semantics.ts",
+    "watch-semantics": "nodemon generate-semantics.ts --exec 'esr generate-semantics.ts'"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^0.1.7",
@@ -58,6 +58,7 @@
     "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.7.1",
+    "esbuild-runner": "^2.2.1",
     "eslint": "^8.11.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
@@ -77,7 +78,6 @@
     "storybook-addon-themes": "^6.1.0",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.8",
-    "ts-node": "^10.7.0",
     "typescript": "^4.6.2",
     "url-loader": "^4.1.1",
     "vite": "^2.8.6"
