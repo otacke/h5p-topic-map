@@ -21,7 +21,7 @@ $navbar-height: var(--h5p-tm-navbar-height);
 .gridWrapperFullscreen {
   height: calc(100vh - #{$navbar-height});
   padding-top: 0;
-  width: calc(100vw - (#{$navbar-height} * 1.67));
+  width: 100vw;
 }
 
 .grid {
