@@ -88,7 +88,9 @@ export const Arrow: FC<ArrowProps> = ({
         if (isHorizontal) {
           setStrokeWidth((gridElement.clientHeight / grid.numberOfRows) * 0.66);
         } else {
-          setStrokeWidth((gridElement.clientWidth / grid.numberOfColumns) * 0.66);
+          setStrokeWidth(
+            (gridElement.clientWidth / grid.numberOfColumns) * 0.66,
+          );
         }
       }
 
