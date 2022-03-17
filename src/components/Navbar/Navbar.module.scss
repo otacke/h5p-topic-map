@@ -111,9 +111,14 @@ $grid-z-index: 1;
     gap: 0.3rem;
   }
 
+  /**
+   * {1} The width of the text when it says "100%"
+   */
   .progressPercentage {
     color: var(--theme-color-4);
     cursor: default;
+    min-width: 2.625rem; /* {1} */
+    text-align: right;
   }
 
   .progressBar {
