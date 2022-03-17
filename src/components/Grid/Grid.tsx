@@ -18,7 +18,6 @@ export type GridProps = {
   setStorageData: React.Dispatch<React.SetStateAction<UserData>>;
   storageData: UserData;
   grid?: GridDimensions;
-  navbarHeight: number;
   fullscreenHandle: FullScreenHandle;
 };
 
@@ -34,7 +33,6 @@ export const Grid: React.FC<GridProps> = ({
   setStorageData,
   storageData,
   grid,
-  navbarHeight,
   fullscreenHandle,
 }) => {
   const [itemShowingDialog, setItemShowingDialog] =
@@ -42,9 +40,7 @@ export const Grid: React.FC<GridProps> = ({
 
   const isArrow = (
     item: ArrowItemType | TopicMapItemType,
-  ): item is ArrowItemType => {
-    return (item as ArrowItemType).arrowType != null;
-  };
+  ): item is ArrowItemType => (item as ArrowItemType).arrowType != null;
 
   const getFirstArrowPosition = (
     arrow: ArrowItemType,
@@ -165,28 +161,25 @@ export const Grid: React.FC<GridProps> = ({
     ? `url(${backgroundImage.path})`
     : undefined;
 
-  const maxHeight = window.innerHeight - navbarHeight;
+  const gridWrapperClasses = React.useMemo(
+    () =>
+      [
+        styles.gridWrapper,
+        fullscreenHandle.active ? styles.gridWrapperFullscreen : undefined,
+      ]
+        .filter(Boolean)
+        .join(" "),
+    [fullscreenHandle.active],
+  );
 
   return (
     <div
-      className={styles.gridWrapper}
+      className={gridWrapperClasses}
       style={{
         backgroundImage: bgImageStyle,
-        maxHeight: fullscreenHandle.active ? maxHeight : "unset",
-        minHeight: fullscreenHandle.active ? maxHeight : "unset",
       }}
     >
-      <div
-        className={styles.grid}
-        style={{
-          maxHeight: fullscreenHandle.active
-            ? `calc(${maxHeight}px - 2rem)` // 2rem is grid's padding (1rem top + bottom)
-            : "unset",
-          minHeight: fullscreenHandle.active
-            ? `calc(${maxHeight}px - 2rem)`
-            : "unset",
-        }}
-      >
+      <div className={styles.grid}>
         {allMapItems}
         {itemShowingDialog?.dialog ? (
           <DialogWindow
