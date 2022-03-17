@@ -321,7 +321,14 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <div aria-label={navbarAriaLabel} className={sizeClassName}>
+      <div
+        aria-label={navbarAriaLabel}
+        className={sizeClassName}
+        style={{
+          // @ts-expect-error Custom properties are allowed
+          "--h5p-tm-navbar-height": `${navbarHeight}px`,
+        }}
+      >
         <div ref={navbarRef}>
           <div className={styles.navbarWrapper}>
             <div className={styles.navbarTitle}>{navbarTitle}</div>
@@ -339,7 +346,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               setStorageData={setStorageData}
               storageData={storageData}
               grid={params.topicMap?.grid}
-              navbarHeight={navbarHeight}
               fullscreenHandle={fullscreenHandle}
             />
           </div>

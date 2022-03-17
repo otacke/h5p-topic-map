@@ -17,7 +17,6 @@ const defaultArgs: GridProps = {
   backgroundImage: undefined,
   setStorageData: () => null,
   storageData: {},
-  navbarHeight: 0,
   fullscreenHandle: {} as FullScreenHandle,
 };
 
