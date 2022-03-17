@@ -6,7 +6,6 @@ import { NoteButtonIconState } from "../../types/NoteButtonIconState";
 import { Position } from "../../types/Position";
 import { UserData } from "../../types/UserData";
 import { GridDimensions } from "../Grid/Grid";
-import { NoteButton } from "../NoteButton/NoteButton";
 import styles from "./Arrow.module.scss";
 import { ArrowNoteButton } from "./ArrowNoteButton";
 
@@ -52,7 +51,6 @@ export const Arrow: FC<ArrowProps> = ({
     item.endPosition,
   );
 
-
   React.useEffect(() => {
     switch (true) {
       case storageData[item.id]?.noteDone:
@@ -96,7 +94,6 @@ export const Arrow: FC<ArrowProps> = ({
       setMiddleX(midx);
       setMiddleY(midy);
       setPathDef(path);
-
     }
   }, [arrowContainerRef, item, grid, buttonState, isHorizontal]);
 
@@ -143,7 +140,9 @@ export const Arrow: FC<ArrowProps> = ({
                 : ""
             }
             markerStart={
-              item.arrowType === ArrowType.BiDirectional ? "url(#arrowtail)" : ""
+              item.arrowType === ArrowType.BiDirectional
+                ? "url(#arrowtail)"
+                : ""
             }
             onClick={onClick}
             role="button"
@@ -153,7 +152,10 @@ export const Arrow: FC<ArrowProps> = ({
           />
         </svg>
       </div>
-      <ArrowNoteButton position={{x:middleX,y:middleY}} buttonState={buttonState} />
+      <ArrowNoteButton
+        position={{ x: middleX, y: middleY }}
+        buttonState={buttonState}
+      />
     </div>
   );
 };
