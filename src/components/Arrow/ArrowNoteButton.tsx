@@ -1,35 +1,15 @@
 import * as React from "react";
-import { FC, MouseEventHandler } from "react";
-import { ArrowItemType } from "../../types/ArrowItemType";
-import { ArrowType } from "../../types/ArrowType";
+import { FC } from "react";
 import { NoteButtonIconState } from "../../types/NoteButtonIconState";
 import { Position } from "../../types/Position";
-import { UserData } from "../../types/UserData";
-import { GridDimensions } from "../Grid/Grid";
 import { NoteButton } from "../NoteButton/NoteButton";
-import styles from "./Arrow.module.scss";
 
 export type ArrowNoteButtonProps = {
   buttonState: NoteButtonIconState;
-  element: HTMLDivElement | null;
   position: Position;
 };
 
-
-// const buttonForState = (buttonState: NoteButtonIconState): string => {
-//   switch (buttonState) {
-//     case NoteButtonIconState.Default:
-//       return "default";
-//     case NoteButtonIconState.Notes:
-//       return "notes";
-//     case NoteButtonIconState.Text:
-//       return "text";
-//     case NoteButtonIconState.Done:
-//       return "done";
-//   }
-// };
-
-export const ArrowNoteButton: FC<ArrowNoteButtonProps> = ({buttonState, element, position}) => {
+export const ArrowNoteButton: FC<ArrowNoteButtonProps> = ({buttonState, position}) => {
 
   const buttonElement = React.useRef<HTMLDivElement>(null);
 
