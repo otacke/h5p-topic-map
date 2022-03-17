@@ -2,11 +2,11 @@ import * as React from "react";
 
 export type IconProps = {
   iconColor: string;
-  width?: number;
-  height?: number;
 };
 
-export const EditIcon: React.FC<IconProps> = ({ iconColor, width, height }) => (
+export const EditIcon: React.FC<
+  IconProps & { width?: number; height?: number }
+> = ({ iconColor, width, height }) => (
   <svg
     width={width ? `${width}%` : "10"}
     height={height ? `${height}%` : "10"}
@@ -22,7 +22,7 @@ export const EditIcon: React.FC<IconProps> = ({ iconColor, width, height }) => (
   </svg>
 );
 
-export const NoteIcon: React.FC<IconProps> = ({ iconColor, width, height }) => (
+export const NoteIcon: React.FC<IconProps> = ({ iconColor }) => (
   <svg
     width="12"
     height="12"
@@ -37,7 +37,7 @@ export const NoteIcon: React.FC<IconProps> = ({ iconColor, width, height }) => (
   </svg>
 );
 
-export const DoneIcon: React.FC<IconProps> = ({ iconColor, width, height }) => (
+export const DoneIcon: React.FC<IconProps> = ({ iconColor }) => (
   <svg
     width="12"
     height="12"
@@ -52,11 +52,7 @@ export const DoneIcon: React.FC<IconProps> = ({ iconColor, width, height }) => (
   </svg>
 );
 
-export const HamburgerIcon: React.FC<IconProps> = ({
-  iconColor,
-  width,
-  height,
-}) => (
+export const HamburgerIcon: React.FC<IconProps> = ({ iconColor }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="18"
@@ -68,11 +64,7 @@ export const HamburgerIcon: React.FC<IconProps> = ({
   </svg>
 );
 
-export const HamburgerCloseIcon: React.FC<IconProps> = ({
-  iconColor,
-  width,
-  height,
-}) => (
+export const HamburgerCloseIcon: React.FC<IconProps> = ({ iconColor }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="12"
