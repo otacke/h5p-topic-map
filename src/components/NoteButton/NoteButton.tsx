@@ -9,6 +9,7 @@ const icons: Record<NoteButtonIconState, React.FC<IconProps>> = {
   [NoteButtonIconState.Notes]: NoteIcon,
   [NoteButtonIconState.Text]: NoteIcon,
   [NoteButtonIconState.Default]: EditIcon,
+  [NoteButtonIconState.None]: EditIcon,
 };
 
 const renderIcon = (
