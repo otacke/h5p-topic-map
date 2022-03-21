@@ -151,7 +151,7 @@ export const Arrow: FC<ArrowProps> = ({
             points={pathDef}
             fill="transparent"
             stroke="var(--theme-color-3)"
-            strokeWidth={strokeWidth*1.5}
+            strokeWidth={strokeWidth * 1.5}
             markerEnd={
               item.arrowType === ArrowType.BiDirectional ||
               item.arrowType === ArrowType.Directional
