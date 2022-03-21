@@ -117,6 +117,16 @@ export const Arrow: FC<ArrowProps> = ({
               <path d="M0,0 L0,2 L1.5,1 z" fill="var(--theme-color-4)" />
             </marker>
             <marker
+              id="arrowheadoutline"
+              markerWidth="10"
+              markerHeight="10"
+              refX="0.7"
+              refY="1"
+              orient="auto"
+            >
+              <path d="M0,0 L0,2 L1.5,1 z" fill="var(--theme-color-3)" />
+            </marker>
+            <marker
               id="arrowtail"
               markerWidth="10"
               markerHeight="10"
@@ -126,7 +136,34 @@ export const Arrow: FC<ArrowProps> = ({
             >
               <path d="M0,0 L0,2 L1.5,1 z" fill="var(--theme-color-4)" />
             </marker>
+            <marker
+              id="arrowtailoutline"
+              markerWidth="10"
+              markerHeight="10"
+              refX="0.7"
+              refY="1"
+              orient="auto-start-reverse"
+            >
+              <path d="M0,0 L0,2 L1.5,1 z" fill="var(--theme-color-3)" />
+            </marker>
           </defs>
+          <polyline
+            points={pathDef}
+            fill="transparent"
+            stroke="var(--theme-color-3)"
+            strokeWidth={strokeWidth*1.5}
+            markerEnd={
+              item.arrowType === ArrowType.BiDirectional ||
+              item.arrowType === ArrowType.Directional
+                ? "url(#arrowheadoutline)"
+                : ""
+            }
+            markerStart={
+              item.arrowType === ArrowType.BiDirectional
+                ? "url(#arrowtailoutline)"
+                : ""
+            }
+          />
           <polyline
             className={styles.path}
             points={pathDef}
