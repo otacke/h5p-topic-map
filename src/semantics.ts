@@ -430,7 +430,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
       {
         label: "Navbar notes section label",
         name: "navbarNotesSectionLabel",
-        default: "See notes",
+        default: "My notes",
         type: H5PFieldType.Text,
       },
       {
@@ -450,7 +450,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         name: "navbarHelpSectionBody",
         widget: "html",
         default:
-          "<p>The purpose of this exercise is to enhance your learning by linking your own notes to a topic map. The topic map consists of events (boxes) and connections (arrows). You must enter notes for both events and connections.</p><p>Click or tap the boxes and arrows to add a note to an event or connection. The notes you enter are automatically saved locally in the browser of the device you are using, so you can continue on or read the notes at a later time.</p><p><strong>Progress bar</strong> shows what percentage of the events and connections have received notes. 100% means you have posted notes in all available places.</p><p><strong>See notes</strong> gives you an overview of all the notes you have written. There you can print out or delete all the notes. These notes are stored locally in your internet browser, therefore it's recommended to export them using printing functionality in order to save your answers over time.</p>",
+          "<p>The purpose of this exercise is to enhance your learning by linking your own notes to a topic map. The topic map consists of events (boxes) and connections (arrows). You must enter notes for both events and connections.</p><p>Click or tap the boxes and arrows to add a note to an event or connection. The notes you enter are automatically saved locally in the browser of the device you are using, so you can continue on or read the notes at a later time.</p><p><strong>Progress bar</strong> shows what percentage of the events and connections have received notes. 100% means you have posted notes in all available places.</p><p><strong>My notes</strong> gives you an overview of all the notes you have written. There you can print out or delete all the notes. These notes are stored locally in your internet browser, therefore it's recommended to export them using printing functionality in order to save your answers over time.</p>",
         type: H5PFieldType.Text,
         tags: ["p", "br", "strong", "em", "a"],
       },
@@ -481,14 +481,14 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
       {
         label: "Navbar notes section title",
         name: "navbarNotesSectionTitle",
-        default: "See notes",
+        default: "My notes",
         type: H5PFieldType.Text,
       },
       {
         label: "Navbar notes section body",
         name: "navbarNotesSectionBody",
         default:
-          "Here you see an overview of all the notes you have written. You can print or copy the notes to paste them into a document or e-mail, for example.",
+          "Here you have an overview of all the notes you have written. The notes are saved locally in this browser. To save the notes elsewhere, you can print or copy the notes into a document.",
         type: H5PFieldType.Text,
       },
       {
