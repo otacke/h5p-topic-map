@@ -34,7 +34,7 @@ DenFranskeRevolusjon.args = {
       fullscreenButtonLabel: "Toggle fullscreen mode",
       navbarTabsListAriaLabel: "Navigation bar",
       navbarTopicMapSectionLabel: "Topic map",
-      navbarNotesSectionLabel: "See notes",
+      navbarNotesSectionLabel: "My notes",
       navbarHelpSectionLabel: "Help",
       navbarHelpSectionTitle: "Help",
       navbarHelpSectionBody:
