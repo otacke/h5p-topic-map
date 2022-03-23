@@ -215,7 +215,7 @@ DenFranskeRevolusjon.args = {
                 </p>
             `,
             },
-            links: ["wwww.ndla.no"],
+            links: [{ label: "NDLA - www.ndla.no", url: "www.ndla.no" }],
             showAddLinks: true,
             video: [
               {

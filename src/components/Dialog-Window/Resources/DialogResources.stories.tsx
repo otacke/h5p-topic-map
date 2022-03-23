@@ -14,6 +14,9 @@ const Template: ComponentStory<typeof DialogResources> = args => (
 
 export const ResourcesDialog = Template.bind({});
 ResourcesDialog.args = {
-  relevantLinks: ["www.ndla.com", "www.h5p.com"],
+  relevantLinks: [
+    { label: "NDLA", url: "www.ndla.com" },
+    { label: "H5P", url: "www.h5p.com" },
+  ],
   id: "myId",
 };

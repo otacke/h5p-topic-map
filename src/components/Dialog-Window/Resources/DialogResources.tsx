@@ -58,7 +58,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
               target="_blank"
               rel="noreferrer noopener"
             >
-              {item.label}
+              {item.label ?? item.url}
             </a>
           </li>
         ))
