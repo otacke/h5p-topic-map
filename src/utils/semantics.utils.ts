@@ -72,7 +72,19 @@ export const itemDialog: Array<H5PField> = [
         field: {
           label: "Link",
           name: "link",
-          type: H5PFieldType.Text,
+          type: H5PFieldType.Group,
+          fields: [
+            {
+              label: "Label",
+              name: "label",
+              type: H5PFieldType.Text,
+            },
+            {
+              label: "Url",
+              name: "url",
+              type: H5PFieldType.Text,
+            },
+          ],
         },
       },
       {

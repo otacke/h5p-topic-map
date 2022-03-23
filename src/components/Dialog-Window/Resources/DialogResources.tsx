@@ -8,7 +8,7 @@ import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { useL10n } from "../../../hooks/useLocalization";
 
 export type DialogResourceProps = {
-  relevantLinks: string[] | undefined;
+  relevantLinks: Link[] | undefined;
   showAddLinks: boolean;
   id: string;
 };
@@ -51,14 +51,14 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
 
   const relevantItems =
     relevantLinks != null
-      ? relevantLinks.map((item: string) => (
-          <li key={item} className={styles.li}>
+      ? relevantLinks.map((item: Link) => (
+          <li key={item.id ?? item.url} className={styles.li}>
             <a
-              href={normalizeLinkPath(item)}
+              href={normalizeLinkPath(item.url)}
               target="_blank"
               rel="noreferrer noopener"
             >
-              {item}
+              {item.label}
             </a>
           </li>
         ))
@@ -83,7 +83,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
         <button
           className={styles.removeButton}
           type="button"
-          onClick={() => removeCustomLink(item.id)}
+          onClick={() => removeCustomLink(item.id ?? item.url)}
         >
           <Cross2Icon />
         </button>
@@ -94,7 +94,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   };
 
   const saveCustomLink = (newLink: string): void => {
-    const tempNewLink: Link = { id: uuidV4(), url: newLink };
+    const tempNewLink: Link = { id: uuidV4(), url: newLink, label: newLink };
     const dialogData = userData[id];
 
     if (!dialogData.links) {
