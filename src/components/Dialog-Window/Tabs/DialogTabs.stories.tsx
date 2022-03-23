@@ -86,8 +86,8 @@ const itemWithOnlyImage = {
   dialog: {
     hasNote: true,
     links: [
-      { label: "YouTube - www.youtube.com", url: "www.youtube.com" },
-      { label: "NDLA - www.ndla.no", url: "www.ndla.com" },
+      { label: "YouTube", url: "www.youtube.com" },
+      { label: "NDLA", url: "www.ndla.com" },
     ],
     showAddLinks: true,
     video: [

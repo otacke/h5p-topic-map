@@ -49,6 +49,18 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
     return `https://${linkPath}`;
   };
 
+  const getRootUrl = (linkPath: string): string => {
+    const normalizedLink = normalizeLinkPath(linkPath);
+    const url = new URL(normalizedLink);
+
+    let rootUrl = url.hostname;
+    if (url.hostname.startsWith("www.")) {
+      const splitPrefix = rootUrl.concat().split("www.")[1];
+      rootUrl = splitPrefix;
+    }
+    return rootUrl;
+  };
+
   const relevantItems =
     relevantLinks != null
       ? relevantLinks.map((item: Link) => (
@@ -58,7 +70,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
               target="_blank"
               rel="noreferrer noopener"
             >
-              {item.label ?? item.url}
+              {item.label} ({getRootUrl(item.url)})
             </a>
           </li>
         ))
