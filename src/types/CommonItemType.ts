@@ -1,4 +1,4 @@
-import { Image } from "h5p-types";
+import type { Image } from "h5p-types";
 import { DialogContent } from "./DialogContent";
 
 export type CommonItemType = {

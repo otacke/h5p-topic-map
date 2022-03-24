@@ -1,4 +1,4 @@
-import { Audio, Video } from "h5p-types";
+import type { Audio, Video } from "h5p-types";
 import { Link } from "./Link";
 
 export type DialogContent = {

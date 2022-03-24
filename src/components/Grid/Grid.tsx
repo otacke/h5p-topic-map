@@ -1,4 +1,4 @@
-import { Image } from "h5p-types";
+import type { Image } from "h5p-types";
 import * as React from "react";
 import { useState } from "react";
 import { FullScreenHandle } from "react-full-screen";

@@ -1,4 +1,4 @@
-import { Copyright } from "h5p-types";
+import type { Copyright } from "h5p-types";
 
 export const formatCopyright = (
   copyrightTitle: string,

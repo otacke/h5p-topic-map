@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import { Video } from "h5p-types";
+import type { Video } from "h5p-types";
 import * as React from "react";
 import { H5P } from "../../../h5p/H5P.util";
 import { useContentId } from "../../../hooks/useContentId";

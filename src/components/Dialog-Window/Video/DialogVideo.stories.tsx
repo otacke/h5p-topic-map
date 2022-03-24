@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Video } from "h5p-types";
+import type { Video } from "h5p-types";
 import * as React from "react";
 import { DialogVideo } from "./DialogVideo";
 
