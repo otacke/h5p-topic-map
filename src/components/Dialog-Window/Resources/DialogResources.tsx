@@ -53,9 +53,9 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
     const normalizedLink = normalizeLinkPath(linkPath);
     const url = new URL(normalizedLink);
 
-    const rootUrl = url.hostname;
+    let rootUrl = url.hostname;
     if (rootUrl.startsWith("www.")) {
-      rootUrl.replace("www.", "");
+      rootUrl = rootUrl.replace("www.", "");
     }
     return rootUrl;
   };
