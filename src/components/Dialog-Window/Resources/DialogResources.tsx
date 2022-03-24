@@ -83,7 +83,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
       return;
     }
 
-    const updatedLinks = links.map((item: Link) => (
+    const updatedLinks = links.map(item => (
       <li key={item.id} className={styles.li}>
         <a
           href={normalizeLinkPath(item.url)}
@@ -95,7 +95,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
         <button
           className={styles.removeButton}
           type="button"
-          onClick={() => removeCustomLink(item.id ?? item.url)}
+          onClick={() => removeCustomLink(item.id)}
         >
           <Cross2Icon />
         </button>
@@ -106,7 +106,11 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   };
 
   const saveCustomLink = (newLink: string): void => {
-    const tempNewLink: Link = { id: uuidV4(), url: newLink, label: newLink };
+    const tempNewLink: Required<Link> = {
+      id: uuidV4(),
+      url: newLink,
+      label: newLink,
+    };
     const dialogData = userData[id];
 
     if (!dialogData.links) {

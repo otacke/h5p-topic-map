@@ -1,7 +1,7 @@
 import { Link } from "./Link";
 
 export type DialogData = {
-  links?: Array<Link>;
+  links?: Array<Required<Link>>;
   note?: string;
   noteDone?: boolean;
 };
