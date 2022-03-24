@@ -35,7 +35,10 @@ const item = {
   dialog: {
     hasNote: true,
     text: "<p>Text text for testing Text text test. This is a body<p>",
-    links: ["www.youtube.com", "www.ndla.com"],
+    links: [
+      { label: "YouTube", url: "www.youtube.com" },
+      { label: "NDLA", url: "www.ndla.com" },
+    ],
     showAddLinks: true,
     video: [
       {
@@ -82,7 +85,10 @@ const itemWithOnlyImage = {
   },
   dialog: {
     hasNote: true,
-    links: ["www.youtube.com", "www.ndla.com"],
+    links: [
+      { label: "YouTube", url: "www.youtube.com" },
+      { label: "NDLA", url: "www.ndla.com" },
+    ],
     showAddLinks: true,
     video: [
       {
@@ -126,7 +132,10 @@ const itemWithoutImage = {
   det ut masseopprør i Paris og fengselet Bastillen ble stormet. <p>`,
   dialog: {
     hasNote: true,
-    links: ["www.youtube.com", "www.ndla.com"],
+    links: [
+      { label: "YouTube", url: "www.youtube.com" },
+      { label: "NDLA", url: "www.ndla.com" },
+    ],
     showAddLinks: false,
     text: "<p>Body text from storybook.<p>",
     video: [

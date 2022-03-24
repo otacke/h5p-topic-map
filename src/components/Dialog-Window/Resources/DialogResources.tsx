@@ -8,7 +8,7 @@ import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { useL10n } from "../../../hooks/useLocalization";
 
 export type DialogResourceProps = {
-  relevantLinks: string[] | undefined;
+  relevantLinks: Link[] | undefined;
   showAddLinks: boolean;
   id: string;
 };
@@ -49,16 +49,27 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
     return `https://${linkPath}`;
   };
 
+  const getRootUrl = (linkPath: string): string => {
+    const normalizedLink = normalizeLinkPath(linkPath);
+    const url = new URL(normalizedLink);
+
+    let rootUrl = url.hostname;
+    if (rootUrl.startsWith("www.")) {
+      rootUrl = rootUrl.replace("www.", "");
+    }
+    return rootUrl;
+  };
+
   const relevantItems =
     relevantLinks != null
-      ? relevantLinks.map((item: string) => (
-          <li key={item} className={styles.li}>
+      ? relevantLinks.map((item: Link) => (
+          <li key={item.id ?? item.url} className={styles.li}>
             <a
-              href={normalizeLinkPath(item)}
+              href={normalizeLinkPath(item.url)}
               target="_blank"
               rel="noreferrer noopener"
             >
-              {item}
+              {item.label} ({getRootUrl(item.url)})
             </a>
           </li>
         ))
@@ -71,7 +82,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
       return;
     }
 
-    const updatedLinks = links.map((item: Link) => (
+    const updatedLinks = links.map(item => (
       <li key={item.id} className={styles.li}>
         <a
           href={normalizeLinkPath(item.url)}
@@ -94,7 +105,11 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   };
 
   const saveCustomLink = (newLink: string): void => {
-    const tempNewLink: Link = { id: uuidV4(), url: newLink };
+    const tempNewLink: Required<Link> = {
+      id: uuidV4(),
+      url: newLink,
+      label: newLink,
+    };
     const dialogData = userData[id];
 
     if (!dialogData.links) {

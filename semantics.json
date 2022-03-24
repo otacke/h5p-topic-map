@@ -150,7 +150,19 @@
                   "field": {
                     "label": "Link",
                     "name": "link",
-                    "type": "text"
+                    "type": "group",
+                    "fields": [
+                      {
+                        "label": "Label",
+                        "name": "label",
+                        "type": "text"
+                      },
+                      {
+                        "label": "Url",
+                        "name": "url",
+                        "type": "text"
+                      }
+                    ]
                   }
                 },
                 {
@@ -410,7 +422,19 @@
                   "field": {
                     "label": "Link",
                     "name": "link",
-                    "type": "text"
+                    "type": "group",
+                    "fields": [
+                      {
+                        "label": "Label",
+                        "name": "label",
+                        "type": "text"
+                      },
+                      {
+                        "label": "Url",
+                        "name": "url",
+                        "type": "text"
+                      }
+                    ]
                   }
                 },
                 {
