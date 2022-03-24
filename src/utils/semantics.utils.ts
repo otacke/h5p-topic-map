@@ -1,4 +1,4 @@
-import { H5PField, H5PFieldType } from "h5p-types";
+import { H5PField } from "h5p-types";
 import { ColorTheme } from "../types/ColorTheme";
 import { Params } from "../types/Params";
 import { Translations } from "../types/Translations";
@@ -7,12 +7,12 @@ export const itemDialog: Array<H5PField> = [
   {
     label: "Dialog",
     name: "dialog",
-    type: H5PFieldType.Group,
+    type: "group",
     fields: [
       {
         label: "Show notes textarea",
         name: "hasNote",
-        type: H5PFieldType.Boolean,
+        type: "boolean",
         default: true,
       },
       {
@@ -20,14 +20,14 @@ export const itemDialog: Array<H5PField> = [
         description:
           "Specifies the maximum number of words for the note. Default is 160 words.",
         name: "maxWordCount",
-        type: H5PFieldType.Number,
+        type: "number",
         optional: true,
         default: 160,
       },
       {
         label: "Text",
         name: "text",
-        type: H5PFieldType.Text,
+        type: "text",
         widget: "html",
         optional: true,
         tags: ["p", "br", "strong", "em", "a"],
@@ -35,25 +35,25 @@ export const itemDialog: Array<H5PField> = [
       {
         label: "Video",
         name: "video",
-        type: H5PFieldType.Video,
+        type: "video",
         optional: true,
       },
       {
         label: "Audio",
         name: "audio",
-        type: H5PFieldType.Group,
+        type: "group",
         optional: true,
         importance: "low",
         fields: [
           {
             label: "Audio",
             name: "audioFile",
-            type: H5PFieldType.Audio,
+            type: "audio",
           },
           {
             label: "Subtext",
             name: "subtext",
-            type: H5PFieldType.Text,
+            type: "text",
             widget: "html",
             optional: true,
             tags: ["p", "br", "strong", "em"],
@@ -65,29 +65,29 @@ export const itemDialog: Array<H5PField> = [
         name: "links",
         description:
           "These links are as auxiliary links for the user in the element's modal window",
-        type: H5PFieldType.List,
+        type: "list",
         optional: true,
         entity: "linkItem",
         field: {
           label: "Link",
           name: "link",
-          type: H5PFieldType.Group,
+          type: "group",
           fields: [
             {
               label: "Id",
               name: "id",
-              type: H5PFieldType.Text,
+              type: "text",
               widget: "uuid",
             },
             {
               label: "Label",
               name: "label",
-              type: H5PFieldType.Text,
+              type: "text",
             },
             {
               label: "Url",
               name: "url",
-              type: H5PFieldType.Text,
+              type: "text",
             },
           ],
         },
@@ -95,7 +95,7 @@ export const itemDialog: Array<H5PField> = [
       {
         label: "Show add links option",
         name: "showAddLinks",
-        type: H5PFieldType.Boolean,
+        type: "boolean",
         default: false,
       },
     ],
