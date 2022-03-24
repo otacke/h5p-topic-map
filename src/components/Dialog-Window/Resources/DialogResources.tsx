@@ -152,13 +152,13 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
       {relevantItems ? (
         <>
           <p>{relevantLinkLabel}:</p>
-          <ul>{relevantItems}</ul>
+          <ul className={styles.ul}>{relevantItems}</ul>
         </>
       ) : null}
       {showAddLinks ? (
         <>
           <p>{customLinkLabel}:</p>
-          <ul>{customLinks}</ul>
+          <ul className={styles.ul}>{customLinks}</ul>
           <div className={styles.inputContainer}>
             <input
               className={styles.input}
