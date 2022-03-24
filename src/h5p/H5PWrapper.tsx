@@ -10,10 +10,13 @@ import { Params } from "../types/Params";
 import { Translations } from "../types/Translations";
 import { getEmptyParams } from "../utils/semantics.utils";
 import {
-  H5P, normalizeArrowDialogAudioPaths, normalizeArrowItemPaths,
-  normalizeDialogAudioPaths, normalizeGridBackgroundImagePath,
+  H5P,
+  normalizeArrowDialogAudioPaths,
+  normalizeArrowItemPaths,
+  normalizeDialogAudioPaths,
+  normalizeGridBackgroundImagePath,
   normalizeSizes,
-  normalizeTopicMapItemPaths
+  normalizeTopicMapItemPaths,
 } from "./H5P.util";
 
 export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
