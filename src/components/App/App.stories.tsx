@@ -217,10 +217,12 @@ DenFranskeRevolusjon.args = {
             },
             links: [
               {
+                id: "link-1",
                 label: "Årsaker til den franske revolusjonen",
                 url: "https://ndla.no/subject:cc109c51-a083-413b-b497-7f80a0569a92/topic:ba59526d-02d1-4475-84d6-07fe1fb784df/topic:61047468-ae7d-4a2e-955e-49b20a47b275/resource:f27c22f9-2c4b-4239-a1a7-80ae3b62f531",
               },
               {
+                id: "link-2",
                 label: "Den franske revolusjon",
                 url: "https://snl.no/Den_franske_revolusjon",
               },
