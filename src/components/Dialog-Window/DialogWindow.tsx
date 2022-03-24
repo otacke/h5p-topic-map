@@ -1,14 +1,14 @@
-import * as React from "react";
 import { Close, Content, Overlay, Root, Title } from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
+import * as React from "react";
 import { FC } from "react";
 import { useMedia } from "react-use";
 import { useL10n } from "../../hooks/useLocalization";
 import { CommonItemType } from "../../types/CommonItemType";
 import { UserData } from "../../types/UserData";
+import styles from "./DialogWindow.module.scss";
 import { DialogNote } from "./Notes/DialogNote";
 import { DialogTabs } from "./Tabs/DialogTabs";
-import styles from "./DialogWindow.module.scss";
 
 export type DialogWindowProps = {
   item: CommonItemType;

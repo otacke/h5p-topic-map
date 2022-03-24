@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
+import { Image } from "h5p-types";
 import * as React from "react";
 import { useL10n } from "../../../hooks/useLocalization";
-import { Image } from "../../../types/H5P/Image";
 import { formatCopyright } from "../../../utils/dialog.utils";
 import styles from "./DialogText.module.scss";
 

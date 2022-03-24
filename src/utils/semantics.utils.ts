@@ -1,7 +1,6 @@
+import { H5PField, H5PFieldType } from "h5p-types";
 import { ColorTheme } from "../types/ColorTheme";
-import { H5PField } from "../types/H5P/H5PField";
-import { H5PFieldType } from "../types/H5P/H5PFieldType";
-import { Params } from "../types/H5P/Params";
+import { Params } from "../types/Params";
 import { Translations } from "../types/Translations";
 
 export const itemDialog: Array<H5PField> = [

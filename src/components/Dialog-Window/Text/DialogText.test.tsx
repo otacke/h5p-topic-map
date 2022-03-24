@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
+import { Image } from "h5p-types";
 import * as React from "react";
-import { Image } from "../../../types/H5P/Image";
 import { DialogText } from "./DialogText";
 
 describe(DialogText.name, () => {

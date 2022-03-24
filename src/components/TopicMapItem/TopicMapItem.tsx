@@ -2,11 +2,11 @@ import * as React from "react";
 import { FC, MouseEventHandler } from "react";
 import { useAppWidth } from "../../hooks/useAppWidth";
 import { BreakpointSize } from "../../types/BreakpointSize";
+import { NoteButtonIconState } from "../../types/NoteButtonIconState";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
+import { UserData } from "../../types/UserData";
 import { NoteButton } from "../NoteButton/NoteButton";
 import styles from "./TopicMapItem.module.scss";
-import { NoteButtonIconState } from "../../types/NoteButtonIconState";
-import { UserData } from "../../types/UserData";
 
 export type TopicMapItemProps = {
   item: TopicMapItemType;

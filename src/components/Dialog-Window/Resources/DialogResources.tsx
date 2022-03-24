@@ -1,11 +1,11 @@
-import { v4 as uuidV4 } from "uuid";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import * as React from "react";
 import { useEffectOnce } from "react-use";
-import styles from "./DialogResources.module.scss";
-import { Link } from "../../../types/Link";
-import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import { v4 as uuidV4 } from "uuid";
 import { useL10n } from "../../../hooks/useLocalization";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import { Link } from "../../../types/Link";
+import styles from "./DialogResources.module.scss";
 
 export type DialogResourceProps = {
   relevantLinks: Link[] | undefined;

@@ -1,17 +1,16 @@
 /* eslint-disable no-unused-expressions */
-/* eslint-disable react/no-array-index-key */
+import { Content, List, Root, Trigger } from "@radix-ui/react-tabs";
 import * as React from "react";
-import { Root, List, Trigger, Content } from "@radix-ui/react-tabs";
 import { useMedia } from "react-use";
-import styles from "./DialogTabs.module.scss";
-import { DialogText } from "../Text/DialogText";
-import { DialogResources } from "../Resources/DialogResources";
-import { DialogVideo } from "../Video/DialogVideo";
-import { DialogAudio } from "../Audio/DialogAudio";
 import { useL10n } from "../../../hooks/useLocalization";
-import { DialogNote } from "../Notes/DialogNote";
 import { CommonItemType } from "../../../types/CommonItemType";
 import { UserData } from "../../../types/UserData";
+import { DialogAudio } from "../Audio/DialogAudio";
+import { DialogNote } from "../Notes/DialogNote";
+import { DialogResources } from "../Resources/DialogResources";
+import { DialogText } from "../Text/DialogText";
+import { DialogVideo } from "../Video/DialogVideo";
+import styles from "./DialogTabs.module.scss";
 
 export type TabProps = {
   item: CommonItemType;

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
+import { Audio } from "h5p-types";
 import * as React from "react";
 import { useL10n } from "../../../hooks/useLocalization";
-import { Audio } from "../../../types/H5P/Audio";
 import { formatCopyright } from "../../../utils/dialog.utils";
 import styles from "./DialogAudio.module.scss";
 

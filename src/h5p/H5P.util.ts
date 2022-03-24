@@ -1,7 +1,7 @@
+import type { Audio } from "h5p-types";
 import { H5PObject } from "../../H5P";
 import { ArrowItemType } from "../types/ArrowItemType";
-import { Audio } from "../types/H5P/Audio";
-import { Params } from "../types/H5P/Params";
+import { Params } from "../types/Params";
 import { TopicMapItemType } from "../types/TopicMapItemType";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

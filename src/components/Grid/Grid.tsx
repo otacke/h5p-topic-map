@@ -1,9 +1,9 @@
+import { Image } from "h5p-types";
 import * as React from "react";
 import { useState } from "react";
 import { FullScreenHandle } from "react-full-screen";
 import { ArrowItemType } from "../../types/ArrowItemType";
 import { CommonItemType } from "../../types/CommonItemType";
-import { Image } from "../../types/H5P/Image";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
 import { UserData } from "../../types/UserData";
 import { Arrow } from "../Arrow/Arrow";
