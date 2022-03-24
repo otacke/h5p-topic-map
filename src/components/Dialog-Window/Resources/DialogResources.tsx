@@ -107,7 +107,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   };
 
   const saveCustomLink = (newLink: string): void => {
-    const tempNewLink: Required<Link> = {
+    const tempNewLink: Link = {
       id: uuidV4(),
       url: newLink,
       label: newLink,
