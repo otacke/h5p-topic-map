@@ -62,17 +62,19 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
 
   const relevantItems =
     relevantLinks != null
-      ? relevantLinks.map((item: Link) => (
-          <li key={item.id ?? item.url} className={styles.li}>
-            <a
-              href={normalizeLinkPath(item.url)}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              {item.label} ({getRootUrl(item.url)})
-            </a>
-          </li>
-        ))
+      ? relevantLinks.map((item: Link) =>
+          item.url ? (
+            <li key={item.id ?? item.url} className={styles.li}>
+              <a
+                href={normalizeLinkPath(item.url)}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                {item.label} ({getRootUrl(item.url)})
+              </a>
+            </li>
+          ) : null,
+        )
       : null;
 
   // extract the generation of custom links list to separate function
