@@ -31,7 +31,9 @@ const defaultTabValue = (item: CommonItemType): string => {
   switch (true) {
     case dialog?.text !== "" || topicImage !== undefined || description !== "":
       return "Text";
-    case dialog?.links !== undefined || dialog?.showAddLinks:
+    case (dialog?.links &&
+      dialog?.links?.filter(link => Boolean(link.url)).length > 0) ||
+      dialog?.showAddLinks:
       return "Resources";
     case dialog?.video !== undefined:
       return "Video";
@@ -50,7 +52,10 @@ const tabLabelItems = (
   const items = [];
 
   const showTextTab = dialog?.text || topicImage || description;
-  const showLinksTab = dialog?.links != null || dialog?.showAddLinks;
+  const showLinksTab =
+    (dialog?.links &&
+      dialog?.links?.filter(link => Boolean(link.url)).length > 0) ||
+    dialog?.showAddLinks;
 
   showTextTab
     ? items.push(
@@ -88,7 +93,10 @@ const tabItems = (item: CommonItemType): JSX.Element[] => {
   const items: JSX.Element[] = [];
 
   const showTextTab = dialog?.text || topicImage || description;
-  const showLinksTab = dialog?.links != null || dialog?.showAddLinks;
+  const showLinksTab =
+    (dialog?.links &&
+      dialog?.links?.filter(link => Boolean(link.url)).length > 0) ||
+    dialog?.showAddLinks;
 
   showTextTab
     ? items.push(
