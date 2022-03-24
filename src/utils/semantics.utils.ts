@@ -75,6 +75,12 @@ export const itemDialog: Array<H5PField> = [
           type: H5PFieldType.Group,
           fields: [
             {
+              label: "Id",
+              name: "id",
+              type: H5PFieldType.Text,
+              widget: "uuid",
+            },
+            {
               label: "Label",
               name: "label",
               type: H5PFieldType.Text,

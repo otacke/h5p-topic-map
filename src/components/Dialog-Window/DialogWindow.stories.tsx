@@ -69,8 +69,8 @@ DialogWindowTabs.args = {
       ...item.dialog,
       hasNote: false,
       links: [
-        { label: "Google", url: "www.google.com" },
-        { label: "YouTube", url: "www.youtube.com" },
+        { id: "link-1", label: "Google", url: "www.google.com" },
+        { id: "link-2", label: "YouTube", url: "www.youtube.com" },
       ],
       showAddLinks: true,
     },

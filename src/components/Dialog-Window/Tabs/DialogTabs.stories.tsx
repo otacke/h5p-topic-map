@@ -36,8 +36,8 @@ const item = {
     hasNote: true,
     text: "<p>Text text for testing Text text test. This is a body<p>",
     links: [
-      { label: "YouTube", url: "www.youtube.com" },
-      { label: "NDLA", url: "www.ndla.com" },
+      { id: "link-1", label: "YouTube", url: "www.youtube.com" },
+      { id: "link-2", label: "NDLA", url: "www.ndla.com" },
     ],
     showAddLinks: true,
     video: [
@@ -86,8 +86,8 @@ const itemWithOnlyImage = {
   dialog: {
     hasNote: true,
     links: [
-      { label: "YouTube", url: "www.youtube.com" },
-      { label: "NDLA", url: "www.ndla.com" },
+      { id: "link-3", label: "YouTube", url: "www.youtube.com" },
+      { id: "link-4", label: "NDLA", url: "www.ndla.com" },
     ],
     showAddLinks: true,
     video: [
@@ -133,8 +133,8 @@ const itemWithoutImage = {
   dialog: {
     hasNote: true,
     links: [
-      { label: "YouTube", url: "www.youtube.com" },
-      { label: "NDLA", url: "www.ndla.com" },
+      { id: "link-5", label: "YouTube", url: "www.youtube.com" },
+      { id: "link-6", label: "NDLA", url: "www.ndla.com" },
     ],
     showAddLinks: false,
     text: "<p>Body text from storybook.<p>",

@@ -33,9 +33,7 @@ export const useLocalStorage = (
     userData[dialogId] = userData[dialogId] as DialogData;
 
     if ("links" in userData) {
-      userData.dialogId.links = userData.dialogId.links as Array<
-        Required<Link>
-      >;
+      userData.dialogId.links = userData.dialogId.links as Array<Link>;
     }
   }
 

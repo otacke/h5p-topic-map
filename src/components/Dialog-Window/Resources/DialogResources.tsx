@@ -64,7 +64,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
     relevantLinks != null
       ? relevantLinks.map((item: Link) =>
           item.url ? (
-            <li key={item.id ?? item.url} className={styles.li}>
+            <li key={item.id} className={styles.li}>
               <a
                 href={normalizeLinkPath(item.url)}
                 target="_blank"
@@ -107,7 +107,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   };
 
   const saveCustomLink = (newLink: string): void => {
-    const tempNewLink: Required<Link> = {
+    const tempNewLink: Link = {
       id: uuidV4(),
       url: newLink,
       label: newLink,

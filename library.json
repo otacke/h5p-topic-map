@@ -3,7 +3,7 @@
   "machineName": "H5P.TopicMap",
   "majorVersion": 0,
   "minorVersion": 1,
-  "patchVersion": 102,
+  "patchVersion": 103,
   "runnable": 1,
   "preloadedJs": [
     {
@@ -20,6 +20,11 @@
       "machineName": "H5PEditor.TopicMap",
       "majorVersion": 0,
       "minorVersion": 1
+    },
+    {
+      "machineName": "H5PEditor.UUIDWidget",
+      "majorVersion": 1,
+      "minorVersion": 0
     }
   ],
   "preloadedDependencies": [
