@@ -75,7 +75,7 @@ export const DialogWindow: FC<DialogWindowProps> = ({
     !item.description &&
     !item.topicImage &&
     !item.dialog.audio?.audioFile &&
-    !item.dialog.links &&
+    !item.dialog.links?.[0].url &&
     !item.dialog.showAddLinks &&
     !item.dialog.text &&
     !item.dialog.video;
