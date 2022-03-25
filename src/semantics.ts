@@ -274,24 +274,24 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
             {
               label: "Arrow breakpoints",
               name: "breakpoints",
-              type: H5PFieldType.List,
+              type: "list",
               entity: "breakpoint",
               field: {
                 name: "breakpoint",
                 label: "Breakpoint",
-                type: H5PFieldType.Group,
+                type: "group",
                 widget: "none",
                 fields: [
                   {
                     name: "x",
                     label: "X-position as grid index",
-                    type: H5PFieldType.Number,
+                    type: "number",
                     widget: "none",
                   },
                   {
                     name: "y",
                     label: "Y-position as grid index",
-                    type: H5PFieldType.Number,
+                    type: "number",
                     widget: "none",
                   },
                 ],
@@ -300,24 +300,24 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
             {
               label: "Arrow Relative breakpoints",
               name: "relativeBreakpoints",
-              type: H5PFieldType.List,
+              type: "list",
               entity: "breakpoint",
               field: {
                 name: "breakpoint",
                 label: "Breakpoint",
-                type: H5PFieldType.Group,
+                type: "group",
                 widget: "none",
                 fields: [
                   {
                     name: "x",
                     label: "X-position as a percentage of the container width",
-                    type: H5PFieldType.Number,
+                    type: "number",
                     widget: "none",
                   },
                   {
                     name: "y",
                     label: "Y-position as a percentage of the container height",
-                    type: H5PFieldType.Number,
+                    type: "number",
                     widget: "none",
                   },
                 ],
