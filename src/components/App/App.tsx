@@ -3,7 +3,7 @@ import * as React from "react";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { AppWidthContext } from "../../contexts/AppWidthContext";
 import { getUserData, setUserData } from "../../hooks/useLocalStorage";
-import { Params } from "../../types/H5P/Params";
+import { Params } from "../../types/Params";
 import { UserData } from "../../types/UserData";
 import { defaultTheme } from "../../utils/semantics.utils";
 import { Navbar } from "../Navbar/Navbar";

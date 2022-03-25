@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/media-has-caption */
+import type { Video } from "h5p-types";
 import * as React from "react";
 import { H5P } from "../../../h5p/H5P.util";
 import { useContentId } from "../../../hooks/useContentId";
 import { useL10n } from "../../../hooks/useLocalization";
-import { Video } from "../../../types/H5P/Video";
 import { formatCopyright } from "../../../utils/dialog.utils";
 import styles from "./DialogVideo.module.scss";
 

@@ -1,3 +1,4 @@
+import type { H5PExtras } from "h5p-types";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { IH5PWrapper } from "../../H5P";
@@ -5,18 +6,17 @@ import { App } from "../components/App/App";
 import { ContentIdContext } from "../contexts/ContentIdContext";
 import { H5PContext } from "../contexts/H5PContext";
 import { LocalizationContext } from "../contexts/LocalizationContext";
-import { H5PExtras } from "../types/H5P/H5PExtras";
-import { Params } from "../types/H5P/Params";
+import { Params } from "../types/Params";
 import { Translations } from "../types/Translations";
 import { getEmptyParams } from "../utils/semantics.utils";
 import {
   H5P,
+  normalizeArrowDialogAudioPaths,
+  normalizeArrowItemPaths,
+  normalizeDialogAudioPaths,
   normalizeGridBackgroundImagePath,
   normalizeSizes,
   normalizeTopicMapItemPaths,
-  normalizeArrowItemPaths,
-  normalizeDialogAudioPaths,
-  normalizeArrowDialogAudioPaths,
 } from "./H5P.util";
 
 export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
