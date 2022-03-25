@@ -384,6 +384,8 @@ DenFranskeRevolusjon.args = {
             showAddLinks: false,
             text: "",
           },
+          breakpoints: [],
+          relativeBreakpoints: [],
         },
         {
           id: "cf1e08d7-5e29-46a9-a177-d96e5c23ee24",
@@ -394,6 +396,8 @@ DenFranskeRevolusjon.args = {
           arrowType: ArrowType.Directional,
           startPosition: { x: 11.29032258064516, y: 23.684210526315788 },
           endPosition: { x: 36.29032258064516, y: 23.684210526315788 },
+          breakpoints: [],
+          relativeBreakpoints: [],
         },
         {
           id: "77a2c6a3-fba7-4a05-bf53-db10ce44d614",
@@ -404,6 +408,8 @@ DenFranskeRevolusjon.args = {
           arrowType: ArrowType.Directional,
           startPosition: { x: 11.29032258064516, y: 50 },
           endPosition: { x: 16.93548387096774, y: 50 },
+          breakpoints: [],
+          relativeBreakpoints: [],
         },
         {
           id: "695a653c-e062-411f-a803-431d82933e40",
@@ -414,6 +420,8 @@ DenFranskeRevolusjon.args = {
           arrowType: ArrowType.Directional,
           startPosition: { x: 11.29032258064516, y: 71.05263157894737 },
           endPosition: { x: 16.93548387096774, y: 71.05263157894737 },
+          breakpoints: [],
+          relativeBreakpoints: [],
         },
         {
           id: "c0e6873a-d197-4114-af2d-72ca0fad1325",
@@ -424,6 +432,8 @@ DenFranskeRevolusjon.args = {
           arrowType: ArrowType.Directional,
           startPosition: { x: 11.29032258064516, y: 92.10526315789474 },
           endPosition: { x: 36.29032258064516, y: 92.10526315789474 },
+          breakpoints: [],
+          relativeBreakpoints: [],
         },
         {
           id: "14fbc543-2589-416f-9c3f-52909f90247e",
@@ -434,6 +444,8 @@ DenFranskeRevolusjon.args = {
           arrowType: ArrowType.Directional,
           startPosition: { x: 30.64516129032258, y: 50 },
           endPosition: { x: 36.29032258064516, y: 50 },
+          breakpoints: [],
+          relativeBreakpoints: [],
         },
         {
           id: "a723af57-0261-4244-b878-c001284e117f",
@@ -444,6 +456,8 @@ DenFranskeRevolusjon.args = {
           arrowType: ArrowType.Directional,
           startPosition: { x: 56.451612903225815, y: 50 },
           endPosition: { x: 65.32258064516128, y: 50 },
+          breakpoints: [],
+          relativeBreakpoints: [],
         },
         {
           id: "af83139b-d6c6-4624-82a7-516d4e4b705a",
@@ -454,6 +468,8 @@ DenFranskeRevolusjon.args = {
           arrowType: ArrowType.Directional,
           startPosition: { x: 72.58064516129032, y: 44.73684210526316 },
           endPosition: { x: 72.58064516129032, y: 34.21052631578947 },
+          breakpoints: [],
+          relativeBreakpoints: [],
         },
         {
           id: "1bb64312-521c-4ba3-a65e-a6a1d7a346c6",
@@ -464,6 +480,8 @@ DenFranskeRevolusjon.args = {
           arrowType: ArrowType.Directional,
           startPosition: { x: 88.70967741935483, y: 44.73684210526316 },
           endPosition: { x: 88.70967741935483, y: 34.21052631578947 },
+          breakpoints: [],
+          relativeBreakpoints: [],
         },
         {
           id: "cf7d7b58-392d-4f7c-8d2d-718621f3b4f3",
@@ -479,6 +497,8 @@ DenFranskeRevolusjon.args = {
             maxWordCount: 300,
             showAddLinks: false,
           },
+          breakpoints: [],
+          relativeBreakpoints: [],
         },
         {
           id: "9f694d81-7f0a-48a1-884b-e9cee9999879",
@@ -489,6 +509,8 @@ DenFranskeRevolusjon.args = {
           arrowType: ArrowType.Directional,
           startPosition: { x: 11.29032258064516, y: 34.21052631578947 },
           endPosition: { x: 16.93548387096774, y: 34.21052631578947 },
+          breakpoints: [],
+          relativeBreakpoints: [],
         },
       ],
       colorTheme: ColorTheme.Blue,
