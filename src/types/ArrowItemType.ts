@@ -11,4 +11,7 @@ export type ArrowItemType = CommonItemType & {
 
   startPosition: Position;
   endPosition: Position;
+
+  breakpoints: Position[] | null;
+  relativeBreakpoints: Position[] | null;
 };
