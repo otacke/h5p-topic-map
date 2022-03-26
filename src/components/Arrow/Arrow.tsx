@@ -90,7 +90,13 @@ export const Arrow: FC<ArrowProps> = ({
       const midx = (startx + endx) / 2;
       const midy = (starty + endy) / 2;
 
-      const path = `${startx},${starty} ${midx},${midy} ${endx},${endy}`;
+      const asPoint = (position: Position): string =>
+        `${(position.x / 100) * gridElement.clientWidth},${
+          (position.y / 100) * gridElement.clientHeight
+        }`;
+      const path = `${startx},${starty} ${
+        item.relativeBreakpoints?.map(asPoint).join(" ") ?? ""
+      } ${endx},${endy}`;
       setMiddleX(midx);
       setMiddleY(midy);
       setPathDef(path);

@@ -19,11 +19,7 @@ export const ArrowNoteButton: FC<ArrowNoteButtonProps> = ({
   const [offsetY, setOffsetY] = React.useState(0);
 
   React.useEffect(() => {
-    console.info("setting offsets", buttonElement);
     if (buttonElement.current) {
-      // const rect = buttonElement.current.getBoundingClientRect();
-      console.info(buttonElement.current.clientWidth);
-      console.info(buttonElement.current.clientHeight);
       setOffsetX(buttonElement.current.clientWidth / 2);
       setOffsetY(buttonElement.current.clientHeight / 2);
     }

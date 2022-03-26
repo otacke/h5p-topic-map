@@ -93,6 +93,8 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         },
         startPosition: { x: 0, y: 0 },
         endPosition: { x: 0, y: 0 },
+        breakpoints: [],
+        relativeBreakpoints: [],
       },
       {
         arrowType: ArrowType.Directional,
@@ -107,6 +109,8 @@ export const WithItems: ComponentStory<typeof Grid> = () => {
         },
         startPosition: { x: 0, y: 0 },
         endPosition: { x: 0, y: 0 },
+        breakpoints: [],
+        relativeBreakpoints: [],
       },
     ],
   };
@@ -186,6 +190,8 @@ export const WithBackgroundImage: ComponentStory<typeof Grid> = () => {
         },
         startPosition: { x: 0, y: 0 },
         endPosition: { x: 0, y: 0 },
+        breakpoints: [],
+        relativeBreakpoints: [],
       },
       {
         arrowType: ArrowType.Directional,
@@ -200,6 +206,8 @@ export const WithBackgroundImage: ComponentStory<typeof Grid> = () => {
         },
         startPosition: { x: 0, y: 0 },
         endPosition: { x: 0, y: 0 },
+        breakpoints: [],
+        relativeBreakpoints: [],
       },
     ],
     backgroundImage: {

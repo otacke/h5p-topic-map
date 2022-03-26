@@ -271,6 +271,58 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               optional: true,
               widget: "none",
             },
+            {
+              label: "Arrow breakpoints",
+              name: "breakpoints",
+              type: "list",
+              entity: "breakpoint",
+              field: {
+                name: "breakpoint",
+                label: "Breakpoint",
+                type: "group",
+                widget: "none",
+                fields: [
+                  {
+                    name: "x",
+                    label: "X-position as grid index",
+                    type: "number",
+                    widget: "none",
+                  },
+                  {
+                    name: "y",
+                    label: "Y-position as grid index",
+                    type: "number",
+                    widget: "none",
+                  },
+                ],
+              },
+            },
+            {
+              label: "Arrow Relative breakpoints",
+              name: "relativeBreakpoints",
+              type: "list",
+              entity: "breakpoint",
+              field: {
+                name: "breakpoint",
+                label: "Breakpoint",
+                type: "group",
+                widget: "none",
+                fields: [
+                  {
+                    name: "x",
+                    label: "X-position as a percentage of the container width",
+                    type: "number",
+                    widget: "none",
+                  },
+                  {
+                    name: "y",
+                    label: "Y-position as a percentage of the container height",
+                    type: "number",
+                    widget: "none",
+                  },
+                ],
+              },
+            },
           ],
         },
       },
