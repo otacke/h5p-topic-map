@@ -201,6 +201,7 @@ export const Arrow: FC<ArrowProps> = ({
       <ArrowNoteButton
         position={{ x: middleX, y: middleY }}
         buttonState={buttonState}
+        strokeWidth={strokeWidth}
       />
     </div>
   );
