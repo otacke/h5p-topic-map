@@ -304,9 +304,17 @@ export const Navbar: React.FC<NavbarProps> = ({
         onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}
       >
         {isHamburgerOpen ? (
-          <HamburgerCloseIcon iconColor="#fff" />
+          <HamburgerCloseIcon
+            iconColor="#fff"
+            width={undefined}
+            height={undefined}
+          />
         ) : (
-          <HamburgerIcon iconColor="#fff" />
+          <HamburgerIcon
+            iconColor="#fff"
+            width={undefined}
+            height={undefined}
+          />
         )}
       </button>
       <div className={styles.fullscreenButtonMobile}>

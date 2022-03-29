@@ -39,6 +39,7 @@ export const NotesList: React.FC<NotesListProps> = ({
                       ? NoteButtonIconState.Done
                       : NoteButtonIconState.Default
                   }
+                  strokeWidth={undefined}
                 />
               </div>
               <div className={styles.mainBodyList}>

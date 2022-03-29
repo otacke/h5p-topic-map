@@ -2,9 +2,7 @@ import * as React from "react";
 
 export type IconProps = {
   iconColor: string;
-  // eslint-disable-next-line react/no-unused-prop-types
   width: number | undefined;
-  // eslint-disable-next-line react/no-unused-prop-types
   height: number | undefined;
 };
 
@@ -56,7 +54,11 @@ export const DoneIcon: React.FC<IconProps> = ({ iconColor, width, height }) => (
   </svg>
 );
 
-export const HamburgerIcon: React.FC<IconProps> = ({ iconColor }) => (
+export const HamburgerIcon: React.FC<IconProps> = ({
+  iconColor,
+  width,
+  height,
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="18"
@@ -68,7 +70,11 @@ export const HamburgerIcon: React.FC<IconProps> = ({ iconColor }) => (
   </svg>
 );
 
-export const HamburgerCloseIcon: React.FC<IconProps> = ({ iconColor }) => (
+export const HamburgerCloseIcon: React.FC<IconProps> = ({
+  iconColor,
+  width,
+  height,
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="12"
