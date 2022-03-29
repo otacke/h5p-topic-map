@@ -17,13 +17,13 @@ export const ArrowNoteButton: FC<ArrowNoteButtonProps> = ({
 }) => {
   const buttonElement = React.useRef<HTMLDivElement>(null);
 
-  const [offsetX, setOffsetX] = React.useState((strokeWidth *0.75) );
-  const [offsetY, setOffsetY] = React.useState((strokeWidth *0.75) );
+  const [offsetX, setOffsetX] = React.useState(strokeWidth * 0.75);
+  const [offsetY, setOffsetY] = React.useState(strokeWidth * 0.75);
 
   React.useEffect(() => {
     if (buttonElement.current) {
-      setOffsetX(strokeWidth *0.75);
-      setOffsetY(strokeWidth *0.75);
+      setOffsetX(strokeWidth * 0.75);
+      setOffsetY(strokeWidth * 0.75);
     }
   }, [strokeWidth]);
 
