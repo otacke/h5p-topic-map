@@ -37,7 +37,7 @@ export const NoteButton: React.FC<NoteButtonProps> = ({
   buttonState,
   strokeWidth,
 }): JSX.Element => {
-  const classNames = `${styles.button}`;
+  const classNames = `${styles.button} ${strokeWidth ? "" : styles.fixed_size}`;
   const minSize = strokeWidth ? strokeWidth * 1.5 : 0;
   return (
     <div

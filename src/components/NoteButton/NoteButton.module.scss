@@ -1,11 +1,13 @@
 .button {
-  $size: 0.5rem;
-
   border: 2px solid;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.fixed_size {
+  $size: 2rem;
   height: $size;
   width: $size;
 }
