@@ -29,7 +29,7 @@ type NoteButtonProps = {
   borderColor: string;
   iconColor: string;
   buttonState: NoteButtonIconState;
-  strokeWidth: number;
+  strokeWidth: number | undefined;
 };
 
 const sizeClassname = {
@@ -47,18 +47,19 @@ export const NoteButton: React.FC<NoteButtonProps> = ({
   buttonState,
   strokeWidth,
 }): JSX.Element => {
+  const classNames = `${styles.button} ${strokeWidth ? "" : styles.fixed_size}`;
   const minSize = strokeWidth ? strokeWidth * 1.5 : 0;
   const appWidth = useAppWidth();
 
-  const classNames = React.useMemo(
-    () => [styles.button, sizeClassname[appWidth]].join(" "),
-    [appWidth],
+  const className = React.useMemo(
+    () => [classNames, sizeClassname[appWidth]].join(" "),
+    [appWidth, classNames],
   );
 
   return (
     <div
       data-testid="svgBtn"
-      className={classNames}
+      className={className}
       style={{
         backgroundColor,
         borderColor,

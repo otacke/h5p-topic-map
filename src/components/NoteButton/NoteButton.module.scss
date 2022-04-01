@@ -13,3 +13,9 @@
     display: none;
   }
 }
+
+.fixed_size {
+  $size: 2rem;
+  height: $size;
+  width: $size;
+}
