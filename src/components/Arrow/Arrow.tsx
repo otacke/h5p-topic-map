@@ -68,6 +68,34 @@ export const Arrow: FC<ArrowProps> = ({
     }
   }, [item, buttonState, setButtonState, storageData, dialogeIsOpen]);
 
+  const findMiddlePosition = (
+    startx: number,
+    starty: number,
+    breakpoints: Position[] | null,
+    endx: number,
+    endy: number,
+    asAbsolutePosition: (position: Position) => Position,
+  ): Position => {
+    if (breakpoints && breakpoints.length % 2 === 1) {
+      // icon should be placed on the middle breakpoint
+      return asAbsolutePosition(
+        breakpoints[Math.floor(breakpoints.length / 2)],
+      );
+    }
+
+    if (breakpoints && breakpoints.length > 1) {
+      // icon should be placed on the middle linesegment
+      const endIndex = breakpoints.length / 2;
+      const startIndex = endIndex - 1;
+      const start = asAbsolutePosition(breakpoints[startIndex]);
+      const end = asAbsolutePosition(breakpoints[endIndex]);
+      return { x: (start.x + end.x) / 2, y: (start.y + end.y) / 2 };
+    }
+
+    // icon should be place on the middle of the only line
+    return { x: (startx + endx) / 2, y: (starty + endy) / 2 };
+  };
+
   React.useEffect(() => {
     if (arrowContainerRef.current) {
       const gridElement = arrowContainerRef.current;
@@ -87,9 +115,12 @@ export const Arrow: FC<ArrowProps> = ({
       const endx = (item.endPosition.x / 100) * gridElement.clientWidth;
       const endy = (item.endPosition.y / 100) * gridElement.clientHeight;
 
-      const midx = (startx + endx) / 2;
-      const midy = (starty + endy) / 2;
-
+      const asAabolutePosition = (position: Position): Position => {
+        return {
+          x: (position.x / 100) * gridElement.clientWidth,
+          y: (position.y / 100) * gridElement.clientHeight,
+        };
+      };
       const asPoint = (position: Position): string =>
         `${(position.x / 100) * gridElement.clientWidth},${
           (position.y / 100) * gridElement.clientHeight
@@ -97,8 +128,17 @@ export const Arrow: FC<ArrowProps> = ({
       const path = `${startx},${starty} ${
         item.relativeBreakpoints?.map(asPoint).join(" ") ?? ""
       } ${endx},${endy}`;
-      setMiddleX(midx);
-      setMiddleY(midy);
+
+      const middlePoint = findMiddlePosition(
+        startx,
+        starty,
+        item.relativeBreakpoints,
+        endx,
+        endy,
+        asAabolutePosition,
+      );
+      setMiddleX(middlePoint.x);
+      setMiddleY(middlePoint.y);
       setPathDef(path);
     }
   }, [arrowContainerRef, item, grid, buttonState, isHorizontal]);
@@ -161,6 +201,7 @@ export const Arrow: FC<ArrowProps> = ({
       <ArrowNoteButton
         position={{ x: middleX, y: middleY }}
         buttonState={buttonState}
+        strokeWidth={strokeWidth}
       />
     </div>
   );

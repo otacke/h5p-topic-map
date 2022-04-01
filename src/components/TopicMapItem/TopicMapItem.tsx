@@ -76,6 +76,7 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({
               borderColor="white"
               iconColor="white"
               buttonState={btnState}
+              strokeWidth={undefined}
             />
           </div>
         ) : null}

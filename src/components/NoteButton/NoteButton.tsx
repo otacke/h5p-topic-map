@@ -15,9 +15,11 @@ const icons: Record<NoteButtonIconState, React.FC<IconProps>> = {
 const renderIcon = (
   state: NoteButtonIconState,
   iconColor: string,
+  strokeWidth: number | undefined,
 ): JSX.Element => {
   const Icon = icons[state];
-  return <Icon iconColor={iconColor} />;
+  const size = strokeWidth ? strokeWidth * 0.75 : undefined;
+  return <Icon iconColor={iconColor} width={size} height={size} />;
 };
 
 type NoteButtonProps = {
@@ -25,6 +27,7 @@ type NoteButtonProps = {
   borderColor: string;
   iconColor: string;
   buttonState: NoteButtonIconState;
+  strokeWidth: number | undefined;
 };
 
 export const NoteButton: React.FC<NoteButtonProps> = ({
@@ -32,16 +35,22 @@ export const NoteButton: React.FC<NoteButtonProps> = ({
   borderColor,
   iconColor,
   buttonState,
+  strokeWidth,
 }): JSX.Element => {
-  const classNames = `${styles.button}`;
-
+  const classNames = `${styles.button} ${strokeWidth ? "" : styles.fixed_size}`;
+  const minSize = strokeWidth ? strokeWidth * 1.5 : 0;
   return (
     <div
       data-testid="svgBtn"
       className={classNames}
-      style={{ backgroundColor, borderColor }}
+      style={{
+        backgroundColor,
+        borderColor,
+        minWidth: minSize,
+        minHeight: minSize,
+      }}
     >
-      {renderIcon(buttonState, iconColor)}
+      {renderIcon(buttonState, iconColor, strokeWidth)}
     </div>
   );
 };

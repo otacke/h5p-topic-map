@@ -7,23 +7,25 @@ import { NoteButton } from "../NoteButton/NoteButton";
 export type ArrowNoteButtonProps = {
   buttonState: NoteButtonIconState;
   position: Position;
+  strokeWidth: number;
 };
 
 export const ArrowNoteButton: FC<ArrowNoteButtonProps> = ({
   buttonState,
   position,
+  strokeWidth,
 }) => {
   const buttonElement = React.useRef<HTMLDivElement>(null);
 
-  const [offsetX, setOffsetX] = React.useState(0);
-  const [offsetY, setOffsetY] = React.useState(0);
+  const [offsetX, setOffsetX] = React.useState(strokeWidth * 0.75);
+  const [offsetY, setOffsetY] = React.useState(strokeWidth * 0.75);
 
   React.useEffect(() => {
     if (buttonElement.current) {
-      setOffsetX(buttonElement.current.clientWidth / 2);
-      setOffsetY(buttonElement.current.clientHeight / 2);
+      setOffsetX(strokeWidth * 0.75);
+      setOffsetY(strokeWidth * 0.75);
     }
-  }, [buttonElement.current]);
+  }, [strokeWidth]);
 
   return (
     <div
@@ -40,6 +42,7 @@ export const ArrowNoteButton: FC<ArrowNoteButtonProps> = ({
             borderColor="white"
             iconColor="white"
             buttonState={buttonState}
+            strokeWidth={strokeWidth}
           />
         </div>
       )}
