@@ -6,7 +6,8 @@ const breakpointSize = {
   [BreakpointSize.Large]: 1440,
   [BreakpointSize.Medium]: 1024,
   [BreakpointSize.Small]: 768,
-  [BreakpointSize.XSmall]: 0,
+  [BreakpointSize.XSmall]: 560,
+  [BreakpointSize.XXSmall]: 0,
 };
 
 export const useAppWidth = (): BreakpointSize => {
@@ -15,6 +16,7 @@ export const useAppWidth = (): BreakpointSize => {
   const isLarge = appWidth > breakpointSize[BreakpointSize.Large];
   const isMedium = appWidth > breakpointSize[BreakpointSize.Medium];
   const isSmall = appWidth > breakpointSize[BreakpointSize.Small];
+  const isXSmall = appWidth > breakpointSize[BreakpointSize.XSmall];
 
   if (isLarge) {
     return BreakpointSize.Large;
@@ -28,5 +30,9 @@ export const useAppWidth = (): BreakpointSize => {
     return BreakpointSize.Small;
   }
 
-  return BreakpointSize.XSmall;
+  if (isXSmall) {
+    return BreakpointSize.XSmall;
+  }
+
+  return BreakpointSize.XXSmall;
 };

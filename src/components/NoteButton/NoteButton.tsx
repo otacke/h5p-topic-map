@@ -3,6 +3,8 @@ import * as React from "react";
 import styles from "./NoteButton.module.scss";
 import { DoneIcon, EditIcon, IconProps, NoteIcon } from "../Icons/Icons";
 import { NoteButtonIconState } from "../../types/NoteButtonIconState";
+import { BreakpointSize } from "../../types/BreakpointSize";
+import { useAppWidth } from "../../hooks/useAppWidth";
 
 const icons: Record<NoteButtonIconState, React.FC<IconProps>> = {
   [NoteButtonIconState.Done]: DoneIcon,
@@ -27,7 +29,15 @@ type NoteButtonProps = {
   borderColor: string;
   iconColor: string;
   buttonState: NoteButtonIconState;
-  strokeWidth: number | undefined;
+  strokeWidth: number;
+};
+
+const sizeClassname = {
+  [BreakpointSize.Large]: styles.large,
+  [BreakpointSize.Medium]: styles.medium,
+  [BreakpointSize.Small]: styles.small,
+  [BreakpointSize.XSmall]: styles.xSmall,
+  [BreakpointSize.XXSmall]: styles.xxSmall,
 };
 
 export const NoteButton: React.FC<NoteButtonProps> = ({
@@ -37,8 +47,14 @@ export const NoteButton: React.FC<NoteButtonProps> = ({
   buttonState,
   strokeWidth,
 }): JSX.Element => {
-  const classNames = `${styles.button} ${strokeWidth ? "" : styles.fixed_size}`;
   const minSize = strokeWidth ? strokeWidth * 1.5 : 0;
+  const appWidth = useAppWidth();
+
+  const classNames = React.useMemo(
+    () => [styles.button, sizeClassname[appWidth]].join(" "),
+    [appWidth],
+  );
+
   return (
     <div
       data-testid="svgBtn"

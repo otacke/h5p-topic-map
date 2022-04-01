@@ -5,6 +5,7 @@ import { BreakpointSize } from "../../types/BreakpointSize";
 import { NoteButtonIconState } from "../../types/NoteButtonIconState";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
 import { UserData } from "../../types/UserData";
+import { GridDimensions } from "../Grid/Grid";
 import { NoteButton } from "../NoteButton/NoteButton";
 import styles from "./TopicMapItem.module.scss";
 
@@ -12,6 +13,8 @@ export type TopicMapItemProps = {
   item: TopicMapItemType;
   onClick: MouseEventHandler;
   storageData: UserData;
+  grid?: GridDimensions;
+  gridRef?: React.RefObject<HTMLDivElement>;
 };
 
 const sizeClassname = {
@@ -19,19 +22,33 @@ const sizeClassname = {
   [BreakpointSize.Medium]: styles.medium,
   [BreakpointSize.Small]: styles.small,
   [BreakpointSize.XSmall]: styles.xSmall,
+  [BreakpointSize.XXSmall]: styles.xxSmall,
 };
 
 export const TopicMapItem: FC<TopicMapItemProps> = ({
   item,
   onClick,
   storageData,
+  grid,
+  gridRef,
 }) => {
   const appWidth = useAppWidth();
+  const buttonElement = React.useRef<HTMLButtonElement>(null);
+  const [strokeWidth, setStrokeWidth] = React.useState<number>(4);
 
   const className = React.useMemo(
     () => [styles.topicMapItem, sizeClassname[appWidth]].join(" "),
     [appWidth],
   );
+
+  React.useEffect(() => {
+    if (gridRef) {
+      const gridElement = gridRef.current;
+      if (grid && gridElement) {
+        setStrokeWidth((gridElement.clientWidth / grid.numberOfColumns) * 0.66);
+      }
+    }
+  }, [appWidth, grid, gridRef, buttonElement]);
 
   let btnState: NoteButtonIconState = NoteButtonIconState.Default;
   if (item.dialog?.hasNote) {
@@ -49,7 +66,12 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({
   }
 
   return (
-    <button type="button" className={className} onClick={onClick}>
+    <button
+      type="button"
+      className={className}
+      onClick={onClick}
+      ref={buttonElement}
+    >
       {item.topicImage?.path && (
         <img
           className={styles.image}
@@ -64,19 +86,33 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({
         className={`${styles.inner} ${
           item.topicImage?.path ? "" : styles.noImage
         } ${item.dialog?.hasNote ? styles.withNote : ""}`}
+        style={{
+          paddingTop:
+            item.topicImage?.path && item.dialog?.hasNote
+              ? strokeWidth * 1.4
+              : strokeWidth * 0.66,
+        }}
       >
         {item.dialog?.hasNote ? (
           <div
             className={`${styles.icon} ${
               item.topicImage?.path ? "" : styles.withoutImage
             }`}
+            style={{
+              left:
+                (buttonElement.current
+                  ? buttonElement.current.getBoundingClientRect().width / 2
+                  : 0) -
+                (strokeWidth * 1.4) / 2,
+              top: 0 - strokeWidth / 2,
+            }}
           >
             <NoteButton
               backgroundColor="var(--theme-color-3)"
               borderColor="white"
               iconColor="white"
               buttonState={btnState}
-              strokeWidth={undefined}
+              strokeWidth={strokeWidth}
             />
           </div>
         ) : null}

@@ -13,6 +13,20 @@ $note-btn-padding: 0.75rem;
   position: relative;
   width: 100%;
 
+  &:not(.xxSmall) {
+    .icon {
+      margin: auto;
+      position: absolute;
+
+      &.withoutImage {
+        left: auto !important;
+        margin: 0 auto 0.5em;
+        position: relative;
+        top: auto !important;
+      }
+    }
+  }
+
   &.large {
     font-size: 1.125rem;
 
@@ -46,6 +60,18 @@ $note-btn-padding: 0.75rem;
 
       &.withNote:not(.noImage) {
         padding: calc(0.75em + $note-btn-padding) 0.75em 0.75em;
+      }
+    }
+  }
+
+  &.xxSmall {
+    font-size: 0.625rem;
+
+    .inner {
+      padding: 0.4em !important;
+
+      &.icon {
+        display: none !important;
       }
     }
   }
@@ -85,18 +111,4 @@ $note-btn-padding: 0.75rem;
 .description {
   font-size: 0.625em;
   margin-top: 0.5em;
-}
-
-.icon {
-  left: calc(50% - $half-note-btn-size);
-  margin: auto;
-  position: absolute;
-  top: calc(0px - $half-note-btn-size);
-
-  &.withoutImage {
-    left: auto;
-    margin: 0 auto 0.5em;
-    position: relative;
-    top: auto;
-  }
 }
