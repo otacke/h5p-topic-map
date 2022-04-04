@@ -35,6 +35,7 @@ export const Grid: React.FC<GridProps> = ({
   grid,
   fullscreenHandle,
 }) => {
+  const gridContainerRef = React.createRef<HTMLDivElement>();
   const [itemShowingDialog, setItemShowingDialog] =
     useState<CommonItemType | null>(null);
 
@@ -148,6 +149,8 @@ export const Grid: React.FC<GridProps> = ({
             item={item}
             onClick={() => setItemShowingDialog(item)}
             storageData={storageData}
+            grid={grid}
+            gridRef={gridContainerRef}
           />
         </div>
       );
@@ -155,7 +158,15 @@ export const Grid: React.FC<GridProps> = ({
 
     // We want to update re-render the elements whenever `itemShowingDialog` changes (i.e. the dialog window is closed).
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [arrowItems, grid, items, sortArrowItems, storageData, itemShowingDialog]);
+  }, [
+    arrowItems,
+    grid,
+    items,
+    sortArrowItems,
+    storageData,
+    itemShowingDialog,
+    gridContainerRef,
+  ]);
 
   const bgImageStyle: string | undefined = backgroundImage?.path
     ? `url(${backgroundImage.path})`
@@ -179,7 +190,7 @@ export const Grid: React.FC<GridProps> = ({
         backgroundImage: bgImageStyle,
       }}
     >
-      <div className={styles.grid}>
+      <div className={styles.grid} ref={gridContainerRef}>
         {allMapItems}
         {itemShowingDialog?.dialog ? (
           <DialogWindow

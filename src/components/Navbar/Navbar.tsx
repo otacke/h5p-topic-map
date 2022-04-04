@@ -35,6 +35,7 @@ const sizeClassname = {
   [BreakpointSize.Medium]: styles.medium,
   [BreakpointSize.Small]: styles.small,
   [BreakpointSize.XSmall]: styles.xSmall,
+  [BreakpointSize.XXSmall]: styles.xxSmall,
 };
 
 export const Navbar: React.FC<NavbarProps> = ({

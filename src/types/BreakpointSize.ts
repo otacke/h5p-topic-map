@@ -3,4 +3,5 @@ export enum BreakpointSize {
   Medium,
   Small,
   XSmall,
+  XXSmall,
 }
