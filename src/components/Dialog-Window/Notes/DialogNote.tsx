@@ -1,9 +1,8 @@
 /* eslint-disable no-param-reassign */
 import * as React from "react";
-import type { XAPIEvent } from "../../../../H5P";
 import { useContentId } from "../../../hooks/useContentId";
-import { useH5PInstance } from "../../../hooks/useH5PInstance";
 import { useL10n } from "../../../hooks/useLocalization";
+import { useSendXAPIEvent } from "../../../hooks/useSendXAPIEvent";
 import { UserData } from "../../../types/UserData";
 import styles from "./DialogNote.module.scss";
 
@@ -39,12 +38,7 @@ export const DialogNote: React.FC<NoteProps> = ({
   const wordTextLabel = useL10n("dialogWordsLabel");
   const wordNoteLabel = useL10n("dialogNoteLabel");
 
-  const h5pWrapper = useH5PInstance();
-  const contentId = useContentId();
-
-  const sendXAPIEvent = (event: XAPIEvent): void => {
-    h5pWrapper?.trigger(event);
-  };
+  const { sendXAPIEvent } = useSendXAPIEvent();
 
   const handleNoteDone = (): void => {
     if (storageData[id] === undefined) {
@@ -54,46 +48,11 @@ export const DialogNote: React.FC<NoteProps> = ({
     setMarkedAsDone(!noteDone);
     setStorageData(storageData);
 
-    if (!h5pWrapper) {
-      return;
-    }
-
-    const xAPIEvent = h5pWrapper.createXAPIEventTemplate("completed", {
+    sendXAPIEvent("completed", {
       itemId: id,
-      contentId,
       note,
       completed: storageData[id].noteDone ?? false,
     });
-
-    xAPIEvent.setActor();
-    sendXAPIEvent(xAPIEvent);
-  };
-
-  /**
-   * Get the xAPI definition for the xAPI object.
-   *
-   * @return XAPI definition.
-   */
-  const getxAPIDefinition = (): object => {
-    const definition: {
-      name: Record<string, string>;
-      description: Record<string, string>;
-      type: string;
-      interactionType: string;
-      correctResponsesPattern: string;
-    } = {
-      name: {
-        "en-US": "POTET",
-      },
-      description: {
-        "en-US": "BESKRIVELSEN VÅR",
-      },
-      type: "http://adlnet.gov/expapi/activities/cmi.interaction",
-      interactionType: "fill-in",
-      correctResponsesPattern: ".*",
-    };
-
-    return definition;
   };
 
   const setSavingText = (): void => {
@@ -114,24 +73,10 @@ export const DialogNote: React.FC<NoteProps> = ({
           } ${savedTextLabel} ${localTime}`,
         );
 
-        if (!h5pWrapper) {
-          return;
-        }
-
-        const xAPIEvent = h5pWrapper.createXAPIEventTemplate("answered", {
+        sendXAPIEvent("answered", {
           itemId: id,
-          contentId,
           note,
         });
-        xAPIEvent.getVerifiedStatementValue(["object", "definition"]);
-        if (xAPIEvent.data) {
-          xAPIEvent.data.statement.object.definition = {
-            ...xAPIEvent.data.statement.object.definition,
-            ...getxAPIDefinition(),
-          };
-        }
-
-        sendXAPIEvent(xAPIEvent);
       }, 650),
     );
   };

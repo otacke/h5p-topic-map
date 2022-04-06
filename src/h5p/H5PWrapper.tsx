@@ -1,7 +1,6 @@
-import type { H5PExtras } from "h5p-types";
+import type { H5PExtras, IH5PContentType } from "h5p-types";
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { IH5PWrapper } from "../../H5P";
+import { createRoot } from "react-dom/client";
 import { App } from "../components/App/App";
 import { ContentIdContext } from "../contexts/ContentIdContext";
 import { H5PContext } from "../contexts/H5PContext";
@@ -19,7 +18,7 @@ import {
   normalizeTopicMapItemPaths,
 } from "./H5P.util";
 
-export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
+export class H5PWrapper extends H5P.EventDispatcher implements IH5PContentType {
   private wrapper: HTMLElement;
 
   private isIPhoneFullscreenActive: boolean;
@@ -82,7 +81,8 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
     const l10n = params.l10n ?? ({} as Translations);
     const title = extras?.metadata.title;
 
-    ReactDOM.render(
+    const root = createRoot(this.wrapper);
+    root.render(
       <ContentIdContext.Provider value={contentId}>
         <LocalizationContext.Provider value={l10n}>
           <H5PContext.Provider value={this}>
@@ -94,7 +94,6 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
           </H5PContext.Provider>
         </LocalizationContext.Provider>
       </ContentIdContext.Provider>,
-      this.wrapper,
     );
   }
 
