@@ -56,7 +56,7 @@ DenFranskeRevolusjon.args = {
       navbarNotesSectionSubmitAllLabel: "Submit all data",
       submitDataConfirmLabel: "Submit",
       submitDataConfirmationWindowLabel: "Submit all data",
-      submitDataDenyLabel: "Cancel"
+      submitDataDenyLabel: "Cancel",
     },
     topicMap: {
       grid: {
