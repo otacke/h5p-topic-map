@@ -54,14 +54,11 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
             },
             {
               label: "Label",
-              description: "The label is shown on top of the background image",
               name: "label",
               type: "text",
             },
             {
               label: "Description",
-              description:
-                "The description is shown on top of the background image, below the label",
               name: "description",
               type: "text",
               optional: true,
@@ -465,7 +462,8 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         type: "text",
       },
       {
-        label: "Navbar tabs list aria label",
+        label: "Navbar tabs list label",
+        description: "Used by screen readers",
         name: "navbarTabsListAriaLabel",
         default: "Navigation bar",
         type: "text",
@@ -522,9 +520,9 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         type: "text",
       },
       {
-        label: "Note",
+        label: "Tabs list",
         name: "dialogTabListAriaLabel",
-        default: "Tabs List",
+        default: "Tabs list",
         type: "text",
       },
       {

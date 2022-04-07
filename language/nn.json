@@ -1,13 +1,13 @@
 {
   "semantics": [
     {
-      "label": "Topic map editor",
+      "label": "Temakart-redigeringsverktøy",
       "fields": [
         {
-          "label": "Topic map items",
-          "entity": "Topic map item",
+          "label": "Temakart-elementer",
+          "entity": "Temakart-element",
           "field": {
-            "label": "Item",
+            "label": "Element",
             "fields": [
               {
                 "label": "Id"
@@ -25,58 +25,58 @@
                 "label": "Height as a percentage of the container height"
               },
               {
-                "label": "Label"
+                "label": "Tittel"
               },
               {
-                "label": "Description"
+                "label": "Beskrivelse"
               },
               {
-                "label": "Topic image",
-                "description": "Background image for card and image above text in dialog"
+                "label": "Temabilde",
+                "description": "Vises som bakgrunnsbilde på boksen og som bilde over teksten i dialogen."
               },
               {
-                "label": "Topic image alt text",
-                "description": "Alternative text for the image that is used by screen readers"
+                "label": "Alt-tekst for temabildet",
+                "description": "Beskrivende tekst om hva bildet forteller. Brukes av skjermlesere."
               },
               {
                 "label": "Dialog",
                 "fields": [
                   {
-                    "label": "Show notes textarea"
+                    "label": "Vis notatfelt"
                   },
                   {
-                    "label": "Maximum number of words",
-                    "description": "Specifies the maximum number of words for the note. Default is 160 words."
+                    "label": "Maks antall ord i notatfeltet",
+                    "description": "Hvis det ikke endres vil antallet være 160 ord."
                   },
                   {
-                    "label": "Text"
+                    "label": "Tekst"
                   },
                   {
                     "label": "Video"
                   },
                   {
-                    "label": "Audio",
+                    "label": "Lyd",
                     "fields": [
                       {
-                        "label": "Audio"
+                        "label": "Lyd"
                       },
                       {
-                        "label": "Subtext"
+                        "label": "Beskrivende tekst under lyden"
                       }
                     ]
                   },
                   {
-                    "label": "Links",
-                    "description": "These links are as auxiliary links for the user in the element's modal window",
-                    "entity": "linkItem",
+                    "label": "Lenker",
+                    "description": "Disse hjelpelenkene kan brukes for å gi ekstern informasjon om innholdet",
+                    "entity": "Lenke",
                     "field": {
-                      "label": "Link",
+                      "label": "Lenke",
                       "fields": [
                         {
                           "label": "Id"
                         },
                         {
-                          "label": "Label"
+                          "label": "Tittel"
                         },
                         {
                           "label": "Url"
@@ -85,22 +85,22 @@
                     }
                   },
                   {
-                    "label": "Show add links option"
+                    "label": "La brukeren legge til lenker selv"
                   }
                 ]
               },
               {
-                "label": "Index",
-                "description": "⚠️ Advanced feature: Used for manually setting tab order."
+                "label": "Indeks",
+                "description": "⚠️ Avansert funksjonalitet: Kan brukes for å endre tab-rekkefølgen til elementene i temakartet. Alle elementer med en indeks vil komme før de uten, uansett."
               }
             ]
           }
         },
         {
-          "label": "Arrows",
-          "entity": "arrowItem",
+          "label": "Piler",
+          "entity": "Pil",
           "field": {
-            "label": "Arrow",
+            "label": "Pil",
             "fields": [
               {
                 "label": "Id"
@@ -156,23 +156,23 @@
                 "label": "Id of end element"
               },
               {
-                "label": "Label",
-                "description": "The label is used by screen readers and on the summary page"
+                "label": "Tittel",
+                "description": "Brukes av skjermlesere og vises på eksport-siden"
               },
               {
-                "label": "Description",
-                "description": "The description is shown on top of the background image, below the label"
+                "label": "Ingress",
+                "description": ""
               },
               {
-                "label": "Topic image",
-                "description": "Image above text in dialog"
+                "label": "Temabilde",
+                "description": "Vises over teksten i dialogen"
               },
               {
-                "label": "Topic image alt text",
-                "description": "Alternative text for the image that is used by screen readers"
+                "label": "Alt-tekst for temabildet",
+                "description": "Beskrivende tekst om hva bildet forteller. Brukes av skjermlesere."
               },
               {
-                "label": "Arrow type",
+                "label": "Piltype",
                 "options": [
                   {
                     "label": "Directional"
@@ -192,41 +192,41 @@
                 "label": "Dialog",
                 "fields": [
                   {
-                    "label": "Show notes textarea"
+                    "label": "Vis notatfelt"
                   },
                   {
-                    "label": "Maximum number of words",
-                    "description": "Specifies the maximum number of words for the note. Default is 160 words."
+                    "label": "Maks antall ord i notatfeltet",
+                    "description": "Hvis det ikke endres vil antallet være 160 ord."
                   },
                   {
-                    "label": "Text"
+                    "label": "Tekst"
                   },
                   {
                     "label": "Video"
                   },
                   {
-                    "label": "Audio",
+                    "label": "Lyd",
                     "fields": [
                       {
-                        "label": "Audio"
+                        "label": "Lyd"
                       },
                       {
-                        "label": "Subtext"
+                        "label": "Beskrivende tekst under lyden"
                       }
                     ]
                   },
                   {
-                    "label": "Links",
-                    "description": "These links are as auxiliary links for the user in the element's modal window",
-                    "entity": "linkItem",
+                    "label": "Lenker",
+                    "description": "Disse hjelpelenkene kan brukes for å gi ekstern informasjon om innholdet",
+                    "entity": "Lenke",
                     "field": {
-                      "label": "Link",
+                      "label": "Lenke",
                       "fields": [
                         {
                           "label": "Id"
                         },
                         {
-                          "label": "Label"
+                          "label": "Tittel"
                         },
                         {
                           "label": "Url"
@@ -235,12 +235,12 @@
                     }
                   },
                   {
-                    "label": "Show add links option"
+                    "label": "La brukeren legge til lenker selv"
                   }
                 ]
               },
               {
-                "label": "Index"
+                "label": "Indeks"
               },
               {
                 "label": "Arrow breakpoints",
@@ -276,184 +276,184 @@
           }
         },
         {
-          "label": "Background image"
+          "label": "Bakgrunnsbilde"
         },
         {
-          "label": "Color theme",
+          "label": "Fargetema",
           "options": [
             {
-              "label": "Blue"
+              "label": "Blå"
             },
             {
-              "label": "Green"
+              "label": "Grønn"
             },
             {
-              "label": "Red"
+              "label": "Rød"
             },
             {
-              "label": "Gray"
+              "label": "Grå"
             }
           ]
         },
         {
-          "label": "Grid",
+          "label": "Rutenett",
           "fields": [
             {
-              "label": "Number of columns"
+              "label": "Antall kolonner"
             },
             {
-              "label": "Number of rows"
+              "label": "Antall rader"
             }
           ]
         }
       ]
     },
     {
-      "label": "Behavioral settings"
+      "label": "Innstillinger for oppførsel"
     },
     {
-      "label": "Localize",
+      "label": "Oversett",
       "fields": [
         {
-          "label": "Close dialog",
-          "description": "Used by screen readers",
-          "default": "Close dialog"
+          "label": "Lukk dialog",
+          "description": "Brukt av skjermlesere",
+          "default": "Lukk dialog"
         },
         {
-          "label": "Audio",
-          "description": "Shown in front of copyright statements",
-          "default": "Audio"
+          "label": "Lyd",
+          "description": "Vises foran kopibeskyttelse",
+          "default": "Lyd"
         },
         {
-          "label": "Photo",
-          "description": "Shown in front of copyright statements",
-          "default": "Photo"
+          "label": "Bilde",
+          "description": "Vises foran kopibeskyttelse",
+          "default": "Bilde"
         },
         {
           "label": "Video",
-          "description": "Shown in front of copyright statements",
+          "description": "Vises foran kopibeskyttelse",
           "default": "Video"
         },
         {
-          "label": "Saving note label",
-          "default": "Saving…"
+          "label": "Notat lagres",
+          "default": "Lagrer…"
         },
         {
-          "label": "Saved note label",
-          "default": "Saved"
+          "label": "Notat ferdig lagret",
+          "default": "Lagret"
         },
         {
-          "label": "Word limit exceeded label",
-          "default": "Too many words"
+          "label": "Tekst som vises når maks antall ord er overskredet",
+          "default": "For mange ord"
         },
         {
-          "label": "Note placeholder",
-          "default": "Write your notes here…"
+          "label": "Forslagstekst i notatfelt",
+          "default": "Skriv notatene dine her…"
         },
         {
-          "label": "Mark note as done",
-          "default": "Mark as done"
+          "label": "Markér notat som ferdig",
+          "default": "Markér som ferdig"
         },
         {
-          "label": "Dialog resources labels: Relevant links",
-          "default": "Relevant links"
+          "label": "Relevante lenker",
+          "default": "Relevante lenker"
         },
         {
-          "label": "Dialog resources labels: Custom links",
-          "default": "Your links"
+          "label": "Egendefinerte lenker",
+          "default": "Dine lenker"
         },
         {
-          "label": "Dialog resources labels: Add",
-          "default": "Add"
+          "label": "Legg til lenke",
+          "default": "Legg til"
         },
         {
-          "label": "Dialog words text label",
-          "default": "Words"
+          "label": "Ord (bak ordteller)",
+          "default": "Ord"
         },
         {
-          "label": "Fullscreen button label",
-          "default": "Toggle fullscreen mode"
+          "label": "Tittel på fullskjerm-knapp",
+          "default": "Slå fullskjerm av/på"
         },
         {
-          "label": "Navbar tabs list label",
-          "description": "Used by screen readers",
-          "default": "Navigation bar"
+          "label": "Navigasjonslinje",
+          "description": "Brukes av skjermlesere",
+          "default": "Navigasjonslinje"
         },
         {
-          "label": "Navbar topic map section label",
-          "default": "Topic map"
+          "label": "Navigasjonslinje-valg: Temakart",
+          "default": "Temakart"
         },
         {
-          "label": "Navbar notes section label",
+          "label": "Navigasjonslinje-valg: Mine notater",
           "default": "My notes"
         },
         {
-          "label": "Navbar help section label",
-          "default": "Help"
+          "label": "Navigasjonslinje-valg: Hjelp",
+          "default": "Hjelp"
         },
         {
-          "label": "Navbar help section title",
-          "default": "Help"
+          "label": "Overskrift på hjelp-side",
+          "default": "Hjelp"
         },
         {
-          "label": "Navbar help section body",
+          "label": "Tekst på hjelp-side",
           "default": "<p>The purpose of this exercise is to enhance your learning by linking your own notes to a topic map. The topic map consists of events (boxes) and connections (arrows). You must enter notes for both events and connections.</p><p>Click or tap the boxes and arrows to add a note to an event or connection. The notes you enter are automatically saved locally in the browser of the device you are using, so you can continue on or read the notes at a later time.</p><p><strong>Progress bar</strong> shows what percentage of the events and connections have received notes. 100% means you have posted notes in all available places.</p><p><strong>My notes</strong> gives you an overview of all the notes you have written. There you can print out or delete all the notes. These notes are stored locally in your internet browser, therefore it's recommended to export them using printing functionality in order to save your answers over time.</p>"
         },
         {
-          "label": "Dialog resources labels",
-          "default": "Resources"
+          "label": "Fanetittel i dialog: Ressurser",
+          "default": "Ressurser"
         },
         {
-          "label": "Text",
-          "default": "Text"
+          "label": "Tekst",
+          "default": "Tekst"
         },
         {
-          "label": "Note",
-          "default": "Note"
+          "label": "Notat",
+          "default": "Notat"
         },
         {
-          "label": "Note",
-          "default": "Tabs List"
+          "label": "Faneliste",
+          "default": "Faneliste"
         },
         {
-          "label": "Navbar notes section title",
-          "default": "My notes"
+          "label": "Overskrift på notatside",
+          "default": "Mine notater"
         },
         {
-          "label": "Navbar notes section body",
+          "label": "Beskrivese på notatside",
           "default": "Here you have an overview of all the notes you have written. The notes are saved locally in this browser. To save the notes elsewhere, you can print or copy the notes into a document."
         },
         {
-          "label": "Navbar notes print button label",
-          "default": "Print"
+          "label": "Skriv ut",
+          "default": "Skriv ut"
         },
         {
-          "label": "Navbar notes delete all notes button label",
-          "default": "Delete all notes"
+          "label": "Slett alle notater",
+          "default": "Slett alle notater"
         },
         {
-          "label": "Navbar notes empty list label",
-          "default": "No dialogue notes available in this topic map."
+          "label": "Ingen notater",
+          "default": "Du har ikke skrevet noen notater ennå"
         },
         {
-          "label": "Navbar notes missing note label",
-          "default": "━ No notes have been added yet"
+          "label": "Boks eller pil mangler notat",
+          "default": "━ Notat mangler"
         },
         {
-          "label": "Delete all notes confirmation window label",
-          "default": "Are you sure you want to delete all your notes?"
+          "label": "Er du sikker på at du vil slette alle notater?",
+          "default": "Er du sikker på at du vil slette alle notater?"
         },
         {
-          "label": "Delete all notes confirm deletion label",
-          "default": "Confirm deletion"
+          "label": "Slett",
+          "default": "Slett"
         },
         {
-          "label": "Delete all notes deny deletion label",
-          "default": "Cancel"
+          "label": "Avbryt",
+          "default": "Avbryt"
         },
         {
-          "label": "Navbar progress percentage label",
-          "default": "Current progress"
+          "label": "Prosent fullført",
+          "default": "Prosent fullført"
         }
       ]
     }
