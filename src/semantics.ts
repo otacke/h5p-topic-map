@@ -97,6 +97,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         name: "arrowItems",
         type: "list",
         entity: "arrowItem",
+        importance: "low",
         field: {
           label: "Arrow",
           name: "arrow",
@@ -273,6 +274,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               name: "breakpoints",
               type: "list",
               entity: "breakpoint",
+              widget: "none",
               field: {
                 name: "breakpoint",
                 label: "Breakpoint",
@@ -299,6 +301,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
               name: "relativeBreakpoints",
               type: "list",
               entity: "breakpoint",
+              widget: "none",
               field: {
                 name: "breakpoint",
                 label: "Breakpoint",
