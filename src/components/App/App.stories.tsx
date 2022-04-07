@@ -53,6 +53,10 @@ DenFranskeRevolusjon.args = {
       navbarNotesSectionPrintLabel: "Print",
       navbarNotesSectionTitle: "Title",
       progressPercentageLabel: "Progress percentage",
+      navbarNotesSectionSubmitAllLabel: "Submit all data",
+      submitDataConfirmLabel: "Submit",
+      submitDataConfirmationWindowLabel: "Submit all data",
+      submitDataDenyLabel: "Cancel"
     },
     topicMap: {
       grid: {

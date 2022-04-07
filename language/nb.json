@@ -454,6 +454,22 @@
         {
           "label": "Prosent fullført",
           "default": "Prosent fullført"
+        },
+        {
+          "label": "Send inn alle data-knapp",
+          "default": "Send inn alle data"
+        },
+        {
+          "label": "Er du sikker på at du vil sende inn alle data?",
+          "default": "Er du sikker på at du vil sende inn alle data?"
+        },
+        {
+          "label": "Send inn",
+          "default": "Send inn"
+        },
+        {
+          "label": "Avbryt",
+          "default": "Cancel"
         }
       ]
     }

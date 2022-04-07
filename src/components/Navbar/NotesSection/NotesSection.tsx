@@ -5,9 +5,8 @@ import { BreakpointSize } from "../../../types/BreakpointSize";
 import styles from "./NotesSection.module.scss";
 
 export type NotesSectionProps = {
-  setDeleteConfirmationVisibility: React.Dispatch<
-    React.SetStateAction<boolean>
-  >;
+  setDeleteConfirmationVisibility: (isVisible: boolean) => void;
+  setSubmitAllConfirmationVisibility: (isVisible: boolean) => void;
   handlePrint: () => void;
 };
 
@@ -21,11 +20,13 @@ const sizeClassname = {
 
 export const NotesSection: React.FC<NotesSectionProps> = ({
   setDeleteConfirmationVisibility,
+  setSubmitAllConfirmationVisibility,
   handlePrint,
 }) => {
   const mainBodyTitle = useL10n("navbarNotesSectionTitle");
   const mainBodyText = useL10n("navbarNotesSectionBody");
   const printText = useL10n("navbarNotesSectionPrintLabel");
+  const exportAllUserDataText = useL10n("navbarNotesSectionSubmitAllLabel");
   const deleteText = useL10n("navbarNotesSectionDeleteLabel");
 
   const appWidth = useAppWidth();
@@ -52,6 +53,14 @@ export const NotesSection: React.FC<NotesSectionProps> = ({
               onClick={handlePrint}
             >
               {printText}
+            </button>
+            <button
+              className={styles.mainBodyButton}
+              type="button"
+              aria-label={exportAllUserDataText}
+              onClick={() => setSubmitAllConfirmationVisibility(true)}
+            >
+              {exportAllUserDataText}
             </button>
             <button
               className={styles.mainBodyButton}
