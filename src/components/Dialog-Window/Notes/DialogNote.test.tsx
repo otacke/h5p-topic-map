@@ -8,8 +8,6 @@ describe(DialogNote.name, () => {
       <DialogNote
         maxLength={0}
         id="myID"
-        setStorageData={() => null}
-        storageData={{}}
       />,
     ).container;
     expect(dialogNote.querySelector("form")).toBeTruthy();
@@ -20,12 +18,6 @@ describe(DialogNote.name, () => {
       <DialogNote
         maxLength={10}
         id="testId"
-        setStorageData={() => null}
-        storageData={{
-          wordCount: {
-            note: "",
-          },
-        }}
       />,
     );
     expect(getByTestId("wordCount").textContent).toBe(

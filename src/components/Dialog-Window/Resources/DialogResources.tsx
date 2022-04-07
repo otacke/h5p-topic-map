@@ -1,7 +1,8 @@
 import { Cross2Icon } from "@radix-ui/react-icons";
 import * as React from "react";
 import { useEffectOnce } from "react-use";
-import { v4 as uuidV4 } from "uuid";
+import { H5P } from "../../../h5p/H5P.util";
+import { useContentId } from "../../../hooks/useContentId";
 import { useL10n } from "../../../hooks/useLocalization";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { Link } from "../../../types/Link";
@@ -18,7 +19,8 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   showAddLinks,
   id,
 }) => {
-  const [userData, setUserData] = useLocalStorage(id);
+  const contentId = useContentId();
+  const [userData, setUserData] = useLocalStorage(contentId);
   const [link, setLink] = React.useState("");
   const [customLinks, setCustomLinks] = React.useState<Array<JSX.Element>>([]);
   const inputFieldRef = React.useRef<HTMLInputElement>(null);
@@ -28,7 +30,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   const addLinkLabel = useL10n("dialogResourcesAdd");
 
   const removeCustomLink = (linkToRemove: string): void => {
-    userData[id].links = userData[id].links?.filter(
+    userData.dialogs[id].links = userData.dialogs[id].links?.filter(
       (item: Link) => item.id !== linkToRemove,
     );
 
@@ -79,7 +81,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
 
   // extract the generation of custom links list to separate function
   const populateCustomLinks = (): void => {
-    const { links } = userData[id];
+    const { links } = userData.dialogs[id] ?? {};
     if (!links) {
       return;
     }
@@ -108,12 +110,16 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
 
   const saveCustomLink = (newLink: string): void => {
     const tempNewLink: Link = {
-      id: uuidV4(),
+      id: H5P.createUUID(),
       url: newLink,
       label: newLink,
     };
-    const dialogData = userData[id];
 
+    if (!userData.dialogs[id]) {
+      userData.dialogs[id] = {};
+    }
+
+    const dialogData = userData.dialogs[id];
     if (!dialogData.links) {
       dialogData.links = [];
     }

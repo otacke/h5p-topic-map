@@ -15,8 +15,6 @@ const defaultArgs: GridProps = {
   items: [],
   arrowItems: [],
   backgroundImage: undefined,
-  setStorageData: () => null,
-  storageData: {},
   fullscreenHandle: {} as FullScreenHandle,
 };
 

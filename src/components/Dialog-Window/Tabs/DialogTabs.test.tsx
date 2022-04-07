@@ -25,9 +25,7 @@ describe(DialogTabs.name, () => {
         showAddLinks: false,
       },
     };
-    const tabs = render(
-      <DialogTabs item={item} storageData={{}} setStorageData={() => null} />,
-    ).container;
+    const tabs = render(<DialogTabs item={item} />).container;
 
     expect(tabs.querySelector("div")).toBeTruthy();
   });

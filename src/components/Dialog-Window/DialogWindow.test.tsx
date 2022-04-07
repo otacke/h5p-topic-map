@@ -38,13 +38,7 @@ describe(DialogWindow.name, () => {
     };
 
     const dialogWindow = render(
-      <DialogWindow
-        item={item}
-        open={false}
-        onOpenChange={onOpenChange}
-        setStorageData={() => null}
-        storageData={{}}
-      />,
+      <DialogWindow item={item} open={false} onOpenChange={onOpenChange} />,
     ).container;
 
     setTimeout(() => {
@@ -74,13 +68,7 @@ describe(DialogWindow.name, () => {
     };
 
     const dialogWindow = render(
-      <DialogWindow
-        item={item}
-        open={false}
-        onOpenChange={onOpenChange}
-        setStorageData={() => null}
-        storageData={{}}
-      />,
+      <DialogWindow item={item} open={false} onOpenChange={onOpenChange} />,
     ).container;
 
     setTimeout(() => {

@@ -88,8 +88,6 @@ DialogWindowWithNote.args = {
       showAddLinks: false,
     },
   },
-  storageData: {},
-  setStorageData: () => null,
   open: true,
 };
 
@@ -107,7 +105,5 @@ DialogWindowWithOnlyNote.args = {
       showAddLinks: false,
     },
   },
-  storageData: {},
-  setStorageData: () => null,
   open: true,
 };

@@ -1,31 +1,29 @@
-/* eslint-disable no-param-reassign */
 import * as React from "react";
 import { useContentId } from "../../../hooks/useContentId";
 import { useL10n } from "../../../hooks/useLocalization";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { useSendXAPIEvent } from "../../../hooks/useSendXAPIEvent";
-import { UserData } from "../../../types/UserData";
 import styles from "./DialogNote.module.scss";
 
 export type NoteProps = {
   maxLength: number;
   id: string;
   smallScreen?: boolean;
-  setStorageData: React.Dispatch<React.SetStateAction<UserData>>;
-  storageData: UserData;
 };
 
 export const DialogNote: React.FC<NoteProps> = ({
   maxLength,
   id,
-  setStorageData,
   smallScreen,
-  storageData,
 }) => {
-  const [note, setNote] = React.useState(storageData[id]?.note ?? "");
+  const contentId = useContentId();
+  const [userData, setUserData] = useLocalStorage(contentId);
+
+  const [note, setNote] = React.useState(userData.dialogs[id]?.note ?? "");
   const [dynamicSavingText, setDynamicSavingText] = React.useState("");
   const [savingTextTimeout, setSavingTextTimeout] = React.useState<number>();
-  const [noteDone, setMarkedAsDone] = React.useState<boolean>(
-    storageData[id]?.noteDone ?? false,
+  const [noteDone, setMarkedAsDone] = React.useState(
+    userData.dialogs[id]?.noteDone ?? false,
   );
   const [wordCount, setWordCount] = React.useState(0);
   const [maxWordCount, setMaxWordCount] = React.useState<number | undefined>();
@@ -41,17 +39,17 @@ export const DialogNote: React.FC<NoteProps> = ({
   const { sendXAPIEvent } = useSendXAPIEvent();
 
   const handleNoteDone = (): void => {
-    if (storageData[id] === undefined) {
-      storageData[id] = {};
+    if (userData.dialogs[id] === undefined) {
+      userData.dialogs[id] = {};
     }
-    storageData[id].noteDone = !noteDone;
+    userData.dialogs[id].noteDone = !noteDone;
     setMarkedAsDone(!noteDone);
-    setStorageData(storageData);
+    setUserData(userData);
 
     sendXAPIEvent("completed", {
       itemId: id,
       note,
-      completed: storageData[id].noteDone ?? false,
+      completed: userData.dialogs[id].noteDone ?? false,
     });
   };
 
@@ -98,19 +96,19 @@ export const DialogNote: React.FC<NoteProps> = ({
 
   React.useEffect(() => {
     // TODO: If this becomes laggy, add a debounce-timer to avoid saving more often than, say, every 100ms.
-    if (storageData[id] === undefined) storageData[id] = {};
-    storageData[id].note = note;
+    if (userData.dialogs[id] === undefined) userData.dialogs[id] = {};
+    userData.dialogs[id].note = note;
     countWords();
     // ensure there's no memory leak on component unmount during timeout
     return () => {
       if (savingTextTimeout != null) clearTimeout(savingTextTimeout);
     };
-  }, [storageData, id, note, setStorageData, savingTextTimeout, countWords]);
+  }, [userData, id, note, setUserData, savingTextTimeout, countWords]);
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     setSavingText();
     setNote(e.target.value);
-    setStorageData(storageData);
+    setUserData(userData);
   };
 
   return (

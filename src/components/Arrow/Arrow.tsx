@@ -1,10 +1,11 @@
 import * as React from "react";
 import { FC, MouseEventHandler } from "react";
+import { useContentId } from "../../hooks/useContentId";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { ArrowItemType } from "../../types/ArrowItemType";
 import { ArrowType } from "../../types/ArrowType";
 import { NoteButtonIconState } from "../../types/NoteButtonIconState";
 import { Position } from "../../types/Position";
-import { UserData } from "../../types/UserData";
 import { GridDimensions } from "../Grid/Grid";
 import styles from "./Arrow.module.scss";
 import { ArrowNoteButton } from "./ArrowNoteButton";
@@ -13,8 +14,7 @@ export type ArrowProps = {
   item: ArrowItemType;
   onClick: MouseEventHandler;
   grid?: GridDimensions;
-  storageData: UserData;
-  dialogeIsOpen: boolean;
+  dialogIsOpen: boolean;
   onTouchStart: React.TouchEventHandler;
   onKeyUp: React.KeyboardEventHandler;
 };
@@ -35,9 +35,11 @@ export const Arrow: FC<ArrowProps> = ({
   onTouchStart,
   onClick,
   onKeyUp,
-  storageData,
-  dialogeIsOpen,
+  dialogIsOpen,
 }) => {
+  const contentId = useContentId();
+  const [userData] = useLocalStorage(contentId);
+
   const [pathDef, setPathDef] = React.useState<string>("");
   const [strokeWidth, setStrokeWidth] = React.useState<number>(4);
   const [buttonState, setButtonState] = React.useState<NoteButtonIconState>(
@@ -52,12 +54,13 @@ export const Arrow: FC<ArrowProps> = ({
   );
 
   React.useEffect(() => {
+    const dialogData = userData.dialogs[item.id];
+
     switch (true) {
-      case storageData[item.id]?.noteDone:
+      case dialogData?.noteDone:
         setButtonState(NoteButtonIconState.Done);
         break;
-      case storageData[item.id]?.note &&
-        storageData[item.id]?.note?.trim().length !== 0:
+      case dialogData?.note && dialogData?.note?.trim().length > 0:
         setButtonState(NoteButtonIconState.Text);
         break;
       case item.dialog?.hasNote:
@@ -66,7 +69,7 @@ export const Arrow: FC<ArrowProps> = ({
       default:
         setButtonState(NoteButtonIconState.None);
     }
-  }, [item, buttonState, setButtonState, storageData, dialogeIsOpen]);
+  }, [item, buttonState, setButtonState, userData, dialogIsOpen]);
 
   const findMiddlePosition = (
     startx: number,
@@ -144,7 +147,7 @@ export const Arrow: FC<ArrowProps> = ({
   }, [arrowContainerRef, item, grid, buttonState, isHorizontal]);
 
   return (
-    <div className={`${styles.arrow}`}>
+    <div className={styles.arrow}>
       <div
         ref={arrowContainerRef}
         aria-label={item.label}
