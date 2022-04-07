@@ -674,7 +674,8 @@
         "type": "text"
       },
       {
-        "label": "Navbar tabs list aria label",
+        "label": "Navbar tabs list label",
+        "description": "Used by screen readers",
         "name": "navbarTabsListAriaLabel",
         "default": "Navigation bar",
         "type": "text"
@@ -736,9 +737,9 @@
         "type": "text"
       },
       {
-        "label": "Note",
+        "label": "Tabs list",
         "name": "dialogTabListAriaLabel",
-        "default": "Tabs List",
+        "default": "Tabs list",
         "type": "text"
       },
       {
@@ -786,7 +787,7 @@
       {
         "label": "Delete all notes confirm deletion label",
         "name": "deleteNotesConfirmLabel",
-        "default": "Confirm deletion",
+        "default": "Delete",
         "type": "text"
       },
       {
@@ -799,6 +800,30 @@
         "label": "Navbar progress percentage label",
         "name": "progressPercentageLabel",
         "default": "Current progress",
+        "type": "text"
+      },
+      {
+        "label": "Navbar notes submit all data button label",
+        "name": "navbarNotesSectionSubmitAllLabel",
+        "default": "Submit all data",
+        "type": "text"
+      },
+      {
+        "label": "Submit all notes confirmation window label",
+        "name": "submitDataConfirmationWindowLabel",
+        "default": "Are you sure you want to submit all your data?",
+        "type": "text"
+      },
+      {
+        "label": "Submit all data confirm label",
+        "name": "submitDataConfirmLabel",
+        "default": "Submit",
+        "type": "text"
+      },
+      {
+        "label": "Submit all data deny label",
+        "name": "submitDataDenyLabel",
+        "default": "Cancel",
         "type": "text"
       }
     ]

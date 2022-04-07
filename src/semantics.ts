@@ -574,7 +574,7 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
       {
         label: "Delete all notes confirm deletion label",
         name: "deleteNotesConfirmLabel",
-        default: "Confirm deletion",
+        default: "Delete",
         type: "text",
       },
       {
@@ -587,6 +587,30 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         label: "Navbar progress percentage label",
         name: "progressPercentageLabel",
         default: "Current progress",
+        type: "text",
+      },
+      {
+        label: "Navbar notes submit all data button label",
+        name: "navbarNotesSectionSubmitAllLabel",
+        default: "Submit all data",
+        type: "text",
+      },
+      {
+        label: "Submit all notes confirmation window label",
+        name: "submitDataConfirmationWindowLabel",
+        default: "Are you sure you want to submit all your data?",
+        type: "text",
+      },
+      {
+        label: "Submit all data confirm label",
+        name: "submitDataConfirmLabel",
+        default: "Submit",
+        type: "text",
+      },
+      {
+        label: "Submit all data deny label",
+        name: "submitDataDenyLabel",
+        default: "Cancel",
         type: "text",
       },
     ],

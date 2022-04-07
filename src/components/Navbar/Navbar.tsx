@@ -1,16 +1,19 @@
 import ProgressBar from "@ramonak/react-progress-bar";
 import useResizeObserver from "@react-hook/resize-observer";
 import * as React from "react";
+import { useState } from "react";
 import type { FullScreenHandle } from "react-full-screen";
 import { useReactToPrint } from "react-to-print";
 import { useAppWidth } from "../../hooks/useAppWidth";
 import { useContentId } from "../../hooks/useContentId";
+import { useH5PInstance } from "../../hooks/useH5PInstance";
 import { useL10n } from "../../hooks/useLocalization";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { BreakpointSize } from "../../types/BreakpointSize";
 import { CommonItemType } from "../../types/CommonItemType";
 import { NavbarSections } from "../../types/NavbarSections";
 import { Params } from "../../types/Params";
+import { exportAllUserData } from "../../utils/user-data.utils";
 import { DialogWindow } from "../Dialog-Window/DialogWindow";
 import { FullscreenButton } from "../FullscreenButton/FullscreenButton";
 import { Grid } from "../Grid/Grid";
@@ -46,6 +49,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   isIPhoneFullscreenActive,
 }) => {
   const contentId = useContentId();
+  const h5pInstance = useH5PInstance();
+
   const [userData, setUserData] = useLocalStorage(contentId);
 
   const navbarAriaLabel = useL10n("navbarTabsListAriaLabel");
@@ -56,14 +61,14 @@ export const Navbar: React.FC<NavbarProps> = ({
   const deleteAllNotesText = useL10n("deleteNotesConfirmationWindowLabel");
   const deleteAllNotesConfirmText = useL10n("deleteNotesConfirmLabel");
   const deleteAllNotesDenyText = useL10n("deleteNotesDenyLabel");
+  const submitAllDataConfirmText = useL10n("submitDataConfirmLabel");
+  const submitAllDataDenyText = useL10n("submitDataDenyLabel");
 
-  const [currentSection, setCurrentSection] = React.useState(
-    NavbarSections.TopicMap,
-  );
+  const [currentSection, setCurrentSection] = useState(NavbarSections.TopicMap);
 
-  const [progressBarValue, setProgressBarValue] = React.useState<number>(0);
+  const [progressBarValue, setProgressBarValue] = useState<number>(0);
   const [progressPercentage, setProgressPercentage] =
-    React.useState<number>(progressBarValue);
+    useState<number>(progressBarValue);
 
   const allItems = React.useMemo(
     () =>
@@ -84,11 +89,20 @@ export const Navbar: React.FC<NavbarProps> = ({
     [appWidth],
   );
 
-  const [sectionMaxHeight, setSectionMaxHeight] = React.useState(0);
-  const [notesListMaxHeight, setNotesListMaxHeight] = React.useState(0);
+  const [sectionMaxHeight, setSectionMaxHeight] = useState(0);
+  const [notesListMaxHeight, setNotesListMaxHeight] = useState(0);
+
+  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
+
+  const [isDeleteConfirmationVisible, setIsDeleteConfirmationVisible] =
+    useState(false);
+  const [isSubmitAllConfirmationVisible, setIsSubmitAllConfirmationVisible] =
+    useState(false);
+
   const gridRef = React.useRef<HTMLDivElement>(null);
   const navbarRef = React.useRef<HTMLDivElement>(null);
   const notesSectionRef = React.useRef<HTMLDivElement>(null);
+
   const navbarHeight = navbarRef.current?.getBoundingClientRect().height ?? 0;
   const notesSectionHeight =
     notesSectionRef.current?.getBoundingClientRect().height ?? 0;
@@ -165,10 +179,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     onAfterPrint: updateNavbarTitleForPrint,
   });
 
-  const [isHamburgerOpen, setIsHamburgerOpen] = React.useState<boolean>(false);
-
-  const [isDeleteConfirmationVisible, setIsDeleteConfirmationVisible] =
-    React.useState<boolean>(false);
   const deleteAllNotes = (): void => {
     allItems.forEach(item => {
       if (item.id in userData.dialogs) {
@@ -187,6 +197,24 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const denyDeletion = (): void => {
     setIsDeleteConfirmationVisible(false);
+  };
+
+  const submitAllNotes = (): void => {
+    if (!h5pInstance) {
+      return;
+    }
+
+    exportAllUserData(contentId, h5pInstance);
+    setIsSubmitAllConfirmationVisible(false);
+  };
+
+  const confirmSubmitAll = (): void => {
+    submitAllNotes();
+    setIsSubmitAllConfirmationVisible(false);
+  };
+
+  const denySubmitAll = (): void => {
+    setIsSubmitAllConfirmationVisible(false);
   };
 
   const fakeItem = {
@@ -210,10 +238,27 @@ export const Navbar: React.FC<NavbarProps> = ({
     />
   );
 
+  const submitAllConfirmation = (
+    <DialogWindow
+      item={fakeItem}
+      open={isSubmitAllConfirmationVisible}
+      onOpenChange={isOpen => {
+        if (!isOpen) denySubmitAll();
+      }}
+      confirmWindow={{
+        confirmAction: confirmSubmitAll,
+        denyAction: denySubmitAll,
+        confirmText: submitAllDataConfirmText,
+        denyText: submitAllDataDenyText,
+      }}
+    />
+  );
+
   const notesSection = (
     <>
       <div ref={notesSectionRef}>
         <NotesSection
+          setSubmitAllConfirmationVisibility={setIsSubmitAllConfirmationVisible}
           setDeleteConfirmationVisibility={setIsDeleteConfirmationVisible}
           handlePrint={handlePrint}
         />
@@ -375,6 +420,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
       {deleteConfirmation}
+      {submitAllConfirmation}
     </>
   );
 };
