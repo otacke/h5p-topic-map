@@ -1,16 +1,16 @@
-/* eslint-disable no-param-reassign */
 import ProgressBar from "@ramonak/react-progress-bar";
 import useResizeObserver from "@react-hook/resize-observer";
 import * as React from "react";
 import type { FullScreenHandle } from "react-full-screen";
 import { useReactToPrint } from "react-to-print";
 import { useAppWidth } from "../../hooks/useAppWidth";
+import { useContentId } from "../../hooks/useContentId";
 import { useL10n } from "../../hooks/useLocalization";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { BreakpointSize } from "../../types/BreakpointSize";
 import { CommonItemType } from "../../types/CommonItemType";
 import { NavbarSections } from "../../types/NavbarSections";
 import { Params } from "../../types/Params";
-import { UserData } from "../../types/UserData";
 import { DialogWindow } from "../Dialog-Window/DialogWindow";
 import { FullscreenButton } from "../FullscreenButton/FullscreenButton";
 import { Grid } from "../Grid/Grid";
@@ -23,9 +23,9 @@ import { NotesSection } from "./NotesSection/NotesSection";
 export type NavbarProps = {
   navbarTitle: string;
   params: Params;
-  setStorageData: React.Dispatch<React.SetStateAction<UserData>>;
+
   fullscreenHandle: FullScreenHandle;
-  storageData: UserData;
+
   toggleIPhoneFullscreen: () => void;
   isIPhoneFullscreenActive: boolean;
 };
@@ -41,12 +41,13 @@ const sizeClassname = {
 export const Navbar: React.FC<NavbarProps> = ({
   navbarTitle,
   params,
-  setStorageData,
-  storageData,
   fullscreenHandle,
   toggleIPhoneFullscreen,
   isIPhoneFullscreenActive,
 }) => {
+  const contentId = useContentId();
+  const [userData, setUserData] = useLocalStorage(contentId);
+
   const navbarAriaLabel = useL10n("navbarTabsListAriaLabel");
   const topicMapSectionLabel = useL10n("navbarTopicMapSectionLabel");
   const notesSectionLabel = useL10n("navbarNotesSectionLabel");
@@ -143,14 +144,14 @@ export const Navbar: React.FC<NavbarProps> = ({
       allItems.filter(
         item =>
           item.dialog?.hasNote &&
-          item.id in storageData &&
-          storageData[item.id].noteDone,
+          item.id in userData &&
+          userData.dialogs[item.id].noteDone,
       ).length,
     );
     setProgressPercentage(
       Math.round((progressBarValue / totalNotesToComplete) * 100),
     );
-  }, [progressBarValue, allItems, totalNotesToComplete, storageData]);
+  }, [progressBarValue, allItems, totalNotesToComplete, userData]);
 
   let navbarTitleForPrint = "";
   const updateNavbarTitleForPrint = (): void => {
@@ -170,12 +171,12 @@ export const Navbar: React.FC<NavbarProps> = ({
     React.useState<boolean>(false);
   const deleteAllNotes = (): void => {
     allItems.forEach(item => {
-      if (item.id in storageData) {
-        storageData[item.id].note = undefined;
-        storageData[item.id].noteDone = undefined;
+      if (item.id in userData.dialogs) {
+        userData.dialogs[item.id].note = undefined;
+        userData.dialogs[item.id].noteDone = undefined;
       }
     });
-    setStorageData(storageData);
+    setUserData(userData);
     setIsDeleteConfirmationVisible(false);
   };
 
@@ -206,8 +207,6 @@ export const Navbar: React.FC<NavbarProps> = ({
         confirmText: deleteAllNotesConfirmText,
         denyText: deleteAllNotesDenyText,
       }}
-      setStorageData={setStorageData}
-      storageData={storageData}
     />
   );
 
@@ -352,8 +351,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               items={params.topicMap?.topicMapItems ?? []}
               arrowItems={params.topicMap?.arrowItems ?? []}
               backgroundImage={params.topicMap?.gridBackgroundImage}
-              setStorageData={setStorageData}
-              storageData={storageData}
               grid={params.topicMap?.grid}
               fullscreenHandle={fullscreenHandle}
             />

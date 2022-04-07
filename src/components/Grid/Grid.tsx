@@ -5,7 +5,6 @@ import { FullScreenHandle } from "react-full-screen";
 import { ArrowItemType } from "../../types/ArrowItemType";
 import { CommonItemType } from "../../types/CommonItemType";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
-import { UserData } from "../../types/UserData";
 import { Arrow } from "../Arrow/Arrow";
 import { DialogWindow } from "../Dialog-Window/DialogWindow";
 import { TopicMapItem } from "../TopicMapItem/TopicMapItem";
@@ -15,8 +14,6 @@ export type GridProps = {
   items: Array<TopicMapItemType>;
   arrowItems: Array<ArrowItemType>;
   backgroundImage: Image | undefined;
-  setStorageData: React.Dispatch<React.SetStateAction<UserData>>;
-  storageData: UserData;
   grid?: GridDimensions;
   fullscreenHandle: FullScreenHandle;
 };
@@ -30,8 +27,6 @@ export const Grid: React.FC<GridProps> = ({
   items,
   arrowItems,
   backgroundImage,
-  setStorageData,
-  storageData,
   grid,
   fullscreenHandle,
 }) => {
@@ -127,8 +122,7 @@ export const Grid: React.FC<GridProps> = ({
               if (event.key === "Enter" || event.code === "Space")
                 onClick(item);
             }}
-            storageData={storageData}
-            dialogeIsOpen={itemShowingDialog === item}
+            dialogIsOpen={itemShowingDialog === item}
           />
         );
       }
@@ -148,7 +142,6 @@ export const Grid: React.FC<GridProps> = ({
           <TopicMapItem
             item={item}
             onClick={() => setItemShowingDialog(item)}
-            storageData={storageData}
             grid={grid}
             gridRef={gridContainerRef}
           />
@@ -163,7 +156,6 @@ export const Grid: React.FC<GridProps> = ({
     grid,
     items,
     sortArrowItems,
-    storageData,
     itemShowingDialog,
     gridContainerRef,
   ]);
@@ -197,8 +189,6 @@ export const Grid: React.FC<GridProps> = ({
             item={itemShowingDialog}
             open={!!itemShowingDialog}
             onOpenChange={() => setItemShowingDialog(null)}
-            setStorageData={setStorageData}
-            storageData={storageData}
           />
         ) : null}
       </div>

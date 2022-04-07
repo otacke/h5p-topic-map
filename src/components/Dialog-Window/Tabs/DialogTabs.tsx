@@ -4,7 +4,6 @@ import * as React from "react";
 import { useMedia } from "react-use";
 import { useL10n } from "../../../hooks/useLocalization";
 import { CommonItemType } from "../../../types/CommonItemType";
-import { UserData } from "../../../types/UserData";
 import { DialogAudio } from "../Audio/DialogAudio";
 import { DialogNote } from "../Notes/DialogNote";
 import { DialogResources } from "../Resources/DialogResources";
@@ -14,8 +13,6 @@ import styles from "./DialogTabs.module.scss";
 
 export type TabProps = {
   item: CommonItemType;
-  storageData: UserData;
-  setStorageData: React.Dispatch<React.SetStateAction<UserData>>;
 };
 
 type Translation = {
@@ -140,11 +137,7 @@ const tabItems = (item: CommonItemType): JSX.Element[] => {
   return items;
 };
 
-export const DialogTabs: React.FC<TabProps> = ({
-  item,
-  setStorageData,
-  storageData,
-}) => {
+export const DialogTabs: React.FC<TabProps> = ({ item }) => {
   const translation: Translation = {
     audio: useL10n("copyrightAudio"),
     video: useL10n("copyrightVideo"),
@@ -188,8 +181,6 @@ export const DialogTabs: React.FC<TabProps> = ({
               maxLength={item.dialog?.maxWordCount ?? 160}
               id={item.id}
               smallScreen
-              setStorageData={setStorageData}
-              storageData={storageData}
             />
           </Content>
         ) : null}

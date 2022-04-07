@@ -5,7 +5,6 @@ import { FC } from "react";
 import { useMedia } from "react-use";
 import { useL10n } from "../../hooks/useLocalization";
 import { CommonItemType } from "../../types/CommonItemType";
-import { UserData } from "../../types/UserData";
 import styles from "./DialogWindow.module.scss";
 import { DialogNote } from "./Notes/DialogNote";
 import { DialogTabs } from "./Tabs/DialogTabs";
@@ -20,8 +19,6 @@ export type DialogWindowProps = {
     confirmText: string;
     denyText: string;
   };
-  setStorageData: React.Dispatch<React.SetStateAction<UserData>>;
-  storageData: UserData;
 };
 
 export const DialogWindow: FC<DialogWindowProps> = ({
@@ -30,8 +27,6 @@ export const DialogWindow: FC<DialogWindowProps> = ({
   onOpenChange,
   confirmWindow,
   children,
-  setStorageData,
-  storageData,
 }) => {
   const ariaLabel = useL10n("closeDialog");
   const smallScreen = useMedia("(max-width: 768px)");
@@ -86,20 +81,12 @@ export const DialogWindow: FC<DialogWindowProps> = ({
   let content = smallScreen ? (
     <Content className={styles.dialogContentSmallScreen}>
       <Title className={styles.dialogTitle}>{item.label}</Title>
-      {!noTabItems && (
-        <DialogTabs
-          item={item}
-          storageData={storageData}
-          setStorageData={setStorageData}
-        />
-      )}
+      {!noTabItems && <DialogTabs item={item} />}
       {noTabItems && hasNote && (
         <div className={`${styles.noteWrapper} ${styles.fullWidth}`}>
           <DialogNote
             maxLength={item.dialog.maxWordCount ?? 160}
             id={item.id}
-            setStorageData={setStorageData}
-            storageData={storageData}
           />
         </div>
       )}
@@ -114,13 +101,7 @@ export const DialogWindow: FC<DialogWindowProps> = ({
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: item.label }}
       />
-      {!noTabItems && (
-        <DialogTabs
-          item={item}
-          storageData={storageData}
-          setStorageData={setStorageData}
-        />
-      )}
+      {!noTabItems && <DialogTabs item={item} />}
       <Close className={styles.closeButton} aria-label={ariaLabel}>
         <Cross2Icon />
       </Close>
@@ -139,11 +120,7 @@ export const DialogWindow: FC<DialogWindowProps> = ({
         />
         {!noTabItems && (
           <div className={styles.tabWrapper}>
-            <DialogTabs
-              item={item}
-              storageData={storageData}
-              setStorageData={setStorageData}
-            />
+            <DialogTabs item={item} />
           </div>
         )}
         <div
@@ -154,8 +131,6 @@ export const DialogWindow: FC<DialogWindowProps> = ({
           <DialogNote
             maxLength={item.dialog.maxWordCount ?? 160}
             id={item.id}
-            setStorageData={setStorageData}
-            storageData={storageData}
           />
         </div>
         <Close className={styles.closeButton} aria-label={ariaLabel}>

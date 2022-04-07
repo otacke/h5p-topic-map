@@ -1,5 +1,5 @@
-import { DialogData } from "./DialogData";
+import { ContentUserData } from "./ContentUserData";
 
 export type UserData = {
-  [dialogId: string]: DialogData;
+  [contentId: string]: ContentUserData;
 };

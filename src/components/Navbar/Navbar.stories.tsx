@@ -11,8 +11,6 @@ export default {
 const defaultArgs: NavbarProps = {
   navbarTitle: "National romanticism",
   params: {},
-  setStorageData: () => null,
-  storageData: {},
   fullscreenHandle: {} as FullScreenHandle,
   toggleIPhoneFullscreen: () => null,
   isIPhoneFullscreenActive: false,

@@ -36,7 +36,6 @@ const onClick = (): void => {
 const defaultArgs: TopicMapItemProps = {
   item,
   onClick,
-  storageData: {},
 };
 
 export const NoContainer: ComponentStory<typeof TopicMapItem> = () => {

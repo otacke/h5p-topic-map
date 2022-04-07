@@ -1,5 +1,4 @@
-import type { Audio } from "h5p-types";
-import { H5PObject } from "../../H5P";
+import type { Audio, H5PObject } from "h5p-types";
 import { ArrowItemType } from "../types/ArrowItemType";
 import { Params } from "../types/Params";
 import { TopicMapItemType } from "../types/TopicMapItemType";

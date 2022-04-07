@@ -1,10 +1,11 @@
 import * as React from "react";
-import { getUserData } from "../../../../hooks/useLocalStorage";
 import { useL10n } from "../../../../hooks/useLocalization";
 import { NoteButton } from "../../../NoteButton/NoteButton";
 import { NoteButtonIconState } from "../../../../types/NoteButtonIconState";
 import { CommonItemType } from "../../../../types/CommonItemType";
 import styles from "./NotesList.module.scss";
+import { getContentUserData } from "../../../../utils/user-data.utils";
+import { useContentId } from "../../../../hooks/useContentId";
 
 export type NotesListProps = {
   topicMapItems: CommonItemType[];
@@ -15,13 +16,16 @@ export const NotesList: React.FC<NotesListProps> = ({
   topicMapItems,
   navbarTitle,
 }) => {
-  const userData = getUserData();
+  const contentId = useContentId();
+  const userData = getContentUserData(contentId);
   const noItemsInListText = useL10n("navbarNotesEmptyListLabel");
   const missingNoteText = useL10n("navbarNotesMissingNoteLabel");
 
   const userDataEntries = topicMapItems.map(item => {
-    const doesNoteExist = item.id in userData && userData[item.id].note;
-    const isNoteDone = doesNoteExist && userData[item.id].noteDone;
+    const dialogData = userData.dialogs?.[item.id];
+
+    const doesNoteExist = dialogData?.note;
+    const isNoteDone = doesNoteExist && dialogData.noteDone;
 
     return (
       item.dialog?.hasNote && (
@@ -45,7 +49,9 @@ export const NotesList: React.FC<NotesListProps> = ({
               <div className={styles.mainBodyList}>
                 <p className={styles.mainBodyListElementHeader}>{item.label}</p>
                 <p>
-                  {doesNoteExist ? userData[item.id].note : missingNoteText}
+                  {doesNoteExist
+                    ? userData.dialogs[item.id].note
+                    : missingNoteText}
                 </p>
               </div>
             </div>

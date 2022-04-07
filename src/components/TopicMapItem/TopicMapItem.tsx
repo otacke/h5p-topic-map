@@ -1,10 +1,11 @@
 import * as React from "react";
 import { FC, MouseEventHandler } from "react";
 import { useAppWidth } from "../../hooks/useAppWidth";
+import { useContentId } from "../../hooks/useContentId";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { BreakpointSize } from "../../types/BreakpointSize";
 import { NoteButtonIconState } from "../../types/NoteButtonIconState";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
-import { UserData } from "../../types/UserData";
 import { GridDimensions } from "../Grid/Grid";
 import { NoteButton } from "../NoteButton/NoteButton";
 import styles from "./TopicMapItem.module.scss";
@@ -12,7 +13,6 @@ import styles from "./TopicMapItem.module.scss";
 export type TopicMapItemProps = {
   item: TopicMapItemType;
   onClick: MouseEventHandler;
-  storageData: UserData;
   grid?: GridDimensions;
   gridRef?: React.RefObject<HTMLDivElement>;
 };
@@ -28,13 +28,15 @@ const sizeClassname = {
 export const TopicMapItem: FC<TopicMapItemProps> = ({
   item,
   onClick,
-  storageData,
   grid,
   gridRef,
 }) => {
+  const contentId = useContentId();
+  const [storageData] = useLocalStorage(contentId);
+
   const appWidth = useAppWidth();
   const buttonElement = React.useRef<HTMLButtonElement>(null);
-  const [strokeWidth, setStrokeWidth] = React.useState<number>(4);
+  const [strokeWidth, setStrokeWidth] = React.useState(4);
 
   const className = React.useMemo(
     () => [styles.topicMapItem, sizeClassname[appWidth]].join(" "),
@@ -52,12 +54,13 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({
 
   let btnState: NoteButtonIconState = NoteButtonIconState.Default;
   if (item.dialog?.hasNote) {
+    const dialogData = storageData.dialogs[item.id];
+
     switch (true) {
-      case storageData[item.id]?.noteDone:
+      case dialogData?.noteDone:
         btnState = NoteButtonIconState.Done;
         break;
-      case storageData[item.id]?.note &&
-        storageData[item.id]?.note?.length !== 0:
+      case dialogData?.note && dialogData?.note?.length > 0:
         btnState = NoteButtonIconState.Notes;
         break;
       default:

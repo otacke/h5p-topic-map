@@ -1,32 +1,29 @@
-/* eslint-disable no-param-reassign */
 import * as React from "react";
-import type { XAPIEvent } from "../../../../H5P";
 import { useContentId } from "../../../hooks/useContentId";
-import { useH5PInstance } from "../../../hooks/useH5PInstance";
 import { useL10n } from "../../../hooks/useLocalization";
-import { UserData } from "../../../types/UserData";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import { useSendXAPIEvent } from "../../../hooks/useSendXAPIEvent";
 import styles from "./DialogNote.module.scss";
 
 export type NoteProps = {
   maxLength: number;
   id: string;
   smallScreen?: boolean;
-  setStorageData: React.Dispatch<React.SetStateAction<UserData>>;
-  storageData: UserData;
 };
 
 export const DialogNote: React.FC<NoteProps> = ({
   maxLength,
   id,
-  setStorageData,
   smallScreen,
-  storageData,
 }) => {
-  const [note, setNote] = React.useState(storageData[id]?.note ?? "");
+  const contentId = useContentId();
+  const [userData, setUserData] = useLocalStorage(contentId);
+
+  const [note, setNote] = React.useState(userData.dialogs[id]?.note ?? "");
   const [dynamicSavingText, setDynamicSavingText] = React.useState("");
   const [savingTextTimeout, setSavingTextTimeout] = React.useState<number>();
-  const [noteDone, setMarkedAsDone] = React.useState<boolean>(
-    storageData[id]?.noteDone ?? false,
+  const [noteDone, setMarkedAsDone] = React.useState(
+    userData.dialogs[id]?.noteDone ?? false,
   );
   const [wordCount, setWordCount] = React.useState(0);
   const [maxWordCount, setMaxWordCount] = React.useState<number | undefined>();
@@ -39,61 +36,21 @@ export const DialogNote: React.FC<NoteProps> = ({
   const wordTextLabel = useL10n("dialogWordsLabel");
   const wordNoteLabel = useL10n("dialogNoteLabel");
 
-  const h5pWrapper = useH5PInstance();
-  const contentId = useContentId();
-
-  const sendXAPIEvent = (event: XAPIEvent): void => {
-    h5pWrapper?.trigger(event);
-  };
+  const { sendXAPIEvent } = useSendXAPIEvent();
 
   const handleNoteDone = (): void => {
-    if (storageData[id] === undefined) {
-      storageData[id] = {};
+    if (userData.dialogs[id] === undefined) {
+      userData.dialogs[id] = {};
     }
-    storageData[id].noteDone = !noteDone;
+    userData.dialogs[id].noteDone = !noteDone;
     setMarkedAsDone(!noteDone);
-    setStorageData(storageData);
+    setUserData(userData);
 
-    if (!h5pWrapper) {
-      return;
-    }
-
-    const xAPIEvent = h5pWrapper.createXAPIEventTemplate("completed", {
+    sendXAPIEvent("completed", {
       itemId: id,
-      contentId,
       note,
-      completed: storageData[id].noteDone ?? false,
+      completed: userData.dialogs[id].noteDone ?? false,
     });
-
-    xAPIEvent.setActor();
-    sendXAPIEvent(xAPIEvent);
-  };
-
-  /**
-   * Get the xAPI definition for the xAPI object.
-   *
-   * @return XAPI definition.
-   */
-  const getxAPIDefinition = (): object => {
-    const definition: {
-      name: Record<string, string>;
-      description: Record<string, string>;
-      type: string;
-      interactionType: string;
-      correctResponsesPattern: string;
-    } = {
-      name: {
-        "en-US": "POTET",
-      },
-      description: {
-        "en-US": "BESKRIVELSEN VÅR",
-      },
-      type: "http://adlnet.gov/expapi/activities/cmi.interaction",
-      interactionType: "fill-in",
-      correctResponsesPattern: ".*",
-    };
-
-    return definition;
   };
 
   const setSavingText = (): void => {
@@ -114,24 +71,10 @@ export const DialogNote: React.FC<NoteProps> = ({
           } ${savedTextLabel} ${localTime}`,
         );
 
-        if (!h5pWrapper) {
-          return;
-        }
-
-        const xAPIEvent = h5pWrapper.createXAPIEventTemplate("answered", {
+        sendXAPIEvent("answered", {
           itemId: id,
-          contentId,
           note,
         });
-        xAPIEvent.getVerifiedStatementValue(["object", "definition"]);
-        if (xAPIEvent.data) {
-          xAPIEvent.data.statement.object.definition = {
-            ...xAPIEvent.data.statement.object.definition,
-            ...getxAPIDefinition(),
-          };
-        }
-
-        sendXAPIEvent(xAPIEvent);
       }, 650),
     );
   };
@@ -153,19 +96,19 @@ export const DialogNote: React.FC<NoteProps> = ({
 
   React.useEffect(() => {
     // TODO: If this becomes laggy, add a debounce-timer to avoid saving more often than, say, every 100ms.
-    if (storageData[id] === undefined) storageData[id] = {};
-    storageData[id].note = note;
+    if (userData.dialogs[id] === undefined) userData.dialogs[id] = {};
+    userData.dialogs[id].note = note;
     countWords();
     // ensure there's no memory leak on component unmount during timeout
     return () => {
       if (savingTextTimeout != null) clearTimeout(savingTextTimeout);
     };
-  }, [storageData, id, note, setStorageData, savingTextTimeout, countWords]);
+  }, [userData, id, note, setUserData, savingTextTimeout, countWords]);
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     setSavingText();
     setNote(e.target.value);
-    setStorageData(storageData);
+    setUserData(userData);
   };
 
   return (

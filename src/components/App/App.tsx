@@ -2,9 +2,7 @@ import useResizeObserver from "@react-hook/resize-observer";
 import * as React from "react";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { AppWidthContext } from "../../contexts/AppWidthContext";
-import { getUserData, setUserData } from "../../hooks/useLocalStorage";
 import { Params } from "../../types/Params";
-import { UserData } from "../../types/UserData";
 import { defaultTheme } from "../../utils/semantics.utils";
 import { Navbar } from "../Navbar/Navbar";
 import styles from "./App.module.scss";
@@ -31,11 +29,6 @@ export const App: React.FC<AppProps> = ({
 
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [width, setWidth] = React.useState(0);
-  const [storageData, setStorageData] = React.useState<UserData>(getUserData());
-
-  React.useEffect(() => {
-    setUserData(storageData);
-  }, [storageData]);
 
   React.useLayoutEffect(() => {
     const initialWidth =
@@ -72,11 +65,9 @@ export const App: React.FC<AppProps> = ({
               <Navbar
                 navbarTitle={title ?? ""}
                 params={params}
-                setStorageData={setStorageData}
                 fullscreenHandle={fullscreenHandle}
                 toggleIPhoneFullscreen={handleToggleIPhoneFullscreen}
                 isIPhoneFullscreenActive={isIPhoneFullscreenActive}
-                storageData={{ ...storageData }}
               />
             </div>
           </FullScreen>
