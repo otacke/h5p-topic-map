@@ -50,13 +50,11 @@
             },
             {
               "label": "Label",
-              "description": "The label is shown on top of the background image",
               "name": "label",
               "type": "text"
             },
             {
               "label": "Description",
-              "description": "The description is shown on top of the background image, below the label",
               "name": "description",
               "type": "text",
               "optional": true
