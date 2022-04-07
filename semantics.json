@@ -192,6 +192,7 @@
         "name": "arrowItems",
         "type": "list",
         "entity": "arrowItem",
+        "importance": "low",
         "field": {
           "label": "Arrow",
           "name": "arrow",
@@ -467,6 +468,7 @@
               "name": "breakpoints",
               "type": "list",
               "entity": "breakpoint",
+              "widget": "none",
               "field": {
                 "name": "breakpoint",
                 "label": "Breakpoint",
@@ -493,6 +495,7 @@
               "name": "relativeBreakpoints",
               "type": "list",
               "entity": "breakpoint",
+              "widget": "none",
               "field": {
                 "name": "breakpoint",
                 "label": "Breakpoint",
