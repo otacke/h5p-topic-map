@@ -4,4 +4,4 @@ export type ContentUserData = {
   dialogs: {
     [dialogId: string]: DialogData;
   };
-}
+};
