@@ -1,10 +1,8 @@
-/* eslint-disable react/destructuring-assignment */
 import * as React from "react";
-import styles from "./NoteButton.module.scss";
-import { DoneIcon, EditIcon, IconProps, NoteIcon } from "../Icons/Icons";
+import { useSizeClassNames } from "../../hooks/useSizeClassNames";
 import { NoteButtonIconState } from "../../types/NoteButtonIconState";
-import { BreakpointSize } from "../../types/BreakpointSize";
-import { useAppWidth } from "../../hooks/useAppWidth";
+import { DoneIcon, EditIcon, IconProps, NoteIcon } from "../Icons/Icons";
+import styles from "./NoteButton.module.scss";
 
 const icons: Record<NoteButtonIconState, React.FC<IconProps>> = {
   [NoteButtonIconState.Done]: DoneIcon,
@@ -32,14 +30,6 @@ type NoteButtonProps = {
   strokeWidth: number | undefined;
 };
 
-const sizeClassname = {
-  [BreakpointSize.Large]: styles.large,
-  [BreakpointSize.Medium]: styles.medium,
-  [BreakpointSize.Small]: styles.small,
-  [BreakpointSize.XSmall]: styles.xSmall,
-  [BreakpointSize.XXSmall]: styles.xxSmall,
-};
-
 export const NoteButton: React.FC<NoteButtonProps> = ({
   backgroundColor,
   borderColor,
@@ -47,14 +37,12 @@ export const NoteButton: React.FC<NoteButtonProps> = ({
   buttonState,
   strokeWidth,
 }): JSX.Element => {
+  const sizeClassNames = useSizeClassNames(styles);
+
   const classNames = `${styles.button} ${strokeWidth ? "" : styles.fixed_size}`;
   const minSize = strokeWidth ? strokeWidth * 1.5 : 0;
-  const appWidth = useAppWidth();
 
-  const className = React.useMemo(
-    () => [classNames, sizeClassname[appWidth]].join(" "),
-    [appWidth, classNames],
-  );
+  const className = [classNames, sizeClassNames].join(" ");
 
   return (
     <div

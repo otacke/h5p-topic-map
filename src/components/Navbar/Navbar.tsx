@@ -4,12 +4,11 @@ import * as React from "react";
 import { useState } from "react";
 import type { FullScreenHandle } from "react-full-screen";
 import { useReactToPrint } from "react-to-print";
-import { useAppWidth } from "../../hooks/useAppWidth";
 import { useContentId } from "../../hooks/useContentId";
 import { useH5PInstance } from "../../hooks/useH5PInstance";
 import { useL10n } from "../../hooks/useLocalization";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { BreakpointSize } from "../../types/BreakpointSize";
+import { useSizeClassNames } from "../../hooks/useSizeClassNames";
 import { CommonItemType } from "../../types/CommonItemType";
 import { NavbarSections } from "../../types/NavbarSections";
 import { Params } from "../../types/Params";
@@ -31,14 +30,6 @@ export type NavbarProps = {
 
   toggleIPhoneFullscreen: () => void;
   isIPhoneFullscreenActive: boolean;
-};
-
-const sizeClassname = {
-  [BreakpointSize.Large]: styles.large,
-  [BreakpointSize.Medium]: styles.medium,
-  [BreakpointSize.Small]: styles.small,
-  [BreakpointSize.XSmall]: styles.xSmall,
-  [BreakpointSize.XXSmall]: styles.xxSmall,
 };
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -66,9 +57,20 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const [currentSection, setCurrentSection] = useState(NavbarSections.TopicMap);
 
-  const [progressBarValue, setProgressBarValue] = useState<number>(0);
+  const [progressBarValue, setProgressBarValue] = useState(0);
   const [progressPercentage, setProgressPercentage] =
-    useState<number>(progressBarValue);
+    useState(progressBarValue);
+
+  const [sectionMaxHeight, setSectionMaxHeight] = useState(0);
+  const [notesListMaxHeight, setNotesListMaxHeight] = useState(0);
+  const [isDeleteConfirmationVisible, setIsDeleteConfirmationVisible] =
+    useState(false);
+  const [isSubmitAllConfirmationVisible, setIsSubmitAllConfirmationVisible] =
+    useState(false);
+
+  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
+
+  const sizeClassNames = useSizeClassNames(styles);
 
   const allItems = React.useMemo(
     () =>
@@ -77,27 +79,12 @@ export const Navbar: React.FC<NavbarProps> = ({
       ),
     [params.topicMap?.arrowItems, params.topicMap?.topicMapItems],
   );
+
   const totalNotesToComplete = React.useMemo(
     () => allItems.filter(item => item.dialog?.hasNote).length,
     [allItems],
   );
   const hasNotes = totalNotesToComplete > 0;
-
-  const appWidth = useAppWidth();
-  const sizeClassName = React.useMemo(
-    () => sizeClassname[appWidth],
-    [appWidth],
-  );
-
-  const [sectionMaxHeight, setSectionMaxHeight] = useState(0);
-  const [notesListMaxHeight, setNotesListMaxHeight] = useState(0);
-
-  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
-
-  const [isDeleteConfirmationVisible, setIsDeleteConfirmationVisible] =
-    useState(false);
-  const [isSubmitAllConfirmationVisible, setIsSubmitAllConfirmationVisible] =
-    useState(false);
 
   const gridRef = React.useRef<HTMLDivElement>(null);
   const navbarRef = React.useRef<HTMLDivElement>(null);
@@ -376,7 +363,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     <>
       <div
         aria-label={navbarAriaLabel}
-        className={sizeClassName}
+        className={sizeClassNames}
         style={{
           // @ts-expect-error Custom properties are allowed
           "--h5p-tm-navbar-height": `${navbarHeight}px`,

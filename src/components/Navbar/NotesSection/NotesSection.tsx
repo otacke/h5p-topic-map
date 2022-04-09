@@ -1,21 +1,12 @@
 import * as React from "react";
-import { useAppWidth } from "../../../hooks/useAppWidth";
 import { useL10n } from "../../../hooks/useLocalization";
-import { BreakpointSize } from "../../../types/BreakpointSize";
+import { useSizeClassNames } from "../../../hooks/useSizeClassNames";
 import styles from "./NotesSection.module.scss";
 
 export type NotesSectionProps = {
   setDeleteConfirmationVisibility: (isVisible: boolean) => void;
   setSubmitAllConfirmationVisibility: (isVisible: boolean) => void;
   handlePrint: () => void;
-};
-
-const sizeClassname = {
-  [BreakpointSize.Large]: styles.large,
-  [BreakpointSize.Medium]: styles.medium,
-  [BreakpointSize.Small]: styles.small,
-  [BreakpointSize.XSmall]: styles.xSmall,
-  [BreakpointSize.XXSmall]: styles.xxSmall,
 };
 
 export const NotesSection: React.FC<NotesSectionProps> = ({
@@ -29,15 +20,10 @@ export const NotesSection: React.FC<NotesSectionProps> = ({
   const exportAllUserDataText = useL10n("navbarNotesSectionSubmitAllLabel");
   const deleteText = useL10n("navbarNotesSectionDeleteLabel");
 
-  const appWidth = useAppWidth();
-
-  const sizeClassName = React.useMemo(
-    () => sizeClassname[appWidth],
-    [appWidth],
-  );
+  const sizeClassNames = useSizeClassNames(styles);
 
   return (
-    <div className={`${styles.mainBody} ${sizeClassName}`}>
+    <div className={`${styles.mainBody} ${sizeClassNames}`}>
       <div className={styles.mainBodyContent}>
         <div className={styles.mainBodyTitle}>
           <p>{mainBodyTitle}</p>
