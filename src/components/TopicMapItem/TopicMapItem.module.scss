@@ -111,4 +111,7 @@ $note-btn-padding: 0.75rem;
 .description {
   font-size: 0.625em;
   margin-top: 0.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
