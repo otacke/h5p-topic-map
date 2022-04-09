@@ -30,7 +30,7 @@ export const itemDialog: Array<H5PField> = [
         type: "text",
         widget: "html",
         optional: true,
-        tags: ["p", "br", "strong", "em", "a"],
+        tags: ["h2", "h3", "h4", "h5", "h6", "p", "br", "strong", "em", "a"],
       },
       {
         label: "Video",
