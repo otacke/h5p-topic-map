@@ -36,7 +36,7 @@ export const NotesSection: React.FC<NotesSectionProps> = ({
             className={styles.backArrow}
             aria-label={goToTopicMapLabel}
           >
-            <ArrowLeftIcon width={22} height={22} /> 
+            <ArrowLeftIcon width={22} height={22} />
           </button>
           <p>{mainBodyTitle}</p>
         </div>

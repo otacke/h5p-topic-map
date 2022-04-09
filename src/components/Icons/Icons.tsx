@@ -56,13 +56,13 @@ export const DoneIcon: React.FC<IconProps> = ({ iconColor, width, height }) => (
 
 export const HamburgerIcon: React.FC<IconProps> = ({
   iconColor,
-  width,
-  height,
+  width = 18,
+  height = 12,
 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="18"
-    height="12"
+    width={width}
+    height={height}
     viewBox="0 0 18 12"
     fill="none"
   >
@@ -72,13 +72,13 @@ export const HamburgerIcon: React.FC<IconProps> = ({
 
 export const HamburgerCloseIcon: React.FC<IconProps> = ({
   iconColor,
-  width,
-  height,
+  width = 12,
+  height = 12,
 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="12"
-    height="12"
+    width={width}
+    height={height}
     viewBox="0 0 12 12"
     fill="none"
   >
