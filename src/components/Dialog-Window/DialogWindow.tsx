@@ -1,7 +1,7 @@
 import { Close, Content, Overlay, Root, Title } from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import * as React from "react";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { useMedia } from "react-use";
 import { useL10n } from "../../hooks/useLocalization";
 import { CommonItemType } from "../../types/CommonItemType";
@@ -19,7 +19,7 @@ export type DialogWindowProps = {
     confirmText: string;
     denyText: string;
   };
-};
+} & { children?: ReactNode };
 
 export const DialogWindow: FC<DialogWindowProps> = ({
   item,
