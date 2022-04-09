@@ -1,26 +1,24 @@
 import * as React from "react";
 import { FullScreenHandle } from "react-full-screen";
+import isIOS from "is-ios";
 import { useL10n } from "../../hooks/useLocalization";
 import styles from "./FullscreenButton.module.scss";
 
 export type FullscreenButtonProps = {
   fullscreenHandle: FullScreenHandle;
-  toggleIPhoneFullscreen: () => void;
-  isIPhoneFullscreenActive: boolean;
+  toggleIOSFullscreen: () => void;
+  isIOSFullscreenActive: boolean;
 };
 
 export const FullscreenButton: React.FC<FullscreenButtonProps> = ({
   fullscreenHandle,
-  toggleIPhoneFullscreen,
-  isIPhoneFullscreenActive,
+  toggleIOSFullscreen,
+  isIOSFullscreenActive,
 }) => {
   const fullscreenButtonLabel = useL10n("fullscreenButtonLabel");
-
-  const isIPhone = window.navigator.userAgent.includes("iPhone");
-
   const handleFullscreen = (): void => {
-    if (isIPhone) {
-      toggleIPhoneFullscreen();
+    if (isIOS) {
+      toggleIOSFullscreen();
     } else if (fullscreenHandle.active) {
       fullscreenHandle.exit();
     } else {
@@ -44,7 +42,7 @@ export const FullscreenButton: React.FC<FullscreenButtonProps> = ({
         <path
           fill="#333333"
           d={
-            fullscreenHandle.active || (isIPhone && isIPhoneFullscreenActive)
+            fullscreenHandle.active || (isIOS && isIOSFullscreenActive)
               ? "M0 11H3V14H5V9H0V11ZM3 3H0V5H5V0H3V3ZM9 14H11V11H14V9H9V14ZM11 3V0H9V5H14V3H11Z"
               : "M2 9H0V14H5V12H2V9ZM0 5H2V2H5V0H0V5ZM12 12H9V14H14V9H12V12ZM9 0V2H12V5H14V0H9Z"
           }

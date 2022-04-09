@@ -10,7 +10,11 @@ $grid-z-index: 1;
 }
 
 .navbarTitle {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
   color: #ffffff;
+  cursor: pointer;
   padding-left: 0.25rem;
 }
 
@@ -19,12 +23,13 @@ $grid-z-index: 1;
 }
 
 .sectionContentWrapper {
+  background-color: #ffffff;
+  overflow-y: auto;
   position: absolute;
-  top: 0;
   right: 0;
-  z-index: $grid-z-index + 1;
+  top: 0;
   width: 100%;
-  background-color: var(--theme-color-2);
+  z-index: $grid-z-index + 1;
 }
 
 .sectionTitle {
@@ -58,9 +63,6 @@ $grid-z-index: 1;
 }
 
 .notesList {
-  background-color: #ffffff;
-  overflow-y: auto;
-
   @media print {
     max-height: unset !important;
   }
@@ -126,4 +128,9 @@ $grid-z-index: 1;
   .progressBar {
     width: 10rem;
   }
+}
+
+.helpSectionWrapper {
+  background-color: var(--theme-color-2);
+  overflow-y: auto;
 }
