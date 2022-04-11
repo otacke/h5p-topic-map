@@ -3,7 +3,7 @@ import { FC, MouseEventHandler } from "react";
 import { useAppWidth } from "../../hooks/useAppWidth";
 import { useContentId } from "../../hooks/useContentId";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { BreakpointSize } from "../../types/BreakpointSize";
+import { useSizeClassNames } from "../../hooks/useSizeClassNames";
 import { NoteButtonIconState } from "../../types/NoteButtonIconState";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
 import { GridDimensions } from "../Grid/Grid";
@@ -15,14 +15,6 @@ export type TopicMapItemProps = {
   onClick: MouseEventHandler;
   grid?: GridDimensions;
   gridRef?: React.RefObject<HTMLDivElement>;
-};
-
-const sizeClassname = {
-  [BreakpointSize.Large]: styles.large,
-  [BreakpointSize.Medium]: styles.medium,
-  [BreakpointSize.Small]: styles.small,
-  [BreakpointSize.XSmall]: styles.xSmall,
-  [BreakpointSize.XXSmall]: styles.xxSmall,
 };
 
 export const TopicMapItem: FC<TopicMapItemProps> = ({
@@ -38,10 +30,8 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({
   const buttonElement = React.useRef<HTMLButtonElement>(null);
   const [strokeWidth, setStrokeWidth] = React.useState(4);
 
-  const className = React.useMemo(
-    () => [styles.topicMapItem, sizeClassname[appWidth]].join(" "),
-    [appWidth],
-  );
+  const sizeClassNames = useSizeClassNames(styles);
+  const className = [styles.topicMapItem, sizeClassNames].join(" ");
 
   React.useEffect(() => {
     if (gridRef) {
