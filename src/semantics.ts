@@ -613,6 +613,12 @@ export const semantics: Readonly<[H5PFieldGroup, H5PBehaviour, H5PL10n]> = [
         default: "Cancel",
         type: "text",
       },
+      {
+        label: "Go back to topic map label",
+        name: "goToTopicMapLabel",
+        default: "Back",
+        type: "text",
+      },
     ],
   },
 ];

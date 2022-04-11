@@ -42,4 +42,5 @@ export type TranslationKey =
   | "navbarNotesSectionSubmitAllLabel"
   | "submitDataConfirmationWindowLabel"
   | "submitDataConfirmLabel"
-  | "submitDataDenyLabel";
+  | "submitDataDenyLabel"
+  | "goToTopicMapLabel";

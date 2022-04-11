@@ -25,9 +25,7 @@ import { NotesSection } from "./NotesSection/NotesSection";
 export type NavbarProps = {
   navbarTitle: string;
   params: Params;
-
   fullscreenHandle: FullScreenHandle;
-
   toggleIPhoneFullscreen: () => void;
   isIPhoneFullscreenActive: boolean;
 };
@@ -45,7 +43,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [userData, setUserData] = useLocalStorage(contentId);
 
   const navbarAriaLabel = useL10n("navbarTabsListAriaLabel");
-  const topicMapSectionLabel = useL10n("navbarTopicMapSectionLabel");
   const notesSectionLabel = useL10n("navbarNotesSectionLabel");
   const helpSectionLabel = useL10n("navbarHelpSectionLabel");
   const progressPercentageLabel = useL10n("progressPercentageLabel");
@@ -241,6 +238,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     />
   );
 
+  const goToTopicMap = (): void => setCurrentSection(NavbarSections.TopicMap);
+
   const notesSection = (
     <>
       <div ref={notesSectionRef}>
@@ -248,6 +247,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           setSubmitAllConfirmationVisibility={setIsSubmitAllConfirmationVisible}
           setDeleteConfirmationVisibility={setIsDeleteConfirmationVisible}
           handlePrint={handlePrint}
+          goToTopicMap={goToTopicMap}
         />
       </div>
       <div
@@ -282,16 +282,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const sectionsMenu = (
     <>
-      <button
-        className={`${styles.sectionTitle} ${
-          currentSection === NavbarSections.TopicMap && styles.active
-        }`}
-        type="button"
-        onClick={() => setCurrentSection(NavbarSections.TopicMap)}
-      >
-        {topicMapSectionLabel}
-      </button>
-
       {hasNotes && (
         <button
           className={`${styles.sectionTitle} ${
@@ -321,8 +311,8 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className={styles.fullscreenButtonNotMobile}>
         <FullscreenButton
           fullscreenHandle={fullscreenHandle}
-          toggleIPhoneFullscreen={toggleIPhoneFullscreen}
-          isIPhoneFullscreenActive={isIPhoneFullscreenActive}
+          toggleIOSFullscreen={toggleIPhoneFullscreen}
+          isIOSFullscreenActive={isIPhoneFullscreenActive}
         />
       </div>
     </>
@@ -352,8 +342,8 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className={styles.fullscreenButtonMobile}>
         <FullscreenButton
           fullscreenHandle={fullscreenHandle}
-          toggleIPhoneFullscreen={toggleIPhoneFullscreen}
-          isIPhoneFullscreenActive={isIPhoneFullscreenActive}
+          toggleIOSFullscreen={toggleIPhoneFullscreen}
+          isIOSFullscreenActive={isIPhoneFullscreenActive}
         />
       </div>
     </div>
@@ -371,7 +361,13 @@ export const Navbar: React.FC<NavbarProps> = ({
       >
         <div ref={navbarRef}>
           <div className={styles.navbarWrapper}>
-            <div className={styles.navbarTitle}>{navbarTitle}</div>
+            <button
+              type="button"
+              className={styles.navbarTitle}
+              onClick={goToTopicMap}
+            >
+              {navbarTitle}
+            </button>
             <div className={styles.sectionsMenuNotMobile}>{sectionsMenu}</div>
             {navButtonsMobile}
           </div>
@@ -394,13 +390,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             {currentSection === NavbarSections.Notes && notesSection}
             {currentSection === NavbarSections.Help && (
               <div
+                className={styles.helpSectionWrapper}
                 style={{
                   maxHeight: sectionMaxHeight,
                   minHeight: sectionMaxHeight,
-                  overflowY: "auto",
                 }}
               >
-                <HelpSection />
+                <HelpSection goToTopicMap={goToTopicMap} />
               </div>
             )}
           </div>

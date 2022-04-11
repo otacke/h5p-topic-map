@@ -838,6 +838,12 @@
         "name": "submitDataDenyLabel",
         "default": "Cancel",
         "type": "text"
+      },
+      {
+        "label": "Go back to topic map label",
+        "name": "goToTopicMapLabel",
+        "default": "Back",
+        "type": "text"
       }
     ]
   }

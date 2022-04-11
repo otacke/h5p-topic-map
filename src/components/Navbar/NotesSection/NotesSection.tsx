@@ -1,3 +1,4 @@
+import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import * as React from "react";
 import { useL10n } from "../../../hooks/useLocalization";
 import { useSizeClassNames } from "../../../hooks/useSizeClassNames";
@@ -7,18 +8,21 @@ export type NotesSectionProps = {
   setDeleteConfirmationVisibility: (isVisible: boolean) => void;
   setSubmitAllConfirmationVisibility: (isVisible: boolean) => void;
   handlePrint: () => void;
+  goToTopicMap: () => void;
 };
 
 export const NotesSection: React.FC<NotesSectionProps> = ({
   setDeleteConfirmationVisibility,
   setSubmitAllConfirmationVisibility,
   handlePrint,
+  goToTopicMap,
 }) => {
   const mainBodyTitle = useL10n("navbarNotesSectionTitle");
   const mainBodyText = useL10n("navbarNotesSectionBody");
   const printText = useL10n("navbarNotesSectionPrintLabel");
   const exportAllUserDataText = useL10n("navbarNotesSectionSubmitAllLabel");
   const deleteText = useL10n("navbarNotesSectionDeleteLabel");
+  const goToTopicMapLabel = useL10n("goToTopicMapLabel");
 
   const sizeClassNames = useSizeClassNames(styles);
 
@@ -26,11 +30,18 @@ export const NotesSection: React.FC<NotesSectionProps> = ({
     <div className={`${styles.mainBody} ${sizeClassNames}`}>
       <div className={styles.mainBodyContent}>
         <div className={styles.mainBodyTitle}>
+          <button
+            type="button"
+            onClick={goToTopicMap}
+            className={styles.backArrow}
+            aria-label={goToTopicMapLabel}
+          >
+            <ArrowLeftIcon width={22} height={22} />
+          </button>
           <p>{mainBodyTitle}</p>
         </div>
         <div className={styles.mainBodyTextWrapper}>
           <div className={styles.mainBodyText}>{mainBodyText}</div>
-          <br />
           <div className={styles.mainBodyButtons}>
             <button
               className={styles.mainBodyButton}

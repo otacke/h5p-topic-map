@@ -29,6 +29,7 @@
     "@ramonak/react-progress-bar": "^4.4.0",
     "@react-hook/resize-observer": "^1.2.5",
     "h5p-types": "github:boyum/h5p-types",
+    "is-ios": "^2.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-full-screen": "^1.1.0",
@@ -80,6 +81,7 @@
     "ts-node": "^10.7.0",
     "typescript": "^4.6.3",
     "url-loader": "^4.1.1",
-    "vite": "^2.9.1"
+    "vite": "^2.9.1",
+    "webpack": "^5.72.0"
   }
 }

@@ -57,6 +57,7 @@ DenFranskeRevolusjon.args = {
       submitDataConfirmLabel: "Submit",
       submitDataConfirmationWindowLabel: "Submit all data",
       submitDataDenyLabel: "Cancel",
+      goToTopicMapLabel: "Back",
     },
     topicMap: {
       grid: {
@@ -520,5 +521,5 @@ DenFranskeRevolusjon.args = {
       colorTheme: ColorTheme.Blue,
     },
   },
-  title: "Den franske revolusjon Den franske revolusjon Den franske revolusjon",
+  title: "Den franske revolusjon",
 };
