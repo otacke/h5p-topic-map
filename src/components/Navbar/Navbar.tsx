@@ -49,6 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const deleteAllNotesText = useL10n("deleteNotesConfirmationWindowLabel");
   const deleteAllNotesConfirmText = useL10n("deleteNotesConfirmLabel");
   const deleteAllNotesDenyText = useL10n("deleteNotesDenyLabel");
+  const submitAllDataText = useL10n("submitDataConfirmationWindowLabel");
   const submitAllDataConfirmText = useL10n("submitDataConfirmLabel");
   const submitAllDataDenyText = useL10n("submitDataDenyLabel");
 
@@ -224,7 +225,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const submitAllConfirmation = (
     <DialogWindow
-      item={fakeItem}
+      item={{ id: "", label: submitAllDataText }}
       open={isSubmitAllConfirmationVisible}
       onOpenChange={isOpen => {
         if (!isOpen) denySubmitAll();
