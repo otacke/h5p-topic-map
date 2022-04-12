@@ -1,9 +1,9 @@
 {
-  "title": "Topic Map",
+  "title": "NDLA Topic Map",
   "machineName": "H5P.TopicMap",
   "majorVersion": 0,
   "minorVersion": 1,
-  "patchVersion": 114,
+  "patchVersion": 115,
   "runnable": 1,
   "preloadedJs": [
     {
