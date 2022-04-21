@@ -22,7 +22,7 @@ export const DialogVideo: React.FC<DialogVideoProps> = ({ sources }) => {
     }
 
     const $wrapper: JQuery = H5P.jQuery(videoWrapperRef.current);
-    const videoLibraryName = "H5P.Video 1.5";
+    const videoLibraryName = "H5P.Video 1.6";
 
     H5P.newRunnable(
       {

@@ -1,5 +1,6 @@
 import useResizeObserver from "@react-hook/resize-observer";
 import * as React from "react";
+import { useState } from "react";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { AppWidthContext } from "../../contexts/AppWidthContext";
 import { Params } from "../../types/Params";
@@ -20,7 +21,7 @@ export const App: React.FC<AppProps> = ({
 }) => {
   const fullscreenHandle = useFullScreenHandle();
   const [isIPhoneFullscreenActive, setIsIPhoneFullscreenActive] =
-    React.useState<boolean>(false);
+    useState(false);
 
   const handleToggleIPhoneFullscreen = (): void => {
     setIsIPhoneFullscreenActive(!isIPhoneFullscreenActive);
