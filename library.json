@@ -3,7 +3,7 @@
   "machineName": "H5P.TopicMap",
   "majorVersion": 0,
   "minorVersion": 1,
-  "patchVersion": 116,
+  "patchVersion": 117,
   "runnable": 1,
   "preloadedJs": [
     {
@@ -31,7 +31,7 @@
     {
       "machineName": "H5P.Video",
       "majorVersion": 1,
-      "minorVersion": 5
+      "minorVersion": 6
     }
   ]
 }
