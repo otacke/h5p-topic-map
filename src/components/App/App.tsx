@@ -1,6 +1,6 @@
 import useResizeObserver from "@react-hook/resize-observer";
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { AppWidthContext } from "../../contexts/AppWidthContext";
 import { Params } from "../../types/Params";
@@ -19,9 +19,6 @@ export const App: React.FC<AppProps> = ({
   title,
   toggleIPhoneFullscreen,
 }) => {
-  // Is used for re-rendering app when fullscreen is changed
-  const [, setIsFullscreen] = useState(false);
-
   const fullscreenHandle = useFullScreenHandle();
   const [isIPhoneFullscreenActive, setIsIPhoneFullscreenActive] =
     useState(false);
@@ -48,10 +45,6 @@ export const App: React.FC<AppProps> = ({
     () => `theme-${params.topicMap?.colorTheme ?? defaultTheme}`,
     [params.topicMap?.colorTheme],
   );
-
-  useEffect(() => {
-    setIsFullscreen(fullscreenHandle.active || isIPhoneFullscreenActive);
-  }, [fullscreenHandle.active, isIPhoneFullscreenActive]);
 
   return (
     <div
