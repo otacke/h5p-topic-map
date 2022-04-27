@@ -1,10 +1,12 @@
-import type { Audio, H5PObject } from "h5p-types";
+import type { Audio, H5PIntegrationObject, H5PObject } from "h5p-types";
 import { ArrowItemType } from "../types/ArrowItemType";
 import { Params } from "../types/Params";
 import { TopicMapItemType } from "../types/TopicMapItemType";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const H5P = (window as any).H5P as H5PObject;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const H5PIntegration = (window as any).H5P as H5PIntegrationObject;
 
 export const normalizeAssetPath = (path: string, contentId: string): string => {
   const pathAlreadyAbsolute =

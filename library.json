@@ -3,7 +3,7 @@
   "machineName": "H5P.TopicMap",
   "majorVersion": 0,
   "minorVersion": 1,
-  "patchVersion": 117,
+  "patchVersion": 118,
   "runnable": 1,
   "embedTypes": ["iframe"],
   "preloadedJs": [

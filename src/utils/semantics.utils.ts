@@ -1,4 +1,4 @@
-import { H5PField } from "h5p-types";
+import type { H5PField } from "h5p-types";
 import { ColorTheme } from "../types/ColorTheme";
 import { Params } from "../types/Params";
 import { Translations } from "../types/Translations";
