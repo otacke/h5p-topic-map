@@ -104,7 +104,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     }
   });
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (currentSection === NavbarSections.TopicMap) {
       setSectionMaxHeight(0);
     } else {
@@ -120,7 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     }
   }, [currentSection, fullscreenHandle.active, navbarHeight]);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (currentSection === NavbarSections.Notes) {
       if (fullscreenHandle.active) {
         setNotesListMaxHeight(
