@@ -1,4 +1,4 @@
-import { H5PFieldGroup, H5PBehaviour, H5PL10n } from "h5p-types";
+import type { H5PFieldGroup, H5PBehaviour, H5PL10n } from "h5p-types";
 import { ColorTheme } from "./types/ColorTheme";
 import { colorThemes, itemDialog } from "./utils/semantics.utils";
 

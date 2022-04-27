@@ -1,4 +1,4 @@
-import { XAPIVerb } from "h5p-types";
+import type { XAPIVerb } from "h5p-types";
 import { sendXAPIEvent } from "../utils/x-api.utils";
 import { useContentId } from "./useContentId";
 import { useH5PInstance } from "./useH5PInstance";

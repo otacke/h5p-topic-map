@@ -1,4 +1,4 @@
-import { EventDispatcher } from "h5p-types";
+import type { EventDispatcher } from "h5p-types";
 import { ContentUserData } from "../types/ContentUserData";
 import { UserData } from "../types/UserData";
 import { sendXAPIEvent } from "./x-api.utils";

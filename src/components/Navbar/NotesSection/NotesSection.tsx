@@ -1,5 +1,6 @@
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import * as React from "react";
+import { H5PIntegration } from "../../../h5p/H5P.util";
 import { useL10n } from "../../../hooks/useLocalization";
 import { useSizeClassNames } from "../../../hooks/useSizeClassNames";
 import styles from "./NotesSection.module.scss";
@@ -51,14 +52,16 @@ export const NotesSection: React.FC<NotesSectionProps> = ({
             >
               {printText}
             </button>
-            <button
-              className={styles.mainBodyButton}
-              type="button"
-              aria-label={exportAllUserDataText}
-              onClick={() => setSubmitAllConfirmationVisibility(true)}
-            >
-              {exportAllUserDataText}
-            </button>
+            {H5PIntegration.reportingIsEnabled ? (
+              <button
+                className={styles.mainBodyButton}
+                type="button"
+                aria-label={exportAllUserDataText}
+                onClick={() => setSubmitAllConfirmationVisibility(true)}
+              >
+                {exportAllUserDataText}
+              </button>
+            ) : null}
             <button
               className={styles.mainBodyButton}
               type="button"

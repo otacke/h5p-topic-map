@@ -1,4 +1,4 @@
-import { EventDispatcher, XAPIDefinition, XAPIVerb } from "h5p-types";
+import type { EventDispatcher, XAPIDefinition, XAPIVerb } from "h5p-types";
 
 /**
  * Get the xAPI definition for the xAPI object
