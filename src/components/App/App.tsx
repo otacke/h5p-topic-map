@@ -31,7 +31,7 @@ export const App: React.FC<AppProps> = ({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [width, setWidth] = React.useState(0);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     const initialWidth =
       containerRef.current?.getBoundingClientRect().width ?? 0;
     setWidth(initialWidth);
