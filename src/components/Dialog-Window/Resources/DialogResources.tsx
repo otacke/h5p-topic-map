@@ -4,7 +4,7 @@ import { useEffectOnce } from "react-use";
 import { H5P } from "../../../h5p/H5P.util";
 import { useContentId } from "../../../hooks/useContentId";
 import { useL10n } from "../../../hooks/useLocalization";
-import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import { useLocalStorageUserData } from "../../../hooks/useLocalStorageUserData";
 import { Link } from "../../../types/Link";
 import styles from "./DialogResources.module.scss";
 
@@ -20,7 +20,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   id,
 }) => {
   const contentId = useContentId();
-  const [userData, setUserData] = useLocalStorage(contentId);
+  const [userData, setUserData] = useLocalStorageUserData(contentId);
   const [link, setLink] = React.useState("");
   const [customLinks, setCustomLinks] = React.useState<Array<JSX.Element>>([]);
   const inputFieldRef = React.useRef<HTMLInputElement>(null);

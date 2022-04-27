@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useContentId } from "../../../hooks/useContentId";
 import { useL10n } from "../../../hooks/useLocalization";
-import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import { useLocalStorageUserData } from "../../../hooks/useLocalStorageUserData";
 import { useSendXAPIEvent } from "../../../hooks/useSendXAPIEvent";
 import styles from "./DialogNote.module.scss";
 
@@ -17,7 +17,7 @@ export const DialogNote: React.FC<NoteProps> = ({
   smallScreen,
 }) => {
   const contentId = useContentId();
-  const [userData, setUserData] = useLocalStorage(contentId);
+  const [userData, setUserData] = useLocalStorageUserData(contentId);
 
   const [note, setNote] = React.useState(userData.dialogs[id]?.note ?? "");
   const [dynamicSavingText, setDynamicSavingText] = React.useState("");

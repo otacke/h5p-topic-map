@@ -3,12 +3,14 @@ import { ContentUserData } from "../types/ContentUserData";
 import { UserData } from "../types/UserData";
 import { sendXAPIEvent } from "./x-api.utils";
 
+export const userDataLocalStorageKey = "h5p-topic-map-userdata";
+
 const getUserData = (): UserData => {
-  return JSON.parse(localStorage.getItem("h5p-topic-map-userdata") ?? "{}");
+  return JSON.parse(localStorage.getItem(userDataLocalStorageKey) ?? "{}");
 };
 
 const setUserData = (userData: UserData): void => {
-  localStorage.setItem("h5p-topic-map-userdata", JSON.stringify(userData));
+  localStorage.setItem(userDataLocalStorageKey, JSON.stringify(userData));
 };
 
 export const getContentUserData = (contentId: string): ContentUserData => {

@@ -2,7 +2,7 @@ import * as React from "react";
 import { FC, MouseEventHandler } from "react";
 import { useAppWidth } from "../../hooks/useAppWidth";
 import { useContentId } from "../../hooks/useContentId";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { useLocalStorageUserData } from "../../hooks/useLocalStorageUserData";
 import { useSizeClassNames } from "../../hooks/useSizeClassNames";
 import { NoteButtonIconState } from "../../types/NoteButtonIconState";
 import { TopicMapItemType } from "../../types/TopicMapItemType";
@@ -24,7 +24,7 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({
   gridRef,
 }) => {
   const contentId = useContentId();
-  const [storageData] = useLocalStorage(contentId);
+  const [storageData] = useLocalStorageUserData(contentId);
 
   const appWidth = useAppWidth();
   const buttonElement = React.useRef<HTMLButtonElement>(null);

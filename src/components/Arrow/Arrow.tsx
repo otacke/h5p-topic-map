@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FC, MouseEventHandler } from "react";
 import { useContentId } from "../../hooks/useContentId";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { useLocalStorageUserData } from "../../hooks/useLocalStorageUserData";
 import { ArrowItemType } from "../../types/ArrowItemType";
 import { ArrowType } from "../../types/ArrowType";
 import { NoteButtonIconState } from "../../types/NoteButtonIconState";
@@ -38,7 +38,7 @@ export const Arrow: FC<ArrowProps> = ({
   dialogIsOpen,
 }) => {
   const contentId = useContentId();
-  const [userData] = useLocalStorage(contentId);
+  const [userData] = useLocalStorageUserData(contentId);
 
   const [pathDef, setPathDef] = React.useState<string>("");
   const [strokeWidth, setStrokeWidth] = React.useState<number>(4);
