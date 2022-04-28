@@ -22,7 +22,7 @@ export const NotesList: React.FC<NotesListProps> = ({
   const missingNoteText = useL10n("navbarNotesMissingNoteLabel");
 
   const userDataEntries = topicMapItems.map(item => {
-    const dialogData = userData.dialogs?.[item.id];
+    const dialogData = userData[contentId].dialogs?.[item.id];
 
     const doesNoteExist = dialogData?.note;
     const isNoteDone = doesNoteExist && dialogData.noteDone;
@@ -50,7 +50,7 @@ export const NotesList: React.FC<NotesListProps> = ({
                 <p className={styles.mainBodyListElementHeader}>{item.label}</p>
                 <p>
                   {doesNoteExist
-                    ? userData.dialogs[item.id].note
+                    ? userData[contentId].dialogs[item.id].note
                     : missingNoteText}
                 </p>
               </div>

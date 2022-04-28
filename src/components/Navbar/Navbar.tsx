@@ -40,7 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const contentId = useContentId();
   const h5pInstance = useH5PInstance();
 
-  const [userData, setUserData] = useLocalStorageUserData(contentId);
+  const [userData, setUserData] = useLocalStorageUserData();
 
   const navbarAriaLabel = useL10n("navbarTabsListAriaLabel");
   const notesSectionLabel = useL10n("navbarNotesSectionLabel");
@@ -140,14 +140,15 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   React.useEffect(() => {
     const newProgressBarValue = allItems.filter(
-      item => item.dialog?.hasNote && userData.dialogs[item.id]?.noteDone,
+      item =>
+        item.dialog?.hasNote && userData[contentId].dialogs[item.id]?.noteDone,
     ).length;
 
     setProgressBarValue(newProgressBarValue);
     setProgressPercentage(
       Math.round((newProgressBarValue / totalNotesToComplete) * 100),
     );
-  }, [allItems, totalNotesToComplete, userData]);
+  }, [allItems, contentId, totalNotesToComplete, userData]);
 
   let navbarTitleForPrint = "";
   const updateNavbarTitleForPrint = (): void => {
@@ -163,9 +164,9 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const deleteAllNotes = (): void => {
     allItems.forEach(item => {
-      if (item.id in userData.dialogs) {
-        userData.dialogs[item.id].note = undefined;
-        userData.dialogs[item.id].noteDone = undefined;
+      if (item.id in userData[contentId].dialogs) {
+        userData[contentId].dialogs[item.id].note = undefined;
+        userData[contentId].dialogs[item.id].noteDone = undefined;
       }
     });
     setUserData(userData);
