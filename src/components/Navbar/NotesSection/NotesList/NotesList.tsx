@@ -1,11 +1,11 @@
 import * as React from "react";
-import { useL10n } from "../../../../hooks/useLocalization";
-import { NoteButton } from "../../../NoteButton/NoteButton";
-import { NoteButtonIconState } from "../../../../types/NoteButtonIconState";
-import { CommonItemType } from "../../../../types/CommonItemType";
-import styles from "./NotesList.module.scss";
-import { getContentUserData } from "../../../../utils/user-data.utils";
 import { useContentId } from "../../../../hooks/useContentId";
+import { useL10n } from "../../../../hooks/useLocalization";
+import { useLocalStorageUserData } from "../../../../hooks/useLocalStorageUserData";
+import { CommonItemType } from "../../../../types/CommonItemType";
+import { NoteButtonIconState } from "../../../../types/NoteButtonIconState";
+import { NoteButton } from "../../../NoteButton/NoteButton";
+import styles from "./NotesList.module.scss";
 
 export type NotesListProps = {
   topicMapItems: CommonItemType[];
@@ -17,12 +17,12 @@ export const NotesList: React.FC<NotesListProps> = ({
   navbarTitle,
 }) => {
   const contentId = useContentId();
-  const userData = getContentUserData(contentId);
+  const [userData] = useLocalStorageUserData();
   const noItemsInListText = useL10n("navbarNotesEmptyListLabel");
   const missingNoteText = useL10n("navbarNotesMissingNoteLabel");
 
   const userDataEntries = topicMapItems.map(item => {
-    const dialogData = userData[contentId].dialogs?.[item.id];
+    const dialogData = userData[contentId]?.dialogs?.[item.id];
 
     const doesNoteExist = dialogData?.note;
     const isNoteDone = doesNoteExist && dialogData.noteDone;
@@ -50,7 +50,7 @@ export const NotesList: React.FC<NotesListProps> = ({
                 <p className={styles.mainBodyListElementHeader}>{item.label}</p>
                 <p>
                   {doesNoteExist
-                    ? userData[contentId].dialogs[item.id].note
+                    ? userData[contentId]?.dialogs[item.id].note
                     : missingNoteText}
                 </p>
               </div>

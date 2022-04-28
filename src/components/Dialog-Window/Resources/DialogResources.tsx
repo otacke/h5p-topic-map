@@ -30,7 +30,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   const addLinkLabel = useL10n("dialogResourcesAdd");
 
   const removeCustomLink = (linkToRemove: string): void => {
-    userData[contentId].dialogs[id].links = userData[contentId].dialogs[
+    userData[contentId].dialogs[id].links = userData[contentId]?.dialogs[
       id
     ].links?.filter((item: Link) => item.id !== linkToRemove);
 
@@ -81,7 +81,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
 
   // extract the generation of custom links list to separate function
   const populateCustomLinks = (): void => {
-    const { links } = userData[contentId].dialogs[id] ?? {};
+    const { links } = userData[contentId]?.dialogs[id] ?? {};
     if (!links) {
       return;
     }
@@ -115,11 +115,15 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
       label: newLink,
     };
 
-    if (!userData[contentId].dialogs[id]) {
+    if (!userData[contentId]) {
+      userData[contentId] = { dialogs: {} };
+    }
+
+    if (!userData[contentId]?.dialogs[id]) {
       userData[contentId].dialogs[id] = {};
     }
 
-    const dialogData = userData[contentId].dialogs[id];
+    const dialogData = userData[contentId]?.dialogs[id];
     if (!dialogData.links) {
       dialogData.links = [];
     }

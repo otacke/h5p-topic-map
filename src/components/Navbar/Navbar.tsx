@@ -141,7 +141,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   React.useEffect(() => {
     const newProgressBarValue = allItems.filter(
       item =>
-        item.dialog?.hasNote && userData[contentId].dialogs[item.id]?.noteDone,
+        item.dialog?.hasNote && userData[contentId]?.dialogs[item.id]?.noteDone,
     ).length;
 
     setProgressBarValue(newProgressBarValue);
@@ -164,7 +164,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const deleteAllNotes = (): void => {
     allItems.forEach(item => {
-      if (item.id in userData[contentId].dialogs) {
+      if (userData[contentId]?.dialogs?.[item.id]) {
         userData[contentId].dialogs[item.id].note = undefined;
         userData[contentId].dialogs[item.id].noteDone = undefined;
       }

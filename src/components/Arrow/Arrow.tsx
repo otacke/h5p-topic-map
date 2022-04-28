@@ -54,7 +54,7 @@ export const Arrow: FC<ArrowProps> = ({
   );
 
   React.useEffect(() => {
-    const dialogData = userData[contentId].dialogs[item.id];
+    const dialogData = userData[contentId]?.dialogs[item.id];
 
     switch (true) {
       case dialogData?.noteDone:

@@ -44,7 +44,7 @@ export const TopicMapItem: FC<TopicMapItemProps> = ({
 
   let btnState: NoteButtonIconState = NoteButtonIconState.Default;
   if (item.dialog?.hasNote) {
-    const dialogData = userData[contentId].dialogs[item.id];
+    const dialogData = userData[contentId]?.dialogs[item.id];
 
     switch (true) {
       case dialogData?.noteDone:

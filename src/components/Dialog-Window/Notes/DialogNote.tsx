@@ -20,12 +20,12 @@ export const DialogNote: React.FC<NoteProps> = ({
   const [userData, setUserData] = useLocalStorageUserData();
 
   const [note, setNote] = React.useState(
-    userData[contentId].dialogs[id]?.note ?? "",
+    userData[contentId]?.dialogs[id]?.note ?? "",
   );
   const [dynamicSavingText, setDynamicSavingText] = React.useState("");
   const [savingTextTimeout, setSavingTextTimeout] = React.useState<number>();
   const [noteDone, setMarkedAsDone] = React.useState(
-    userData[contentId].dialogs[id]?.noteDone ?? false,
+    userData[contentId]?.dialogs[id]?.noteDone ?? false,
   );
   const [wordCount, setWordCount] = React.useState(0);
   const [maxWordCount, setMaxWordCount] = React.useState<number | undefined>();
@@ -41,17 +41,23 @@ export const DialogNote: React.FC<NoteProps> = ({
   const { sendXAPIEvent } = useSendXAPIEvent();
 
   const handleNoteDone = (): void => {
-    if (userData[contentId].dialogs[id] === undefined) {
+    if (!userData[contentId]) {
+      userData[contentId] = { dialogs: {} };
+    }
+
+    if (!userData[contentId]?.dialogs[id]) {
       userData[contentId].dialogs[id] = {};
     }
+
     userData[contentId].dialogs[id].noteDone = !noteDone;
+
     setMarkedAsDone(!noteDone);
     setUserData(userData);
 
     sendXAPIEvent("completed", {
       itemId: id,
       note,
-      completed: userData[contentId].dialogs[id].noteDone ?? false,
+      completed: userData[contentId]?.dialogs[id].noteDone ?? false,
     });
   };
 
@@ -98,8 +104,14 @@ export const DialogNote: React.FC<NoteProps> = ({
 
   React.useEffect(() => {
     // TODO: If this becomes laggy, add a debounce-timer to avoid saving more often than, say, every 100ms.
-    if (userData[contentId].dialogs[id] === undefined)
+
+    if (!userData[contentId]) {
+      userData[contentId] = { dialogs: {} };
+    }
+    if (!userData[contentId]?.dialogs[id]) {
       userData[contentId].dialogs[id] = {};
+    }
+
     userData[contentId].dialogs[id].note = note;
     countWords();
     // ensure there's no memory leak on component unmount during timeout
