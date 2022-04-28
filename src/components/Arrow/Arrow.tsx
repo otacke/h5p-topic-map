@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FC, MouseEventHandler } from "react";
 import { useContentId } from "../../hooks/useContentId";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { useLocalStorageUserData } from "../../hooks/useLocalStorageUserData";
 import { ArrowItemType } from "../../types/ArrowItemType";
 import { ArrowType } from "../../types/ArrowType";
 import { NoteButtonIconState } from "../../types/NoteButtonIconState";
@@ -38,7 +38,7 @@ export const Arrow: FC<ArrowProps> = ({
   dialogIsOpen,
 }) => {
   const contentId = useContentId();
-  const [userData] = useLocalStorage(contentId);
+  const [userData] = useLocalStorageUserData();
 
   const [pathDef, setPathDef] = React.useState<string>("");
   const [strokeWidth, setStrokeWidth] = React.useState<number>(4);
@@ -54,7 +54,7 @@ export const Arrow: FC<ArrowProps> = ({
   );
 
   React.useEffect(() => {
-    const dialogData = userData.dialogs[item.id];
+    const dialogData = userData[contentId]?.dialogs[item.id];
 
     switch (true) {
       case dialogData?.noteDone:
@@ -69,7 +69,7 @@ export const Arrow: FC<ArrowProps> = ({
       default:
         setButtonState(NoteButtonIconState.None);
     }
-  }, [item, buttonState, setButtonState, userData, dialogIsOpen]);
+  }, [item, buttonState, setButtonState, userData, dialogIsOpen, contentId]);
 
   const findMiddlePosition = (
     startx: number,

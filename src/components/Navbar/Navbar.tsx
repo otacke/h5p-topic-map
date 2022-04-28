@@ -7,7 +7,7 @@ import { useReactToPrint } from "react-to-print";
 import { useContentId } from "../../hooks/useContentId";
 import { useH5PInstance } from "../../hooks/useH5PInstance";
 import { useL10n } from "../../hooks/useLocalization";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { useLocalStorageUserData } from "../../hooks/useLocalStorageUserData";
 import { useSizeClassNames } from "../../hooks/useSizeClassNames";
 import { CommonItemType } from "../../types/CommonItemType";
 import { NavbarSections } from "../../types/NavbarSections";
@@ -40,7 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const contentId = useContentId();
   const h5pInstance = useH5PInstance();
 
-  const [userData, setUserData] = useLocalStorage(contentId);
+  const [userData, setUserData] = useLocalStorageUserData();
 
   const navbarAriaLabel = useL10n("navbarTabsListAriaLabel");
   const notesSectionLabel = useL10n("navbarNotesSectionLabel");
@@ -139,18 +139,16 @@ export const Navbar: React.FC<NavbarProps> = ({
   ]);
 
   React.useEffect(() => {
-    setProgressBarValue(
-      allItems.filter(
-        item =>
-          item.dialog?.hasNote &&
-          item.id in userData &&
-          userData.dialogs[item.id].noteDone,
-      ).length,
-    );
+    const newProgressBarValue = allItems.filter(
+      item =>
+        item.dialog?.hasNote && userData[contentId]?.dialogs[item.id]?.noteDone,
+    ).length;
+
+    setProgressBarValue(newProgressBarValue);
     setProgressPercentage(
-      Math.round((progressBarValue / totalNotesToComplete) * 100),
+      Math.round((newProgressBarValue / totalNotesToComplete) * 100),
     );
-  }, [progressBarValue, allItems, totalNotesToComplete, userData]);
+  }, [allItems, contentId, totalNotesToComplete, userData]);
 
   let navbarTitleForPrint = "";
   const updateNavbarTitleForPrint = (): void => {
@@ -166,9 +164,9 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const deleteAllNotes = (): void => {
     allItems.forEach(item => {
-      if (item.id in userData.dialogs) {
-        userData.dialogs[item.id].note = undefined;
-        userData.dialogs[item.id].noteDone = undefined;
+      if (userData[contentId]?.dialogs?.[item.id]) {
+        userData[contentId].dialogs[item.id].note = undefined;
+        userData[contentId].dialogs[item.id].noteDone = undefined;
       }
     });
     setUserData(userData);

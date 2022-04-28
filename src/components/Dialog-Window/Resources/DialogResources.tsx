@@ -4,7 +4,7 @@ import { useEffectOnce } from "react-use";
 import { H5P } from "../../../h5p/H5P.util";
 import { useContentId } from "../../../hooks/useContentId";
 import { useL10n } from "../../../hooks/useLocalization";
-import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import { useLocalStorageUserData } from "../../../hooks/useLocalStorageUserData";
 import { Link } from "../../../types/Link";
 import styles from "./DialogResources.module.scss";
 
@@ -20,7 +20,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   id,
 }) => {
   const contentId = useContentId();
-  const [userData, setUserData] = useLocalStorage(contentId);
+  const [userData, setUserData] = useLocalStorageUserData();
   const [link, setLink] = React.useState("");
   const [customLinks, setCustomLinks] = React.useState<Array<JSX.Element>>([]);
   const inputFieldRef = React.useRef<HTMLInputElement>(null);
@@ -30,9 +30,9 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
   const addLinkLabel = useL10n("dialogResourcesAdd");
 
   const removeCustomLink = (linkToRemove: string): void => {
-    userData.dialogs[id].links = userData.dialogs[id].links?.filter(
-      (item: Link) => item.id !== linkToRemove,
-    );
+    userData[contentId].dialogs[id].links = userData[contentId]?.dialogs[
+      id
+    ].links?.filter((item: Link) => item.id !== linkToRemove);
 
     setUserData(userData);
     // we can disable this check since this function will not be called before the page is rendered
@@ -81,7 +81,7 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
 
   // extract the generation of custom links list to separate function
   const populateCustomLinks = (): void => {
-    const { links } = userData.dialogs[id] ?? {};
+    const { links } = userData[contentId]?.dialogs[id] ?? {};
     if (!links) {
       return;
     }
@@ -115,11 +115,15 @@ export const DialogResources: React.FC<DialogResourceProps> = ({
       label: newLink,
     };
 
-    if (!userData.dialogs[id]) {
-      userData.dialogs[id] = {};
+    if (!userData[contentId]) {
+      userData[contentId] = { dialogs: {} };
     }
 
-    const dialogData = userData.dialogs[id];
+    if (!userData[contentId]?.dialogs[id]) {
+      userData[contentId].dialogs[id] = {};
+    }
+
+    const dialogData = userData[contentId]?.dialogs[id];
     if (!dialogData.links) {
       dialogData.links = [];
     }
