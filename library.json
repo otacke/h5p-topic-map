@@ -5,9 +5,7 @@
   "minorVersion": 1,
   "patchVersion": 120,
   "runnable": 1,
-  "embedTypes": [
-    "iframe"
-  ],
+  "embedTypes": ["iframe"],
   "preloadedJs": [
     {
       "path": "dist/bundle.js"
