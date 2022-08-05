@@ -168,11 +168,11 @@ export const Grid: React.FC<GridProps> = ({
     () =>
       [
         styles.gridWrapper,
-        fullscreenHandle.active ? styles.gridWrapperFullscreen : undefined,
+        H5P.isFullscreen ? styles.gridWrapperFullscreen : undefined,
       ]
         .filter(Boolean)
         .join(" "),
-    [fullscreenHandle.active],
+    [H5P.isFullscreen],
   );
 
   return (
