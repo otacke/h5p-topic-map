@@ -81,6 +81,31 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PContentType {
     const l10n = params.l10n ?? ({} as Translations);
     const title = extras?.metadata.title;
 
+    /*
+     * Trick components to rerender after resize.
+     * Instead of using a the resize observer, one would normally simply listen
+     * to the `resize` event dispatched by H5P and call components to
+     * resize.
+     */
+    const trickReactResizeObserver = (): void => {
+      this.containerElement.style.width = '100.01%';
+      setTimeout(() => {
+        this.containerElement.style.width = '';
+      }, 0);
+    }
+
+    this.on('enterFullScreen', () => {
+      setTimeout(() => {
+        trickReactResizeObserver();
+      }, 250); // DOM might need time to change size
+    });
+
+    this.on('exitFullScreen', () => {
+      setTimeout(() => {
+        trickReactResizeObserver();
+      }, 250); // DOM might need time to change size
+    });
+
     render(
       <ContentIdContext.Provider value={contentId}>
         <LocalizationContext.Provider value={l10n}>
@@ -89,6 +114,7 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PContentType {
               params={paramsWithFallbacks}
               title={title}
               toggleIPhoneFullscreen={this.toggleIPhoneFullscreen}
+              isFullscreen={H5P.isFullscreen}
             />
           </H5PContext.Provider>
         </LocalizationContext.Provider>
@@ -97,17 +123,48 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PContentType {
     );
   }
 
+  /**
+   * Toggle fullscreen button.
+   * @param {string|boolean} state enter|false for enter, exit|true for exit.
+   */
+  handleToggleFullscreen(state: string|boolean): void {
+    if (!this.containerElement) {
+      return;
+    }
+
+    let newState: boolean|undefined;
+    if (typeof state === 'string') {
+      if (state === 'enter') {
+        newState = false;
+      }
+      else if (state === 'exit') {
+        newState = true;
+      }
+    }
+
+    if (typeof newState !== 'boolean') {
+      newState = !H5P.isFullscreen;
+    }
+
+    if (newState === true) {
+      H5P.fullScreen(H5P.jQuery(this.containerElement), this);
+    }
+    else {
+      H5P.exitFullScreen();
+    }
+  };
+
   attach($container: JQuery<HTMLElement>): void {
-    const containerElement = $container.get(0);
-    if (!containerElement) {
+    this.containerElement = $container.get(0);
+    if (!this.containerElement) {
       console.error(
         "Found no containing element to attach `h5p-topic-map` to.",
       );
       return;
     }
 
-    containerElement.appendChild(this.wrapper);
-    containerElement.classList.add("h5p-topic-map");
+    this.containerElement.appendChild(this.wrapper);
+    this.containerElement.classList.add("h5p-topic-map");
   }
 
   private static createWrapperElement(): HTMLDivElement {
