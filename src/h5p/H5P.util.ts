@@ -1,45 +1,7 @@
-import type {
-  Audio, H5PIntegrationObject, H5PCopyrightLicenses, H5PMetadata,
-  H5PMediaCopyright, IH5PContentType, H5PExtras, H5PConfirmationDialog,
-  H5PDialog, EventDispatcher
-} from "h5p-types";
+import type { Audio, H5PIntegrationObject, H5PObject } from "h5p-types";
 import { ArrowItemType } from "../types/ArrowItemType";
 import { Params } from "../types/Params";
 import { TopicMapItemType } from "../types/TopicMapItemType";
-
-// Temporarily use local definition instead of incomplete from h5p-types
-type H5PObject = {
-  // Constants
-  copyrightLicenses: H5PCopyrightLicenses;
-  /** H5P content is rendered inside an iframe */
-  isFramed: boolean;
-  // Functions
-  buildMetadataCopyrights(metadata: H5PMetadata): H5PMediaCopyright;
-  createUUID: () => string;
-  getCopyrights(instance: IH5PContentType): string;
-  getPath: (path: string, contentId: string) => string;
-  newRunnable: (
-    library: { library: string; params: unknown },
-    contentId: string,
-    $attachTo?: JQuery,
-    skipResize?: boolean,
-    extras?: H5PExtras
-  ) => IH5PContentType;
-  // Classes
-  jQuery: typeof jQuery;
-  ConfirmationDialog: typeof H5PConfirmationDialog;
-  Dialog: typeof H5PDialog;
-  EventDispatcher: typeof EventDispatcher;
-  exitFullScreen: () => void;
-  fullScreen: (
-    $element: JQuery,
-    instance: IH5PContentType,
-    exitCallback?: () => void,
-    body?: JQuery,
-    forceSemiFullScreen?: boolean
-  ) => void;
-  isFullscreen: boolean;
-};
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const H5P = (window as any).H5P as H5PObject;

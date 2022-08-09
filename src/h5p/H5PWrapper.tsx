@@ -18,19 +18,6 @@ import {
   normalizeTopicMapItemPaths,
 } from "./H5P.util";
 
-// Temporarily overrule h5p-types
-type H5PObject = {
- exitFullScreen: () => void;
- fullScreen: (
-   $element: JQuery,
-   instance: IH5PContentType,
-   exitCallback?: () => void,
-   body?: JQuery,
-   forceSemiFullScreen?: boolean
- ) => void;
- isFullscreen: boolean;
-};
-
 export class H5PWrapper extends H5P.EventDispatcher implements IH5PContentType {
   public containerElement: HTMLElement|undefined;
 
